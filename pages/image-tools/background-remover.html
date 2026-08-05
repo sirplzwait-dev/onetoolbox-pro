@@ -3,36 +3,39 @@
 
 <head>
 
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-<title>AI Background Remover - OneToolBox</title>
+    <title>Remove Background - OneToolBox</title>
 
-<!-- Common CSS -->
+    <meta name="description"
+          content="Remove image background online for free using AI.">
 
-<link rel="stylesheet"
-href="../../assets/css/reset.css">
+    <!-- Common CSS -->
 
-<link rel="stylesheet"
-href="../../assets/css/variables.css">
+    <link rel="stylesheet"
+          href="../../assets/css/reset.css">
 
-<link rel="stylesheet"
-href="../../assets/css/layout.css">
+    <link rel="stylesheet"
+          href="../../assets/css/variables.css">
 
-<link rel="stylesheet"
-href="../../assets/css/components.css">
+    <link rel="stylesheet"
+          href="../../assets/css/layout.css">
 
-<!-- Tool CSS -->
+    <link rel="stylesheet"
+          href="../../assets/css/components.css">
 
-<link rel="stylesheet"
-href="../../assets/css/tools/background-remover.css">
+    <!-- Tool CSS -->
 
-<!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="../../assets/css/tools/remove-background.css">
 
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <!-- Font Awesome -->
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
 </head>
 
@@ -44,372 +47,275 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
 <main class="page page-offset">
 
-<!-- Hero -->
+    <!-- Hero -->
 
-<section class="tool-hero">
+    <section class="tool-hero">
 
-<div class="container">
+        <div class="container">
 
-<h1>
+            <h1>
 
-🪄 AI Background Remover
+                <i class="fa-solid fa-scissors"></i>
 
-</h1>
+                AI Background Remover
 
-<p>
+            </h1>
 
-Remove image background instantly using AI.
+            <p>
 
-</p>
+                Remove image background instantly using AI.
 
-</div>
+            </p>
 
-</section>
+        </div>
 
-<!-- Tool -->
+    </section>
 
-<section class="section">
+    <!-- Tool -->
 
-<div class="container">
+    <section class="section">
 
-<div class="bg-box">
+        <div class="container">
 
-<!-- ========================= -->
-<!-- Upload Card -->
-<!-- ========================= -->
+            <div class="tool-grid">
+			                <!-- ========================= -->
+                <!-- Upload Card -->
+                <!-- ========================= -->
 
-<div class="bg-card">
+                <div class="tool-card">
 
-<h3>
+                    <h2>
 
-Upload Image
+                        <i class="fa-solid fa-upload"></i>
 
-</h3>
+                        Upload Image
 
-<div
-class="upload-area"
-id="uploadArea">
+                    </h2>
 
-<i
-class="fa-solid fa-cloud-arrow-up"
-id="uploadIcon">
+                    <div class="upload-area"
+                         id="uploadArea">
 
-</i>
+                        <input
+                            type="file"
+                            id="imageInput"
+                            accept="image/*"
+                            hidden>
 
-<img
-id="originalImage"
-class="preview-image"
-alt="Preview">
+                        <i class="fa-solid fa-cloud-arrow-up upload-icon"></i>
 
-<h4 id="uploadText">
+                        <h3>
 
-Upload Image
+                            Drag & Drop Image
 
-</h4>
+                        </h3>
 
-<p id="uploadInfo">
+                        <p>
 
-📁 Choose Image
+                            or click below
 
-<br>
+                        </p>
 
-📋 Paste Image
+                        <button
+                            id="selectBtn"
+                            class="primary-btn"
+                            type="button">
 
-<br>
+                            <i class="fa-solid fa-image"></i>
 
-🖱 Drag & Drop
+                            Choose Image
 
-</p>
+                        </button>
 
-<label
-class="choose-btn">
+                        <small>
 
-<i class="fa-solid fa-image"></i>
+                            JPG • PNG • WEBP
 
-Choose Image
+                        </small>
 
-<input
-type="file"
-id="imageInput"
-accept="image/*">
+                    </div>
 
-</label>
+                    <div class="file-info">
 
-<button
-class="btn-reset"
-id="resetBtn"
-type="button">
+                        <div>
 
-<i class="fa-solid fa-rotate-left"></i>
+                            <span>File Size</span>
 
-Reset
+                            <strong id="fileSize">
 
-</button>
+                                0 KB
 
-</div>
+                            </strong>
 
-<div class="info">
+                        </div>
 
-File Size
+                        <div>
 
-<b id="fileSize">
+                            <span>Resolution</span>
 
-0 KB
+                            <strong id="resolution">
 
-</b>
+                                0 × 0
 
-</div>
+                            </strong>
 
-<div class="info">
+                        </div>
 
-Resolution
+                    </div>
 
-<b id="resolution">
+                </div>
+				                <!-- ========================= -->
+                <!-- AI Controls -->
+                <!-- ========================= -->
 
-0 × 0 px
+                <div class="tool-card">
 
-</b>
+                    <h2>
 
-</div>
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
 
-</div>
-<!-- ========================= -->
-<!-- AI SETTINGS -->
-<!-- ========================= -->
+                        AI Controls
 
-<div class="bg-card">
+                    </h2>
 
-<h3>
+                    <button
+                        id="removeBgBtn"
+                        class="primary-btn full-btn"
+                        type="button">
 
-AI Settings
+                        <i class="fa-solid fa-scissors"></i>
 
-</h3>
+                        Remove Background
 
-<button
-class="btn-primary"
-id="removeBgBtn">
+                    </button>
 
-<i class="fa-solid fa-wand-magic-sparkles"></i>
+                    <button
+                        id="resetBtn"
+                        class="secondary-btn full-btn"
+                        type="button">
 
-Remove Background
+                        <i class="fa-solid fa-rotate-left"></i>
 
-</button>
+                        Reset
 
-<label>
+                    </button>
 
-Background Type
+                    <div
+                        id="processingText"
+                        class="processing-box"
+                        style="display:none;">
 
-</label>
+                        <div class="loader"
+                             id="loader"></div>
 
-<div class="background-grid">
+                        <p>
 
-<button
-class="bg-option active"
-data-type="transparent">
+                            AI is removing the background...
 
-Transparent
+                        </p>
 
-</button>
+                    </div>
 
-<button
-class="bg-option"
-data-type="white">
+                    <div class="tool-note">
 
-White
+                        <h4>
 
-</button>
+                            Tips
 
-<button
-class="bg-option"
-data-type="black">
+                        </h4>
 
-Black
+                        <ul>
 
-</button>
+                            <li>Use clear images.</li>
 
-<button
-class="bg-option"
-data-type="color">
+                            <li>Single object gives best results.</li>
 
-Custom
+                            <li>PNG output supports transparency.</li>
 
-</button>
+                            <li>Large images may take a few seconds.</li>
 
-</div>
+                        </ul>
 
-<label>
+                    </div>
 
-Background Color
+                </div>
+				
+				                <!-- ========================= -->
+                <!-- Result Card -->
+                <!-- ========================= -->
 
-</label>
+                <div class="tool-card">
 
-<input
-type="color"
-id="bgColor"
-value="#ffffff">
+                    <h2>
 
-<label>
+                        <i class="fa-solid fa-image"></i>
 
-Background Blur
+                        Result
 
-</label>
+                    </h2>
 
-<div class="slider-box">
+                    <div class="result-area">
 
-<input
-type="range"
-id="blurRange"
-min="0"
-max="40"
-value="0">
+                        <img
+                            id="beforeImg"
+                            class="preview-image"
+                            alt="Original Image">
 
-<span id="blurValue">
+                        <img
+                            id="afterImg"
+                            class="preview-image"
+                            alt="Background Removed">
 
-0 px
+                        <div
+                            id="resultPlaceholder"
+                            class="placeholder">
 
-</span>
+                            <i class="fa-solid fa-image"></i>
 
-</div>
+                            <p>
 
-<label>
+                                Result will appear here
 
-Replace Background Image
+                            </p>
 
-</label>
+                        </div>
 
-<label
-class="choose-btn small">
+                    </div>
 
-<i class="fa-solid fa-image"></i>
+                    <div class="result-info">
 
-Choose Background
+                        <div>
 
-<input
-type="file"
-id="backgroundInput"
-accept="image/*">
+                            <span>Status</span>
 
-</label>
+                            <strong id="statusText">
 
-<button
-class="btn-secondary"
-id="applyBgBtn">
+                                Waiting...
 
-<i class="fa-solid fa-palette"></i>
+                            </strong>
 
-Apply Background
+                        </div>
 
-</button>
+                    </div>
 
-</div>
+                    <a
+                        id="downloadBtn"
+                        class="primary-btn full-btn"
+                        style="display:none;"
+                        download="removed-background.png">
 
-<!-- ========================= -->
-<!-- RESULT CARD -->
-<!-- ========================= -->
+                        <i class="fa-solid fa-download"></i>
 
-<div class="bg-card">
+                        Download PNG
 
-<h3>
+                    </a>
 
-Result
+                </div>
 
-</h3>
+            </div>
 
-<div class="result-preview">
+        </div>
 
-<div class="compare-wrapper">
-
-<img
-id="beforeImage"
-class="compare-before"
-alt="Before">
-
-<img
-id="afterImage"
-class="compare-after"
-alt="After">
-
-<div
-class="compare-slider"
-id="compareSlider">
-
-</div>
-
-</div>
-
-<div
-class="result-placeholder"
-id="resultPlaceholder">
-
-<i class="fa-solid fa-image"></i>
-
-<p>
-
-Background removed image will appear here
-
-</p>
-
-</div>
-
-</div>
-
-<div class="info">
-
-Image Size
-
-<b id="resultSize">
-
-0 KB
-
-</b>
-
-</div>
-
-<div class="info">
-
-Resolution
-
-<b id="resultResolution">
-
-0 × 0 px
-
-</b>
-
-</div>
-
-<div class="download-buttons">
-
-<a
-id="downloadPNG"
-class="btn-success disabled">
-
-<i class="fa-solid fa-download"></i>
-
-Download PNG
-
-</a>
-
-<a
-id="downloadJPG"
-class="btn-success disabled">
-
-<i class="fa-solid fa-download"></i>
-
-Download JPG
-
-</a>
-
-</div>
-
-</div>
-
-<!-- END GRID -->
-
-</div>
-
-</div>
-
-</section>
+    </section>
 
 </main>
 
@@ -425,7 +331,7 @@ Download JPG
 
 <!-- Tool JS -->
 
-<script src="../../assets/js/tools/background-remover.js"></script>
+<script src="../../assets/js/tools/remove-background.js"></script>
 
 </body>
 

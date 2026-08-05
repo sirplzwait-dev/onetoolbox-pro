@@ -1,0 +1,10 @@
+[build]
+  publish = "."
+
+[functions]
+  directory = "netlify/functions"
+
+[[redirects]]
+  from = "/api/remove-background"
+  to = "/.netlify/functions/remove-background"
+  status = 200
