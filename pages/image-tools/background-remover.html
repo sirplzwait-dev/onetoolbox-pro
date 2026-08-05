@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>AI Background Remover - OneToolBox</title>
+
+<!-- Common CSS -->
+
+<link rel="stylesheet"
+href="../../assets/css/reset.css">
+
+<link rel="stylesheet"
+href="../../assets/css/variables.css">
+
+<link rel="stylesheet"
+href="../../assets/css/layout.css">
+
+<link rel="stylesheet"
+href="../../assets/css/components.css">
+
+<!-- Tool CSS -->
+
+<link rel="stylesheet"
+href="../../assets/css/tools/background-remover.css">
+
+<!-- Font Awesome -->
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<!-- Header -->
+
+<div id="header-placeholder"></div>
+
+<main class="page page-offset">
+
+<!-- Hero -->
+
+<section class="tool-hero">
+
+<div class="container">
+
+<h1>
+
+🪄 AI Background Remover
+
+</h1>
+
+<p>
+
+Remove image background instantly using AI.
+
+</p>
+
+</div>
+
+</section>
+
+<!-- Tool -->
+
+<section class="section">
+
+<div class="container">
+
+<div class="bg-box">
+
+<!-- ========================= -->
+<!-- Upload Card -->
+<!-- ========================= -->
+
+<div class="bg-card">
+
+<h3>
+
+Upload Image
+
+</h3>
+
+<div
+class="upload-area"
+id="uploadArea">
+
+<i
+class="fa-solid fa-cloud-arrow-up"
+id="uploadIcon">
+
+</i>
+
+<img
+id="originalImage"
+class="preview-image"
+alt="Preview">
+
+<h4 id="uploadText">
+
+Upload Image
+
+</h4>
+
+<p id="uploadInfo">
+
+📁 Choose Image
+
+<br>
+
+📋 Paste Image
+
+<br>
+
+🖱 Drag & Drop
+
+</p>
+
+<label
+class="choose-btn">
+
+<i class="fa-solid fa-image"></i>
+
+Choose Image
+
+<input
+type="file"
+id="imageInput"
+accept="image/*">
+
+</label>
+
+<button
+class="btn-reset"
+id="resetBtn"
+type="button">
+
+<i class="fa-solid fa-rotate-left"></i>
+
+Reset
+
+</button>
+
+</div>
+
+<div class="info">
+
+File Size
+
+<b id="fileSize">
+
+0 KB
+
+</b>
+
+</div>
+
+<div class="info">
+
+Resolution
+
+<b id="resolution">
+
+0 × 0 px
+
+</b>
+
+</div>
+
+</div>
+<!-- ========================= -->
+<!-- AI SETTINGS -->
+<!-- ========================= -->
+
+<div class="bg-card">
+
+<h3>
+
+AI Settings
+
+</h3>
+
+<button
+class="btn-primary"
+id="removeBgBtn">
+
+<i class="fa-solid fa-wand-magic-sparkles"></i>
+
+Remove Background
+
+</button>
+
+<label>
+
+Background Type
+
+</label>
+
+<div class="background-grid">
+
+<button
+class="bg-option active"
+data-type="transparent">
+
+Transparent
+
+</button>
+
+<button
+class="bg-option"
+data-type="white">
+
+White
+
+</button>
+
+<button
+class="bg-option"
+data-type="black">
+
+Black
+
+</button>
+
+<button
+class="bg-option"
+data-type="color">
+
+Custom
+
+</button>
+
+</div>
+
+<label>
+
+Background Color
+
+</label>
+
+<input
+type="color"
+id="bgColor"
+value="#ffffff">
+
+<label>
+
+Background Blur
+
+</label>
+
+<div class="slider-box">
+
+<input
+type="range"
+id="blurRange"
+min="0"
+max="40"
+value="0">
+
+<span id="blurValue">
+
+0 px
+
+</span>
+
+</div>
+
+<label>
+
+Replace Background Image
+
+</label>
+
+<label
+class="choose-btn small">
+
+<i class="fa-solid fa-image"></i>
+
+Choose Background
+
+<input
+type="file"
+id="backgroundInput"
+accept="image/*">
+
+</label>
+
+<button
+class="btn-secondary"
+id="applyBgBtn">
+
+<i class="fa-solid fa-palette"></i>
+
+Apply Background
+
+</button>
+
+</div>
+
+<!-- ========================= -->
+<!-- RESULT CARD -->
+<!-- ========================= -->
+
+<div class="bg-card">
+
+<h3>
+
+Result
+
+</h3>
+
+<div class="result-preview">
+
+<div class="compare-wrapper">
+
+<img
+id="beforeImage"
+class="compare-before"
+alt="Before">
+
+<img
+id="afterImage"
+class="compare-after"
+alt="After">
+
+<div
+class="compare-slider"
+id="compareSlider">
+
+</div>
+
+</div>
+
+<div
+class="result-placeholder"
+id="resultPlaceholder">
+
+<i class="fa-solid fa-image"></i>
+
+<p>
+
+Background removed image will appear here
+
+</p>
+
+</div>
+
+</div>
+
+<div class="info">
+
+Image Size
+
+<b id="resultSize">
+
+0 KB
+
+</b>
+
+</div>
+
+<div class="info">
+
+Resolution
+
+<b id="resultResolution">
+
+0 × 0 px
+
+</b>
+
+</div>
+
+<div class="download-buttons">
+
+<a
+id="downloadPNG"
+class="btn-success disabled">
+
+<i class="fa-solid fa-download"></i>
+
+Download PNG
+
+</a>
+
+<a
+id="downloadJPG"
+class="btn-success disabled">
+
+<i class="fa-solid fa-download"></i>
+
+Download JPG
+
+</a>
+
+</div>
+
+</div>
+
+<!-- END GRID -->
+
+</div>
+
+</div>
+
+</section>
+
+</main>
+
+<!-- Footer -->
+
+<div id="footer-placeholder"></div>
+
+<!-- Common JS -->
+
+<script src="../../assets/js/navigation.js"></script>
+
+<script src="../../assets/js/app.js"></script>
+
+<!-- Tool JS -->
+
+<script src="../../assets/js/tools/background-remover.js"></script>
+
+</body>
+
+</html>

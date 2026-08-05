@@ -1,0 +1,655 @@
+/* =====================================
+   RESIZE IMAGE TOOL CSS
+   OneToolBox Final
+===================================== */
+
+
+/* HERO */
+
+.tool-hero{
+
+    padding:40px 0 30px;
+    text-align:center;
+
+}
+
+
+.tool-hero h1{
+
+    font-size:40px;
+    font-weight:800;
+    color:#0f172a;
+
+}
+
+
+.tool-hero p{
+
+    color:#64748b;
+    font-size:17px;
+
+}
+
+
+
+
+
+/* GRID */
+
+.resize-box{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:24px;
+
+}
+
+
+
+
+
+
+
+/* CARD */
+
+.resize-card{
+
+    background:#fff;
+
+    border:1px solid #e5e7eb;
+
+    border-radius:24px;
+
+    padding:22px;
+
+    min-height:480px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+}
+
+
+
+.resize-card h3{
+
+    text-align:center;
+
+    font-size:21px;
+
+    font-weight:800;
+
+    margin-bottom:20px;
+
+}
+
+
+
+
+
+
+
+
+/* UPLOAD AREA */
+
+.upload-area{
+
+    min-height:300px;
+
+    border:2px dashed #2563eb;
+
+    border-radius:20px;
+
+    background:#f8fbff;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    padding:18px;
+
+    cursor:pointer;
+
+}
+
+
+.upload-area i{
+
+    font-size:42px;
+
+    color:#2563eb;
+
+}
+
+
+.upload-area h4{
+
+    margin:10px 0;
+
+    font-size:18px;
+
+}
+
+
+.upload-area p{
+
+    color:#64748b;
+
+}
+
+
+
+
+
+
+
+
+/* ORIGINAL IMAGE */
+
+.original-preview{
+
+    display:none;
+
+    width:90%;
+
+    height:150px;
+
+    object-fit:contain;
+
+}
+
+
+
+
+
+
+
+/* CHOOSE IMAGE */
+
+.choose-btn{
+
+    margin-top:18px;
+
+    width:220px;
+
+    height:48px;
+
+    background:#2563eb;
+
+    color:white;
+
+    border-radius:14px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:10px;
+
+    font-size:15px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    box-shadow:0 8px 20px rgba(37,99,235,.25);
+
+    transition:.3s;
+
+}
+
+
+
+.choose-btn:hover{
+
+    background:#1d4ed8;
+
+    transform:translateY(-2px);
+
+}
+
+
+
+.choose-btn input{
+
+    display:none;
+
+}
+
+
+
+
+
+
+
+
+/* RESET BUTTON */
+
+.btn-reset{
+
+    margin-top:14px;
+
+    width:150px;
+
+    height:40px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#fee2e2;
+
+    color:#dc2626;
+
+    font-size:14px;
+
+    font-weight:700;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:8px;
+
+    cursor:pointer;
+
+}
+
+
+
+.btn-reset i{
+
+    font-size:16px;
+
+}
+
+
+
+
+
+
+
+
+/* INFO */
+
+.info{
+
+    margin-top:15px;
+
+    padding:12px;
+
+    border-radius:12px;
+
+    background:#eff6ff;
+
+    text-align:center;
+
+}
+
+
+.info b{
+
+    color:#2563eb;
+
+}
+
+/* =====================================
+   SETTINGS SECTION
+===================================== */
+
+
+.dimension-input{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    margin-bottom:16px;
+
+}
+
+
+.dimension-input label{
+
+    width:70px;
+
+    font-weight:700;
+
+}
+
+
+.dimension-input input{
+
+    flex:1;
+
+    height:45px;
+
+    border:1px solid #cbd5e1;
+
+    border-radius:12px;
+
+    padding:0 12px;
+
+    font-size:15px;
+
+}
+
+
+.dimension-input span{
+
+    font-weight:700;
+
+    color:#64748b;
+
+}
+
+
+
+
+
+
+
+
+/* UNIT BUTTON */
+
+
+.resize-mode label{
+
+    font-weight:700;
+
+}
+
+
+
+.mode-buttons{
+
+    display:flex;
+
+    gap:10px;
+
+    margin:12px 0 20px;
+
+}
+
+
+
+.mode{
+
+    flex:1;
+
+    height:42px;
+
+    border-radius:12px;
+
+    border:1px solid #cbd5e1;
+
+    background:#f8fafc;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+}
+
+
+
+.mode.active{
+
+    background:#2563eb;
+
+    color:#ffffff;
+
+    border-color:#2563eb;
+
+}
+
+
+
+
+
+
+
+
+
+/* =====================================
+   MAINTAIN ASPECT RATIO CHECKBOX
+   FINAL FIX
+===================================== */
+
+
+.ratio-box{
+
+    display:flex !important;
+
+    align-items:center !important;
+
+    gap:12px !important;
+
+    margin:18px 0 !important;
+
+    font-size:16px !important;
+
+    font-weight:700 !important;
+
+    color:#0f172a !important;
+
+    cursor:pointer;
+
+}
+
+
+
+.ratio-box input[type="checkbox"]{
+
+    display:block !important;
+
+    visibility:visible !important;
+
+    opacity:1 !important;
+
+    appearance:auto !important;
+
+    -webkit-appearance:checkbox !important;
+
+    width:26px !important;
+
+    height:26px !important;
+
+    margin:0 !important;
+
+    cursor:pointer !important;
+
+    accent-color:#2563eb !important;
+
+}
+
+
+
+.ratio-box label{
+
+    cursor:pointer;
+
+}
+
+
+
+
+
+
+
+/* RESIZE BUTTON */
+
+
+.btn-primary{
+
+    width:100%;
+
+    height:48px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:#2563eb;
+
+    color:white;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+}
+
+
+
+.btn-primary:hover{
+
+    background:#1d4ed8;
+
+}
+
+
+
+
+
+
+
+
+/* RESULT IMAGE */
+
+
+.image-preview{
+
+    height:260px;
+
+    border-radius:18px;
+
+    background:#f8fafc;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    overflow:hidden;
+
+    padding:15px;
+
+}
+
+
+
+.image-preview img{
+
+    max-width:100%;
+
+    max-height:100%;
+
+    object-fit:contain;
+
+}
+
+
+
+#resultText{
+
+    color:#94a3b8;
+
+    font-size:15px;
+
+}
+
+
+
+
+
+
+
+
+/* DOWNLOAD */
+
+
+.btn-success{
+
+    width:100%;
+
+    height:48px;
+
+    margin-top:auto;
+
+    border-radius:14px;
+
+    background:#16a34a;
+
+    color:white;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:8px;
+
+    text-decoration:none;
+
+    font-weight:700;
+
+}
+
+
+
+
+
+
+
+
+/* RESPONSIVE */
+
+
+@media(max-width:1100px){
+
+    .resize-box{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+
+
+@media(max-width:600px){
+
+    .tool-hero h1{
+
+        font-size:30px;
+
+    }
+
+
+    .resize-card{
+
+        padding:18px;
+
+    }
+
+}

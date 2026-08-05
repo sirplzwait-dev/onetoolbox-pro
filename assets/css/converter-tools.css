@@ -1,0 +1,417 @@
+/* =====================================
+   CONVERTER TOOLS CATEGORY FINAL CSS
+===================================== */
+
+
+/* HERO */
+
+.converter-tools-hero{
+
+    padding:30px 0 20px;
+
+    text-align:center;
+
+}
+
+
+
+.converter-tools-hero h1{
+
+    font-size:40px;
+
+    font-weight:800;
+
+    color:#0f172a;
+
+    margin-bottom:8px;
+
+}
+
+
+
+.converter-tools-hero p{
+
+    color:#64748b;
+
+    font-size:16px;
+
+}
+
+
+
+
+
+
+
+/* SEARCH */
+
+
+.converter-tools-search{
+
+    max-width:500px;
+
+    margin:20px auto 0;
+
+    position:relative;
+
+}
+
+
+
+.converter-tools-search input{
+
+
+    width:100%;
+
+    height:45px;
+
+    border-radius:14px;
+
+    border:1px solid #cbd5e1;
+
+    padding:0 45px 0 18px;
+
+    font-size:15px;
+
+
+}
+
+
+
+.converter-tools-search i{
+
+
+    position:absolute;
+
+    right:18px;
+
+    top:14px;
+
+    color:#2563eb;
+
+
+}
+
+
+
+
+
+
+
+/* GRID */
+
+
+.converter-tools-grid{
+
+
+    display:grid;
+
+
+    grid-template-columns:repeat(4,1fr);
+
+
+    gap:15px;
+
+
+}
+
+
+
+
+
+
+
+/* CARD */
+
+
+.converter-tool-card{
+
+
+    background:#ffffff;
+
+
+    border:1px solid #e5e7eb;
+
+
+    border-radius:18px;
+
+
+    padding:15px 12px;
+
+
+    text-align:center;
+
+
+    min-height:205px;
+
+
+    transition:.3s;
+
+
+}
+
+
+
+.converter-tool-card:hover{
+
+
+    transform:translateY(-5px);
+
+
+    box-shadow:
+
+    0 12px 28px rgba(0,0,0,.12);
+
+
+}
+
+
+
+
+
+
+
+/* ICON */
+
+
+.converter-tool-icon{
+
+
+    width:55px;
+
+
+    height:55px;
+
+
+    border-radius:16px;
+
+
+    margin:0 auto 12px;
+
+
+    display:flex;
+
+
+    justify-content:center;
+
+
+    align-items:center;
+
+
+}
+
+
+
+.converter-tool-icon i{
+
+
+    font-size:25px;
+
+
+}
+
+
+
+
+
+
+
+/* COLORS */
+
+
+.blue{
+
+background:#dbeafe;
+
+color:#2563eb;
+
+}
+
+
+
+.green{
+
+background:#dcfce7;
+
+color:#16a34a;
+
+}
+
+
+
+.red{
+
+background:#fee2e2;
+
+color:#dc2626;
+
+}
+
+
+
+.yellow{
+
+background:#fef3c7;
+
+color:#d97706;
+
+}
+
+
+
+.purple{
+
+background:#ede9fe;
+
+color:#7c3aed;
+
+}
+
+
+
+.orange{
+
+background:#ffedd5;
+
+color:#ea580c;
+
+}
+
+
+
+
+
+
+
+/* TEXT */
+
+
+.converter-tool-card h3{
+
+
+    font-size:16px;
+
+
+    font-weight:800;
+
+
+    color:#0f172a;
+
+
+    margin-bottom:6px;
+
+
+}
+
+
+
+.converter-tool-card p{
+
+
+    font-size:13px;
+
+
+    color:#64748b;
+
+
+    line-height:1.4;
+
+
+    min-height:36px;
+
+
+}
+
+
+
+
+.converter-tool-card a{
+
+
+    display:inline-block;
+
+
+    margin-top:8px;
+
+
+    color:#2563eb;
+
+
+    font-size:13px;
+
+
+    font-weight:700;
+
+
+}
+
+
+
+
+
+
+
+/* RESPONSIVE */
+
+
+@media(max-width:1200px){
+
+
+.converter-tools-grid{
+
+
+grid-template-columns:repeat(3,1fr);
+
+
+}
+
+
+}
+
+
+
+
+
+
+
+@media(max-width:800px){
+
+
+.converter-tools-grid{
+
+
+grid-template-columns:repeat(2,1fr);
+
+
+}
+
+
+
+.converter-tools-hero h1{
+
+font-size:32px;
+
+}
+
+
+}
+
+
+
+
+
+
+
+@media(max-width:500px){
+
+
+.converter-tools-grid{
+
+
+grid-template-columns:1fr;
+
+
+}
+
+
+}

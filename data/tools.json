@@ -1,0 +1,38 @@
+[
+ {
+  "title":"Image Compressor",
+  "category":"Image Tools",
+  "icon":"🖼️",
+  "popular":true,
+  "featured":true,
+  "description":"Reduce image size without losing quality.",
+  "url":"pages/image/image-compressor.html"
+ },
+ {
+  "title":"PDF Compressor",
+  "category":"PDF Tools",
+  "icon":"📄",
+  "popular":true,
+  "featured":true,
+  "description":"Compress PDF files online.",
+  "url":"pages/pdf/pdf-compressor.html"
+ },
+ {
+  "title":"Background Remover",
+  "category":"Image Tools",
+  "icon":"✂️",
+  "popular":true,
+  "featured":false,
+  "description":"Remove image background easily.",
+  "url":"pages/image/background-remover.html"
+ },
+ {
+  "title":"JPG To PNG Converter",
+  "category":"Image Tools",
+  "icon":"🔄",
+  "popular":true,
+  "featured":false,
+  "description":"Convert JPG images to PNG.",
+  "url":"pages/image/jpg-to-png.html"
+ }
+]

@@ -1,0 +1,195 @@
+/* ==========================================
+   OneToolBox Contact Page
+========================================== */
+
+
+/* Contact Hero */
+
+.contact-hero{
+
+    background:linear-gradient(
+        135deg,
+        #2563eb,
+        #1e40af
+    );
+
+    color:#ffffff;
+
+    padding:35px 20px;
+
+    text-align:center;
+
+}
+
+
+.contact-hero h1{
+
+    font-size:34px;
+
+    font-weight:700;
+
+    margin:0 0 8px;
+
+}
+
+
+.contact-hero p{
+
+    font-size:16px;
+
+    margin:0;
+
+    opacity:.9;
+
+}
+
+
+
+/* Contact Grid */
+
+.contact-grid{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:30px;
+
+    align-items:start;
+
+}
+
+
+
+/* Contact Box */
+
+.contact-info,
+
+.contact-form{
+
+    background:#ffffff;
+
+    border:1px solid #e5e7eb;
+
+    border-radius:18px;
+
+    padding:25px;
+
+}
+
+
+
+.contact-info h2,
+
+.contact-form h2{
+
+    font-size:22px;
+
+    margin-bottom:15px;
+
+    color:#111827;
+
+}
+
+
+
+.contact-info p{
+
+    color:#6b7280;
+
+    line-height:1.6;
+
+}
+
+
+
+/* Contact Item */
+
+.contact-item{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    margin-top:18px;
+
+    color:#4b5563;
+
+}
+
+
+.contact-item i{
+
+    color:#2563eb;
+
+    font-size:20px;
+
+}
+
+
+
+/* Form */
+
+.contact-form input,
+
+.contact-form textarea{
+
+    width:100%;
+
+    padding:12px 15px;
+
+    margin-bottom:15px;
+
+    border:1px solid #e5e7eb;
+
+    border-radius:12px;
+
+}
+
+
+
+.contact-form button{
+
+    background:#2563eb;
+
+    color:white;
+
+    padding:12px 25px;
+
+    border-radius:10px;
+
+    border:none;
+
+    cursor:pointer;
+
+}
+
+
+
+/* Mobile */
+
+@media(max-width:768px){
+
+.contact-grid{
+
+    grid-template-columns:1fr;
+
+}
+
+
+.contact-hero{
+
+    padding:25px 15px;
+
+}
+
+
+.contact-hero h1{
+
+    font-size:28px;
+
+}
+
+}

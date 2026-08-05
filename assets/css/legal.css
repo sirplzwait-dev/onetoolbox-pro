@@ -1,0 +1,134 @@
+/* ==========================================
+   OneToolBox Legal Pages CSS
+========================================== */
+
+
+/* Legal Hero */
+
+.legal-hero{
+
+    background:linear-gradient(
+        135deg,
+        #2563eb,
+        #1e40af
+    );
+
+    color:white;
+
+    padding:25px 20px;
+
+    text-align:center;
+
+}
+
+
+.legal-hero h1{
+
+    font-size:32px;
+
+    margin:0 0 5px;
+
+}
+
+
+.legal-hero p{
+
+    font-size:15px;
+
+    margin:0;
+
+}
+
+
+
+/* Legal Content */
+
+.legal-card{
+
+    background:#ffffff;
+
+    border:1px solid #e5e7eb;
+
+    border-radius:16px;
+
+    padding:22px;
+
+    margin-top:15px;
+
+    box-shadow:
+    0 5px 20px rgba(0,0,0,.05);
+
+}
+
+
+
+.legal-card h2{
+
+    font-size:20px;
+
+    color:#111827;
+
+    margin-top:15px;
+
+    margin-bottom:5px;
+
+}
+
+
+.legal-card h2:first-child{
+
+    margin-top:0;
+
+}
+
+
+
+.legal-card p{
+
+    color:#6b7280;
+
+    font-size:15px;
+
+    line-height:1.5;
+
+    margin-bottom:10px;
+
+}
+
+
+
+/* Remove extra space */
+
+.legal-card + *{
+
+    margin-top:0;
+
+}
+
+
+
+/* Mobile */
+
+@media(max-width:768px){
+
+.legal-hero{
+
+    padding:20px 15px;
+
+}
+
+
+.legal-hero h1{
+
+    font-size:26px;
+
+}
+
+
+.legal-card{
+
+    padding:16px;
+
+}
+
+}

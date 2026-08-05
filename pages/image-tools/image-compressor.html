@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<title>Image Compressor - OneToolBox</title>
+
+
+<link rel="stylesheet" href="../../assets/css/reset.css">
+<link rel="stylesheet" href="../../assets/css/variables.css">
+<link rel="stylesheet" href="../../assets/css/layout.css">
+<link rel="stylesheet" href="../../assets/css/components.css">
+<link rel="stylesheet" href="../../assets/css/tools/image-compressor.css">
+
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+
+
+<body>
+
+
+<div id="header-placeholder"></div>
+
+
+
+<main class="page page-offset">
+
+
+<section class="tool-hero">
+
+<div class="container">
+
+<h1>
+🖼️ Image Compressor
+</h1>
+
+<p>
+Compress image to your required KB size without losing quality.
+</p>
+
+</div>
+
+</section>
+
+
+
+
+
+<section class="section">
+
+<div class="container">
+
+
+<div class="compress-box">
+
+
+
+
+
+
+<!-- ORIGINAL / UPLOAD -->
+
+<div class="compress-card">
+
+
+<h3 id="originalTitle">
+Upload Image
+</h3>
+
+
+
+<div class="upload-area" id="uploadArea">
+
+
+<i class="fa-solid fa-cloud-arrow-up"
+id="uploadIcon"></i>
+
+
+
+<img 
+id="originalPreview"
+class="original-preview">
+
+
+
+<h4 id="uploadText">
+Upload Image
+</h4>
+
+
+
+<p id="uploadInfo">
+
+📁 Choose Image
+
+<br>
+
+📋 Paste Image
+
+<br>
+
+🖱️ Drag & Drop
+
+</p>
+
+
+
+
+<label class="choose-btn">
+
+
+<i class="fa-solid fa-image"></i>
+
+Choose Image
+
+
+<input 
+type="file"
+id="imageInput"
+accept="image/*">
+
+
+</label>
+
+
+
+
+
+<button 
+class="btn-reset"
+id="resetBtn">
+
+
+<i class="fa-solid fa-rotate-left"></i>
+
+Reset
+
+
+</button>
+
+
+
+</div>
+
+
+
+
+
+<div class="info">
+
+Original Size:
+
+<b id="originalSize">
+0 KB
+</b>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<!-- COMPRESSION -->
+
+<div class="compress-card settings">
+
+
+<h3>
+Compression
+</h3>
+
+
+
+
+<label>
+Select Target Size
+</label>
+
+
+
+
+
+<div class="size-options">
+
+
+<label class="size-btn">
+
+<input 
+type="radio"
+name="size"
+value="10240">
+
+<span>
+10 KB
+</span>
+
+</label>
+
+
+
+
+<label class="size-btn">
+
+<input 
+type="radio"
+name="size"
+value="20480">
+
+<span>
+20 KB
+</span>
+
+</label>
+
+
+
+
+<label class="size-btn">
+
+<input 
+type="radio"
+name="size"
+value="51200"
+checked>
+
+<span>
+50 KB
+</span>
+
+</label>
+
+
+
+
+<label class="size-btn">
+
+<input 
+type="radio"
+name="size"
+value="102400">
+
+<span>
+100 KB
+</span>
+
+</label>
+
+
+
+
+<label class="size-btn">
+
+<input 
+type="radio"
+name="size"
+value="custom">
+
+<span>
+Custom
+</span>
+
+</label>
+
+
+
+</div>
+
+
+
+
+
+<input
+
+type="number"
+
+id="customSize"
+
+placeholder="Enter KB"
+
+style="display:none;">
+
+
+
+
+
+<button
+
+class="btn btn-primary"
+
+id="compressBtn">
+
+
+<i class="fa-solid fa-compress"></i>
+
+Compress Image
+
+
+</button>
+
+
+
+
+
+<div class="progress-box">
+
+
+<div class="progress">
+
+<div id="progressBar"></div>
+
+</div>
+
+
+<span id="progressText">
+0%
+</span>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<!-- RESULT -->
+
+
+<div class="compress-card">
+
+
+<h3>
+Compressed Image
+</h3>
+
+
+
+
+<div class="image-preview">
+
+
+<img 
+id="compressedPreview">
+
+
+</div>
+
+
+
+
+
+
+<div class="info">
+
+Compressed Size:
+
+<b id="compressedSize">
+0 KB
+</b>
+
+</div>
+
+
+
+
+
+
+<div class="info">
+
+Saved:
+
+<b id="savedPercent">
+0%
+</b>
+
+</div>
+
+
+
+
+
+<button
+
+class="btn btn-success"
+
+id="downloadBtn"
+
+disabled>
+
+
+<i class="fa-solid fa-download"></i>
+
+Download Image
+
+
+</button>
+
+
+
+</div>
+
+
+
+
+
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+</main>
+
+
+
+
+
+<div id="footer-placeholder"></div>
+
+
+
+
+
+
+<script src="../../assets/js/navigation.js"></script>
+
+<script src="../../assets/js/app.js"></script>
+
+<script src="../../assets/js/tools/image-compressor.js"></script>
+
+
+
+</body>
+
+</html>

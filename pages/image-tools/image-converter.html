@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Image Converter - OneToolBox</title>
+
+<!-- Common CSS -->
+
+<link rel="stylesheet" href="../../assets/css/reset.css">
+<link rel="stylesheet" href="../../assets/css/variables.css">
+<link rel="stylesheet" href="../../assets/css/layout.css">
+<link rel="stylesheet" href="../../assets/css/components.css">
+
+<!-- Tool CSS -->
+
+<link rel="stylesheet" href="../../assets/css/tools/image-converter.css">
+
+<!-- Font Awesome -->
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+
+<div id="header-placeholder"></div>
+
+<!-- ================= MAIN ================= -->
+
+<main class="page page-offset">
+
+<!-- ================= HERO ================= -->
+
+<section class="tool-hero">
+
+<div class="container">
+
+<h1>
+🖼️ Image Converter
+</h1>
+
+<p>
+Convert JPG, PNG, WEBP and AVIF images instantly without losing quality.
+</p>
+
+</div>
+
+</section>
+
+<!-- ================= TOOL ================= -->
+
+<section class="section">
+
+<div class="container">
+
+<div class="converter-box">
+<!-- ================= UPLOAD CARD ================= -->
+
+<div class="converter-card">
+
+<h3>Upload Image</h3>
+
+<div class="upload-area" id="uploadArea">
+
+<i class="fa-solid fa-cloud-arrow-up" id="uploadIcon"></i>
+
+<img
+id="originalPreview"
+class="original-preview"
+alt="Preview">
+
+<h4 id="uploadText">
+Upload Image
+</h4>
+
+<p id="uploadInfo">
+
+📁 Choose Image
+
+<br>
+
+📋 Paste Image
+
+<br>
+
+🖱 Drag & Drop
+
+</p>
+
+<label class="choose-btn">
+
+<i class="fa-solid fa-image"></i>
+
+Choose Image
+
+<input
+type="file"
+id="imageInput"
+accept="image/*">
+
+</label>
+
+<button
+class="btn-reset"
+id="resetBtn"
+type="button">
+
+<i class="fa-solid fa-rotate-left"></i>
+
+Reset
+
+</button>
+
+</div>
+
+<div class="info">
+
+File Name
+
+<b id="fileName">
+
+-
+
+</b>
+
+</div>
+
+<div class="info">
+
+File Size
+
+<b id="originalSize">
+
+0 KB
+
+</b>
+
+</div>
+
+<div class="info">
+
+Dimensions
+
+<b id="originalDimension">
+
+0 × 0 px
+
+</b>
+
+</div>
+
+<div class="info">
+
+Format
+
+<b id="originalFormat">
+
+-
+
+</b>
+
+</div>
+
+</div>
+
+
+
+
+
+<!-- ================= SETTINGS CARD ================= -->
+
+<div class="converter-card">
+
+<h3>Convert Settings</h3>
+
+<label>
+
+Convert To
+
+</label>
+
+<select id="formatSelect">
+
+<option value="image/jpeg">
+JPG
+</option>
+
+<option value="image/png">
+PNG
+</option>
+
+<option value="image/webp">
+WEBP
+</option>
+
+<option value="image/avif">
+AVIF
+</option>
+
+</select>
+
+<label>
+
+Quality
+
+</label>
+
+<div class="quality-box">
+
+<input
+type="range"
+id="qualityRange"
+min="10"
+max="100"
+value="90">
+
+<span id="qualityValue">
+
+90%
+
+</span>
+
+</div>
+
+<label>
+
+Background
+
+</label>
+
+<div class="background-options">
+
+<button
+class="background-btn active"
+data-color="#ffffff"
+type="button">
+
+White
+
+</button>
+
+<button
+class="background-btn"
+data-color="#000000"
+type="button">
+
+Black
+
+</button>
+
+</div>
+
+<button
+class="btn-primary"
+id="convertBtn">
+
+<i class="fa-solid fa-arrows-rotate"></i>
+
+Convert Image
+
+</button>
+
+</div>
+<!-- ================= RESULT CARD ================= -->
+
+<div class="converter-card">
+
+<h3>
+Converted Image
+</h3>
+
+<div class="image-preview">
+
+<img
+id="convertedPreview"
+alt="Converted Image">
+
+<span id="resultText">
+
+Converted image will appear here
+
+</span>
+
+</div>
+
+<div class="info">
+
+New Format
+
+<b id="newFormat">
+
+-
+
+</b>
+
+</div>
+
+<div class="info">
+
+New Dimension
+
+<b id="newDimension">
+
+0 × 0 px
+
+</b>
+
+</div>
+
+<div class="info">
+
+New Size
+
+<b id="newSize">
+
+0 KB
+
+</b>
+
+</div>
+
+<a
+id="downloadBtn"
+class="btn-success disabled">
+
+<i class="fa-solid fa-download"></i>
+
+Download Image
+
+</a>
+
+</div>
+
+<!-- END GRID -->
+
+</div>
+
+</div>
+
+</section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+
+<div id="footer-placeholder"></div>
+
+<!-- COMMON JS -->
+
+<script src="../../assets/js/navigation.js"></script>
+
+<script src="../../assets/js/app.js"></script>
+
+<!-- TOOL JS -->
+
+<script src="../../assets/js/tools/image-converter.js"></script>
+
+</body>
+</html>

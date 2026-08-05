@@ -1,0 +1,237 @@
+/* ==========================================
+   OneToolBox Enterprise
+   reset.css
+   Version: 1.0
+========================================== */
+
+*,
+*::before,
+*::after{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+    -webkit-text-size-adjust:100%;
+}
+
+body{
+    min-height:100vh;
+    text-rendering:optimizeLegibility;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    line-height:1.5;
+    overflow-x:hidden;
+}
+
+img,
+picture,
+svg,
+video,
+canvas{
+    display:block;
+    max-width:100%;
+    height:auto;
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+ul,
+ol{
+    list-style:none;
+}
+
+button,
+input,
+textarea,
+select{
+    font:inherit;
+    color:inherit;
+    background:none;
+    border:none;
+    outline:none;
+}
+
+button{
+    cursor:pointer;
+    user-select:none;
+}
+
+textarea{
+    resize:vertical;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    border-spacing:0;
+}
+
+hr{
+    border:none;
+}
+
+fieldset{
+    border:none;
+}
+
+iframe{
+    border:0;
+}
+
+::selection{
+    background:#2563eb;
+    color:#fff;
+}
+
+:focus-visible{
+    outline:2px solid #2563eb;
+    outline-offset:2px;
+}
+
+[hidden]{
+    display:none !important;
+}
+
+/* ==========================================
+   FORM RESET
+========================================== */
+
+input::-ms-clear,
+input::-ms-reveal{
+    display:none;
+}
+
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration{
+    -webkit-appearance:none;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button{
+    -webkit-appearance:none;
+    margin:0;
+}
+
+input[type="number"]{
+    -moz-appearance:textfield;
+}
+
+input,
+textarea,
+select,
+button{
+    appearance:none;
+    -webkit-appearance:none;
+    border-radius:0;
+    background:transparent;
+}
+
+/* ==========================================
+   MEDIA
+========================================== */
+
+audio,
+video{
+    width:100%;
+}
+
+svg{
+    fill:currentColor;
+}
+
+canvas{
+    touch-action:none;
+}
+
+/* ==========================================
+   ACCESSIBILITY
+========================================== */
+
+:disabled{
+    cursor:not-allowed;
+}
+
+[aria-hidden="true"]{
+    pointer-events:none;
+}
+
+::placeholder{
+    opacity:1;
+}
+
+/* ==========================================
+   SCROLLBAR
+========================================== */
+
+::-webkit-scrollbar{
+    width:10px;
+    height:10px;
+}
+
+::-webkit-scrollbar-track{
+    background:#edf2f7;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#94a3b8;
+    border-radius:20px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background:#64748b;
+}
+
+/* Firefox */
+
+*{
+    scrollbar-width:thin;
+    scrollbar-color:#94a3b8 #edf2f7;
+}
+
+/* ==========================================
+   PRINT
+========================================== */
+
+@media print{
+
+    *{
+        box-shadow:none !important;
+        text-shadow:none !important;
+    }
+
+    body{
+        background:#fff !important;
+        color:#000 !important;
+    }
+
+}
+
+/* ==========================================
+   UTILITIES
+========================================== */
+
+.clearfix::after{
+    content:"";
+    display:block;
+    clear:both;
+}
+
+.visually-hidden{
+    position:absolute;
+    width:1px;
+    height:1px;
+    padding:0;
+    margin:-1px;
+    overflow:hidden;
+    clip:rect(0,0,0,0);
+    white-space:nowrap;
+    border:0;
+}

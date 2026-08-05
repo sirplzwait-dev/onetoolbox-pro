@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Resize Image - OneToolBox</title>
+
+
+<link rel="stylesheet" href="../../assets/css/reset.css">
+<link rel="stylesheet" href="../../assets/css/variables.css">
+<link rel="stylesheet" href="../../assets/css/layout.css">
+<link rel="stylesheet" href="../../assets/css/components.css">
+
+<link rel="stylesheet" href="../../assets/css/tools/resize-image.css">
+
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+
+</head>
+
+
+<body>
+
+
+<div id="header-placeholder"></div>
+
+
+
+<main class="page page-offset">
+
+
+
+<section class="tool-hero">
+
+<div class="container">
+
+<h1>
+🖼️ Resize Image
+</h1>
+
+
+<p>
+Resize image in PX, CM and INCH with aspect ratio control.
+</p>
+
+
+</div>
+
+</section>
+
+
+
+
+
+<section class="section">
+
+
+<div class="container">
+
+
+<div class="resize-box">
+
+
+
+
+
+<!-- UPLOAD CARD -->
+
+
+<div class="resize-card">
+
+
+<h3>
+Upload Image
+</h3>
+
+
+<div class="upload-area" id="uploadArea">
+
+
+<i class="fa-solid fa-cloud-arrow-up"
+id="uploadIcon"></i>
+
+
+
+<img 
+id="originalPreview"
+class="original-preview"
+src="">
+
+
+
+<h4 id="uploadText">
+Upload Image
+</h4>
+
+
+<p id="uploadInfo">
+
+📁 Choose Image
+
+<br>
+
+🖱 Drag & Drop
+
+</p>
+
+
+
+
+<label class="choose-btn">
+
+
+<i class="fa-solid fa-image"></i>
+
+Choose Image
+
+
+<input 
+type="file"
+id="imageInput"
+accept="image/*">
+
+
+</label>
+
+
+
+
+<button class="btn-reset" id="resetBtn">
+
+<i class="fa-solid fa-rotate-left"></i>
+
+Reset
+
+</button>
+
+
+
+</div>
+
+
+
+<div class="info">
+
+Original Size:
+
+<b id="originalSize">
+0 KB
+</b>
+
+</div>
+
+
+
+<div class="info">
+
+Original Dimension:
+
+<b id="originalDimension">
+0 × 0 px
+</b>
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<!-- SETTINGS CARD -->
+
+
+<div class="resize-card">
+
+
+<h3>
+Resize Settings
+</h3>
+
+
+
+
+
+<div class="resize-mode">
+
+<label>
+Unit
+</label>
+
+
+<div class="mode-buttons">
+
+
+<button class="mode active" data-unit="px">
+PX
+</button>
+
+
+<button class="mode" data-unit="cm">
+CM
+</button>
+
+
+<button class="mode" data-unit="inch">
+INCH
+</button>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="dimension-input">
+
+<label>
+Width
+</label>
+
+
+<input id="widthInput" type="number">
+
+
+<span id="widthUnit">
+px
+</span>
+
+
+</div>
+
+
+
+
+
+
+<div class="dimension-input">
+
+<label>
+Height
+</label>
+
+
+<input id="heightInput" type="number">
+
+
+<span id="heightUnit">
+px
+</span>
+
+
+</div>
+
+
+
+
+
+
+<div class="dimension-input">
+
+<label>
+DPI
+</label>
+
+
+<input id="dpiInput" type="number" value="300">
+
+
+<span>
+dpi
+</span>
+
+
+</div>
+
+
+
+
+
+
+
+<!-- CHECKBOX FIX -->
+
+
+<div class="ratio-box">
+
+
+<input 
+type="checkbox"
+id="ratioLock"
+checked>
+
+
+<label for="ratioLock">
+
+Maintain Aspect Ratio
+
+</label>
+
+
+</div>
+
+
+
+
+
+
+
+<button class="btn-primary" id="resizeBtn">
+
+
+<i class="fa-solid fa-expand"></i>
+
+Resize Image
+
+
+</button>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+<!-- RESULT CARD -->
+
+
+<div class="resize-card">
+
+
+<h3>
+Resized Image
+</h3>
+
+
+<div class="image-preview">
+
+
+<img id="resizedPreview">
+
+
+<span id="resultText">
+
+Resize result will appear here
+
+</span>
+
+
+</div>
+
+
+
+<div class="info">
+
+New Dimension:
+
+<b id="newDimension">
+0 × 0 px
+</b>
+
+
+</div>
+
+
+
+<div class="info">
+
+New Size:
+
+<b id="newSize">
+0 KB
+</b>
+
+
+</div>
+
+
+
+<a class="btn-success" id="downloadBtn">
+
+<i class="fa-solid fa-download"></i>
+
+Download Image
+
+</a>
+
+
+
+</div>
+
+
+
+
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+</main>
+
+
+
+
+<div id="footer-placeholder"></div>
+
+
+
+<script src="../../assets/js/navigation.js"></script>
+
+<script src="../../assets/js/app.js"></script>
+
+<script src="../../assets/js/tools/resize-image.js"></script>
+
+
+</body>
+
+</html>

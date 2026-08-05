@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Crop Image - OneToolBox</title>
+
+<!-- Common CSS -->
+
+<link rel="stylesheet"
+href="../../assets/css/reset.css">
+
+<link rel="stylesheet"
+href="../../assets/css/variables.css">
+
+<link rel="stylesheet"
+href="../../assets/css/layout.css">
+
+<link rel="stylesheet"
+href="../../assets/css/components.css">
+
+<!-- Tool CSS -->
+
+<link rel="stylesheet"
+href="../../assets/css/tools/crop-image.css">
+
+<!-- FontAwesome -->
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+<!-- Cropper CSS -->
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.css">
+
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<div id="header-placeholder"></div>
+
+<main class="page page-offset">
+
+<!-- HERO -->
+
+<section class="tool-hero">
+
+<div class="container">
+
+<h1>
+✂️ Crop Image
+</h1>
+
+<p>
+
+Crop images with custom size, ratio and high quality.
+
+</p>
+
+</div>
+
+</section>
+
+<!-- TOOL -->
+
+<section class="section">
+
+<div class="container">
+
+<div class="crop-box">
+
+<!-- ========================= -->
+<!-- Upload Card -->
+<!-- ========================= -->
+
+<div class="crop-card">
+
+<h3>
+
+Upload Image
+
+</h3>
+
+<div
+class="upload-area"
+id="uploadArea">
+
+<i
+class="fa-solid fa-cloud-arrow-up"
+id="uploadIcon">
+
+</i>
+
+<img
+
+id="cropImage"
+
+class="crop-preview"
+
+alt="Preview">
+
+<h4 id="uploadText">
+
+Upload Image
+
+</h4>
+
+<p id="uploadInfo">
+
+📁 Choose Image
+
+<br>
+
+📋 Paste Image
+
+<br>
+
+🖱 Drag & Drop
+
+</p>
+
+<label
+class="choose-btn">
+
+<i
+class="fa-solid fa-image">
+
+</i>
+
+Choose Image
+
+<input
+
+type="file"
+
+id="imageInput"
+
+accept="image/*">
+
+</label>
+
+<button
+
+class="btn-reset"
+
+id="resetBtn"
+
+type="button">
+
+<i
+class="fa-solid fa-rotate-left">
+
+</i>
+
+Reset
+
+</button>
+
+</div>
+
+<div class="info">
+
+Original Size
+
+<b id="originalSize">
+
+0 KB
+
+</b>
+
+</div>
+
+<div class="info">
+
+Resolution
+
+<b id="originalResolution">
+
+0 × 0 px
+
+</b>
+
+</div>
+
+</div>
+<!-- ========================= -->
+<!-- Crop Settings -->
+<!-- ========================= -->
+
+<div class="crop-card">
+
+<h3>
+
+Crop Settings
+
+</h3>
+
+<!-- Aspect Ratio -->
+
+<label>
+
+Aspect Ratio
+
+</label>
+
+<div class="ratio-grid">
+
+<button class="ratio-btn active" data-ratio="NaN">
+
+Free
+
+</button>
+
+<button class="ratio-btn" data-ratio="1">
+
+1 : 1
+
+</button>
+
+<button class="ratio-btn" data-ratio="1.333333">
+
+4 : 3
+
+</button>
+
+<button class="ratio-btn" data-ratio="1.5">
+
+3 : 2
+
+</button>
+
+<button class="ratio-btn" data-ratio="1.777777">
+
+16 : 9
+
+</button>
+
+<button class="ratio-btn" data-ratio="0.75">
+
+Passport
+
+</button>
+
+<button class="ratio-btn" data-ratio="1">
+
+Instagram
+
+</button>
+
+<button class="ratio-btn" data-ratio="1.91">
+
+Facebook
+
+</button>
+
+<button class="ratio-btn" data-ratio="1.777777">
+
+YouTube
+
+</button>
+
+</div>
+
+<!-- Rotate -->
+
+<label>
+
+Rotate
+
+</label>
+
+<div class="tool-buttons">
+
+<button
+class="tool-btn"
+id="rotateLeft">
+
+<i class="fa-solid fa-rotate-left"></i>
+
+Left
+
+</button>
+
+<button
+class="tool-btn"
+id="rotateRight">
+
+<i class="fa-solid fa-rotate-right"></i>
+
+Right
+
+</button>
+
+</div>
+
+<!-- Flip -->
+
+<label>
+
+Flip
+
+</label>
+
+<div class="tool-buttons">
+
+<button
+class="tool-btn"
+id="flipHorizontal">
+
+<i class="fa-solid fa-left-right"></i>
+
+Horizontal
+
+</button>
+
+<button
+class="tool-btn"
+id="flipVertical">
+
+<i class="fa-solid fa-up-down"></i>
+
+Vertical
+
+</button>
+
+</div>
+
+<!-- Zoom -->
+
+<label>
+
+Zoom
+
+</label>
+
+<div class="zoom-buttons">
+
+<button
+class="tool-btn"
+id="zoomOut">
+
+<i class="fa-solid fa-magnifying-glass-minus"></i>
+
+</button>
+
+<button
+class="tool-btn"
+id="zoomIn">
+
+<i class="fa-solid fa-magnifying-glass-plus"></i>
+
+</button>
+
+</div>
+
+<!-- Crop -->
+
+<button
+class="btn-primary"
+id="cropBtn">
+
+<i class="fa-solid fa-crop-simple"></i>
+
+Crop Image
+
+</button>
+
+</div>
+
+<!-- ========================= -->
+<!-- Result Card -->
+<!-- ========================= -->
+
+<div class="crop-card">
+
+<h3>
+
+Cropped Image
+
+</h3>
+
+<div class="result-preview">
+
+<img
+id="resultImage"
+alt="Cropped Image">
+
+<span id="resultText">
+
+Crop result will appear here
+
+</span>
+
+</div>
+
+<div class="info">
+
+New Size
+
+<b id="newSize">
+
+0 KB
+
+</b>
+
+</div>
+
+<div class="info">
+
+Resolution
+
+<b id="newResolution">
+
+0 × 0 px
+
+</b>
+
+</div>
+
+<a
+id="downloadBtn"
+class="btn-success disabled">
+
+<i class="fa-solid fa-download"></i>
+
+Download Image
+
+</a>
+
+</div>
+
+<!-- End Crop Box -->
+
+</div>
+
+</div>
+
+</section>
+
+</main>
+
+<!-- ========================= -->
+<!-- Footer -->
+<!-- ========================= -->
+
+<div id="footer-placeholder"></div>
+
+<!-- Navigation -->
+
+<script src="../../assets/js/navigation.js"></script>
+
+<script src="../../assets/js/app.js"></script>
+
+<!-- Cropper JS CDN -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.js"></script>
+
+<!-- Tool JS -->
+
+<script src="../../assets/js/tools/crop-image.js"></script>
+
+</body>
+
+</html>

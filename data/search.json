@@ -1,0 +1,95 @@
+[
+  {
+    "name": "Image Compressor",
+    "category": "Image Tools",
+    "url": "pages/image/image-compressor.html",
+    "keywords": [
+      "compress image",
+      "reduce image size",
+      "jpg compressor",
+      "png compressor"
+    ]
+  },
+  {
+    "name": "Image Resize",
+    "category": "Image Tools",
+    "url": "pages/image/image-resize.html",
+    "keywords": [
+      "resize image",
+      "change image size",
+      "pixels"
+    ]
+  },
+  {
+    "name": "Background Remover",
+    "category": "Image Tools",
+    "url": "pages/image/background-remover.html",
+    "keywords": [
+      "remove background",
+      "transparent image"
+    ]
+  },
+  {
+    "name": "JPG to PNG Converter",
+    "category": "Image Tools",
+    "url": "pages/image/jpg-to-png.html",
+    "keywords": [
+      "jpg png",
+      "image converter"
+    ]
+  },
+  {
+    "name": "PDF Compressor",
+    "category": "PDF Tools",
+    "url": "pages/pdf/pdf-compressor.html",
+    "keywords": [
+      "compress pdf",
+      "reduce pdf size"
+    ]
+  },
+  {
+    "name": "PDF Merger",
+    "category": "PDF Tools",
+    "url": "pages/pdf/pdf-merger.html",
+    "keywords": [
+      "merge pdf",
+      "combine pdf"
+    ]
+  },
+  {
+    "name": "PDF to Word",
+    "category": "PDF Tools",
+    "url": "pages/pdf/pdf-to-word.html",
+    "keywords": [
+      "convert pdf",
+      "pdf word"
+    ]
+  },
+  {
+    "name": "Video Compressor",
+    "category": "Video Tools",
+    "url": "pages/video/video-compressor.html",
+    "keywords": [
+      "compress video",
+      "reduce video size"
+    ]
+  },
+  {
+    "name": "Audio Converter",
+    "category": "Audio Tools",
+    "url": "pages/audio/audio-converter.html",
+    "keywords": [
+      "mp3 converter",
+      "audio convert"
+    ]
+  },
+  {
+    "name": "AI Tools",
+    "category": "AI Tools",
+    "url": "pages/ai/index.html",
+    "keywords": [
+      "ai",
+      "artificial intelligence"
+    ]
+  }
+]

@@ -1,0 +1,92 @@
+[
+  {
+    "id": "image",
+    "name": "Image Tools",
+    "icon": "fa-solid fa-image",
+    "description": "Edit, Compress, Resize, Crop and Convert Images",
+    "count": "25+ Tools",
+    "url": "pages/image-tools.html",
+    "color": "#2563eb"
+  },
+  {
+    "id": "pdf",
+    "name": "PDF Tools",
+    "icon": "fa-solid fa-file-pdf",
+    "description": "Merge, Split, Compress and Convert PDF",
+    "count": "25+ Tools",
+    "url": "pages/pdf-tools.html",
+    "color": "#dc2626"
+  },
+  {
+    "id": "video",
+    "name": "Video Tools",
+    "icon": "fa-solid fa-video",
+    "description": "Compress, Convert and Edit Videos",
+    "count": "25+ Tools",
+    "url": "pages/video-tools.html",
+    "color": "#7c3aed"
+  },
+  {
+    "id": "audio",
+    "name": "Audio Tools",
+    "icon": "fa-solid fa-music",
+    "description": "Convert, Trim and Edit Audio",
+    "count": "25+ Tools",
+    "url": "pages/audio-tools.html",
+    "color": "#16a34a"
+  },
+  {
+    "id": "ai",
+    "name": "AI Tools",
+    "icon": "fa-solid fa-robot",
+    "description": "AI Powered Online Tools",
+    "count": "25+ Tools",
+    "url": "pages/ai-tools.html",
+    "color": "#f59e0b"
+  },
+  {
+    "id": "document",
+    "name": "Document Tools",
+    "icon": "fa-solid fa-file-lines",
+    "description": "Word, Excel and PowerPoint Tools",
+    "count": "25+ Tools",
+    "url": "pages/document-tools.html",
+    "color": "#2563eb"
+  },
+  {
+    "id": "calculator",
+    "name": "Calculator Tools",
+    "icon": "fa-solid fa-calculator",
+    "description": "Online Smart Calculators",
+    "count": "25+ Tools",
+    "url": "pages/calculator-tools.html",
+    "color": "#f97316"
+  },
+  {
+    "id": "utility",
+    "name": "Utility Tools",
+    "icon": "fa-solid fa-screwdriver-wrench",
+    "description": "Daily Useful Online Utilities",
+    "count": "25+ Tools",
+    "url": "pages/utility-tools.html",
+    "color": "#059669"
+  },
+  {
+    "id": "developer",
+    "name": "Developer Tools",
+    "icon": "fa-solid fa-code",
+    "description": "JSON, HTML, CSS and Coding Utilities",
+    "count": "25+ Tools",
+    "url": "pages/developer-tools.html",
+    "color": "#475569"
+  },
+  {
+    "id": "converter",
+    "name": "Converters",
+    "icon": "fa-solid fa-repeat",
+    "description": "Convert Files Between Formats",
+    "count": "25+ Tools",
+    "url": "pages/converter-tools.html",
+    "color": "#14b8a6"
+  }
+]
