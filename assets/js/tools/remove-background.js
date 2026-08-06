@@ -164,7 +164,7 @@ removeBgBtn.addEventListener("click", async () => {
         processingText.style.display = "none";
         removeBgBtn.disabled = false;
     }
-
+     
 });
 // ==========================================
 // Reset
