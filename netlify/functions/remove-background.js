@@ -1,4 +1,4 @@
-exports.handler = async (event) => {
+export async function handler(event) {
   console.log("Function Started");
 
   return {
@@ -11,4 +11,4 @@ exports.handler = async (event) => {
       message: "Function OK"
     })
   };
-};
+}
