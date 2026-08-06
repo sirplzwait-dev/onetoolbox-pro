@@ -1,101 +1,450 @@
-// ==========================================
-// OneToolBox Pro - AI Background Remover
-// ==========================================
+/* ==========================================
+   OneToolBox - Remove Background
+========================================== */
 
-let removeBackgroundAI = null;
-let selectedFile = null;
+.tool-hero{
+    padding:40px 0;
+    text-align:center;
+}
 
-// Elements
-const uploadArea = document.getElementById("uploadArea");
-const imageInput = document.getElementById("imageInput");
-const selectBtn = document.getElementById("selectBtn");
+.tool-hero h1{
+    font-size:2rem;
+    margin-bottom:10px;
+}
 
-const beforeImg = document.getElementById("beforeImg");
-const afterImg = document.getElementById("afterImg");
+.tool-hero p{
+    color:#666;
+    font-size:1rem;
+}
 
-const removeBgBtn = document.getElementById("removeBgBtn");
-const resetBtn = document.getElementById("resetBtn");
-const downloadBtn = document.getElementById("downloadBtn");
+.section{
+    padding:30px 0 60px;
+}
 
-const loader = document.getElementById("loader");
-const processingText = document.getElementById("processingText");
+.tool-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+    align-items:stretch;
+}
 
-const fileSize = document.getElementById("fileSize");
-const resolution = document.getElementById("resolution");
-const statusText = document.getElementById("statusText");
-const resultPlaceholder = document.getElementById("resultPlaceholder");
+.tool-card{
+    background:#fff;
+    border-radius:16px;
+    padding:20px;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+    border:1px solid #e5e7eb;
+    display:flex;
+    flex-direction:column;
+}
 
-// ==========================================
-// Load IMG.LY Library
-// ==========================================
+.tool-card h2{
+    font-size:1.2rem;
+    margin-bottom:18px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
 
-async function loadLibrary() {
+.tool-card h2 i{
+    color:#2563eb;
+}
 
-    if (removeBackgroundAI) return;
+.full-btn{
+    width:100%;
+}
 
-    statusText.textContent = "Loading AI Model...";
+.primary-btn,
+.secondary-btn{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:8px;
+    padding:12px 18px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:15px;
+    font-weight:600;
+    transition:.25s;
+    margin-bottom:12px;
+}
 
-    const module = await import(
-        "https://cdn.jsdelivr.net/npm/@imgly/background-removal/+esm"
-    );
+.primary-btn{
+    background:#2563eb;
+    color:#fff;
+}
 
-    removeBackgroundAI = module.removeBackground;
+.primary-btn:hover{
+    background:#1d4ed8;
+}
 
-    console.log("IMG.LY Loaded");
+.secondary-btn{
+    background:#f3f4f6;
+    color:#111827;
+}
+
+.secondary-btn:hover{
+    background:#e5e7eb;
+}
+/* ==========================================
+   Upload Area
+========================================== */
+
+.upload-area{
+    border:2px dashed #2563eb;
+    border-radius:14px;
+    padding:30px 20px;
+    text-align:center;
+    cursor:pointer;
+    transition:.3s;
+    background:#f8fbff;
+}
+
+.upload-area:hover{
+    border-color:#1d4ed8;
+    background:#eef5ff;
+}
+
+.upload-area.dragover{
+    border-color:#16a34a;
+    background:#ecfdf5;
+}
+
+.upload-icon{
+    font-size:52px;
+    color:#2563eb;
+    margin-bottom:15px;
+}
+
+.upload-area h3{
+    font-size:20px;
+    margin-bottom:8px;
+    color:#111827;
+}
+
+.upload-area p{
+    color:#6b7280;
+    margin-bottom:15px;
+}
+
+.upload-area small{
+    display:block;
+    margin-top:12px;
+    color:#6b7280;
+}
+
+.file-info{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+    margin-top:18px;
+}
+
+.file-info div{
+    background:#f9fafb;
+    border:1px solid #e5e7eb;
+    border-radius:10px;
+    padding:12px;
+    text-align:center;
+}
+
+.file-info span{
+    display:block;
+    font-size:13px;
+    color:#6b7280;
+    margin-bottom:6px;
+}
+
+.file-info strong{
+    font-size:16px;
+    color:#111827;
+}
+
+/* ==========================================
+   Tool Note
+========================================== */
+
+.tool-note{
+    margin-top:18px;
+    background:#f8fafc;
+    border:1px solid #e5e7eb;
+    border-radius:12px;
+    padding:15px;
+}
+
+.tool-note h4{
+    margin-bottom:10px;
+    font-size:16px;
+}
+
+.tool-note ul{
+    margin:0;
+    padding-left:18px;
+}
+
+.tool-note li{
+    margin-bottom:8px;
+    color:#4b5563;
+}
+
+/* ==========================================
+   Result Area
+========================================== */
+
+.result-area{
+    position:relative;
+    width:100%;
+    min-height:340px;
+    border:2px dashed #d1d5db;
+    border-radius:14px;
+    background:#f8fafc;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+}
+
+.preview-image{
+    display:none;
+    width:100%;
+    height:340px;
+    object-fit:contain;
+    background:#fff;
+}
+
+.placeholder{
+    text-align:center;
+    color:#9ca3af;
+}
+
+.placeholder i{
+    font-size:60px;
+    margin-bottom:15px;
+}
+
+.placeholder p{
+    font-size:15px;
+}
+
+/* ==========================================
+   Status
+========================================== */
+
+.result-info{
+    margin-top:18px;
+}
+
+.result-info div{
+    background:#f9fafb;
+    border:1px solid #e5e7eb;
+    border-radius:10px;
+    padding:12px;
+    text-align:center;
+}
+
+.result-info span{
+    display:block;
+    font-size:13px;
+    color:#6b7280;
+    margin-bottom:6px;
+}
+
+.result-info strong{
+    font-size:16px;
+    color:#111827;
+}
+
+/* ==========================================
+   Loader
+========================================== */
+
+.processing-box{
+    margin-top:18px;
+    text-align:center;
+}
+
+.loader{
+    width:48px;
+    height:48px;
+    border:5px solid #e5e7eb;
+    border-top:5px solid #2563eb;
+    border-radius:50%;
+    margin:auto;
+    animation:spin 1s linear infinite;
+}
+
+.processing-box p{
+    margin-top:12px;
+    font-size:14px;
+    color:#4b5563;
+}
+
+@keyframes spin{
+
+    0%{
+        transform:rotate(0deg);
+    }
+
+    100%{
+        transform:rotate(360deg);
+    }
 
 }
 
-// ==========================================
-// Select Button
-// ==========================================
+/* ==========================================
+   Download Button
+========================================== */
 
-selectBtn?.addEventListener("click", () => {
+#downloadBtn{
+    margin-top:18px;
+    text-decoration:none;
+}
 
-    imageInput.click();
+/* ==========================================
+   Responsive
+========================================== */
 
-});
+@media (max-width:1100px){
 
-imageInput?.addEventListener("change", e => {
-
-    if (!e.target.files.length) return;
-
-    loadImage(e.target.files[0]);
-
-});
-
-// ==========================================
-// Load Image
-// ==========================================
-
-function loadImage(file) {
-
-    selectedFile = file;
-
-    beforeImg.src = URL.createObjectURL(file);
-
-    beforeImg.style.display = "block";
-
-    afterImg.style.display = "none";
-
-    downloadBtn.style.display = "none";
-
-    resultPlaceholder.style.display = "none";
-
-    fileSize.textContent =
-        (file.size / 1024).toFixed(1) + " KB";
-
-    const img = new Image();
-
-    img.onload = () => {
-
-        resolution.textContent =
-            img.width + " × " + img.height;
-
-    };
-
-    img.src = beforeImg.src;
-
-    statusText.textContent = "Ready";
+    .tool-grid{
+        grid-template-columns:1fr 1fr;
+    }
 
 }
 
+@media (max-width:768px){
+
+    .tool-grid{
+        grid-template-columns:1fr;
+        gap:16px;
+    }
+
+    .tool-card{
+        padding:16px;
+    }
+
+    .tool-hero h1{
+        font-size:1.7rem;
+    }
+
+    .upload-area{
+        padding:24px 16px;
+    }
+
+    .upload-icon{
+        font-size:42px;
+    }
+
+    .preview-image,
+    .result-area{
+        min-height:260px;
+        height:260px;
+    }
+
+    .primary-btn,
+    .secondary-btn{
+        padding:12px;
+        font-size:14px;
+    }
+
+}
+
+@media (max-width:480px){
+
+    .tool-hero{
+        padding:24px 0;
+    }
+
+    .tool-hero h1{
+        font-size:1.45rem;
+    }
+
+    .tool-hero p{
+        font-size:.9rem;
+    }
+
+    .upload-area h3{
+        font-size:18px;
+    }
+
+    .file-info{
+        grid-template-columns:1fr;
+    }
+
+}
+
+/* ==========================================
+   Dark Mode
+========================================== */
+
+@media (prefers-color-scheme:dark){
+
+    .tool-card{
+        background:#1f2937;
+        border-color:#374151;
+    }
+
+    .tool-card h2,
+    .file-info strong,
+    .result-info strong{
+        color:#fff;
+    }
+
+    .upload-area{
+        background:#111827;
+        border-color:#3b82f6;
+    }
+
+    .upload-area h3{
+        color:#fff;
+    }
+
+    .upload-area p,
+    .upload-area small,
+    .file-info span,
+    .result-info span,
+    .tool-note li,
+    .processing-box p{
+        color:#cbd5e1;
+    }
+
+    .file-info div,
+    .result-info div,
+    .tool-note{
+        background:#111827;
+        border-color:#374151;
+    }
+
+    .result-area{
+        background:#111827;
+        border-color:#374151;
+    }
+
+}
+
+/* ==========================================
+   Animation
+========================================== */
+
+.tool-card{
+    transition:.25s ease;
+}
+
+.tool-card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 16px 40px rgba(0,0,0,.12);
+}
+
+.primary-btn:disabled{
+    opacity:.7;
+    cursor:not-allowed;
+}
+
+.preview-image{
+    border-radius:10px;
+}
+
+#downloadBtn{
+    margin-top:18px;
+}
