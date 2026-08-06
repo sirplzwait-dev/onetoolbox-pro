@@ -23,20 +23,21 @@ const resultPlaceholder = document.getElementById("resultPlaceholder");
 
 let selectedFile = null;
 
-
-
 // ==========================================
 // Select Image
 // ==========================================
 
 document.addEventListener("DOMContentLoaded", () => {
-    const selectBtn = document.getElementById("selectBtn");
-    const imageInput = document.getElementById("imageInput");
-
     if (selectBtn && imageInput) {
         selectBtn.addEventListener("click", () => {
             imageInput.click();
         });
+    }
+});
+
+imageInput.addEventListener("change", e => {
+    if (e.target.files.length) {
+        loadImage(e.target.files[0]);
     }
 });
 
@@ -87,7 +88,6 @@ uploadArea.addEventListener("drop", e => {
     }
 });
 
-
 // ==========================================
 // Paste Image
 // ==========================================
@@ -102,15 +102,12 @@ document.addEventListener("paste", e => {
     }
 });
 
-
 // ==========================================
 // Remove Background
 // ==========================================
 
 removeBgBtn.addEventListener("click", async () => {
-
-    const fileInput = document.getElementById("imageInput");
-    const file = selectedFile || (fileInput.files && fileInput.files[0]);
+    const file = selectedFile || (imageInput.files && imageInput.files[0]);
 
     if (!file) {
         alert("Please select an image first.");
@@ -123,7 +120,6 @@ removeBgBtn.addEventListener("click", async () => {
     removeBgBtn.disabled = true;
 
     try {
-        // Convert file to Base64 safely using a Promise
         const base64Image = await new Promise((resolve, reject) => {
             const reader = new FileReader();
             reader.onload = () => resolve(reader.result);
@@ -164,8 +160,8 @@ removeBgBtn.addEventListener("click", async () => {
         processingText.style.display = "none";
         removeBgBtn.disabled = false;
     }
-     
 });
+
 // ==========================================
 // Reset
 // ==========================================
