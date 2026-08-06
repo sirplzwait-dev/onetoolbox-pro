@@ -23,184 +23,267 @@ const resultPlaceholder = document.getElementById("resultPlaceholder");
 
 let selectedFile = null;
 
+
 // ==========================================
 // Select Image
 // ==========================================
 
 document.addEventListener("DOMContentLoaded", () => {
-    if (selectBtn && imageInput) {
-        selectBtn.addEventListener("click", () => {
-            imageInput.click();
-        });
-    }
+
+    if (!selectBtn || !imageInput) return;
+
+    selectBtn.addEventListener("click", () => {
+        imageInput.click();
+    });
+
 });
 
-if (imageInput) {
-    imageInput.addEventListener("change", e => {
-        if (e.target.files.length) {
-            loadImage(e.target.files[0]);
-        }
-    });
-}
+imageInput?.addEventListener("change", e => {
+
+    if (e.target.files.length) {
+
+        loadImage(e.target.files[0]);
+
+    }
+
+});
+
 
 // ==========================================
 // Load Image
 // ==========================================
 
-function loadImage(file){
+function loadImage(file) {
+
     selectedFile = file;
+
     const reader = new FileReader();
 
     reader.onload = e => {
-        if (beforeImg) {
-            beforeImg.src = e.target.result;
-            beforeImg.style.display = "block";
-        }
-        if (afterImg) afterImg.style.display = "none";
-        if (resultPlaceholder) resultPlaceholder.style.display = "none";
-        if (statusText) statusText.textContent = "Ready";
-        if (fileSize) fileSize.textContent = (file.size / 1024).toFixed(1) + " KB";
+
+        beforeImg.src = e.target.result;
+        beforeImg.style.display = "block";
+
+        afterImg.style.display = "none";
+        resultPlaceholder.style.display = "none";
+
+        statusText.textContent = "Ready";
+
+        fileSize.textContent =
+            (file.size / 1024).toFixed(1) + " KB";
 
         const img = new Image();
+
         img.onload = () => {
-            if (resolution) resolution.textContent = img.width + " × " + img.height;
-        }
+
+            resolution.textContent =
+                img.width + " × " + img.height;
+
+        };
+
         img.src = e.target.result;
-    }
+
+    };
 
     reader.readAsDataURL(file);
-}
 
+}
 // ==========================================
 // Drag & Drop
 // ==========================================
 
-if (uploadArea) {
-    uploadArea.addEventListener("dragover", e => {
-        e.preventDefault();
-        uploadArea.classList.add("dragover");
-    });
+uploadArea?.addEventListener("dragover", e => {
 
-    uploadArea.addEventListener("dragleave", () => {
-        uploadArea.classList.remove("dragover");
-    });
+    e.preventDefault();
 
-    uploadArea.addEventListener("drop", e => {
-        e.preventDefault();
-        uploadArea.classList.remove("dragover");
-        if (e.dataTransfer.files.length) {
-            loadImage(e.dataTransfer.files[0]);
-        }
-    });
-}
+    uploadArea.classList.add("dragover");
+
+});
+
+uploadArea?.addEventListener("dragleave", () => {
+
+    uploadArea.classList.remove("dragover");
+
+});
+
+uploadArea?.addEventListener("drop", e => {
+
+    e.preventDefault();
+
+    uploadArea.classList.remove("dragover");
+
+    if (e.dataTransfer.files.length) {
+
+        loadImage(e.dataTransfer.files[0]);
+
+    }
+
+});
+
 
 // ==========================================
 // Paste Image
 // ==========================================
 
 document.addEventListener("paste", e => {
+
     const items = e.clipboardData.items;
+
     for (const item of items) {
+
         if (item.type.startsWith("image")) {
+
             loadImage(item.getAsFile());
+
             break;
+
         }
+
     }
+
 });
+
 
 // ==========================================
 // Remove Background
 // ==========================================
 
-if (removeBgBtn) {
-    removeBgBtn.addEventListener("click", async () => {
-        const file = selectedFile || (imageInput && imageInput.files && imageInput.files[0]);
+removeBgBtn?.addEventListener("click", async () => {
 
-        if (!file) {
-            alert("Please select an image first.");
-            return;
+    if (!selectedFile) {
+
+        alert("Please select an image first.");
+
+        return;
+
+    }
+
+    loader.style.display = "block";
+    processingText.style.display = "block";
+    statusText.textContent = "Processing...";
+
+    removeBgBtn.disabled = true;
+
+    try {
+
+        const base64Image = await new Promise((resolve, reject) => {
+
+            const reader = new FileReader();
+
+            reader.onload = () => resolve(reader.result);
+
+            reader.onerror = reject;
+
+            reader.readAsDataURL(selectedFile);
+
+        });
+
+        const response = await fetch("/api/remove-background", {
+
+            method: "POST",
+
+            headers: {
+
+                "Content-Type": "application/json"
+
+            },
+
+            body: JSON.stringify({
+
+                image: base64Image
+
+            })
+
+        });
+
+        const result = await response.json();
+
+        console.log(result);
+
+        if (!response.ok || !result.success) {
+
+            throw new Error(result.error || "Background remove failed");
+
         }
 
-        if (loader) loader.style.display = "block";
-        if (processingText) processingText.style.display = "block";
-        if (statusText) statusText.textContent = "Processing...";
-        removeBgBtn.disabled = true;
+        afterImg.src = result.image;
 
-        try {
-            const base64Image = await new Promise((resolve, reject) => {
-                const reader = new FileReader();
-                reader.onload = () => resolve(reader.result);
-                reader.onerror = error => reject(error);
-                reader.readAsDataURL(file);
-            });
+        afterImg.style.display = "block";
 
-            const response = await fetch("/api/remove-background", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({ image: base64Image })
-            });
+        downloadBtn.href = result.image;
 
-            if (!response.ok) {
-                let errorMsg = "Failed to process image";
-                try {
-                    const errData = await response.json();
-                    errorMsg = errData.error || errorMsg;
-                } catch (jsonErr) {
-                    const textErr = await response.text();
-                    if (textErr) errorMsg = textErr;
-                }
-                throw new Error(errorMsg);
-            }
+        downloadBtn.download = "removed-background.png";
 
-            const blob = await response.blob();
-            const url = URL.createObjectURL(blob);
+        downloadBtn.style.display = "flex";
 
-            if (afterImg) {
-                afterImg.src = url;
-                afterImg.style.display = "block";
-            }
-            if (downloadBtn) {
-                downloadBtn.href = url;
-                downloadBtn.style.display = "flex";
-            }
-            if (statusText) statusText.textContent = "Completed";
+        statusText.textContent = "Completed";
 
-        }
-        catch (err) {
-            console.error(err);
-            alert("Background remove failed.\n\n" + err.message);
-            if (statusText) statusText.textContent = "Failed";
-        }
-        finally {
-            if (loader) loader.style.display = "none";
-            if (processingText) processingText.style.display = "none";
-            removeBgBtn.disabled = false;
-        }
-    });
-}
+    }
+
+    catch (err) {
+
+        console.error(err);
+
+        alert(err.message);
+
+        statusText.textContent = "Failed";
+
+    }
+
+    finally {
+
+        loader.style.display = "none";
+
+        processingText.style.display = "none";
+
+        removeBgBtn.disabled = false;
+
+    }
+
+});
 
 // ==========================================
 // Reset
 // ==========================================
 
-if (resetBtn) {
-    resetBtn.addEventListener("click", () => {
-        selectedFile = null;
-        if (imageInput) imageInput.value = "";
-        if (beforeImg) {
-            beforeImg.src = "";
-            beforeImg.style.display = "none";
-        }
-        if (afterImg) {
-            afterImg.src = "";
-            afterImg.style.display = "none";
-        }
-        if (downloadBtn) downloadBtn.style.display = "none";
-        if (resultPlaceholder) resultPlaceholder.style.display = "block";
-        if (fileSize) fileSize.textContent = "0 KB";
-        if (resolution) resolution.textContent = "0 × 0";
-        if (statusText) statusText.textContent = "Waiting...";
-    });
-}
+resetBtn?.addEventListener("click", () => {
+
+    selectedFile = null;
+
+    imageInput.value = "";
+
+    beforeImg.src = "";
+    beforeImg.style.display = "none";
+
+    afterImg.src = "";
+    afterImg.style.display = "none";
+
+    downloadBtn.style.display = "none";
+
+    resultPlaceholder.style.display = "block";
+
+    fileSize.textContent = "0 KB";
+
+    resolution.textContent = "0 × 0";
+
+    statusText.textContent = "Waiting...";
+
+});
+
+
+// ==========================================
+// Download
+// ==========================================
+
+downloadBtn?.addEventListener("click", () => {
+
+    console.log("Downloading image...");
+
+});
+
+
+// ==========================================
+// Console Ready
+// ==========================================
+
+console.log("Remove Background Tool Loaded Successfully");
