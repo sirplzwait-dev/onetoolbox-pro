@@ -23,31 +23,79 @@ const resultPlaceholder = document.getElementById("resultPlaceholder");
 
 let selectedFile = null;
 
+// ==========================================
+// Compress Image
+// ==========================================
+
+async function compressImage(file) {
+
+    return new Promise((resolve) => {
+
+        const reader = new FileReader();
+
+        reader.onload = e => {
+
+            const img = new Image();
+
+            img.onload = () => {
+
+                let width = img.width;
+                let height = img.height;
+
+                const MAX = 1024;
+
+                if (width > height && width > MAX) {
+
+                    height = Math.round(height * MAX / width);
+                    width = MAX;
+
+                } else if (height > MAX) {
+
+                    width = Math.round(width * MAX / height);
+                    height = MAX;
+
+                }
+
+                const canvas = document.createElement("canvas");
+
+                canvas.width = width;
+                canvas.height = height;
+
+                const ctx = canvas.getContext("2d");
+
+                ctx.drawImage(img, 0, 0, width, height);
+
+                resolve(canvas.toDataURL("image/jpeg", 0.75));
+
+            };
+
+            img.src = e.target.result;
+
+        };
+
+        reader.readAsDataURL(file);
+
+    });
+
+}
 
 // ==========================================
 // Select Image
 // ==========================================
 
-document.addEventListener("DOMContentLoaded", () => {
+selectBtn?.addEventListener("click", () => {
 
-    if (!selectBtn || !imageInput) return;
-
-    selectBtn.addEventListener("click", () => {
-        imageInput.click();
-    });
+    imageInput.click();
 
 });
 
 imageInput?.addEventListener("change", e => {
 
-    if (e.target.files.length) {
+    if (!e.target.files.length) return;
 
-        loadImage(e.target.files[0]);
-
-    }
+    loadImage(e.target.files[0]);
 
 });
-
 
 // ==========================================
 // Load Image
@@ -62,9 +110,13 @@ function loadImage(file) {
     reader.onload = e => {
 
         beforeImg.src = e.target.result;
+
         beforeImg.style.display = "block";
 
         afterImg.style.display = "none";
+
+        downloadBtn.style.display = "none";
+
         resultPlaceholder.style.display = "none";
 
         statusText.textContent = "Ready";
@@ -88,6 +140,7 @@ function loadImage(file) {
     reader.readAsDataURL(file);
 
 }
+
 // ==========================================
 // Drag & Drop
 // ==========================================
@@ -120,7 +173,6 @@ uploadArea?.addEventListener("drop", e => {
 
 });
 
-
 // ==========================================
 // Paste Image
 // ==========================================
@@ -143,7 +195,6 @@ document.addEventListener("paste", e => {
 
 });
 
-
 // ==========================================
 // Remove Background
 // ==========================================
@@ -151,47 +202,33 @@ document.addEventListener("paste", e => {
 removeBgBtn?.addEventListener("click", async () => {
 
     if (!selectedFile) {
-
         alert("Please select an image first.");
-
         return;
-
     }
 
     loader.style.display = "block";
     processingText.style.display = "block";
-    statusText.textContent = "Processing...";
+    statusText.textContent = "Compressing Image...";
 
     removeBgBtn.disabled = true;
 
     try {
 
-        const base64Image = await new Promise((resolve, reject) => {
+        // Compress image before upload
+        const base64Image = await compressImage(selectedFile);
 
-            const reader = new FileReader();
-
-            reader.onload = () => resolve(reader.result);
-
-            reader.onerror = reject;
-
-            reader.readAsDataURL(selectedFile);
-
-        });
+        statusText.textContent = "Removing Background...";
 
         const response = await fetch("/api/remove-background", {
 
             method: "POST",
 
             headers: {
-
                 "Content-Type": "application/json"
-
             },
 
             body: JSON.stringify({
-
                 image: base64Image
-
             })
 
         });
@@ -202,7 +239,9 @@ removeBgBtn?.addEventListener("click", async () => {
 
         if (!response.ok || !result.success) {
 
-            throw new Error(result.error || "Background remove failed");
+            throw new Error(
+                result.error || "Background remove failed."
+            );
 
         }
 
@@ -260,16 +299,19 @@ resetBtn?.addEventListener("click", () => {
 
     downloadBtn.style.display = "none";
 
-    resultPlaceholder.style.display = "block";
+    if (resultPlaceholder)
+        resultPlaceholder.style.display = "block";
 
-    fileSize.textContent = "0 KB";
+    if (fileSize)
+        fileSize.textContent = "0 KB";
 
-    resolution.textContent = "0 × 0";
+    if (resolution)
+        resolution.textContent = "0 × 0";
 
-    statusText.textContent = "Waiting...";
+    if (statusText)
+        statusText.textContent = "Waiting...";
 
 });
-
 
 // ==========================================
 // Download
@@ -277,13 +319,16 @@ resetBtn?.addEventListener("click", () => {
 
 downloadBtn?.addEventListener("click", () => {
 
-    console.log("Downloading image...");
+    console.log("Download Started");
 
 });
 
-
 // ==========================================
-// Console Ready
+// Startup
 // ==========================================
 
-console.log("Remove Background Tool Loaded Successfully");
+window.addEventListener("load", () => {
+
+    console.log("OneToolBox Remove Background Ready");
+
+});
