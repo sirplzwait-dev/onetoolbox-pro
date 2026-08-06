@@ -219,7 +219,7 @@ removeBgBtn?.addEventListener("click", async () => {
 
         statusText.textContent = "Removing Background...";
 
-        const response = await fetch("/api/remove-background", {
+       fetch("/.netlify/functions/remove-background", {
 
             method: "POST",
 
