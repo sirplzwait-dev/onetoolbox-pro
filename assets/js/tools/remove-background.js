@@ -24,20 +24,22 @@ const resultPlaceholder = document.getElementById("resultPlaceholder");
 let selectedFile = null;
 
 
+====================================
+
 // ==========================================
 // Select Image
 // ==========================================
 
-selectBtn.addEventListener("click", () => {
-    imageInput.click();
-});
+document.addEventListener("DOMContentLoaded", () => {
+    const selectBtn = document.getElementById("selectBtn");
+    const imageInput = document.getElementById("imageInput");
 
-imageInput.addEventListener("change", e => {
-    if (e.target.files.length) {
-        loadImage(e.target.files[0]);
+    if (selectBtn && imageInput) {
+        selectBtn.addEventListener("click", () => {
+            imageInput.click();
+        });
     }
 });
-
 
 // ==========================================
 // Load Image
