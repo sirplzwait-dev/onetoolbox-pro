@@ -11,15 +11,23 @@ export async function handler(event, context) {
   }
 
   try {
-    const apiKey = process.env.HF_API_KEY; // Ensure your environment variable name matches this
+    const apiKey = process.env.HF_API_KEY;
     if (!apiKey) {
-      throw new Error("Hugging Face API key is not configured in environment variables.");
+      throw new Error("Hugging Face API key is not configured.");
     }
 
-    // Get the image buffer from the incoming request body
-    const imageBuffer = Buffer.from(event.body, event.isBase64Encoded ? 'base64' : 'utf8');
+    // Parse incoming JSON body
+    const data = JSON.parse(event.body);
+    const base64Image = data.image; // Expecting base64 string from frontend
 
-    // Call Hugging Face Background Removal Model (e.g., RMBG-1.4 or similar)
+    if (!base64Image) {
+      throw new Error("No image data provided.");
+    }
+
+    // Remove data URL header if present (e.g. "data:image/jpeg;base64,...")
+    const base64Data = base64Image.replace(/^data:image\/\w+;base64,/, "");
+    const imageBuffer = Buffer.from(base64Data, 'base64');
+
     const response = await fetch(
       "https://api-inference.huggingface.co/models/briaai/RMBG-1.4",
       {
@@ -53,7 +61,7 @@ export async function handler(event, context) {
     return {
       statusCode: 500,
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ success: false, error: error.message })
+    v  body: JSON.stringify({ success: false, error: error.message })
     };
   }
 }

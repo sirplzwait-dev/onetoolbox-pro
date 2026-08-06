@@ -255,3 +255,19 @@ resetBtn.addEventListener("click", () => {
     statusText.textContent = "Waiting...";
 
 });
+// Convert file to Base64 before sending
+const reader = new FileReader();
+reader.readAsDataURL(selectedFile);
+
+reader.onload = async () => {
+    const base64Image = reader.result;
+
+    const response = await fetch("/api/remove-background", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ image: base64Image })
+    });
+    // ... baki ka code waisa hi rahega
+};
