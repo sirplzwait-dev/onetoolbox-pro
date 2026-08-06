@@ -1,4 +1,4 @@
-export async function handler(event) {
+export async function handler(event, context) {
   console.log("Function Started");
 
   return {
@@ -8,7 +8,8 @@ export async function handler(event) {
     },
     body: JSON.stringify({
       success: true,
-      message: "Function OK"
-    })
+      message: "API is working perfectly!"
+    }),
   };
 }
+```[cite: 5]
