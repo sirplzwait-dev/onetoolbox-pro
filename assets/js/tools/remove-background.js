@@ -185,4 +185,3 @@ resetBtn.addEventListener("click", () => {
     resolution.textContent = "0 × 0";
     statusText.textContent = "Waiting...";
 });
-```[cite: 7]
