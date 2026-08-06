@@ -43,15 +43,19 @@ export async function handler(event, context) {
       throw new Error(`Hugging Face API error: ${errorText}`);
     }
 
+    // Binary image ko Text (Base64) me convert kar rahe hain taaki corrupt na ho
     const resultBuffer = await response.arrayBuffer();
+    const outputBase64 = Buffer.from(resultBuffer).toString('base64');
 
     return {
       statusCode: 200,
       headers: {
-        "Content-Type": "image/png"
+        "Content-Type": "application/json"
       },
-      body: Buffer.from(resultBuffer).toString('base64'),
-      isBase64Encoded: true
+      body: JSON.stringify({
+        success: true,
+        image: `data:image/png;base64,${outputBase64}`
+      })
     };
 
   } catch (error) {
