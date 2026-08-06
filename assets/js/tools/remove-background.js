@@ -24,7 +24,6 @@ const resultPlaceholder = document.getElementById("resultPlaceholder");
 let selectedFile = null;
 
 
-====================================
 
 // ==========================================
 // Select Image
