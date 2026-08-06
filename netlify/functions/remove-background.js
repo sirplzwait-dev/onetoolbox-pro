@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> 36f3d2cab79befd4552fc462254aba3c6960ca79
 
 export async function handler(event) {
   console.log("Function Started");
