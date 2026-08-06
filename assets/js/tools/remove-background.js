@@ -219,31 +219,23 @@ removeBgBtn?.addEventListener("click", async () => {
 
         statusText.textContent = "Removing Background...";
 
-       fetch("/.netlify/functions/remove-background", {
+       const response = await fetch("/.netlify/functions/remove-background", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+        image: base64Image
+    })
+});
 
-            method: "POST",
+const result = await response.json();
 
-            headers: {
-                "Content-Type": "application/json"
-            },
+console.log(result);
 
-            body: JSON.stringify({
-                image: base64Image
-            })
-
-        });
-
-        const result = await response.json();
-
-        console.log(result);
-
-        if (!response.ok || !result.success) {
-
-            throw new Error(
-                result.error || "Background remove failed."
-            );
-
-        }
+if (!response.ok || !result.success) {
+    throw new Error(result.error || "Background remove failed.");
+}
 
         afterImg.src = result.image;
 
