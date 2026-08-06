@@ -16,15 +16,13 @@ export async function handler(event, context) {
       throw new Error("Hugging Face API key is not configured.");
     }
 
-    // Parse incoming JSON body
     const data = JSON.parse(event.body);
-    const base64Image = data.image; // Expecting base64 string from frontend
+    const base64Image = data.image;
 
     if (!base64Image) {
       throw new Error("No image data provided.");
     }
 
-    // Remove data URL header if present (e.g. "data:image/jpeg;base64,...")
     const base64Data = base64Image.replace(/^data:image\/\w+;base64,/, "");
     const imageBuffer = Buffer.from(base64Data, 'base64');
 
@@ -61,7 +59,7 @@ export async function handler(event, context) {
     return {
       statusCode: 500,
       headers: { "Content-Type": "application/json" },
-    v  body: JSON.stringify({ success: false, error: error.message })
+      body: JSON.stringify({ success: false, error: error.message })
     };
   }
 }
