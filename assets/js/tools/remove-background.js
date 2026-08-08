@@ -1,24 +1,9 @@
 // ==========================================
 // OneToolBox
 // AI Background Remover
-// Browser-Side IMG.LY
 // FINAL VERSION
+// Single Result + Background Color
 // ==========================================
-
-
-// ==========================================
-// Import IMG.LY
-// ==========================================
-//
-// IMPORTANT:
-// Do NOT use:
-// @1.0.0/dist/index.mjs
-//
-// Do NOT use:
-// publicPath: "...@1.0.0/dist/"
-//
-// IMG.LY default asset path will be used.
-//
 
 import { removeBackground } from
     "https://cdn.jsdelivr.net/npm/@imgly/background-removal@1.7.0/+esm";
@@ -58,15 +43,6 @@ const loader =
 const processingText =
     document.getElementById("processingText");
 
-const processingMessage =
-    document.getElementById("processingMessage");
-
-const progressBar =
-    document.getElementById("progressBar");
-
-const progressText =
-    document.getElementById("progressText");
-
 const fileSize =
     document.getElementById("fileSize");
 
@@ -81,35 +57,379 @@ const resultPlaceholder =
 
 
 // ==========================================
-// State
+// Variables
 // ==========================================
 
 let selectedFile = null;
 
-let originalObjectURL = null;
+let originalURL = null;
 
-let resultObjectURL = null;
+let transparentBlob = null;
+
+let finalBlob = null;
+
+let finalURL = null;
 
 let processing = false;
 
+let selectedBackground = "transparent";
+
 
 // ==========================================
-// Helper - Safe Text
+// Background Options
 // ==========================================
 
-function setText(element, text) {
+const backgroundOptions = [
 
-    if (element) {
+    {
+        name: "Transparent",
+        value: "transparent",
+        color: "transparent"
+    },
 
-        element.textContent = text;
+    {
+        name: "White",
+        value: "#ffffff",
+        color: "#ffffff"
+    },
+
+    {
+        name: "Black",
+        value: "#000000",
+        color: "#000000"
+    },
+
+    {
+        name: "Red",
+        value: "#ef4444",
+        color: "#ef4444"
+    },
+
+    {
+        name: "Blue",
+        value: "#2563eb",
+        color: "#2563eb"
+    },
+
+    {
+        name: "Green",
+        value: "#16a34a",
+        color: "#16a34a"
+    },
+
+    {
+        name: "Yellow",
+        value: "#facc15",
+        color: "#facc15"
+    },
+
+    {
+        name: "Gray",
+        value: "#6b7280",
+        color: "#6b7280"
+    }
+
+];
+
+
+// ==========================================
+// Create Background Controls
+// ==========================================
+
+function createBackgroundControls() {
+
+    const resultArea =
+        document.querySelector(".result-area");
+
+    if (!resultArea) {
+
+        return;
 
     }
+
+
+    // Remove old controls if already present
+
+    const old =
+        document.getElementById(
+            "backgroundControls"
+        );
+
+    if (old) {
+
+        old.remove();
+
+    }
+
+
+    // Main box
+
+    const controls =
+        document.createElement("div");
+
+    controls.id =
+        "backgroundControls";
+
+    controls.style.marginTop =
+        "18px";
+
+    controls.style.padding =
+        "16px";
+
+    controls.style.border =
+        "1px solid #e5e7eb";
+
+    controls.style.borderRadius =
+        "14px";
+
+    controls.style.background =
+        "#f8fafc";
+
+
+    // Heading
+
+    const title =
+        document.createElement("h4");
+
+    title.textContent =
+        "Background";
+
+    title.style.margin =
+        "0 0 12px 0";
+
+    title.style.fontSize =
+        "16px";
+
+    title.style.fontWeight =
+        "700";
+
+
+    controls.appendChild(title);
+
+
+    // Buttons container
+
+    const buttons =
+        document.createElement("div");
+
+    buttons.style.display =
+        "flex";
+
+    buttons.style.flexWrap =
+        "wrap";
+
+    buttons.style.gap =
+        "10px";
+
+
+    // ======================================
+    // Background buttons
+    // ======================================
+
+    backgroundOptions.forEach(option => {
+
+        const button =
+            document.createElement("button");
+
+        button.type =
+            "button";
+
+        button.className =
+            "bg-option";
+
+        button.dataset.background =
+            option.value;
+
+        button.title =
+            option.name;
+
+
+        button.style.width =
+            "36px";
+
+        button.style.height =
+            "36px";
+
+        button.style.borderRadius =
+            "50%";
+
+        button.style.cursor =
+            "pointer";
+
+        button.style.border =
+            "3px solid transparent";
+
+        button.style.boxSizing =
+            "border-box";
+
+
+        if (
+            option.value ===
+            "transparent"
+        ) {
+
+            button.style.background =
+                "repeating-conic-gradient(#ddd 0% 25%, white 0% 50%) 50% / 12px 12px";
+
+        }
+
+        else {
+
+            button.style.background =
+                option.color;
+
+        }
+
+
+        button.addEventListener(
+            "click",
+            () => {
+
+                selectedBackground =
+                    option.value;
+
+
+                document
+                    .querySelectorAll(
+                        ".bg-option"
+                    )
+                    .forEach(btn => {
+
+                        btn.style.border =
+                            "3px solid transparent";
+
+                    });
+
+
+                button.style.border =
+                    "3px solid #2563eb";
+
+
+                renderFinalImage();
+
+            }
+        );
+
+
+        buttons.appendChild(button);
+
+    });
+
+
+    controls.appendChild(buttons);
+
+
+    // ======================================
+    // Custom Color
+    // ======================================
+
+    const customRow =
+        document.createElement("div");
+
+    customRow.style.display =
+        "flex";
+
+    customRow.style.alignItems =
+        "center";
+
+    customRow.style.gap =
+        "10px";
+
+    customRow.style.marginTop =
+        "14px";
+
+
+    const customLabel =
+        document.createElement("span");
+
+    customLabel.textContent =
+        "Custom:";
+
+    customLabel.style.fontWeight =
+        "600";
+
+
+    const customColor =
+        document.createElement("input");
+
+    customColor.type =
+        "color";
+
+    customColor.id =
+        "customBackgroundColor";
+
+    customColor.value =
+        "#ffffff";
+
+
+    customColor.style.width =
+        "45px";
+
+    customColor.style.height =
+        "36px";
+
+    customColor.style.padding =
+        "2px";
+
+    customColor.style.border =
+        "1px solid #ddd";
+
+    customColor.style.borderRadius =
+        "8px";
+
+    customColor.style.cursor =
+        "pointer";
+
+
+    customColor.addEventListener(
+        "input",
+        () => {
+
+            selectedBackground =
+                customColor.value;
+
+
+            document
+                .querySelectorAll(
+                    ".bg-option"
+                )
+                .forEach(btn => {
+
+                    btn.style.border =
+                        "3px solid transparent";
+
+                });
+
+
+            renderFinalImage();
+
+        }
+    );
+
+
+    customRow.appendChild(
+        customLabel
+    );
+
+    customRow.appendChild(
+        customColor
+    );
+
+
+    controls.appendChild(
+        customRow
+    );
+
+
+    resultArea.appendChild(
+        controls
+    );
 
 }
 
 
 // ==========================================
-// Helper - File Size
+// File Size
 // ==========================================
 
 function formatFileSize(bytes) {
@@ -121,14 +441,10 @@ function formatFileSize(bytes) {
     }
 
 
-    if (bytes < 1024) {
-
-        return bytes + " B";
-
-    }
-
-
-    if (bytes < 1024 * 1024) {
+    if (
+        bytes <
+        1024 * 1024
+    ) {
 
         return (
             (bytes / 1024).toFixed(1) +
@@ -147,7 +463,7 @@ function formatFileSize(bytes) {
 
 
 // ==========================================
-// Select Image Button
+// Select Button
 // ==========================================
 
 selectBtn?.addEventListener(
@@ -159,7 +475,6 @@ selectBtn?.addEventListener(
             return;
 
         }
-
 
         imageInput?.click();
 
@@ -173,18 +488,16 @@ selectBtn?.addEventListener(
 
 imageInput?.addEventListener(
     "change",
-    (event) => {
+    event => {
 
         const file =
             event.target.files?.[0];
-
 
         if (!file) {
 
             return;
 
         }
-
 
         loadImage(file);
 
@@ -205,9 +518,9 @@ function loadImage(file) {
     }
 
 
-    // Check image
-
-    if (!file.type.startsWith("image/")) {
+    if (
+        !file.type.startsWith("image/")
+    ) {
 
         alert(
             "Please select a valid image."
@@ -218,59 +531,54 @@ function loadImage(file) {
     }
 
 
-    // ======================================
-    // Revoke old original URL
-    // ======================================
+    selectedFile =
+        file;
 
-    if (originalObjectURL) {
+
+    // Revoke old URL
+
+    if (originalURL) {
 
         URL.revokeObjectURL(
-            originalObjectURL
+            originalURL
         );
-
-        originalObjectURL = null;
 
     }
 
 
-    // ======================================
-    // Revoke old result URL
-    // ======================================
-
-    if (resultObjectURL) {
+    if (finalURL) {
 
         URL.revokeObjectURL(
-            resultObjectURL
+            finalURL
         );
 
-        resultObjectURL = null;
+        finalURL =
+            null;
 
     }
 
 
-    // ======================================
-    // Save file
-    // ======================================
+    transparentBlob =
+        null;
 
-    selectedFile = file;
+    finalBlob =
+        null;
 
 
-    // ======================================
-    // Create original URL
-    // ======================================
+    // Create URL
 
-    originalObjectURL =
+    originalURL =
         URL.createObjectURL(file);
 
 
     // ======================================
-    // Show original image
+    // Original preview
     // ======================================
 
     if (beforeImg) {
 
         beforeImg.src =
-            originalObjectURL;
+            originalURL;
 
         beforeImg.style.display =
             "block";
@@ -279,12 +587,13 @@ function loadImage(file) {
 
 
     // ======================================
-    // Hide previous result
+    // Hide result
     // ======================================
 
     if (afterImg) {
 
-        afterImg.src = "";
+        afterImg.src =
+            "";
 
         afterImg.style.display =
             "none";
@@ -292,25 +601,13 @@ function loadImage(file) {
     }
 
 
-    // ======================================
-    // Hide download
-    // ======================================
-
     if (downloadBtn) {
 
         downloadBtn.style.display =
             "none";
 
-        downloadBtn.removeAttribute(
-            "href"
-        );
-
     }
 
-
-    // ======================================
-    // Hide placeholder
-    // ======================================
 
     if (resultPlaceholder) {
 
@@ -321,106 +618,68 @@ function loadImage(file) {
 
 
     // ======================================
-    // File size
+    // Info
     // ======================================
 
-    setText(
-        fileSize,
-        formatFileSize(file.size)
-    );
+    if (fileSize) {
 
-
-    // ======================================
-    // Status
-    // ======================================
-
-    setText(
-        statusText,
-        "Ready"
-    );
-
-
-    // ======================================
-    // Progress reset
-    // ======================================
-
-    if (progressBar) {
-
-        progressBar.style.width =
-            "0%";
+        fileSize.textContent =
+            formatFileSize(file.size);
 
     }
 
 
-    setText(
-        progressText,
-        "Ready"
-    );
-
-
-    // ======================================
-    // Get Resolution
-    // ======================================
-
-    const image =
+    const img =
         new Image();
 
 
-    image.onload = () => {
+    img.onload = () => {
 
-        setText(
-            resolution,
-            `${image.width} × ${image.height}`
-        );
+        if (resolution) {
 
-    };
+            resolution.textContent =
+                `${img.width} × ${img.height}`;
 
-
-    image.onerror = () => {
-
-        setText(
-            resolution,
-            "Unknown"
-        );
+        }
 
     };
 
 
-    image.src =
-        originalObjectURL;
+    img.src =
+        originalURL;
+
+
+    if (statusText) {
+
+        statusText.textContent =
+            "Ready";
+
+    }
 
 }
 
 
 // ==========================================
-// Drag Over
+// Drag & Drop
 // ==========================================
 
 uploadArea?.addEventListener(
     "dragover",
-    (event) => {
+    event => {
 
         event.preventDefault();
 
+        if (!processing) {
 
-        if (processing) {
-
-            return;
+            uploadArea.classList.add(
+                "dragover"
+            );
 
         }
-
-
-        uploadArea.classList.add(
-            "dragover"
-        );
 
     }
 );
 
-
-// ==========================================
-// Drag Leave
-// ==========================================
 
 uploadArea?.addEventListener(
     "dragleave",
@@ -434,16 +693,11 @@ uploadArea?.addEventListener(
 );
 
 
-// ==========================================
-// Drop
-// ==========================================
-
 uploadArea?.addEventListener(
     "drop",
-    (event) => {
+    event => {
 
         event.preventDefault();
-
 
         uploadArea.classList.remove(
             "dragover"
@@ -461,14 +715,11 @@ uploadArea?.addEventListener(
             event.dataTransfer.files?.[0];
 
 
-        if (!file) {
+        if (file) {
 
-            return;
+            loadImage(file);
 
         }
-
-
-        loadImage(file);
 
     }
 );
@@ -480,7 +731,7 @@ uploadArea?.addEventListener(
 
 document.addEventListener(
     "paste",
-    (event) => {
+    event => {
 
         if (processing) {
 
@@ -500,11 +751,14 @@ document.addEventListener(
         }
 
 
-        for (const item of items) {
+        for (
+            const item of items
+        ) {
 
             if (
-                item.type &&
-                item.type.startsWith("image/")
+                item.type.startsWith(
+                    "image/"
+                )
             ) {
 
                 const file =
@@ -529,78 +783,190 @@ document.addEventListener(
 
 
 // ==========================================
-// Progress
+// Render Final Image
 // ==========================================
 
-function updateProgress(
-    key,
-    current,
-    total
-) {
+async function renderFinalImage() {
 
-    // --------------------------------------
-    // Percentage
-    // --------------------------------------
+    if (!transparentBlob) {
 
-    if (
-        typeof current === "number" &&
-        typeof total === "number" &&
-        total > 0
-    ) {
+        return;
 
-        const percent =
-            Math.min(
-                100,
-                Math.max(
-                    0,
-                    (current / total) * 100
-                )
+    }
+
+
+    try {
+
+        const image =
+            new Image();
+
+
+        const imageURL =
+            URL.createObjectURL(
+                transparentBlob
             );
 
 
-        if (progressBar) {
+        await new Promise(
+            (resolve, reject) => {
 
-            progressBar.style.width =
-                `${percent.toFixed(0)}%`;
+                image.onload =
+                    resolve;
+
+                image.onerror =
+                    reject;
+
+                image.src =
+                    imageURL;
+
+            }
+        );
+
+
+        URL.revokeObjectURL(
+            imageURL
+        );
+
+
+        // ==================================
+        // Canvas
+        // ==================================
+
+        const canvas =
+            document.createElement(
+                "canvas"
+            );
+
+
+        canvas.width =
+            image.naturalWidth;
+
+        canvas.height =
+            image.naturalHeight;
+
+
+        const ctx =
+            canvas.getContext(
+                "2d"
+            );
+
+
+        // ==================================
+        // Background
+        // ==================================
+
+        if (
+            selectedBackground !==
+            "transparent"
+        ) {
+
+            ctx.fillStyle =
+                selectedBackground;
+
+            ctx.fillRect(
+                0,
+                0,
+                canvas.width,
+                canvas.height
+            );
 
         }
 
 
-        setText(
-            progressText,
-            `${percent.toFixed(0)}%`
+        // ==================================
+        // Draw cutout
+        // ==================================
+
+        ctx.drawImage(
+            image,
+            0,
+            0
         );
+
+
+        // ==================================
+        // Convert PNG
+        // ==================================
+
+        finalBlob =
+            await new Promise(
+                resolve => {
+
+                    canvas.toBlob(
+                        resolve,
+                        "image/png"
+                    );
+
+                }
+            );
+
+
+        // ==================================
+        // Final URL
+        // ==================================
+
+        if (finalURL) {
+
+            URL.revokeObjectURL(
+                finalURL
+            );
+
+        }
+
+
+        finalURL =
+            URL.createObjectURL(
+                finalBlob
+            );
+
+
+        // ==================================
+        // Show ONLY final image
+        // ==================================
+
+        if (beforeImg) {
+
+            beforeImg.style.display =
+                "none";
+
+        }
+
+
+        if (afterImg) {
+
+            afterImg.src =
+                finalURL;
+
+            afterImg.style.display =
+                "block";
+
+        }
+
+
+        // ==================================
+        // Download
+        // ==================================
+
+        if (downloadBtn) {
+
+            downloadBtn.href =
+                finalURL;
+
+            downloadBtn.download =
+                "onetoolbox-background.png";
+
+            downloadBtn.style.display =
+                "flex";
+
+        }
 
     }
 
+    catch (error) {
 
-    // --------------------------------------
-    // Message
-    // --------------------------------------
-
-    if (key === "fetch") {
-
-        setText(
-            processingMessage,
-            "Loading AI model..."
-        );
-
-    }
-
-    else if (key === "compute") {
-
-        setText(
-            processingMessage,
-            "AI is removing the background..."
-        );
-
-    }
-
-    else {
-
-        setText(
-            processingMessage,
-            "Preparing AI..."
+        console.error(
+            "Render error:",
+            error
         );
 
     }
@@ -616,20 +982,12 @@ removeBgBtn?.addEventListener(
     "click",
     async () => {
 
-        // ==================================
-        // Already processing
-        // ==================================
-
         if (processing) {
 
             return;
 
         }
 
-
-        // ==================================
-        // No image
-        // ==================================
 
         if (!selectedFile) {
 
@@ -642,23 +1000,12 @@ removeBgBtn?.addEventListener(
         }
 
 
-        // ==================================
-        // Start
-        // ==================================
-
-        processing = true;
+        processing =
+            true;
 
 
-        // ==================================
-        // Disable buttons
-        // ==================================
-
-        if (removeBgBtn) {
-
-            removeBgBtn.disabled =
-                true;
-
-        }
+        removeBgBtn.disabled =
+            true;
 
 
         if (selectBtn) {
@@ -677,10 +1024,6 @@ removeBgBtn?.addEventListener(
         }
 
 
-        // ==================================
-        // Processing UI
-        // ==================================
-
         if (loader) {
 
             loader.style.display =
@@ -697,44 +1040,10 @@ removeBgBtn?.addEventListener(
         }
 
 
-        if (resultPlaceholder) {
+        if (statusText) {
 
-            resultPlaceholder.style.display =
-                "none";
-
-        }
-
-
-        if (downloadBtn) {
-
-            downloadBtn.style.display =
-                "none";
-
-        }
-
-
-        setText(
-            statusText,
-            "Starting AI..."
-        );
-
-
-        setText(
-            processingMessage,
-            "Loading AI model..."
-        );
-
-
-        setText(
-            progressText,
-            "Starting..."
-        );
-
-
-        if (progressBar) {
-
-            progressBar.style.width =
-                "0%";
+            statusText.textContent =
+                "Removing Background...";
 
         }
 
@@ -742,30 +1051,15 @@ removeBgBtn?.addEventListener(
         try {
 
             // ==================================
-            // IMG.LY
-            // ==================================
-            //
-            // IMPORTANT:
-            //
-            // No publicPath here.
-            //
-            // No Netlify Function.
-            //
-            // No Hugging Face.
-            //
-            // No fetch().
-            //
-            // IMG.LY handles model assets.
+            // IMG.LY AI
             // ==================================
 
-            const resultBlob =
+            transparentBlob =
                 await removeBackground(
                     selectedFile,
                     {
 
-                        // --------------------------
-                        // Progress
-                        // --------------------------
+                        debug: false,
 
                         progress:
                             (
@@ -774,48 +1068,45 @@ removeBgBtn?.addEventListener(
                                 total
                             ) => {
 
-                                updateProgress(
-                                    key,
-                                    current,
-                                    total
-                                );
+                                if (
+                                    key ===
+                                    "fetch"
+                                ) {
 
-                            },
+                                    if (
+                                        statusText
+                                    ) {
 
+                                        statusText.textContent =
+                                            "Loading AI Model...";
 
-                        // --------------------------
-                        // Debug
-                        // --------------------------
+                                    }
 
-                        debug: false,
+                                }
 
+                                else if (
+                                    key ===
+                                    "compute"
+                                ) {
 
-                        // --------------------------
-                        // Output
-                        // --------------------------
+                                    if (
+                                        statusText
+                                    ) {
 
-                        output: {
+                                        statusText.textContent =
+                                            "Removing Background...";
 
-                            format:
-                                "image/png",
+                                    }
 
-                            type:
-                                "foreground",
+                                }
 
-                            quality:
-                                1
-
-                        }
+                            }
 
                     }
                 );
 
 
-            // ==================================
-            // Validate result
-            // ==================================
-
-            if (!resultBlob) {
+            if (!transparentBlob) {
 
                 throw new Error(
                     "AI did not return an image."
@@ -825,93 +1116,45 @@ removeBgBtn?.addEventListener(
 
 
             // ==================================
-            // Revoke old result
+            // Default background
             // ==================================
 
-            if (resultObjectURL) {
+            selectedBackground =
+                "transparent";
 
-                URL.revokeObjectURL(
-                    resultObjectURL
-                );
+
+            // ==================================
+            // Create controls
+            // ==================================
+
+            createBackgroundControls();
+
+
+            // ==================================
+            // Render
+            // ==================================
+
+            await renderFinalImage();
+
+
+            // ==================================
+            // Completed
+            // ==================================
+
+            if (statusText) {
+
+                statusText.textContent =
+                    "Completed";
 
             }
 
 
-            // ==================================
-            // Create result URL
-            // ==================================
+            if (processingText) {
 
-            resultObjectURL =
-                URL.createObjectURL(
-                    resultBlob
-                );
-
-
-            // ==================================
-            // Show result
-            // ==================================
-
-if (beforeImg) {
-
-    beforeImg.style.display = "none";
-
-}
-
-if (afterImg) {
-
-    afterImg.src = resultObjectURL;
-
-    afterImg.style.display = "block";
-
-}
-
-
-            // ==================================
-            // Download
-            // ==================================
-
-            if (downloadBtn) {
-
-                downloadBtn.href =
-                    resultObjectURL;
-
-                downloadBtn.download =
-                    "removed-background.png";
-
-                downloadBtn.style.display =
-                    "flex";
+                processingText.style.display =
+                    "block";
 
             }
-
-
-            // ==================================
-            // Complete
-            // ==================================
-
-            if (progressBar) {
-
-                progressBar.style.width =
-                    "100%";
-
-            }
-
-
-            setText(
-                progressText,
-                "100%"
-            );
-
-
-            setText(
-                processingMessage,
-                "Background removed successfully!"
-            );
-
-
-            setText(
-                statusText,
-                "Completed"
-            );
 
 
             console.log(
@@ -920,71 +1163,40 @@ if (afterImg) {
 
         }
 
-
         catch (error) {
 
-            // ==================================
-            // Error
-            // ==================================
-
             console.error(
-                "OneToolBox IMG.LY Error:",
+                "OneToolBox Error:",
                 error
             );
 
 
-            setText(
-                statusText,
-                "Failed"
-            );
+            if (statusText) {
 
-
-            setText(
-                processingMessage,
-                "Background removal failed."
-            );
-
-
-            setText(
-                progressText,
-                "Error"
-            );
-
-
-            let message =
-                "Background removal failed.";
-
-
-            if (error?.message) {
-
-                message +=
-                    "\n\n" +
-                    error.message;
+                statusText.textContent =
+                    "Failed";
 
             }
 
 
-            alert(message);
+            alert(
+                "Background removal failed.\n\n" +
+                (
+                    error?.message ||
+                    "Unknown error"
+                )
+            );
 
         }
 
-
         finally {
-
-            // ==================================
-            // Finish
-            // ==================================
 
             processing =
                 false;
 
 
-            if (removeBgBtn) {
-
-                removeBgBtn.disabled =
-                    false;
-
-            }
+            removeBgBtn.disabled =
+                false;
 
 
             if (selectBtn) {
@@ -1031,17 +1243,17 @@ resetBtn?.addEventListener(
         }
 
 
-        // ==================================
-        // Clear state
-        // ==================================
-
         selectedFile =
             null;
 
 
-        // ==================================
-        // Clear input
-        // ==================================
+        transparentBlob =
+            null;
+
+
+        finalBlob =
+            null;
+
 
         if (imageInput) {
 
@@ -1051,41 +1263,29 @@ resetBtn?.addEventListener(
         }
 
 
-        // ==================================
-        // Revoke original
-        // ==================================
-
-        if (originalObjectURL) {
+        if (originalURL) {
 
             URL.revokeObjectURL(
-                originalObjectURL
+                originalURL
             );
 
-            originalObjectURL =
+            originalURL =
                 null;
 
         }
 
 
-        // ==================================
-        // Revoke result
-        // ==================================
-
-        if (resultObjectURL) {
+        if (finalURL) {
 
             URL.revokeObjectURL(
-                resultObjectURL
+                finalURL
             );
 
-            resultObjectURL =
+            finalURL =
                 null;
 
         }
 
-
-        // ==================================
-        // Hide original
-        // ==================================
 
         if (beforeImg) {
 
@@ -1098,10 +1298,6 @@ resetBtn?.addEventListener(
         }
 
 
-        // ==================================
-        // Hide result
-        // ==================================
-
         if (afterImg) {
 
             afterImg.src =
@@ -1113,10 +1309,6 @@ resetBtn?.addEventListener(
         }
 
 
-        // ==================================
-        // Show placeholder
-        // ==================================
-
         if (resultPlaceholder) {
 
             resultPlaceholder.style.display =
@@ -1124,10 +1316,6 @@ resetBtn?.addEventListener(
 
         }
 
-
-        // ==================================
-        // Hide download
-        // ==================================
 
         if (downloadBtn) {
 
@@ -1141,73 +1329,39 @@ resetBtn?.addEventListener(
         }
 
 
-        // ==================================
-        // Reset information
-        // ==================================
+        if (fileSize) {
 
-        setText(
-            fileSize,
-            "0 KB"
-        );
-
-
-        setText(
-            resolution,
-            "0 × 0"
-        );
-
-
-        setText(
-            statusText,
-            "Waiting..."
-        );
-
-
-        setText(
-            processingMessage,
-            "Preparing AI..."
-        );
-
-
-        setText(
-            progressText,
-            "Ready"
-        );
-
-
-        if (progressBar) {
-
-            progressBar.style.width =
-                "0%";
-
-        }
-
-    }
-);
-
-
-// ==========================================
-// Cleanup
-// ==========================================
-
-window.addEventListener(
-    "beforeunload",
-    () => {
-
-        if (originalObjectURL) {
-
-            URL.revokeObjectURL(
-                originalObjectURL
-            );
+            fileSize.textContent =
+                "0 KB";
 
         }
 
 
-        if (resultObjectURL) {
+        if (resolution) {
 
-            URL.revokeObjectURL(
-                resultObjectURL
+            resolution.textContent =
+                "0 × 0";
+
+        }
+
+
+        if (statusText) {
+
+            statusText.textContent =
+                "Waiting...";
+
+        }
+
+
+        const controls =
+            document.getElementById(
+                "backgroundControls"
             );
+
+
+        if (controls) {
+
+            controls.remove();
 
         }
 
@@ -1220,5 +1374,5 @@ window.addEventListener(
 // ==========================================
 
 console.log(
-    "OneToolBox AI Background Remover Ready - IMG.LY"
+    "OneToolBox AI Background Remover Ready"
 );
