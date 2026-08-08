@@ -851,15 +851,19 @@ removeBgBtn?.addEventListener(
             // Show result
             // ==================================
 
-            if (afterImg) {
+if (beforeImg) {
 
-                afterImg.src =
-                    resultObjectURL;
+    beforeImg.style.display = "none";
 
-                afterImg.style.display =
-                    "block";
+}
 
-            }
+if (afterImg) {
+
+    afterImg.src = resultObjectURL;
+
+    afterImg.style.display = "block";
+
+}
 
 
             // ==================================
