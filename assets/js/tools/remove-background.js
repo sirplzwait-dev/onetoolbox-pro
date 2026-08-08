@@ -285,9 +285,9 @@ removeBgBtn?.addEventListener("click", async () => {
         // Send to Netlify Function
         // ------------------------------------------
 
-        const response = await fetch(
-            "/.netlify/functions/remove-background",
-            {
+      const response = await fetch(
+    "/.netlify/functions/remove-bg",
+    {
                 method: "POST",
 
                 headers: {
