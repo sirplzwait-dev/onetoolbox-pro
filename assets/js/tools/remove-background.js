@@ -2,16 +2,26 @@
 // OneToolBox
 // AI Background Remover
 // Browser-Side IMG.LY
+// FINAL VERSION
 // ==========================================
 
 
 // ==========================================
 // Import IMG.LY
 // ==========================================
+//
+// IMPORTANT:
+// Do NOT use:
+// @1.0.0/dist/index.mjs
+//
+// Do NOT use:
+// publicPath: "...@1.0.0/dist/"
+//
+// IMG.LY default asset path will be used.
+//
 
-import {
-    removeBackground
-} from "https://cdn.jsdelivr.net/npm/@imgly/background-removal@1.0.0/dist/index.mjs";
+import removeBackground from
+    "https://cdn.jsdelivr.net/npm/@imgly/background-removal@1.7.0/+esm";
 
 
 // ==========================================
@@ -27,13 +37,11 @@ const imageInput =
 const selectBtn =
     document.getElementById("selectBtn");
 
-
 const beforeImg =
     document.getElementById("beforeImg");
 
 const afterImg =
     document.getElementById("afterImg");
-
 
 const removeBgBtn =
     document.getElementById("removeBgBtn");
@@ -44,7 +52,6 @@ const resetBtn =
 const downloadBtn =
     document.getElementById("downloadBtn");
 
-
 const loader =
     document.getElementById("loader");
 
@@ -54,13 +61,11 @@ const processingText =
 const processingMessage =
     document.getElementById("processingMessage");
 
-
 const progressBar =
     document.getElementById("progressBar");
 
 const progressText =
     document.getElementById("progressText");
-
 
 const fileSize =
     document.getElementById("fileSize");
@@ -89,139 +94,32 @@ let processing = false;
 
 
 // ==========================================
-// Select Image
+// Helper - Safe Text
 // ==========================================
 
-selectBtn?.addEventListener(
-    "click",
-    () => {
+function setText(element, text) {
 
-        if (processing) {
-            return;
-        }
+    if (element) {
 
-        imageInput?.click();
+        element.textContent = text;
 
     }
-);
-
-
-// ==========================================
-// File Selection
-// ==========================================
-
-imageInput?.addEventListener(
-    "change",
-    event => {
-
-        const file =
-            event.target.files?.[0];
-
-        if (!file) {
-            return;
-        }
-
-        loadImage(file);
-
-    }
-);
-
-
-// ==========================================
-// Load Image
-// ==========================================
-
-function loadImage(file) {
-
-    if (!file.type.startsWith("image/")) {
-
-        alert(
-            "Please select a valid image file."
-        );
-
-        return;
-    }
-
-
-    selectedFile = file;
-
-
-    // Revoke previous URL
-
-    if (originalObjectURL) {
-
-        URL.revokeObjectURL(
-            originalObjectURL
-        );
-
-    }
-
-
-    originalObjectURL =
-        URL.createObjectURL(file);
-
-
-    beforeImg.src =
-        originalObjectURL;
-
-
-    beforeImg.style.display =
-        "block";
-
-
-    afterImg.src = "";
-
-    afterImg.style.display =
-        "none";
-
-
-    resultPlaceholder.style.display =
-        "none";
-
-
-    downloadBtn.style.display =
-        "none";
-
-
-    fileSize.textContent =
-        formatFileSize(file.size);
-
-
-    statusText.textContent =
-        "Ready";
-
-
-    progressBar.style.width =
-        "0%";
-
-
-    progressText.textContent =
-        "Ready";
-
-
-    const image =
-        new Image();
-
-
-    image.onload = () => {
-
-        resolution.textContent =
-            `${image.width} × ${image.height}`;
-
-    };
-
-
-    image.src =
-        originalObjectURL;
 
 }
 
 
 // ==========================================
-// File Size
+// Helper - File Size
 // ==========================================
 
 function formatFileSize(bytes) {
+
+    if (!bytes) {
+
+        return "0 KB";
+
+    }
+
 
     if (bytes < 1024) {
 
@@ -249,18 +147,268 @@ function formatFileSize(bytes) {
 
 
 // ==========================================
-// Drag & Drop
+// Select Image Button
+// ==========================================
+
+selectBtn?.addEventListener(
+    "click",
+    () => {
+
+        if (processing) {
+
+            return;
+
+        }
+
+
+        imageInput?.click();
+
+    }
+);
+
+
+// ==========================================
+// File Input
+// ==========================================
+
+imageInput?.addEventListener(
+    "change",
+    (event) => {
+
+        const file =
+            event.target.files?.[0];
+
+
+        if (!file) {
+
+            return;
+
+        }
+
+
+        loadImage(file);
+
+    }
+);
+
+
+// ==========================================
+// Load Image
+// ==========================================
+
+function loadImage(file) {
+
+    if (!file) {
+
+        return;
+
+    }
+
+
+    // Check image
+
+    if (!file.type.startsWith("image/")) {
+
+        alert(
+            "Please select a valid image."
+        );
+
+        return;
+
+    }
+
+
+    // ======================================
+    // Revoke old original URL
+    // ======================================
+
+    if (originalObjectURL) {
+
+        URL.revokeObjectURL(
+            originalObjectURL
+        );
+
+        originalObjectURL = null;
+
+    }
+
+
+    // ======================================
+    // Revoke old result URL
+    // ======================================
+
+    if (resultObjectURL) {
+
+        URL.revokeObjectURL(
+            resultObjectURL
+        );
+
+        resultObjectURL = null;
+
+    }
+
+
+    // ======================================
+    // Save file
+    // ======================================
+
+    selectedFile = file;
+
+
+    // ======================================
+    // Create original URL
+    // ======================================
+
+    originalObjectURL =
+        URL.createObjectURL(file);
+
+
+    // ======================================
+    // Show original image
+    // ======================================
+
+    if (beforeImg) {
+
+        beforeImg.src =
+            originalObjectURL;
+
+        beforeImg.style.display =
+            "block";
+
+    }
+
+
+    // ======================================
+    // Hide previous result
+    // ======================================
+
+    if (afterImg) {
+
+        afterImg.src = "";
+
+        afterImg.style.display =
+            "none";
+
+    }
+
+
+    // ======================================
+    // Hide download
+    // ======================================
+
+    if (downloadBtn) {
+
+        downloadBtn.style.display =
+            "none";
+
+        downloadBtn.removeAttribute(
+            "href"
+        );
+
+    }
+
+
+    // ======================================
+    // Hide placeholder
+    // ======================================
+
+    if (resultPlaceholder) {
+
+        resultPlaceholder.style.display =
+            "none";
+
+    }
+
+
+    // ======================================
+    // File size
+    // ======================================
+
+    setText(
+        fileSize,
+        formatFileSize(file.size)
+    );
+
+
+    // ======================================
+    // Status
+    // ======================================
+
+    setText(
+        statusText,
+        "Ready"
+    );
+
+
+    // ======================================
+    // Progress reset
+    // ======================================
+
+    if (progressBar) {
+
+        progressBar.style.width =
+            "0%";
+
+    }
+
+
+    setText(
+        progressText,
+        "Ready"
+    );
+
+
+    // ======================================
+    // Get Resolution
+    // ======================================
+
+    const image =
+        new Image();
+
+
+    image.onload = () => {
+
+        setText(
+            resolution,
+            `${image.width} × ${image.height}`
+        );
+
+    };
+
+
+    image.onerror = () => {
+
+        setText(
+            resolution,
+            "Unknown"
+        );
+
+    };
+
+
+    image.src =
+        originalObjectURL;
+
+}
+
+
+// ==========================================
+// Drag Over
 // ==========================================
 
 uploadArea?.addEventListener(
     "dragover",
-    event => {
+    (event) => {
 
         event.preventDefault();
 
+
         if (processing) {
+
             return;
+
         }
+
 
         uploadArea.classList.add(
             "dragover"
@@ -269,6 +417,10 @@ uploadArea?.addEventListener(
     }
 );
 
+
+// ==========================================
+// Drag Leave
+// ==========================================
 
 uploadArea?.addEventListener(
     "dragleave",
@@ -282,11 +434,16 @@ uploadArea?.addEventListener(
 );
 
 
+// ==========================================
+// Drop
+// ==========================================
+
 uploadArea?.addEventListener(
     "drop",
-    event => {
+    (event) => {
 
         event.preventDefault();
+
 
         uploadArea.classList.remove(
             "dragover"
@@ -294,7 +451,9 @@ uploadArea?.addEventListener(
 
 
         if (processing) {
+
             return;
+
         }
 
 
@@ -303,7 +462,9 @@ uploadArea?.addEventListener(
 
 
         if (!file) {
+
             return;
+
         }
 
 
@@ -319,10 +480,12 @@ uploadArea?.addEventListener(
 
 document.addEventListener(
     "paste",
-    event => {
+    (event) => {
 
         if (processing) {
+
             return;
+
         }
 
 
@@ -331,7 +494,9 @@ document.addEventListener(
 
 
         if (!items) {
+
             return;
+
         }
 
 
@@ -364,7 +529,7 @@ document.addEventListener(
 
 
 // ==========================================
-// Progress Handler
+// Progress
 // ==========================================
 
 function updateProgress(
@@ -373,10 +538,9 @@ function updateProgress(
     total
 ) {
 
-    if (!progressBar) {
-        return;
-    }
-
+    // --------------------------------------
+    // Percentage
+    // --------------------------------------
 
     if (
         typeof current === "number" &&
@@ -394,34 +558,50 @@ function updateProgress(
             );
 
 
-        progressBar.style.width =
-            `${percent.toFixed(0)}%`;
+        if (progressBar) {
+
+            progressBar.style.width =
+                `${percent.toFixed(0)}%`;
+
+        }
 
 
-        progressText.textContent =
-            `${percent.toFixed(0)}%`;
-
-    }
-
-
-    if (key === "compute") {
-
-        processingMessage.textContent =
-            "AI is removing the background...";
+        setText(
+            progressText,
+            `${percent.toFixed(0)}%`
+        );
 
     }
 
-    else if (key === "fetch") {
 
-        processingMessage.textContent =
-            "Loading AI model...";
+    // --------------------------------------
+    // Message
+    // --------------------------------------
+
+    if (key === "fetch") {
+
+        setText(
+            processingMessage,
+            "Loading AI model..."
+        );
+
+    }
+
+    else if (key === "compute") {
+
+        setText(
+            processingMessage,
+            "AI is removing the background..."
+        );
 
     }
 
     else {
 
-        processingMessage.textContent =
-            "Preparing AI...";
+        setText(
+            processingMessage,
+            "Preparing AI..."
+        );
 
     }
 
@@ -436,10 +616,20 @@ removeBgBtn?.addEventListener(
     "click",
     async () => {
 
+        // ==================================
+        // Already processing
+        // ==================================
+
         if (processing) {
+
             return;
+
         }
 
+
+        // ==================================
+        // No image
+        // ==================================
 
         if (!selectedFile) {
 
@@ -448,61 +638,124 @@ removeBgBtn?.addEventListener(
             );
 
             return;
+
         }
 
+
+        // ==================================
+        // Start
+        // ==================================
 
         processing = true;
 
 
-        removeBgBtn.disabled =
-            true;
+        // ==================================
+        // Disable buttons
+        // ==================================
+
+        if (removeBgBtn) {
+
+            removeBgBtn.disabled =
+                true;
+
+        }
 
 
-        selectBtn.disabled =
-            true;
+        if (selectBtn) {
+
+            selectBtn.disabled =
+                true;
+
+        }
 
 
-        resetBtn.disabled =
-            true;
+        if (resetBtn) {
+
+            resetBtn.disabled =
+                true;
+
+        }
 
 
-        loader.style.display =
-            "block";
+        // ==================================
+        // Processing UI
+        // ==================================
+
+        if (loader) {
+
+            loader.style.display =
+                "block";
+
+        }
 
 
-        processingText.style.display =
-            "block";
+        if (processingText) {
+
+            processingText.style.display =
+                "block";
+
+        }
 
 
-        resultPlaceholder.style.display =
-            "none";
+        if (resultPlaceholder) {
+
+            resultPlaceholder.style.display =
+                "none";
+
+        }
 
 
-        downloadBtn.style.display =
-            "none";
+        if (downloadBtn) {
+
+            downloadBtn.style.display =
+                "none";
+
+        }
 
 
-        statusText.textContent =
-            "Starting AI...";
+        setText(
+            statusText,
+            "Starting AI..."
+        );
 
 
-        processingMessage.textContent =
-            "Preparing AI model...";
+        setText(
+            processingMessage,
+            "Loading AI model..."
+        );
 
 
-        progressBar.style.width =
-            "0%";
+        setText(
+            progressText,
+            "Starting..."
+        );
 
 
-        progressText.textContent =
-            "Starting...";
+        if (progressBar) {
+
+            progressBar.style.width =
+                "0%";
+
+        }
 
 
         try {
 
-
             // ==================================
-            // IMG.LY Processing
+            // IMG.LY
+            // ==================================
+            //
+            // IMPORTANT:
+            //
+            // No publicPath here.
+            //
+            // No Netlify Function.
+            //
+            // No Hugging Face.
+            //
+            // No fetch().
+            //
+            // IMG.LY handles model assets.
             // ==================================
 
             const resultBlob =
@@ -510,14 +763,9 @@ removeBgBtn?.addEventListener(
                     selectedFile,
                     {
 
-                        // Model files are loaded
-                        // from IMG.LY CDN
-
-                        publicPath:
-                            "https://cdn.jsdelivr.net/npm/@imgly/background-removal@1.0.0/dist/",
-
-
+                        // --------------------------
                         // Progress
+                        // --------------------------
 
                         progress:
                             (
@@ -535,29 +783,36 @@ removeBgBtn?.addEventListener(
                             },
 
 
-                        // PNG output
+                        // --------------------------
+                        // Debug
+                        // --------------------------
+
+                        debug: false,
+
+
+                        // --------------------------
+                        // Output
+                        // --------------------------
 
                         output: {
 
-                            format: "image/png",
+                            format:
+                                "image/png",
 
-                            type: "foreground",
+                            type:
+                                "foreground",
 
-                            quality: 1
+                            quality:
+                                1
 
-                        },
-
-
-                        // Debug disabled
-
-                        debug: false
+                        }
 
                     }
                 );
 
 
             // ==================================
-            // Check Result
+            // Validate result
             // ==================================
 
             if (!resultBlob) {
@@ -570,7 +825,7 @@ removeBgBtn?.addEventListener(
 
 
             // ==================================
-            // Revoke Old Result
+            // Revoke old result
             // ==================================
 
             if (resultObjectURL) {
@@ -583,7 +838,7 @@ removeBgBtn?.addEventListener(
 
 
             // ==================================
-            // Create Result URL
+            // Create result URL
             // ==================================
 
             resultObjectURL =
@@ -593,106 +848,163 @@ removeBgBtn?.addEventListener(
 
 
             // ==================================
-            // Show Result
+            // Show result
             // ==================================
 
-            afterImg.src =
-                resultObjectURL;
+            if (afterImg) {
+
+                afterImg.src =
+                    resultObjectURL;
+
+                afterImg.style.display =
+                    "block";
+
+            }
 
 
-            afterImg.style.display =
-                "block";
+            // ==================================
+            // Download
+            // ==================================
+
+            if (downloadBtn) {
+
+                downloadBtn.href =
+                    resultObjectURL;
+
+                downloadBtn.download =
+                    "removed-background.png";
+
+                downloadBtn.style.display =
+                    "flex";
+
+            }
 
 
-            resultPlaceholder.style.display =
-                "none";
+            // ==================================
+            // Complete
+            // ==================================
+
+            if (progressBar) {
+
+                progressBar.style.width =
+                    "100%";
+
+            }
 
 
-            downloadBtn.href =
-                resultObjectURL;
+            setText(
+                progressText,
+                "100%"
+            );
 
 
-            downloadBtn.download =
-                "removed-background.png";
+            setText(
+                processingMessage,
+                "Background removed successfully!"
+            );
 
 
-            downloadBtn.style.display =
-                "flex";
+            setText(
+                statusText,
+                "Completed"
+            );
 
 
-            progressBar.style.width =
-                "100%";
-
-
-            progressText.textContent =
-                "100%";
-
-
-            processingMessage.textContent =
-                "Background removed successfully!";
-
-
-            statusText.textContent =
-                "Completed";
-
+            console.log(
+                "OneToolBox: Background removed successfully."
+            );
 
         }
 
 
         catch (error) {
 
+            // ==================================
+            // Error
+            // ==================================
+
             console.error(
-                "IMG.LY Background Removal Error:",
+                "OneToolBox IMG.LY Error:",
                 error
             );
 
 
-            statusText.textContent =
-                "Failed";
+            setText(
+                statusText,
+                "Failed"
+            );
 
 
-            processingMessage.textContent =
+            setText(
+                processingMessage,
+                "Background removal failed."
+            );
+
+
+            setText(
+                progressText,
+                "Error"
+            );
+
+
+            let message =
                 "Background removal failed.";
 
 
-            progressText.textContent =
-                "Error";
+            if (error?.message) {
+
+                message +=
+                    "\n\n" +
+                    error.message;
+
+            }
 
 
-            alert(
-                "Background removal failed.\n\n" +
-                (
-                    error?.message ||
-                    "Unknown error"
-                )
-            );
+            alert(message);
 
         }
 
 
         finally {
 
-            processing = false;
+            // ==================================
+            // Finish
+            // ==================================
 
-
-            removeBgBtn.disabled =
+            processing =
                 false;
 
 
-            selectBtn.disabled =
-                false;
+            if (removeBgBtn) {
+
+                removeBgBtn.disabled =
+                    false;
+
+            }
 
 
-            resetBtn.disabled =
-                false;
+            if (selectBtn) {
+
+                selectBtn.disabled =
+                    false;
+
+            }
 
 
-            loader.style.display =
-                "none";
+            if (resetBtn) {
+
+                resetBtn.disabled =
+                    false;
+
+            }
 
 
-            processingText.style.display =
-                "block";
+            if (loader) {
+
+                loader.style.display =
+                    "none";
+
+            }
 
         }
 
@@ -709,19 +1021,35 @@ resetBtn?.addEventListener(
     () => {
 
         if (processing) {
+
             return;
+
         }
 
 
-        selectedFile = null;
+        // ==================================
+        // Clear state
+        // ==================================
 
+        selectedFile =
+            null;
+
+
+        // ==================================
+        // Clear input
+        // ==================================
 
         if (imageInput) {
 
-            imageInput.value = "";
+            imageInput.value =
+                "";
 
         }
 
+
+        // ==================================
+        // Revoke original
+        // ==================================
 
         if (originalObjectURL) {
 
@@ -735,6 +1063,10 @@ resetBtn?.addEventListener(
         }
 
 
+        // ==================================
+        // Revoke result
+        // ==================================
+
         if (resultObjectURL) {
 
             URL.revokeObjectURL(
@@ -747,55 +1079,111 @@ resetBtn?.addEventListener(
         }
 
 
-        beforeImg.src = "";
+        // ==================================
+        // Hide original
+        // ==================================
 
-        beforeImg.style.display =
-            "none";
+        if (beforeImg) {
 
+            beforeImg.src =
+                "";
 
-        afterImg.src = "";
+            beforeImg.style.display =
+                "none";
 
-        afterImg.style.display =
-            "none";
-
-
-        resultPlaceholder.style.display =
-            "block";
-
-
-        downloadBtn.style.display =
-            "none";
+        }
 
 
-        fileSize.textContent =
-            "0 KB";
+        // ==================================
+        // Hide result
+        // ==================================
+
+        if (afterImg) {
+
+            afterImg.src =
+                "";
+
+            afterImg.style.display =
+                "none";
+
+        }
 
 
-        resolution.textContent =
-            "0 × 0";
+        // ==================================
+        // Show placeholder
+        // ==================================
+
+        if (resultPlaceholder) {
+
+            resultPlaceholder.style.display =
+                "block";
+
+        }
 
 
-        statusText.textContent =
-            "Waiting...";
+        // ==================================
+        // Hide download
+        // ==================================
+
+        if (downloadBtn) {
+
+            downloadBtn.style.display =
+                "none";
+
+            downloadBtn.removeAttribute(
+                "href"
+            );
+
+        }
 
 
-        processingMessage.textContent =
-            "Preparing AI...";
+        // ==================================
+        // Reset information
+        // ==================================
+
+        setText(
+            fileSize,
+            "0 KB"
+        );
 
 
-        progressText.textContent =
-            "Ready";
+        setText(
+            resolution,
+            "0 × 0"
+        );
 
 
-        progressBar.style.width =
-            "0%";
+        setText(
+            statusText,
+            "Waiting..."
+        );
+
+
+        setText(
+            processingMessage,
+            "Preparing AI..."
+        );
+
+
+        setText(
+            progressText,
+            "Ready"
+        );
+
+
+        if (progressBar) {
+
+            progressBar.style.width =
+                "0%";
+
+        }
 
     }
 );
 
 
 // ==========================================
-// Page Cleanup
+// Cleanup
 // ==========================================
 
 window.addEventListener(
@@ -828,5 +1216,5 @@ window.addEventListener(
 // ==========================================
 
 console.log(
-    "OneToolBox AI Background Remover Loaded"
+    "OneToolBox AI Background Remover Ready - IMG.LY"
 );
