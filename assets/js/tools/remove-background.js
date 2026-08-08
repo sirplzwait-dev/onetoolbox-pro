@@ -23,13 +23,14 @@ const resultPlaceholder = document.getElementById("resultPlaceholder");
 
 let selectedFile = null;
 
+
 // ==========================================
 // Compress Image
 // ==========================================
 
 async function compressImage(file) {
 
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
 
         const reader = new FileReader();
 
@@ -63,14 +64,33 @@ async function compressImage(file) {
 
                 const ctx = canvas.getContext("2d");
 
-                ctx.drawImage(img, 0, 0, width, height);
+                ctx.drawImage(
+                    img,
+                    0,
+                    0,
+                    width,
+                    height
+                );
 
-                resolve(canvas.toDataURL("image/jpeg", 0.75));
+                resolve(
+                    canvas.toDataURL(
+                        "image/jpeg",
+                        0.75
+                    )
+                );
 
+            };
+
+            img.onerror = () => {
+                reject(new Error("Unable to read image."));
             };
 
             img.src = e.target.result;
 
+        };
+
+        reader.onerror = () => {
+            reject(new Error("Unable to read selected file."));
         };
 
         reader.readAsDataURL(file);
@@ -79,29 +99,43 @@ async function compressImage(file) {
 
 }
 
+
 // ==========================================
 // Select Image
 // ==========================================
 
 selectBtn?.addEventListener("click", () => {
 
-    imageInput.click();
+    if (imageInput) {
+        imageInput.click();
+    }
 
 });
 
+
 imageInput?.addEventListener("change", e => {
 
-    if (!e.target.files.length) return;
+    if (!e.target.files.length) {
+        return;
+    }
 
     loadImage(e.target.files[0]);
 
 });
+
 
 // ==========================================
 // Load Image
 // ==========================================
 
 function loadImage(file) {
+
+    if (!file.type.startsWith("image/")) {
+
+        alert("Please select a valid image.");
+
+        return;
+    }
 
     selectedFile = file;
 
@@ -113,6 +147,7 @@ function loadImage(file) {
 
         beforeImg.style.display = "block";
 
+        afterImg.src = "";
         afterImg.style.display = "none";
 
         downloadBtn.style.display = "none";
@@ -141,6 +176,7 @@ function loadImage(file) {
 
 }
 
+
 // ==========================================
 // Drag & Drop
 // ==========================================
@@ -153,11 +189,13 @@ uploadArea?.addEventListener("dragover", e => {
 
 });
 
+
 uploadArea?.addEventListener("dragleave", () => {
 
     uploadArea.classList.remove("dragover");
 
 });
+
 
 uploadArea?.addEventListener("drop", e => {
 
@@ -173,11 +211,16 @@ uploadArea?.addEventListener("drop", e => {
 
 });
 
+
 // ==========================================
 // Paste Image
 // ==========================================
 
 document.addEventListener("paste", e => {
+
+    if (!e.clipboardData) {
+        return;
+    }
 
     const items = e.clipboardData.items;
 
@@ -185,15 +228,19 @@ document.addEventListener("paste", e => {
 
         if (item.type.startsWith("image")) {
 
-            loadImage(item.getAsFile());
+            const file = item.getAsFile();
+
+            if (file) {
+                loadImage(file);
+            }
 
             break;
-
         }
 
     }
 
 });
+
 
 // ==========================================
 // Remove Background
@@ -202,56 +249,178 @@ document.addEventListener("paste", e => {
 removeBgBtn?.addEventListener("click", async () => {
 
     if (!selectedFile) {
+
         alert("Please select an image first.");
+
         return;
     }
 
     loader.style.display = "block";
+
     processingText.style.display = "block";
+
     statusText.textContent = "Compressing Image...";
 
     removeBgBtn.disabled = true;
 
     try {
 
-        // Compress image before upload
-        const base64Image = await compressImage(selectedFile);
+        // ------------------------------------------
+        // Compress Image
+        // ------------------------------------------
 
-        statusText.textContent = "Removing Background...";
+        const base64Image =
+            await compressImage(selectedFile);
 
-      const response = await fetch("/.netlify/functions/remove-background", {
-    method: "POST",
-    headers: {
-        "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-        image: base64Image
-    })
+
+        // ------------------------------------------
+        // Processing
+        // ------------------------------------------
+
+        statusText.textContent =
+            "Removing Background...";
+
+
+        // ------------------------------------------
+        // Send to Netlify Function
+        // ------------------------------------------
+
+        const response = await fetch(
+            "/.netlify/functions/remove-background",
+            {
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify({
+                    image: base64Image
+                })
+            }
+        );
+
+
+        // ------------------------------------------
+        // Read Response as TEXT
+        // ------------------------------------------
+
+        const responseText =
+            await response.text();
+
+        console.log(
+            "Function Status:",
+            response.status
+        );
+
+        console.log(
+            "Function Response:",
+            responseText
+        );
+
+
+        // ------------------------------------------
+        // Parse JSON Safely
+        // ------------------------------------------
+
+        let result = {};
+
+        try {
+
+            result =
+                responseText
+                    ? JSON.parse(responseText)
+                    : {};
+
+        } catch (jsonError) {
+
+            throw new Error(
+                "Server returned invalid response. " +
+                "HTTP " +
+                response.status +
+                "\n\n" +
+                (
+                    responseText ||
+                    "Empty response"
+                )
+            );
+
+        }
+
+
+        // ------------------------------------------
+        // Check Server Response
+        // ------------------------------------------
+
+        if (!response.ok || !result.success) {
+
+            throw new Error(
+                result.error ||
+                (
+                    "Background remove failed. HTTP " +
+                    response.status
+                )
+            );
+
+        }
+
+
+        // ------------------------------------------
+        // Show Result
+        // ------------------------------------------
+
+        if (!result.image) {
+
+            throw new Error(
+                "Server did not return an output image."
+            );
+
+        }
+
+        afterImg.src = result.image;
+
+        afterImg.style.display = "block";
+
+        resultPlaceholder.style.display = "none";
+
+        downloadBtn.href = result.image;
+
+        downloadBtn.download =
+            "removed-background.png";
+
+        downloadBtn.style.display = "flex";
+
+        statusText.textContent =
+            "Completed";
+
+
+    } catch (err) {
+
+        console.error(
+            "Remove Background Error:",
+            err
+        );
+
+        alert(
+            err.message ||
+            "Background removal failed."
+        );
+
+        statusText.textContent =
+            "Failed";
+
+
+    } finally {
+
+        loader.style.display = "none";
+
+        processingText.style.display = "none";
+
+        removeBgBtn.disabled = false;
+
+    }
+
 });
-
-const responseText = await response.text();
-
-console.log("Function Status:", response.status);
-console.log("Function Response:", responseText);
-
-let result = {};
-
-try {
-    result = responseText ? JSON.parse(responseText) : {};
-} catch (e) {
-    throw new Error(
-        `Server returned invalid response. HTTP ${response.status}\n\n${responseText || "Empty response"}`
-    );
-}
-
-if (!response.ok || !result.success) {
-    throw new Error(
-        result.error || `Background remove failed. HTTP ${response.status}`
-    );
-}
-
-
-
 
 
 // ==========================================
@@ -262,29 +431,50 @@ resetBtn?.addEventListener("click", () => {
 
     selectedFile = null;
 
-    imageInput.value = "";
+    if (imageInput) {
+        imageInput.value = "";
+    }
 
     beforeImg.src = "";
+
     beforeImg.style.display = "none";
 
     afterImg.src = "";
+
     afterImg.style.display = "none";
 
     downloadBtn.style.display = "none";
 
-    if (resultPlaceholder)
-        resultPlaceholder.style.display = "block";
+    if (resultPlaceholder) {
 
-    if (fileSize)
-        fileSize.textContent = "0 KB";
+        resultPlaceholder.style.display =
+            "block";
 
-    if (resolution)
-        resolution.textContent = "0 × 0";
+    }
 
-    if (statusText)
-        statusText.textContent = "Waiting...";
+    if (fileSize) {
+
+        fileSize.textContent =
+            "0 KB";
+
+    }
+
+    if (resolution) {
+
+        resolution.textContent =
+            "0 × 0";
+
+    }
+
+    if (statusText) {
+
+        statusText.textContent =
+            "Waiting...";
+
+    }
 
 });
+
 
 // ==========================================
 // Download
@@ -292,9 +482,12 @@ resetBtn?.addEventListener("click", () => {
 
 downloadBtn?.addEventListener("click", () => {
 
-    console.log("Download Started");
+    console.log(
+        "Download Started"
+    );
 
 });
+
 
 // ==========================================
 // Startup
@@ -302,6 +495,8 @@ downloadBtn?.addEventListener("click", () => {
 
 window.addEventListener("load", () => {
 
-    console.log("OneToolBox Remove Background Ready");
+    console.log(
+        "OneToolBox Remove Background Ready"
+    );
 
 });
