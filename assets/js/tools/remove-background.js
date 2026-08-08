@@ -20,7 +20,7 @@
 // IMG.LY default asset path will be used.
 //
 
-import removeBackground from
+import { removeBackground } from
     "https://cdn.jsdelivr.net/npm/@imgly/background-removal@1.7.0/+esm";
 
 
