@@ -219,7 +219,7 @@ removeBgBtn?.addEventListener("click", async () => {
 
         statusText.textContent = "Removing Background...";
 
-       const response = await fetch("/.netlify/functions/remove-background", {
+      const response = await fetch("/.netlify/functions/remove-background", {
     method: "POST",
     headers: {
         "Content-Type": "application/json"
@@ -229,49 +229,30 @@ removeBgBtn?.addEventListener("click", async () => {
     })
 });
 
-const result = await response.json();
+const responseText = await response.text();
 
-console.log(result);
+console.log("Function Status:", response.status);
+console.log("Function Response:", responseText);
 
-if (!response.ok || !result.success) {
-    throw new Error(result.error || "Background remove failed.");
+let result = {};
+
+try {
+    result = responseText ? JSON.parse(responseText) : {};
+} catch (e) {
+    throw new Error(
+        `Server returned invalid response. HTTP ${response.status}\n\n${responseText || "Empty response"}`
+    );
 }
 
-        afterImg.src = result.image;
+if (!response.ok || !result.success) {
+    throw new Error(
+        result.error || `Background remove failed. HTTP ${response.status}`
+    );
+}
 
-        afterImg.style.display = "block";
 
-        downloadBtn.href = result.image;
 
-        downloadBtn.download = "removed-background.png";
 
-        downloadBtn.style.display = "flex";
-
-        statusText.textContent = "Completed";
-
-    }
-
-    catch (err) {
-
-        console.error(err);
-
-        alert(err.message);
-
-        statusText.textContent = "Failed";
-
-    }
-
-    finally {
-
-        loader.style.display = "none";
-
-        processingText.style.display = "none";
-
-        removeBgBtn.disabled = false;
-
-    }
-
-});
 
 // ==========================================
 // Reset
