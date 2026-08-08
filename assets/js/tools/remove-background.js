@@ -1071,27 +1071,340 @@ async function renderFinalImage() {
 // CREATE BACKGROUND CONTROLS
 // ==========================================================
 
+
 function createBackgroundControls() {
 
-    // ------------------------------------------------------
-    // Find Result Area
-    // ------------------------------------------------------
+    // पहले पुराने controls हटाओ
+    removeBackgroundControls();
 
-    const resultArea =
-        document.querySelector(
-            ".result-area"
-        );
-
+    // Result card खोजो
+    const resultArea = document.querySelector(".result-area");
 
     if (!resultArea) {
+        console.error("Result area not found.");
+        return;
+    }
 
-        console.warn(
-            "Result area not found."
+    // Result card
+    const resultCard = resultArea.closest(".tool-card");
+
+    if (!resultCard) {
+        console.error("Result card not found.");
+        return;
+    }
+
+    // ======================================================
+    // BACKGROUND CONTROLS
+    // ======================================================
+
+    const controls = document.createElement("div");
+
+    controls.id = "backgroundControls";
+
+    // IMPORTANT:
+    // पुराने result-area CSS से बाहर रखने के लिए
+    // controls को result-area के बाहर रखा जा रहा है।
+
+    controls.style.display = "block";
+    controls.style.width = "100%";
+    controls.style.maxWidth = "100%";
+    controls.style.boxSizing = "border-box";
+
+    controls.style.marginTop = "18px";
+    controls.style.padding = "18px";
+
+    controls.style.background = "#f8fafc";
+    controls.style.border = "1px solid #e5e7eb";
+    controls.style.borderRadius = "14px";
+
+    controls.style.position = "static";
+    controls.style.float = "none";
+    controls.style.clear = "both";
+
+    // ======================================================
+    // TITLE
+    // ======================================================
+
+    const title = document.createElement("div");
+
+    title.textContent = "Background";
+
+    title.style.fontSize = "17px";
+    title.style.fontWeight = "700";
+    title.style.color = "#111827";
+    title.style.marginBottom = "14px";
+
+    controls.appendChild(title);
+
+    // ======================================================
+    // COLOR BUTTONS
+    // ======================================================
+
+    const buttons = document.createElement("div");
+
+    buttons.style.display = "flex";
+    buttons.style.flexWrap = "wrap";
+    buttons.style.alignItems = "center";
+    buttons.style.gap = "10px";
+
+    buttons.style.width = "100%";
+
+    // ======================================================
+    // BACKGROUND COLORS
+    // ======================================================
+
+    backgroundOptions.forEach(option => {
+
+        const button = document.createElement("button");
+
+        button.type = "button";
+
+        button.className = "bg-option";
+
+        button.title = option.name;
+
+        button.dataset.background = option.value;
+
+        // Size
+        button.style.width = "42px";
+        button.style.height = "42px";
+        button.style.minWidth = "42px";
+        button.style.maxWidth = "42px";
+
+        button.style.padding = "0";
+        button.style.margin = "0";
+
+        // Circle
+        button.style.borderRadius = "50%";
+
+        button.style.cursor = "pointer";
+
+        button.style.boxSizing = "border-box";
+
+        // Border
+        button.style.border = "3px solid transparent";
+
+        // Background
+        if (option.value === "transparent") {
+
+            button.style.background =
+                "repeating-conic-gradient(#d1d5db 0% 25%, #ffffff 0% 50%) 50% / 12px 12px";
+
+        } else {
+
+            button.style.background =
+                option.color;
+
+        }
+
+        // Selected
+        if (
+            selectedBackground ===
+            option.value
+        ) {
+
+            button.style.border =
+                "3px solid #2563eb";
+
+        }
+
+        // Click
+        button.addEventListener(
+            "click",
+            async () => {
+
+                selectedBackground =
+                    option.value;
+
+                // सभी buttons reset
+                document
+                    .querySelectorAll(
+                        "#backgroundControls .bg-option"
+                    )
+                    .forEach(btn => {
+
+                        btn.style.border =
+                            "3px solid transparent";
+
+                    });
+
+                // Current selected
+                button.style.border =
+                    "3px solid #2563eb";
+
+                if (statusText) {
+
+                    statusText.textContent =
+                        "Updating Background...";
+
+                }
+
+                try {
+
+                    await renderFinalImage();
+
+                    if (statusText) {
+
+                        statusText.textContent =
+                            "Completed";
+
+                    }
+
+                } catch (error) {
+
+                    console.error(error);
+
+                    if (statusText) {
+
+                        statusText.textContent =
+                            "Failed";
+
+                    }
+
+                }
+
+            }
         );
 
-        return;
+        buttons.appendChild(button);
 
-    }
+    });
+
+    controls.appendChild(buttons);
+
+    // ======================================================
+    // CUSTOM COLOR
+    // ======================================================
+
+    const customRow =
+        document.createElement("div");
+
+    customRow.style.display = "flex";
+    customRow.style.alignItems = "center";
+    customRow.style.flexWrap = "wrap";
+
+    customRow.style.gap = "10px";
+
+    customRow.style.marginTop = "16px";
+
+    // Label
+
+    const customLabel =
+        document.createElement("span");
+
+    customLabel.textContent =
+        "Custom:";
+
+    customLabel.style.fontSize =
+        "14px";
+
+    customLabel.style.fontWeight =
+        "600";
+
+    customLabel.style.color =
+        "#374151";
+
+    // Color picker
+
+    const customColor =
+        document.createElement("input");
+
+    customColor.type =
+        "color";
+
+    customColor.id =
+        "customBackgroundColor";
+
+    customColor.value =
+        "#ffffff";
+
+    customColor.title =
+        "Choose custom background color";
+
+    customColor.style.width =
+        "52px";
+
+    customColor.style.height =
+        "40px";
+
+    customColor.style.padding =
+        "2px";
+
+    customColor.style.border =
+        "1px solid #d1d5db";
+
+    customColor.style.borderRadius =
+        "8px";
+
+    customColor.style.cursor =
+        "pointer";
+
+    customColor.style.boxSizing =
+        "border-box";
+
+    // Custom color change
+
+    customColor.addEventListener(
+        "input",
+        async () => {
+
+            selectedBackground =
+                customColor.value;
+
+            // Remove selected circle
+            document
+                .querySelectorAll(
+                    "#backgroundControls .bg-option"
+                )
+                .forEach(btn => {
+
+                    btn.style.border =
+                        "3px solid transparent";
+
+                });
+
+            if (statusText) {
+
+                statusText.textContent =
+                    "Updating Background...";
+
+            }
+
+            try {
+
+                await renderFinalImage();
+
+                if (statusText) {
+
+                    statusText.textContent =
+                        "Completed";
+
+                }
+
+            } catch (error) {
+
+                console.error(error);
+
+            }
+
+        }
+    );
+
+    customRow.appendChild(customLabel);
+
+    customRow.appendChild(customColor);
+
+    controls.appendChild(customRow);
+
+    // ======================================================
+    // IMPORTANT
+    // ======================================================
+    // result-area ke ANDAR nahi,
+    // result card ke neeche controls add honge.
+
+    resultCard.appendChild(controls);
+}
+
 
 
     // ------------------------------------------------------
