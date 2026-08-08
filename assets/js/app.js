@@ -1,20 +1,30 @@
 /*==================================================
   OneToolBox Enterprise
   app.js
-  Version : 1.0
+  Version : 1.1
 ==================================================*/
 
 "use strict";
 
+
 const App = {
 
- init() {
+    /* ==========================================
+       INIT
+    ========================================== */
 
-    this.cache();
+    init() {
 
-    this.loadComponents();
+        this.cache();
 
-},
+        this.loadComponents();
+
+    },
+
+
+    /* ==========================================
+       CACHE
+    ========================================== */
 
     cache() {
 
@@ -26,36 +36,67 @@ const App = {
 
     },
 
+
+    /* ==========================================
+       LOAD COMPONENTS
+    ========================================== */
+
     async loadComponents() {
 
         await Promise.all([
+
             this.loadHeader(),
+
             this.loadFooter()
+
         ]);
-		
-		
-		this.bindEvents();
+
+
+        this.bindEvents();
 
         this.highlightActiveMenu();
 
+
+        /* Theme */
+
         if (typeof Theme !== "undefined") {
+
             Theme.init();
+
         }
 
-if (
-    typeof Navigation !== "undefined" &&
-    typeof Navigation.init === "function"
-) {
 
-    Navigation.init();
+        /* Navigation */
 
-}
+        if (
+            typeof Navigation !== "undefined" &&
+            typeof Navigation.init === "function"
+        ) {
+
+            Navigation.init();
+
+        }
+
+
+        /* Search */
 
         if (typeof Search !== "undefined") {
+
             Search.init();
+
         }
 
+
+        /* Scroll button */
+
+        this.updateScrollButton();
+
     },
+
+
+    /* ==========================================
+       LOAD HEADER
+    ========================================== */
 
     async loadHeader() {
 
@@ -63,7 +104,8 @@ if (
 
         try {
 
-            const res = await fetch("/components/header.html");
+            const res =
+                await fetch("/components/header.html");
 
             this.headerContainer.innerHTML =
                 await res.text();
@@ -72,11 +114,19 @@ if (
 
         catch (e) {
 
-            console.error("Header Error :", e);
+            console.error(
+                "Header Error :",
+                e
+            );
 
         }
 
     },
+
+
+    /* ==========================================
+       LOAD FOOTER
+    ========================================== */
 
     async loadFooter() {
 
@@ -84,7 +134,8 @@ if (
 
         try {
 
-            const res = await fetch("/components/footer.html");
+            const res =
+                await fetch("/components/footer.html");
 
             this.footerContainer.innerHTML =
                 await res.text();
@@ -93,67 +144,261 @@ if (
 
         catch (e) {
 
-            console.error("Footer Error :", e);
+            console.error(
+                "Footer Error :",
+                e
+            );
 
         }
 
     },
 
+
+    /* ==========================================
+       EVENTS
+    ========================================== */
+
     bindEvents() {
+
+
+        /* Header shadow */
 
         window.addEventListener(
             "scroll",
             this.headerShadow
         );
 
+
+        /* Scroll toggle */
+
         window.addEventListener(
             "scroll",
-            this.backToTop
+            () => {
+
+                this.updateScrollButton();
+
+            },
+            { passive:true }
+        );
+
+
+        /* Scroll button click */
+
+        document.addEventListener(
+            "click",
+            (e) => {
+
+                const button =
+                    e.target.closest(
+                        ".back-to-top"
+                    );
+
+
+                if (!button) return;
+
+
+                const scrollTop =
+                    window.scrollY ||
+                    document.documentElement.scrollTop;
+
+
+                /* =========================
+                   TOP → BOTTOM
+                ========================= */
+
+                if (scrollTop <= 50) {
+
+                    window.scrollTo({
+
+                        top:
+                            document.documentElement
+                                .scrollHeight,
+
+                        behavior:"smooth"
+
+                    });
+
+                }
+
+
+                /* =========================
+                   BOTTOM → TOP
+                ========================= */
+
+                else {
+
+                    window.scrollTo({
+
+                        top:0,
+
+                        behavior:"smooth"
+
+                    });
+
+                }
+
+            }
         );
 
     },
 
+
+    /* ==========================================
+       HEADER SHADOW
+    ========================================== */
+
     headerShadow() {
 
         const header =
-            document.querySelector(".header");
+            document.querySelector(
+                ".header"
+            );
+
 
         if (!header) return;
 
+
         if (window.scrollY > 20) {
 
-            header.classList.add("scrolled");
+            header.classList.add(
+                "scrolled"
+            );
 
         }
 
         else {
 
-            header.classList.remove("scrolled");
+            header.classList.remove(
+                "scrolled"
+            );
 
         }
 
     },
 
-    backToTop() {
 
-        const btn =
-            document.querySelector(".back-to-top");
+    /* ==========================================
+       SCROLL TOGGLE BUTTON
+       TOP = ↓
+       DOWN = ↑
+    ========================================== */
 
-        if (!btn) return;
+    updateScrollButton() {
 
-        if (window.scrollY > 400) {
+        const button =
+            document.querySelector(
+                ".back-to-top"
+            );
 
-            btn.classList.add("show");
+
+        if (!button) return;
+
+
+        const icon =
+            button.querySelector("i");
+
+
+        if (!icon) return;
+
+
+        const scrollTop =
+            window.scrollY ||
+            document.documentElement.scrollTop;
+
+
+        const documentHeight =
+            document.documentElement
+                .scrollHeight;
+
+
+        const windowHeight =
+            window.innerHeight;
+
+
+        const maxScroll =
+            documentHeight -
+            windowHeight;
+
+
+        /* =========================
+           PAGE TOP
+        ========================= */
+
+        if (scrollTop <= 50) {
+
+            icon.className =
+                "fas fa-arrow-down";
+
+
+            button.setAttribute(
+                "aria-label",
+                "Scroll to Bottom"
+            );
+
+
+            button.setAttribute(
+                "title",
+                "Go to Bottom"
+            );
 
         }
+
+
+        /* =========================
+           PAGE BOTTOM
+        ========================= */
+
+        else if (
+            scrollTop >= maxScroll - 50
+        ) {
+
+            icon.className =
+                "fas fa-arrow-up";
+
+
+            button.setAttribute(
+                "aria-label",
+                "Scroll to Top"
+            );
+
+
+            button.setAttribute(
+                "title",
+                "Go to Top"
+            );
+
+        }
+
+
+        /* =========================
+           MIDDLE
+        ========================= */
 
         else {
 
-            btn.classList.remove("show");
+            icon.className =
+                "fas fa-arrow-up";
+
+
+            button.setAttribute(
+                "aria-label",
+                "Scroll to Top"
+            );
+
+
+            button.setAttribute(
+                "title",
+                "Go to Top"
+            );
 
         }
 
     },
+
+
+    /* ==========================================
+       ACTIVE MENU
+    ========================================== */
 
     highlightActiveMenu() {
 
@@ -162,17 +407,26 @@ if (
                 .split("/")
                 .pop();
 
-        document.querySelectorAll(".nav a,.mobile-menu a")
+
+        document
+            .querySelectorAll(
+                ".nav a,.mobile-menu a"
+            )
             .forEach(link => {
 
+
                 const href =
-                    link.getAttribute("href")
+                    link
+                        .getAttribute("href")
                         .split("/")
                         .pop();
 
+
                 if (href === current) {
 
-                    link.classList.add("active");
+                    link.classList.add(
+                        "active"
+                    );
 
                 }
 
@@ -183,47 +437,15 @@ if (
 };
 
 
-/*==========================================
-  DOM Ready
-==========================================*/
+/* ==========================================
+   DOM READY
+========================================== */
 
 document.addEventListener(
-
     "DOMContentLoaded",
-
     () => {
 
         App.init();
 
     }
-
-);
-
-
-/*==========================================
-  Back To Top
-==========================================*/
-
-document.addEventListener(
-
-    "click",
-
-    e => {
-
-        if (
-            e.target.closest(".back-to-top")
-        ) {
-
-            window.scrollTo({
-
-                top:0,
-
-                behavior:"smooth"
-
-            });
-
-        }
-
-    }
-
 );

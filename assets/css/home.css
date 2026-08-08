@@ -294,7 +294,33 @@ transform:translateY(-10px);
 
 
 
+/* =========================
+   HERO ICON COLORS
+========================= */
 
+.tool-icons-box .image-icon i {
+    color: #2563eb; /* Blue */
+}
+
+.tool-icons-box .pdf-icon i {
+    color: #dc2626; /* Red */
+}
+
+.tool-icons-box .excel-icon i {
+    color: #16a34a; /* Green */
+}
+
+.tool-icons-box .ppt-icon i {
+    color: #f97316; /* Orange */
+}
+
+.tool-icons-box .word-icon i {
+    color: #2563eb; /* Blue */
+}
+
+.tool-icons-box .ai-icon i {
+    color: #7c3aed; /* Purple */
+}
 
 
 /* =========================
