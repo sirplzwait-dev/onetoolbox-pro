@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Image to WebP Converter - OneToolBox</title>
+
+    <meta name="description"
+          content="Convert JPG, JPEG and PNG images to WebP online for free. Adjust WebP quality and download your converted image.">
+
+    <meta name="keywords"
+          content="image to webp, jpg to webp, png to webp, convert image to webp, webp converter">
+
+    <!-- COMMON CSS -->
+
+    <link rel="stylesheet"
+          href="../../assets/css/reset.css">
+
+    <link rel="stylesheet"
+          href="../../assets/css/variables.css">
+
+    <link rel="stylesheet"
+          href="../../assets/css/layout.css">
+
+    <link rel="stylesheet"
+          href="../../assets/css/components.css">
+
+    <!-- TOOL CSS -->
+
+    <link rel="stylesheet"
+          href="../../assets/css/tools/image-to-webp.css">
+
+    <!-- FONT AWESOME -->
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<div id="header-placeholder"></div>
+
+
+<main class="page page-offset">
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="tool-hero">
+
+    <div class="container">
+
+        <h1>
+            🖼️ Image to WebP Converter
+        </h1>
+
+        <p>
+            Convert JPG, JPEG and PNG images to WebP
+            online. Choose quality, preview your result
+            and download it instantly.
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     MAIN TOOL
+===================================================== -->
+
+<section class="section">
+
+<div class="container">
+
+
+<div class="converter-box">
+
+
+<!-- =====================================================
+     UPLOAD CARD
+===================================================== -->
+
+<div class="converter-card">
+
+
+    <h3>
+        Upload Image
+    </h3>
+
+
+    <div class="upload-area"
+         id="uploadArea">
+
+
+        <i class="fa-solid fa-cloud-arrow-up"
+           id="uploadIcon"></i>
+
+
+        <img
+            id="originalPreview"
+            class="original-preview"
+            src=""
+            alt="Original Image Preview">
+
+
+        <h4 id="uploadText">
+            Upload Image
+        </h4>
+
+
+        <p id="uploadInfo">
+
+            📁 JPG / JPEG / PNG / WebP
+
+            <br>
+
+            🖱 Drag &amp; Drop
+
+            <br>
+
+            📋 Paste Image
+
+        </p>
+
+
+        <!-- CHOOSE -->
+
+        <label class="choose-btn">
+
+            <i class="fa-solid fa-image"></i>
+
+            Choose Image
+
+            <input
+                type="file"
+                id="imageInput"
+                accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp">
+
+        </label>
+
+
+        <!-- RESET -->
+
+        <button
+            type="button"
+            class="btn-reset"
+            id="resetBtn">
+
+            <i class="fa-solid fa-rotate-left"></i>
+
+            Reset
+
+        </button>
+
+
+    </div>
+
+
+    <!-- ORIGINAL INFO -->
+
+    <div class="info">
+
+        <span>
+            Original Size:
+        </span>
+
+        <b id="originalSize">
+            0 KB
+        </b>
+
+    </div>
+
+
+    <div class="info">
+
+        <span>
+            Dimension:
+        </span>
+
+        <b id="originalDimension">
+            0 × 0 px
+        </b>
+
+    </div>
+
+
+    <div class="info">
+
+        <span>
+            Format:
+        </span>
+
+        <b id="originalFormat">
+            -
+        </b>
+
+    </div>
+
+
+</div>
+
+
+
+<!-- =====================================================
+     SETTINGS CARD
+===================================================== -->
+
+<div class="converter-card">
+
+
+    <h3>
+        WebP Settings
+    </h3>
+
+
+    <!-- OUTPUT FORMAT -->
+
+    <div class="setting-group">
+
+        <label>
+            Output Format
+        </label>
+
+
+        <div class="format-display">
+
+            <i class="fa-solid fa-file-image"></i>
+
+            <span>
+                WebP
+            </span>
+
+            <strong>
+                .webp
+            </strong>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- QUALITY -->
+
+    <div class="setting-group">
+
+
+        <div class="setting-heading">
+
+            <label>
+                WebP Quality
+            </label>
+
+            <strong id="qualityValue">
+                90%
+            </strong>
+
+        </div>
+
+
+        <input
+            type="range"
+            id="qualityRange"
+            min="10"
+            max="100"
+            value="90"
+            step="1">
+
+    </div>
+
+
+
+    <!-- QUICK QUALITY -->
+
+    <div class="setting-group">
+
+        <label>
+            Quick Quality
+        </label>
+
+
+        <div class="quality-grid">
+
+
+            <button
+                type="button"
+                class="quality-btn"
+                data-quality="100">
+
+                Best
+
+            </button>
+
+
+            <button
+                type="button"
+                class="quality-btn active"
+                data-quality="90">
+
+                High
+
+            </button>
+
+
+            <button
+                type="button"
+                class="quality-btn"
+                data-quality="70">
+
+                Medium
+
+            </button>
+
+
+            <button
+                type="button"
+                class="quality-btn"
+                data-quality="50">
+
+                Small
+
+            </button>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- TRANSPARENCY -->
+
+    <div class="setting-group">
+
+
+        <label>
+            Background
+        </label>
+
+
+        <label
+            class="background-option"
+            for="transparentBackground">
+
+
+            <input
+                type="checkbox"
+                id="transparentBackground"
+                checked>
+
+
+            <span class="background-option-text">
+
+                <strong>
+                    Preserve Transparency
+                </strong>
+
+                <small>
+                    Keep transparent PNG areas transparent.
+                </small>
+
+            </span>
+
+
+        </label>
+
+
+        <small class="background-note">
+
+            WebP supports transparency.
+
+        </small>
+
+
+    </div>
+
+
+
+    <!-- CONVERT -->
+
+    <button
+        type="button"
+        class="btn-primary"
+        id="convertBtn">
+
+        <i class="fa-solid fa-arrows-rotate"></i>
+
+        Convert to WebP
+
+    </button>
+
+
+
+    <!-- RESET SETTINGS -->
+
+    <button
+        type="button"
+        class="btn-secondary"
+        id="resetSettings">
+
+        <i class="fa-solid fa-arrow-rotate-left"></i>
+
+        Reset Settings
+
+    </button>
+
+
+</div>
+
+
+
+<!-- =====================================================
+     RESULT CARD
+===================================================== -->
+
+<div class="converter-card">
+
+
+    <h3>
+        WebP Result
+    </h3>
+
+
+    <div class="image-preview">
+
+
+        <img
+            id="resultImage"
+            src=""
+            alt="WebP Result">
+
+
+        <span id="resultText">
+
+            Converted WebP will appear here
+
+        </span>
+
+
+    </div>
+
+
+    <div class="info">
+
+        <span>
+            WebP Size:
+        </span>
+
+        <b id="newSize">
+            0 KB
+        </b>
+
+    </div>
+
+
+    <div class="info">
+
+        <span>
+            Dimension:
+        </span>
+
+        <b id="newDimension">
+            0 × 0 px
+        </b>
+
+    </div>
+
+
+    <div class="info">
+
+        <span>
+            Format:
+        </span>
+
+        <b id="newFormat">
+            WebP
+        </b>
+
+    </div>
+
+
+    <div class="info">
+
+        <span>
+            Quality:
+        </span>
+
+        <b id="newQuality">
+            90%
+        </b>
+
+    </div>
+
+
+    <!-- DOWNLOAD -->
+
+    <a
+        href="#"
+        class="btn-success disabled"
+        id="downloadBtn">
+
+        <i class="fa-solid fa-download"></i>
+
+        Download WebP
+
+    </a>
+
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     FEATURES
+===================================================== -->
+
+<section class="section">
+
+<div class="container">
+
+
+<div class="content-card">
+
+
+<h2>
+    🚀 Image to WebP Features
+</h2>
+
+
+<div class="feature-grid">
+
+
+    <div class="feature-item">
+
+        <i class="fa-solid fa-bolt"></i>
+
+        <h3>
+            Fast Conversion
+        </h3>
+
+        <p>
+            Convert images directly in your browser.
+        </p>
+
+    </div>
+
+
+    <div class="feature-item">
+
+        <i class="fa-solid fa-sliders"></i>
+
+        <h3>
+            Quality Control
+        </h3>
+
+        <p>
+            Adjust WebP quality from 10% to 100%.
+        </p>
+
+    </div>
+
+
+    <div class="feature-item">
+
+        <i class="fa-solid fa-eye"></i>
+
+        <h3>
+            Live Preview
+        </h3>
+
+        <p>
+            Preview your original and converted images.
+        </p>
+
+    </div>
+
+
+    <div class="feature-item">
+
+        <i class="fa-solid fa-layer-group"></i>
+
+        <h3>
+            Transparency Support
+        </h3>
+
+        <p>
+            WebP can preserve transparent PNG areas.
+        </p>
+
+    </div>
+
+
+    <div class="feature-item">
+
+        <i class="fa-solid fa-download"></i>
+
+        <h3>
+            Easy Download
+        </h3>
+
+        <p>
+            Download the converted WebP with one click.
+        </p>
+
+    </div>
+
+
+    <div class="feature-item">
+
+        <i class="fa-solid fa-shield-halved"></i>
+
+        <h3>
+            Browser Processing
+        </h3>
+
+        <p>
+            Images are processed locally in your browser.
+        </p>
+
+    </div>
+
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     HOW TO USE
+===================================================== -->
+
+<section class="section">
+
+<div class="container">
+
+
+<div class="content-card">
+
+
+<h2>
+    📖 How to Convert Image to WebP
+</h2>
+
+
+<div class="steps-grid">
+
+
+    <div class="step">
+
+        <span>
+            1
+        </span>
+
+        <h3>
+            Upload Image
+        </h3>
+
+        <p>
+            Choose JPG, JPEG, PNG or WebP.
+        </p>
+
+    </div>
+
+
+    <div class="step">
+
+        <span>
+            2
+        </span>
+
+        <h3>
+            Choose Quality
+        </h3>
+
+        <p>
+            Select your preferred WebP quality.
+        </p>
+
+    </div>
+
+
+    <div class="step">
+
+        <span>
+            3
+        </span>
+
+        <h3>
+            Convert
+        </h3>
+
+        <p>
+            Click Convert to WebP.
+        </p>
+
+    </div>
+
+
+    <div class="step">
+
+        <span>
+            4
+        </span>
+
+        <h3>
+            Download
+        </h3>
+
+        <p>
+            Preview and download your WebP image.
+        </p>
+
+    </div>
+
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     FAQ
+===================================================== -->
+
+<section class="section">
+
+<div class="container">
+
+
+<div class="content-card faq-card">
+
+
+<h2>
+    ❓ Frequently Asked Questions
+</h2>
+
+
+<details>
+
+    <summary>
+        What is WebP?
+    </summary>
+
+    <p>
+        WebP is a modern image format designed to
+        provide smaller image files while maintaining
+        good visual quality.
+    </p>
+
+</details>
+
+
+<details>
+
+    <summary>
+        Which images can I convert?
+    </summary>
+
+    <p>
+        You can upload JPG, JPEG, PNG and WebP images.
+    </p>
+
+</details>
+
+
+<details>
+
+    <summary>
+        Does WebP support transparency?
+    </summary>
+
+    <p>
+        Yes. WebP supports transparency, so transparent
+        PNG areas can be preserved.
+    </p>
+
+</details>
+
+
+<details>
+
+    <summary>
+        Can I change WebP quality?
+    </summary>
+
+    <p>
+        Yes. Use the quality slider or the quick quality
+        buttons.
+    </p>
+
+</details>
+
+
+<details>
+
+    <summary>
+        Will image dimensions change?
+    </summary>
+
+    <p>
+        No. The converter keeps the original image
+        dimensions.
+    </p>
+
+</details>
+
+
+<details>
+
+    <summary>
+        Are my images uploaded to a server?
+    </summary>
+
+    <p>
+        No. Conversion is performed directly in your
+        browser using the Canvas API.
+    </p>
+
+</details>
+
+
+<details>
+
+    <summary>
+        Is the WebP converter free?
+    </summary>
+
+    <p>
+        Yes. You can convert images to WebP directly
+        from your browser.
+    </p>
+
+</details>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+</main>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<div id="footer-placeholder"></div>
+
+
+
+<!-- COMMON JS -->
+
+<script src="../../assets/js/navigation.js"></script>
+
+<script src="../../assets/js/app.js"></script>
+
+
+<!-- TOOL JS -->
+
+<script src="../../assets/js/tools/image-to-webp.js"></script>
+
+
+</body>
+
+</html>
