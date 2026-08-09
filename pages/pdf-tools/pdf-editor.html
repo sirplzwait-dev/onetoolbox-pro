@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PDF Editor - OneToolBox</title>
+<link rel="stylesheet" href="../../assets/css/pdf-tools/pdf-editor.css?v=10">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><div class="brand-mark">One<span>Tool</span>Box</div><div class="tagline">All Online Tools in One Place</div></div>
+  <nav>
+    <a href="../../index.html">Home</a><button>Categories ▾</button><a>About</a><a>Contact</a>
+  </nav>
+  <div class="search">Search tools... <b>⌕</b></div><button class="theme">☾</button>
+</header>
+
+<main class="editor-page">
+  <section class="hero">
+    <h1>PDF Editor</h1>
+    <p>Edit PDF files online for free</p>
+  </section>
+
+  <div id="uploadPanel" class="upload-panel">
+    <div class="upload-icon">PDF</div>
+    <h2>Choose PDF file</h2>
+    <p>Drag & Drop your PDF here</p>
+    <label class="choose-btn">Choose PDF<input id="pdfInput" type="file" accept="application/pdf"></label>
+    <small>Files are processed in your browser.</small>
+  </div>
+
+  <section id="editor" class="editor-shell hidden">
+    <div class="toolbar">
+      <div class="tool-group">
+        <button class="tool" data-tool="addtext">A&nbsp; Add Text</button><button class="tool" data-tool="edittext">✎ Edit Text</button>
+        <button class="tool" data-tool="link">🔗 Links</button>
+        <button class="tool" data-tool="form">▤ Forms</button>
+        <button class="tool" data-tool="image">▧ Images <span>▾</span></button>
+        <button class="tool" data-tool="signature">✍ Sign <span>▾</span></button>
+        <button class="tool" data-tool="whiteout">◈ Whiteout</button>
+        <button class="tool" data-tool="annotate">✎ Annotate <span>▾</span></button>
+        <button class="tool" data-tool="shape">◇ Shapes <span>▾</span></button>
+        <button class="tool" id="undoBtn">↶ Undo</button>
+      </div>
+    </div>
+
+    <div class="pagebar">
+      <div class="page-number" id="pageNumber">1</div>
+      <div class="page-actions">
+        <button id="deletePage" title="Delete page">♧</button>
+        <button id="zoomIn" title="Zoom in">⌕+</button>
+        <button id="zoomOut" title="Zoom out">⌕−</button>
+        <button id="rotatePage" title="Rotate">↻</button>
+        <button id="resetView" title="Reset view">↺</button>
+        <button id="insertPage">⊕ Insert page here</button>
+      </div>
+    </div>
+
+    <div class="document-area" id="documentArea">
+      <div id="pagesHost"></div>
+    </div>
+
+    <div class="editor-status">
+      <span id="status">Ready</span>
+      <span id="progress">0%</span>
+    </div>
+
+    <div class="apply-wrap">
+      <button id="applyBtn" class="apply-btn">Apply changes <span>›</span></button>
+    </div>
+  </section>
+
+  <section id="resultPanel" class="result-panel hidden">
+    <div>
+      <h2>PDF ready</h2><p id="resultInfo">Your edited PDF is ready.</p>
+    </div>
+    <button id="downloadBtn" class="download-btn">Download PDF</button>
+    <button id="editAgain" class="secondary-btn">Edit again</button>
+  </section>
+
+  <section class="info-grid">
+    <div><h2>PDF Editor</h2><p>Add or replace text, insert images and signatures, draw, highlight, whiteout and edit your PDF directly in the page preview.</p></div>
+    <div><h2>Features</h2><p>Text editing • Images • Signature • Whiteout • Annotation • Shapes • Zoom • Rotate • Multi-page</p></div>
+    <div><h2>FAQ</h2><p><b>Is my PDF uploaded?</b> No. Editing is performed locally in your browser.</p></div>
+  </section>
+</main>
+
+<footer><div>© 2026 OneToolBox</div><div>PDF Tools · Privacy · Contact</div></footer>
+
+<input id="imageInput" type="file" accept="image/png,image/jpeg,image/webp" hidden>
+<input id="signatureInput" type="file" accept="image/png,image/jpeg,image/webp" hidden>
+
+<script src="../../assets/js/pdf-tools/pdf-editor.js?v=10"></script>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Remove PDF Pages - OneToolBox</title>
+<meta name="description" content="Remove selected pages from a PDF and download a new PDF.">
+<link rel="stylesheet" href="../../assets/css/reset.css">
+<link rel="stylesheet" href="../../assets/css/variables.css">
+<link rel="stylesheet" href="../../assets/css/layout.css">
+<link rel="stylesheet" href="../../assets/css/components.css">
+<link rel="stylesheet" href="../../assets/css/pdf-tools/remove-pdf-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+<body data-tool="remove-pdf-pages">
+<div id="header-placeholder"></div>
+
+<main class="page page-offset">
+<section class="tool-hero">
+<div class="container">
+<div class="tool-badge"><i class="fa-solid fa-trash-can"></i> Free PDF Tool</div>
+<h1>🗑️ Remove PDF Pages</h1>
+<p>Remove unwanted pages from a PDF and create a new clean PDF.</p>
+</div>
+</section>
+
+<section class="section">
+<div class="container">
+<div class="tool-grid">
+
+<div class="tool-card">
+<h2>Choose PDF</h2>
+<div class="upload" id="upload" tabindex="0" role="button">
+<i class="fa-solid fa-file-pdf upload-icon"></i>
+<h3 id="uploadTitle">Choose File</h3>
+<p id="uploadHint">📁 Select a PDF<br>🖱️ Drag &amp; Drop</p>
+<label class="choose"><i class="fa-solid fa-folder-open"></i> Choose PDF
+<input id="fileInput" type="file" accept="application/pdf,.pdf">
+</label>
+</div>
+<div class="info"><span>File Size</span><b id="fileSize">0 KB</b></div>
+<div class="info"><span>Total Pages</span><b id="pageCount">0</b></div>
+</div>
+
+<div class="tool-card settings">
+<h2>Pages To Remove</h2>
+
+<div class="option-box">
+<label for="removePages">Page Numbers</label>
+<input id="removePages" type="text" placeholder="Example: 2, 4, 7-9">
+<small>Enter pages or ranges separated by commas.</small>
+</div>
+
+<div class="quick-buttons">
+<button type="button" class="quick" data-mode="last">Remove Last Page</button>
+<button type="button" class="quick" data-mode="first">Remove First Page</button>
+</div>
+
+<div class="selected-info">
+<span>Pages to remove</span><b id="removeCount">0</b>
+</div>
+
+<button id="run" class="btn primary" disabled>
+<i class="fa-solid fa-trash-can"></i> Remove Pages
+</button>
+
+<div class="progress"><div class="track"><div id="bar"></div></div><strong id="pct">0%</strong></div>
+<p id="status" class="status">Choose a PDF file to begin.</p>
+</div>
+
+<div class="tool-card">
+<h2>Result</h2>
+<div class="preview">
+<div id="resultEmpty" class="result-empty">
+<i class="fa-regular fa-file-pdf"></i><span>Your PDF will appear here.</span>
+</div>
+<div id="resultSummary" class="result-summary" hidden>
+<i class="fa-solid fa-circle-check"></i><strong>PDF ready</strong><small id="resultText"></small>
+</div>
+</div>
+<div class="info"><span>PDF Size</span><b id="resultInfo">—</b></div>
+<button id="download" class="btn success" disabled><i class="fa-solid fa-download"></i> Download PDF</button>
+<button id="reset" class="btn danger"><i class="fa-solid fa-rotate-left"></i> Reset</button>
+</div>
+
+</div>
+</div>
+</section>
+
+<section class="section feature-section">
+<div class="container">
+<div class="section-heading"><span>Simple &amp; Useful</span><h2>Remove PDF Pages Features</h2><p>Keep only the pages you need.</p></div>
+<div class="feature-grid">
+<article class="feature"><div class="feature-icon"><i class="fa-solid fa-list-ol"></i></div><h3>Custom Pages</h3><p>Remove individual pages or page ranges.</p></article>
+<article class="feature"><div class="feature-icon"><i class="fa-solid fa-scissors"></i></div><h3>Quick Remove</h3><p>Remove the first or last page instantly.</p></article>
+<article class="feature"><div class="feature-icon"><i class="fa-solid fa-file-pdf"></i></div><h3>Original Safe</h3><p>Your original PDF is never modified.</p></article>
+<article class="feature"><div class="feature-icon"><i class="fa-solid fa-download"></i></div><h3>Easy Download</h3><p>Download the new PDF with one click.</p></article>
+</div>
+</div>
+</section>
+
+<section class="section how-section">
+<div class="container">
+<div class="section-heading"><span>How It Works</span><h2>Remove Pages in 3 Steps</h2></div>
+<div class="steps-grid">
+<div class="step"><div class="step-number">1</div><h3>Upload PDF</h3><p>Select your PDF document.</p></div>
+<div class="step"><div class="step-number">2</div><h3>Select Pages</h3><p>Enter page numbers or ranges to remove.</p></div>
+<div class="step"><div class="step-number">3</div><h3>Download</h3><p>Download your new PDF.</p></div>
+</div>
+</div>
+</section>
+
+<section class="section faq-section">
+<div class="container faq">
+<div class="section-heading"><span>FAQ</span><h2>Frequently Asked Questions</h2></div>
+<div class="faq-list">
+<details><summary>Can I remove multiple pages at once?<i class="fa-solid fa-chevron-down"></i></summary><p>Yes. Enter pages such as 2, 4, 7-9 to remove multiple pages and ranges.</p></details>
+<details><summary>What happens to the original PDF?<i class="fa-solid fa-chevron-down"></i></summary><p>The original file remains unchanged. A new PDF is created without the selected pages.</p></details>
+<details><summary>Can I remove the first or last page quickly?<i class="fa-solid fa-chevron-down"></i></summary><p>Yes. Use the quick buttons for the first or last page.</p></details>
+<details><summary>Can I remove every page?<i class="fa-solid fa-chevron-down"></i></summary><p>No. At least one page must remain in the output PDF.</p></details>
+</div>
+</div>
+</section>
+</main>
+
+<div id="footer-placeholder"></div>
+<script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+<script src="../../assets/js/navigation.js"></script>
+<script src="../../assets/js/app.js"></script>
+<script src="../../assets/js/pdf-tools/remove-pdf-pages.js"></script>
+</body>
+</html>

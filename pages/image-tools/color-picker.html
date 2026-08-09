@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Color Picker - OneToolBox</title>
+
+    <meta name="description"
+          content="Pick colors online from an image or color picker. Get HEX, RGB and HSL values instantly.">
+
+    <link rel="stylesheet" href="../../assets/css/reset.css">
+    <link rel="stylesheet" href="../../assets/css/variables.css">
+    <link rel="stylesheet" href="../../assets/css/layout.css">
+    <link rel="stylesheet" href="../../assets/css/components.css">
+
+    <link rel="stylesheet"
+          href="../../assets/css/tools/color-picker.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+
+<body>
+
+<div id="header-placeholder"></div>
+
+<main class="page page-offset">
+
+<!-- HERO -->
+<section class="tool-hero">
+    <div class="container">
+
+        <h1>
+            🎨 Color Picker
+        </h1>
+
+        <p>
+            Pick any color from your screen or image
+            and instantly get HEX, RGB and HSL values.
+        </p>
+
+    </div>
+</section>
+
+
+<!-- TOOL -->
+<section class="section">
+
+<div class="container">
+
+<div class="color-tool-box">
+
+
+<!-- =========================================
+     COLOR PICKER
+========================================= -->
+
+<div class="color-card">
+
+    <h3>
+        <i class="fa-solid fa-eye-dropper"></i>
+        Pick a Color
+    </h3>
+
+
+    <div class="picker-preview"
+         id="pickerPreview">
+
+        <div class="picker-circle"
+             id="pickerCircle">
+        </div>
+
+        <span id="pickerHint">
+            Choose a color
+        </span>
+
+    </div>
+
+
+    <label class="color-input-label">
+
+        <span>
+            Select Color
+        </span>
+
+        <input
+            type="color"
+            id="colorInput"
+            value="#2563eb">
+
+    </label>
+
+
+    <button
+        type="button"
+        class="btn-primary"
+        id="randomColorBtn">
+
+        <i class="fa-solid fa-shuffle"></i>
+
+        Random Color
+
+    </button>
+
+
+    <button
+        type="button"
+        class="btn-secondary"
+        id="resetBtn">
+
+        <i class="fa-solid fa-rotate-left"></i>
+
+        Reset
+
+    </button>
+
+</div>
+
+
+<!-- =========================================
+     COLOR VALUES
+========================================= -->
+
+<div class="color-card">
+
+    <h3>
+        <i class="fa-solid fa-code"></i>
+        Color Values
+    </h3>
+
+
+    <!-- HEX -->
+
+    <div class="value-group">
+
+        <label>
+            HEX
+        </label>
+
+        <div class="value-row">
+
+            <input
+                type="text"
+                id="hexValue"
+                value="#2563EB"
+                maxlength="7">
+
+            <button
+                type="button"
+                class="copy-btn"
+                data-copy="hex">
+
+                <i class="fa-regular fa-copy"></i>
+
+                Copy
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- RGB -->
+
+    <div class="value-group">
+
+        <label>
+            RGB
+        </label>
+
+        <div class="value-row">
+
+            <input
+                type="text"
+                id="rgbValue"
+                value="rgb(37, 99, 235)"
+                readonly>
+
+            <button
+                type="button"
+                class="copy-btn"
+                data-copy="rgb">
+
+                <i class="fa-regular fa-copy"></i>
+
+                Copy
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- HSL -->
+
+    <div class="value-group">
+
+        <label>
+            HSL
+        </label>
+
+        <div class="value-row">
+
+            <input
+                type="text"
+                id="hslValue"
+                value="hsl(221, 83%, 53%)"
+                readonly>
+
+            <button
+                type="button"
+                class="copy-btn"
+                data-copy="hsl">
+
+                <i class="fa-regular fa-copy"></i>
+
+                Copy
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- CSS -->
+
+    <div class="value-group">
+
+        <label>
+            CSS
+        </label>
+
+        <div class="value-row">
+
+            <input
+                type="text"
+                id="cssValue"
+                value="color: #2563EB;"
+                readonly>
+
+            <button
+                type="button"
+                class="copy-btn"
+                data-copy="css">
+
+                <i class="fa-regular fa-copy"></i>
+
+                Copy
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div
+        class="copy-status"
+        id="copyStatus">
+
+        <i class="fa-solid fa-check"></i>
+
+        Copied!
+
+    </div>
+
+</div>
+
+
+<!-- =========================================
+     COLOR INFORMATION
+========================================= -->
+
+<div class="color-card">
+
+    <h3>
+        <i class="fa-solid fa-circle-info"></i>
+        Color Information
+    </h3>
+
+
+    <div class="large-color"
+         id="largeColor">
+
+        <span id="largeHex">
+            #2563EB
+        </span>
+
+    </div>
+
+
+    <div class="info">
+
+        <span>
+            HEX
+        </span>
+
+        <b id="infoHex">
+            #2563EB
+        </b>
+
+    </div>
+
+
+    <div class="info">
+
+        <span>
+            Red
+        </span>
+
+        <b id="redValue">
+            37
+        </b>
+
+    </div>
+
+
+    <div class="info">
+
+        <span>
+            Green
+        </span>
+
+        <b id="greenValue">
+            99
+        </b>
+
+    </div>
+
+
+    <div class="info">
+
+        <span>
+            Blue
+        </span>
+
+        <b id="blueValue">
+            235
+        </b>
+
+    </div>
+
+
+    <div class="info">
+
+        <span>
+            Brightness
+        </span>
+
+        <b id="brightnessValue">
+            91
+        </b>
+
+    </div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================
+     COLOR SHADES
+========================================= -->
+
+<section class="section">
+
+<div class="container">
+
+<div class="content-card">
+
+    <h2>
+        Color Shades & Tints
+    </h2>
+
+    <div
+        class="shade-grid"
+        id="shadeGrid">
+    </div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================
+     FEATURES
+========================================= -->
+
+<section class="section">
+
+<div class="container">
+
+<div class="feature-grid">
+
+
+<div class="feature-item">
+
+    <div class="feature-icon blue">
+        <i class="fa-solid fa-eye-dropper"></i>
+    </div>
+
+    <div>
+
+        <h3>
+            Easy Color Picker
+        </h3>
+
+        <p>
+            Select any color quickly
+            using the built-in picker.
+        </p>
+
+    </div>
+
+</div>
+
+
+<div class="feature-item">
+
+    <div class="feature-icon purple">
+        <i class="fa-solid fa-code"></i>
+    </div>
+
+    <div>
+
+        <h3>
+            HEX, RGB & HSL
+        </h3>
+
+        <p>
+            Get multiple color formats
+            instantly.
+        </p>
+
+    </div>
+
+</div>
+
+
+<div class="feature-item">
+
+    <div class="feature-icon orange">
+        <i class="fa-solid fa-copy"></i>
+    </div>
+
+    <div>
+
+        <h3>
+            One Click Copy
+        </h3>
+
+        <p>
+            Copy any color value
+            with one click.
+        </p>
+
+    </div>
+
+</div>
+
+
+<div class="feature-item">
+
+    <div class="feature-icon green">
+        <i class="fa-solid fa-shuffle"></i>
+    </div>
+
+    <div>
+
+        <h3>
+            Random Colors
+        </h3>
+
+        <p>
+            Generate random colors
+            for your projects.
+        </p>
+
+    </div>
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================
+     HOW TO USE
+========================================= -->
+
+<section class="section">
+
+<div class="container">
+
+<div class="content-card">
+
+    <h2>
+        How to Use Color Picker?
+    </h2>
+
+
+    <div class="steps-grid">
+
+
+        <div class="step">
+
+            <span>1</span>
+
+            <div>
+
+                <h3>
+                    Select Color
+                </h3>
+
+                <p>
+                    Click the color picker
+                    and choose any color.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="step">
+
+            <span>2</span>
+
+            <div>
+
+                <h3>
+                    View Values
+                </h3>
+
+                <p>
+                    HEX, RGB and HSL values
+                    are generated automatically.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="step">
+
+            <span>3</span>
+
+            <div>
+
+                <h3>
+                    Copy
+                </h3>
+
+                <p>
+                    Copy the required color
+                    value with one click.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="step">
+
+            <span>4</span>
+
+            <div>
+
+                <h3>
+                    Use Anywhere
+                </h3>
+
+                <p>
+                    Use the color in your
+                    website, design or project.
+                </p>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================
+     FAQ
+========================================= -->
+
+<section class="section">
+
+<div class="container">
+
+<div class="content-card faq-card">
+
+    <h2>
+        Frequently Asked Questions
+    </h2>
+
+
+    <details>
+
+        <summary>
+            What is a color picker?
+        </summary>
+
+        <p>
+            A color picker lets you select a color
+            and obtain its exact digital color values.
+        </p>
+
+    </details>
+
+
+    <details>
+
+        <summary>
+            What is HEX color?
+        </summary>
+
+        <p>
+            HEX is a six-digit hexadecimal color
+            representation commonly used in HTML
+            and CSS.
+        </p>
+
+    </details>
+
+
+    <details>
+
+        <summary>
+            What is RGB?
+        </summary>
+
+        <p>
+            RGB represents a color using Red,
+            Green and Blue values from 0 to 255.
+        </p>
+
+    </details>
+
+
+    <details>
+
+        <summary>
+            What is HSL?
+        </summary>
+
+        <p>
+            HSL represents color using Hue,
+            Saturation and Lightness.
+        </p>
+
+    </details>
+
+
+    <details>
+
+        <summary>
+            Can I copy the color values?
+        </summary>
+
+        <p>
+            Yes. Each HEX, RGB, HSL and CSS value
+            has its own copy button.
+        </p>
+
+    </details>
+
+
+</div>
+
+</div>
+
+</section>
+
+</main>
+
+
+<div id="footer-placeholder"></div>
+
+
+<script src="../../assets/js/navigation.js"></script>
+
+<script src="../../assets/js/app.js"></script>
+
+<script src="../../assets/js/tools/color-picker.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Screenshot Editor - OneToolBox</title>
+<meta name="description" content="Edit screenshots online with drawing, text, shapes, crop, rotate, flip, blur and download tools.">
+<link rel="stylesheet" href="../../assets/css/reset.css">
+<link rel="stylesheet" href="../../assets/css/variables.css">
+<link rel="stylesheet" href="../../assets/css/layout.css">
+<link rel="stylesheet" href="../../assets/css/components.css">
+<link rel="stylesheet" href="../../assets/css/tools/screenshot-editor.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+<body>
+<div id="header-placeholder"></div>
+
+<main class="page page-offset">
+<section class="tool-hero"><div class="container">
+<h1><i class="fa-solid fa-pen-to-square"></i> Screenshot Editor</h1>
+<p>Edit screenshots online with crop, resize, rotate, flip, drawing, text, shapes, highlight and blur.</p>
+</div></section>
+
+<section class="section"><div class="container"><div class="editor-card">
+
+<div class="editor-top">
+<label class="choose-btn"><i class="fa-solid fa-image"></i> Choose Image
+<input id="imageInput" type="file" accept="image/png,image/jpeg,image/webp,.png,.jpg,.jpeg,.webp"></label>
+<button class="tool-btn" id="undoBtn" disabled><i class="fa-solid fa-rotate-left"></i> Undo</button>
+<button class="tool-btn" id="redoBtn" disabled><i class="fa-solid fa-rotate-right"></i> Redo</button>
+<button class="tool-btn danger" id="clearBtn"><i class="fa-solid fa-trash"></i> Clear</button>
+<button class="tool-btn" id="resetBtn"><i class="fa-solid fa-arrows-rotate"></i> Reset</button>
+</div>
+
+<div class="toolbar">
+<button class="edit-tool active" data-tool="select"><i class="fa-solid fa-arrow-pointer"></i><span>Select</span></button>
+<button class="edit-tool" data-tool="pen"><i class="fa-solid fa-pen"></i><span>Pen</span></button>
+<button class="edit-tool" data-tool="highlight"><i class="fa-solid fa-highlighter"></i><span>Highlight</span></button>
+<button class="edit-tool" data-tool="text"><i class="fa-solid fa-font"></i><span>Text</span></button>
+<button class="edit-tool" data-tool="rect"><i class="fa-regular fa-square"></i><span>Rectangle</span></button>
+<button class="edit-tool" data-tool="circle"><i class="fa-regular fa-circle"></i><span>Circle</span></button>
+<button class="edit-tool" data-tool="arrow"><i class="fa-solid fa-arrow-right"></i><span>Arrow</span></button>
+<button class="edit-tool" data-tool="eraser"><i class="fa-solid fa-eraser"></i><span>Eraser</span></button>
+<button class="edit-tool" data-tool="crop"><i class="fa-solid fa-crop-simple"></i><span>Crop</span></button>
+<button class="edit-tool" data-tool="blur"><i class="fa-solid fa-droplet"></i><span>Blur</span></button>
+</div>
+
+<div class="controls">
+<label>Color <input id="colorInput" type="color" value="#ff0000"></label>
+<label>Size <input id="sizeRange" type="range" min="1" max="40" value="5"><b id="sizeValue">5</b></label>
+<label>Text <input id="textInput" type="text" placeholder="Type text"></label>
+<label>Font <select id="fontSize"><option value="16">16px</option><option value="24" selected>24px</option><option value="32">32px</option><option value="48">48px</option><option value="64">64px</option></select></label>
+<label>Zoom <input id="zoomRange" type="range" min="25" max="200" value="100"><b id="zoomValue">100%</b></label>
+</div>
+
+<div class="canvas-wrap" id="canvasWrap">
+<canvas id="editorCanvas"></canvas>
+<div class="empty-state" id="emptyState">
+<i class="fa-solid fa-image"></i>
+<h3>Choose an image to start editing</h3>
+<p>PNG, JPG and WebP supported</p>
+<label class="choose-btn small">Choose Image
+<input id="imageInput2" type="file" accept="image/png,image/jpeg,image/webp,.png,.jpg,.jpeg,.webp"></label>
+</div>
+</div>
+
+<div class="bottom-actions">
+<button class="action-btn" id="rotateLeft"><i class="fa-solid fa-rotate-left"></i> Rotate Left</button>
+<button class="action-btn" id="rotateRight"><i class="fa-solid fa-rotate-right"></i> Rotate Right</button>
+<button class="action-btn" id="flipH"><i class="fa-solid fa-arrows-left-right"></i> Flip H</button>
+<button class="action-btn" id="flipV"><i class="fa-solid fa-arrows-up-down"></i> Flip V</button>
+<button class="download-btn" id="downloadPng"><i class="fa-solid fa-download"></i> Download PNG</button>
+<button class="download-btn jpg" id="downloadJpg"><i class="fa-solid fa-download"></i> Download JPG</button>
+</div>
+<p class="editor-note" id="editorNote">Choose an image to begin.</p>
+</div></div></section>
+
+<section class="section"><div class="container"><div class="feature-grid">
+<div class="feature-item"><div class="feature-icon blue"><i class="fa-solid fa-pen"></i></div><div><h3>Draw & Annotate</h3><p>Add pens, highlights, arrows and shapes.</p></div></div>
+<div class="feature-item"><div class="feature-icon purple"><i class="fa-solid fa-font"></i></div><div><h3>Add Text</h3><p>Add custom text directly to screenshots.</p></div></div>
+<div class="feature-item"><div class="feature-icon orange"><i class="fa-solid fa-crop"></i></div><div><h3>Crop & Transform</h3><p>Crop, rotate and flip your screenshot.</p></div></div>
+<div class="feature-item"><div class="feature-icon green"><i class="fa-solid fa-lock"></i></div><div><h3>Private Editing</h3><p>Editing happens locally in your browser.</p></div></div>
+</div></div></section>
+
+<section class="section"><div class="container"><div class="content-card">
+<h2>How to Use Screenshot Editor?</h2>
+<div class="steps-grid">
+<div class="step"><span>1</span><div><h3>Upload</h3><p>Choose a screenshot from your device.</p></div></div>
+<div class="step"><span>2</span><div><h3>Edit</h3><p>Select a tool and annotate your image.</p></div></div>
+<div class="step"><span>3</span><div><h3>Transform</h3><p>Crop, rotate or flip when needed.</p></div></div>
+<div class="step"><span>4</span><div><h3>Download</h3><p>Save the edited image as PNG or JPG.</p></div></div>
+</div></div></div></section>
+
+<section class="section"><div class="container"><div class="content-card faq-card">
+<h2>Frequently Asked Questions</h2>
+<details><summary>Does the editor upload my screenshot?</summary><p>No. The editor processes the image in your browser.</p></details>
+<details><summary>Can I add text and arrows?</summary><p>Yes. Select Text, Arrow, Rectangle, Circle or other annotation tools.</p></details>
+<details><summary>Can I crop and rotate screenshots?</summary><p>Yes. Use Crop, Rotate Left, Rotate Right, Flip H and Flip V.</p></details>
+<details><summary>Can I download JPG?</summary><p>Yes. You can download the finished image as PNG or JPG.</p></details>
+<details><summary>Is it mobile friendly?</summary><p>Yes. The layout adapts to smaller screens.</p></details>
+</div></div></section>
+</main>
+<div id="footer-placeholder"></div>
+<script src="../../assets/js/navigation.js"></script>
+<script src="../../assets/js/app.js"></script>
+<script src="../../assets/js/tools/screenshot-editor.js"></script>
+</body>
+</html>

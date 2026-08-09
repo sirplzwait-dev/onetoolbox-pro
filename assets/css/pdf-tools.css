@@ -1,404 +1,200 @@
-/* =====================================
-   PDF TOOLS CATEGORY FINAL CSS
-===================================== */
-
-
-/* HERO */
+/* OneToolBox PDF Tools — Large Colorful 3-Column Cards */
 
 .pdf-tools-hero{
-
-    padding:30px 0 20px;
-
-    text-align:center;
-
+  padding:36px 0 28px;
+  text-align:center;
 }
-
-
 
 .pdf-tools-hero h1{
-
-    font-size:40px;
-
-    font-weight:800;
-
-    color:#0f172a;
-
-    margin-bottom:8px;
-
+  margin:0 0 9px;
+  color:#2563eb;
+  font-size:38px;
+  font-weight:800;
+  line-height:1.15;
 }
-
-
 
 .pdf-tools-hero p{
-
-    color:#64748b;
-
-    font-size:16px;
-
+  margin:0 auto 18px;
+  max-width:760px;
+  color:#64748b;
+  font-size:15px;
+  line-height:1.6;
 }
-
-
-
-
-
-
-
-/* SEARCH */
 
 .pdf-tools-search{
-
-    max-width:500px;
-
-    margin:20px auto 0;
-
-    position:relative;
-
+  position:relative;
+  width:min(600px,100%);
+  margin:0 auto;
 }
-
-
 
 .pdf-tools-search input{
-
-
-    width:100%;
-
-    height:45px;
-
-    border-radius:14px;
-
-    border:1px solid #cbd5e1;
-
-    padding:0 45px 0 18px;
-
-    font-size:15px;
-
+  width:100%;
+  height:46px;
+  box-sizing:border-box;
+  padding:0 46px 0 15px;
+  border:1px solid #dbe3ef;
+  border-radius:11px;
+  background:#fff;
+  color:#0f172a;
+  outline:none;
+  font-size:13px;
+  box-shadow:0 4px 15px rgba(15,23,42,.05);
 }
 
-
+.pdf-tools-search input:focus{
+  border-color:#2563eb;
+  box-shadow:0 0 0 3px rgba(37,99,235,.10);
+}
 
 .pdf-tools-search i{
-
-
-    position:absolute;
-
-    right:18px;
-
-    top:14px;
-
-    color:#2563eb;
-
+  position:absolute;
+  right:15px;
+  top:50%;
+  transform:translateY(-50%);
+  color:#2563eb;
+  pointer-events:none;
 }
 
-
-
-
-
-
-
-
-/* GRID */
-
-
+/* ===== 3 COLUMN GRID ===== */
 .pdf-tools-grid{
-
-
-    display:grid;
-
-    grid-template-columns:repeat(4,1fr);
-
-    gap:15px;
-
-
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:18px;
 }
 
-
-
-
-
-
-
-/* CARD */
-
-
+/* ===== BIGGER CARD ===== */
 .pdf-tool-card{
-
-
-    background:#ffffff;
-
-    border:1px solid #e5e7eb;
-
-    border-radius:18px;
-
-    padding:15px 12px;
-
-
-    text-align:center;
-
-
-    min-height:205px;
-
-
-    transition:.3s;
-
-
+  min-width:0;
+  min-height:190px;
+  padding:20px;
+  box-sizing:border-box;
+  background:#fff;
+  border:1px solid #e2e8f0;
+  border-radius:17px;
+  box-shadow:0 6px 20px rgba(15,23,42,.065);
+  cursor:pointer;
+  transition:
+    transform .18s ease,
+    box-shadow .18s ease,
+    border-color .18s ease;
 }
-
-
 
 .pdf-tool-card:hover{
-
-
-    transform:translateY(-5px);
-
-
-    box-shadow:
-
-    0 12px 28px rgba(0,0,0,.12);
-
-
+  transform:translateY(-4px);
+  border-color:#93c5fd;
+  box-shadow:0 13px 30px rgba(37,99,235,.13);
 }
 
+.pdf-tool-card:focus{
+  outline:3px solid rgba(37,99,235,.16);
+  outline-offset:2px;
+}
 
-
-
-
-
-
-/* ICON */
-
-
+/* ===== COLORFUL ICONS ===== */
 .pdf-tool-icon{
-
-
-    width:55px;
-
-    height:55px;
-
-
-    border-radius:16px;
-
-
-    margin:0 auto 12px;
-
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-
+  width:48px;
+  height:48px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-bottom:13px;
+  border-radius:13px;
+  font-size:20px;
 }
 
-
-
-.pdf-tool-icon i{
-
-
-    font-size:25px;
-
-
+.pdf-tool-icon.blue{
+  background:#dbeafe;
+  color:#2563eb;
 }
 
-
-
-
-
-
-
-/* COLORS */
-
-
-.blue{
-
-background:#dbeafe;
-
-color:#2563eb;
-
+.pdf-tool-icon.green{
+  background:#dcfce7;
+  color:#16a34a;
 }
 
-
-
-.green{
-
-background:#dcfce7;
-
-color:#16a34a;
-
+.pdf-tool-icon.red{
+  background:#fee2e2;
+  color:#dc2626;
 }
 
-
-
-.red{
-
-background:#fee2e2;
-
-color:#dc2626;
-
+.pdf-tool-icon.orange{
+  background:#ffedd5;
+  color:#ea580c;
 }
 
-
-
-.yellow{
-
-background:#fef3c7;
-
-color:#d97706;
-
+.pdf-tool-icon.purple{
+  background:#f3e8ff;
+  color:#9333ea;
 }
 
-
-
-.purple{
-
-background:#ede9fe;
-
-color:#7c3aed;
-
-}
-
-
-
-.orange{
-
-background:#ffedd5;
-
-color:#ea580c;
-
-}
-
-
-
-
-
-
-
-/* TEXT */
-
-
+/* ===== CARD TEXT ===== */
 .pdf-tool-card h3{
-
-
-    font-size:16px;
-
-    font-weight:800;
-
-
-    color:#0f172a;
-
-
-    margin-bottom:6px;
-
-
+  margin:0 0 7px;
+  color:#0f172a;
+  font-size:17px;
+  font-weight:800;
+  line-height:1.3;
 }
-
-
-
 
 .pdf-tool-card p{
-
-
-    font-size:13px;
-
-
-    color:#64748b;
-
-
-    line-height:1.4;
-
-
-    min-height:36px;
-
-
+  min-height:40px;
+  margin:0 0 16px;
+  color:#64748b;
+  font-size:13px;
+  line-height:1.55;
 }
 
-
-
-
-
+/* ===== BUTTON ===== */
 .pdf-tool-card a{
-
-
-    display:inline-block;
-
-
-    margin-top:8px;
-
-
-    color:#2563eb;
-
-
-    font-size:13px;
-
-
-    font-weight:700;
-
-
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:37px;
+  padding:0 14px;
+  border-radius:8px;
+  background:#2563eb;
+  color:#fff;
+  text-decoration:none;
+  font-size:11.5px;
+  font-weight:800;
+  transition:background .18s ease,transform .18s ease;
 }
 
-
-
-
-
-
-
-/* RESPONSIVE */
-
-
-@media(max-width:1200px){
-
-
-.pdf-tools-grid{
-
-
-grid-template-columns:repeat(3,1fr);
-
-
+.pdf-tool-card a:hover{
+  background:#1d4ed8;
+  transform:translateY(-1px);
 }
 
+/* ===== TABLET ===== */
+@media(max-width:850px){
+  .pdf-tools-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:15px;
+  }
 
+  .pdf-tool-card{
+    min-height:180px;
+    padding:17px;
+  }
 }
 
+/* ===== MOBILE ===== */
+@media(max-width:540px){
+  .pdf-tools-hero{
+    padding:28px 14px 22px;
+  }
 
+  .pdf-tools-hero h1{
+    font-size:29px;
+  }
 
+  .pdf-tools-grid{
+    grid-template-columns:1fr;
+    gap:13px;
+  }
 
-
-@media(max-width:800px){
-
-
-.pdf-tools-grid{
-
-
-grid-template-columns:repeat(2,1fr);
-
-
-}
-
-
-
-.pdf-tools-hero h1{
-
-font-size:32px;
-
-}
-
-
-}
-
-
-
-
-
-@media(max-width:500px){
-
-
-.pdf-tools-grid{
-
-
-grid-template-columns:1fr;
-
-
-}
-
-
+  .pdf-tool-card{
+    min-height:165px;
+    padding:17px;
+  }
 }

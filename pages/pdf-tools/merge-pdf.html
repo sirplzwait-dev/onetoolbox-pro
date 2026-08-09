@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Merge PDF - OneToolBox</title>
+<meta name="description" content="Merge multiple PDF files into one PDF online.">
+
+<link rel="stylesheet" href="../../assets/css/reset.css">
+<link rel="stylesheet" href="../../assets/css/variables.css">
+<link rel="stylesheet" href="../../assets/css/layout.css">
+<link rel="stylesheet" href="../../assets/css/components.css">
+<link rel="stylesheet" href="../../assets/css/pdf-tools/merge-pdf.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+
+<body data-tool="merge-pdf">
+<div id="header-placeholder"></div>
+
+<main class="page page-offset">
+
+<section class="tool-hero">
+  <div class="container">
+    <div class="tool-badge"><i class="fa-solid fa-layer-group"></i> Free PDF Tool</div>
+    <h1>📑 Merge PDF</h1>
+    <p>Combine multiple PDF files into one PDF document.</p>
+  </div>
+</section>
+
+<section class="section">
+<div class="container">
+<div class="tool-grid">
+
+  <!-- Upload -->
+  <div class="tool-card">
+    <h2>Choose PDFs</h2>
+
+    <div class="upload" id="upload" tabindex="0" role="button">
+      <i class="fa-solid fa-file-pdf upload-icon"></i>
+      <h3 id="uploadTitle">Choose Files</h3>
+      <p id="uploadHint">📁 Select PDF files • Add more anytime<br>🖱️ Drag &amp; Drop</p>
+
+      <label class="choose">
+        <i class="fa-solid fa-folder-open"></i>
+        Choose PDFs
+        <input id="fileInput" type="file" accept="application/pdf,.pdf" multiple>
+      </label>
+    </div>
+
+    <div class="info">
+      <span>Selected PDFs</span>
+      <b id="fileCount">0</b>
+    </div>
+
+    <div class="info">
+      <span>Total Pages</span>
+      <b id="pageCount">0</b>
+    </div>
+  </div>
+
+  <!-- Settings / file order -->
+  <div class="tool-card settings">
+    <h2>PDF Order</h2>
+
+    <div id="fileList" class="file-list">
+      <div class="empty-list">
+        <i class="fa-regular fa-file-pdf"></i>
+        <span>Your PDF files will appear here.</span>
+      </div>
+    </div>
+
+    <div class="merge-total"><span>Total pages</span><b id="orderTotalPages">0</b></div>
+
+    <p class="hint">
+      <i class="fa-solid fa-circle-info"></i>
+      Every page from every PDF will be merged in the order shown above.
+    </p>
+
+    <button id="run" class="btn primary" disabled>
+      <i class="fa-solid fa-layer-group"></i>
+      Merge PDF
+    </button>
+
+    <div class="progress">
+      <div class="track"><div id="bar"></div></div>
+      <strong id="pct">0%</strong>
+    </div>
+
+    <p id="status" class="status">Choose PDF files to begin.</p>
+  </div>
+
+  <!-- Result -->
+  <div class="tool-card">
+    <h2>Result</h2>
+
+    <div class="preview">
+      <div id="resultEmpty" class="result-empty">
+        <i class="fa-regular fa-file-pdf"></i>
+        <span>Your merged PDF will appear here.</span>
+      </div>
+
+      <div id="resultSummary" class="result-summary" hidden>
+        <i class="fa-solid fa-circle-check"></i>
+        <strong>PDF ready</strong>
+        <small id="resultText"></small>
+      </div>
+    </div>
+
+    <div class="info">
+      <span>PDF Size</span>
+      <b id="resultInfo">—</b>
+    </div>
+
+    <button id="download" class="btn success" disabled>
+      <i class="fa-solid fa-download"></i>
+      Download PDF
+    </button>
+
+    <button id="reset" class="btn danger">
+      <i class="fa-solid fa-rotate-left"></i>
+      Reset
+    </button>
+  </div>
+
+</div>
+</div>
+</section>
+
+<!-- FEATURES -->
+<section class="section feature-section">
+<div class="container">
+<div class="section-heading">
+  <span>Simple &amp; Useful</span>
+  <h2>Merge PDF Features</h2>
+  <p>Combine your PDF documents into one file quickly.</p>
+</div>
+
+<div class="feature-grid">
+  <article class="feature">
+    <div class="feature-icon"><i class="fa-solid fa-file-pdf"></i></div>
+    <h3>Multiple PDFs</h3>
+    <p>Select multiple PDF files and merge them together.</p>
+  </article>
+
+  <article class="feature">
+    <div class="feature-icon"><i class="fa-solid fa-list-ol"></i></div>
+    <h3>Easy Ordering</h3>
+    <p>See the selected files before creating the final PDF.</p>
+  </article>
+
+  <article class="feature">
+    <div class="feature-icon"><i class="fa-solid fa-layer-group"></i></div>
+    <h3>One PDF</h3>
+    <p>All selected documents become one combined PDF.</p>
+  </article>
+
+  <article class="feature">
+    <div class="feature-icon"><i class="fa-solid fa-download"></i></div>
+    <h3>Easy Download</h3>
+    <p>Download the merged PDF with one click.</p>
+  </article>
+</div>
+</div>
+</section>
+
+<!-- HOW TO -->
+<section class="section how-section">
+<div class="container">
+<div class="section-heading">
+  <span>How It Works</span>
+  <h2>Merge PDF in 3 Steps</h2>
+</div>
+
+<div class="steps-grid">
+  <div class="step">
+    <div class="step-number">1</div>
+    <h3>Choose PDFs</h3>
+    <p>Select two or more PDF files.</p>
+  </div>
+
+  <div class="step">
+    <div class="step-number">2</div>
+    <h3>Merge</h3>
+    <p>Check the file list and click Merge PDF.</p>
+  </div>
+
+  <div class="step">
+    <div class="step-number">3</div>
+    <h3>Download</h3>
+    <p>Download your combined PDF.</p>
+  </div>
+</div>
+</div>
+</section>
+
+<!-- FAQ -->
+<section class="section faq-section">
+<div class="container faq">
+<div class="section-heading">
+  <span>FAQ</span>
+  <h2>Frequently Asked Questions</h2>
+</div>
+
+<div class="faq-list">
+<details>
+  <summary>Can I merge multiple PDF files?<i class="fa-solid fa-chevron-down"></i></summary>
+  <p>Yes. Select multiple PDF files and the tool will combine them into one PDF.</p>
+</details>
+
+<details>
+  <summary>Will my original PDFs be changed?<i class="fa-solid fa-chevron-down"></i></summary>
+  <p>No. The original files are not modified. A new merged PDF is created.</p>
+</details>
+
+<details>
+  <summary>Can I merge large PDFs?<i class="fa-solid fa-chevron-down"></i></summary>
+  <p>The practical limit depends on your browser memory and the size and number of PDF files.</p>
+</details>
+
+<details>
+  <summary>Does the page order matter?<i class="fa-solid fa-chevron-down"></i></summary>
+  <p>Yes. The files are merged in the order displayed in the PDF Order box.</p>
+</details>
+</div>
+</div>
+</section>
+
+</main>
+
+<div id="footer-placeholder"></div>
+
+<!-- pdf-lib -->
+<script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+
+<script src="../../assets/js/navigation.js"></script>
+<script src="../../assets/js/app.js"></script>
+<script src="../../assets/js/pdf-tools/merge-pdf.js"></script>
+
+</body>
+</html>

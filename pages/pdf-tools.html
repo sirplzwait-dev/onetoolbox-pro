@@ -149,7 +149,7 @@ Reduce PDF file size.
 </p>
 
 
-<a href="#">
+<a href="pdf-tools/pdf-compressor.html">
 Open Tool →
 </a>
 
@@ -184,7 +184,7 @@ Convert PDF files easily.
 </p>
 
 
-<a href="#">
+<a href="pdf-tools/pdf-converter.html">
 Open Tool →
 </a>
 
@@ -219,7 +219,7 @@ Convert PDF into Word document.
 </p>
 
 
-<a href="#">
+<a href="pdf-tools/pdf-to-word.html">
 Open Tool →
 </a>
 
@@ -254,7 +254,7 @@ Extract PDF tables into Excel.
 </p>
 
 
-<a href="#">
+<a href="pdf-tools/pdf-to-excel.html">
 Open Tool →
 </a>
 
@@ -289,7 +289,7 @@ Convert PDF pages into images.
 </p>
 
 
-<a href="#">
+<a href="pdf-tools/pdf-to-jpg.html">
 Open Tool →
 </a>
 
@@ -324,7 +324,7 @@ Create PDF from images.
 </p>
 
 
-<a href="#">
+<a href="pdf-tools/jpg-to-pdf.html">
 Open Tool →
 </a>
 
@@ -359,7 +359,7 @@ Combine multiple PDF files.
 </p>
 
 
-<a href="#">
+<a href="pdf-tools/merge-pdf.html">
 Open Tool →
 </a>
 
@@ -394,7 +394,7 @@ Split PDF pages.
 </p>
 
 
-<a href="#">
+<a href="pdf-tools/split-pdf.html">
 Open Tool →
 </a>
 
@@ -422,7 +422,7 @@ Rotate PDF pages easily.
 </p>
 
 
-<a href="#">
+<a href="pdf-tools/rotate-pdf.html">
 Open Tool →
 </a>
 
@@ -457,7 +457,7 @@ Delete unwanted PDF pages.
 </p>
 
 
-<a href="#">
+<a href="pdf-tools/remove-pdf-pages.html">
 Open Tool →
 </a>
 
@@ -492,7 +492,7 @@ Extract selected PDF pages.
 </p>
 
 
-<a href="#">
+<a href="pdf-tools/extract-pdf-pages.html">
 Open Tool →
 </a>
 
@@ -527,7 +527,7 @@ Add password security.
 </p>
 
 
-<a href="#">
+<a href="pdf-tools/protect-pdf.html">
 Open Tool →
 </a>
 
@@ -562,7 +562,7 @@ Remove PDF password.
 </p>
 
 
-<a href="#">
+<a href="pdf-tools/unlock-pdf.html">
 Open Tool →
 </a>
 
@@ -597,7 +597,7 @@ Add watermark to PDF.
 </p>
 
 
-<a href="#">
+<a href="pdf-tools/pdf-watermark.html">
 Open Tool →
 </a>
 
@@ -632,7 +632,7 @@ Edit PDF documents.
 </p>
 
 
-<a href="#">
+<a href="pdf-tools/pdf-editor.html">
 Open Tool →
 </a>
 
@@ -667,7 +667,7 @@ Scan documents into PDF.
 </p>
 
 
-<a href="#">
+<a href="pdf-tools/pdf-scanner.html">
 Open Tool →
 </a>
 
@@ -702,7 +702,7 @@ Extract text from PDF.
 </p>
 
 
-<a href="#">
+<a href="pdf-tools/pdf-ocr.html">
 Open Tool →
 </a>
 
@@ -737,7 +737,7 @@ Reduce PDF size.
 </p>
 
 
-<a href="#">
+<a href="pdf-tools/pdf-size-reducer.html">
 Open Tool →
 </a>
 
@@ -772,7 +772,7 @@ Remove hidden PDF data.
 </p>
 
 
-<a href="#">
+<a href="pdf-tools/remove-pdf-metadata.html">
 Open Tool →
 </a>
 
@@ -807,7 +807,7 @@ Add digital signature.
 </p>
 
 
-<a href="#">
+<a href="pdf-tools/pdf-signature.html">
 Open Tool →
 </a>
 
@@ -842,7 +842,7 @@ Convert Excel files to PDF.
 </p>
 
 
-<a href="#">
+<a href="pdf-tools/excel-to-pdf.html">
 Open Tool →
 </a>
 
@@ -877,7 +877,7 @@ Convert Word files to PDF.
 </p>
 
 
-<a href="#">
+<a href="pdf-tools/word-to-pdf.html">
 Open Tool →
 </a>
 
@@ -912,7 +912,7 @@ Convert PPT into PDF.
 </p>
 
 
-<a href="#">
+<a href="pdf-tools/powerpoint-to-pdf.html">
 Open Tool →
 </a>
 
@@ -947,7 +947,7 @@ Convert web page into PDF.
 </p>
 
 
-<a href="#">
+<a href="pdf-tools/html-to-pdf.html">
 Open Tool →
 </a>
 
@@ -992,6 +992,28 @@ Open Tool →
 
 
 
+<script>
+document.addEventListener("DOMContentLoaded",function(){
+ const cards=document.querySelectorAll(".pdf-tool-card");
+ cards.forEach(card=>{
+   const link=card.querySelector("a[href]");
+   if(!link)return;
+   card.addEventListener("click",e=>{
+     if(e.target.closest("a,button,input"))return;
+     location.href=link.getAttribute("href");
+   });
+   card.tabIndex=0;
+   card.addEventListener("keydown",e=>{
+     if(e.key==="Enter"||e.key===" "){e.preventDefault();location.href=link.getAttribute("href");}
+   });
+ });
+ const search=document.getElementById("pdfSearch");
+ if(search)search.addEventListener("input",function(){
+   const q=this.value.toLowerCase().trim();
+   cards.forEach(c=>c.style.display=c.innerText.toLowerCase().includes(q)?"":"none");
+ });
+});
+</script>
 </body>
 
 </html>

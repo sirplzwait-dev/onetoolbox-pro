@@ -1,274 +1,66 @@
-/* =========================================================
-   OneToolBox - IMAGE TOOLS JS
-   Search + Full Card Click
-========================================================= */
+/* =========================================
+   ONETOOLBOX - IMAGE TOOLS JS
+   Search + card navigation
+   ========================================= */
+"use strict";
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded",function(){
 
-    const cards =
-        document.querySelectorAll(
-            ".image-tool-card"
-        );
+    const search = document.getElementById("toolSearch");
+    const cards = Array.from(document.querySelectorAll(".image-tool-card"));
+    const count = document.getElementById("toolCount");
+    const clear = document.getElementById("clearSearch");
+    const noResults = document.getElementById("noResults");
 
-    const searchInput =
-        document.getElementById(
-            "toolSearch"
-        );
+    function filterTools(){
+        const query = search.value.trim().toLowerCase();
+        let visible = 0;
 
+        cards.forEach(function(card){
+            const text = (
+                (card.dataset.search || "") + " " +
+                (card.textContent || "")
+            ).toLowerCase();
 
-    /* ==========================================
-       CARD CLICK
-    ========================================== */
+            const match = !query || text.includes(query);
+            card.hidden = !match;
 
-    cards.forEach(function (card) {
+            if(match) visible++;
+        });
 
-        const link =
-            card.querySelector(
-                "a[href]"
-            );
+        count.textContent = visible;
+        clear.hidden = !query;
+        noResults.hidden = visible !== 0;
+    }
 
+    search.addEventListener("input",filterTools);
 
-        if (!link) return;
+    clear.addEventListener("click",function(){
+        search.value = "";
+        filterTools();
+        search.focus();
+    });
 
+    /* Whole card is clickable, while the actual <a> keeps normal link behavior. */
+    cards.forEach(function(card){
 
-        /* Make card keyboard accessible */
+        const link = card.querySelector("a[href]");
+        if(!link) return;
 
-        card.setAttribute(
-            "tabindex",
-            "0"
-        );
+        card.addEventListener("click",function(event){
+            if(event.target.closest("a")) return;
+            window.location.href = link.href;
+        });
 
+        card.addEventListener("keydown",function(event){
+            if(event.key !== "Enter" && event.key !== " ") return;
+            if(event.target.closest("a")) return;
 
-        card.setAttribute(
-            "role",
-            "link"
-        );
-
-
-        /* Mouse / Touch */
-
-        card.addEventListener(
-            "click",
-            function (event) {
-
-
-                /*
-                 * If user clicked the
-                 * actual Open Tool link,
-                 * browser handles it.
-                 */
-
-                if (
-                    event.target.closest("a")
-                ) {
-
-                    return;
-
-                }
-
-
-                /*
-                 * Otherwise clicking
-                 * anywhere on card
-                 * opens the link.
-                 */
-
-                window.location.href =
-                    link.getAttribute("href");
-
-            }
-        );
-
-
-        /* Keyboard */
-
-        card.addEventListener(
-            "keydown",
-            function (event) {
-
-                if (
-                    event.key === "Enter" ||
-                    event.key === " "
-                ) {
-
-                    event.preventDefault();
-
-                    window.location.href =
-                        link.getAttribute("href");
-
-                }
-
-            }
-        );
+            event.preventDefault();
+            window.location.href = link.href;
+        });
 
     });
 
-
-
-    /* ==========================================
-       SEARCH
-    ========================================== */
-
-    if (!searchInput) return;
-
-
-    searchInput.addEventListener(
-        "input",
-        function () {
-
-            const query =
-                this.value
-                    .trim()
-                    .toLowerCase();
-
-
-            let visibleCount = 0;
-
-
-            cards.forEach(
-                function (card) {
-
-                    const title =
-                        card.querySelector(
-                            "h3"
-                        )?.textContent || "";
-
-
-                    const description =
-                        card.querySelector(
-                            "p"
-                        )?.textContent || "";
-
-
-                    const link =
-                        card.querySelector(
-                            "a[href]"
-                        );
-
-
-                    const href =
-                        link
-                            ? link.getAttribute(
-                                "href"
-                              )
-                            : "";
-
-
-                    const searchableText =
-                        (
-                            title +
-                            " " +
-                            description +
-                            " " +
-                            href
-                        ).toLowerCase();
-
-
-                    const matched =
-                        !query ||
-                        searchableText.includes(
-                            query
-                        );
-
-
-                    if (matched) {
-
-                        card.classList.remove(
-                            "is-hidden"
-                        );
-
-                        visibleCount++;
-
-                    }
-
-                    else {
-
-                        card.classList.add(
-                            "is-hidden"
-                        );
-
-                    }
-
-                }
-            );
-
-
-            /* ==================================
-               NO RESULTS
-            ================================== */
-
-            let noResults =
-                document.getElementById(
-                    "imageToolsNoResults"
-                );
-
-
-            if (!noResults) {
-
-                noResults =
-                    document.createElement(
-                        "div"
-                    );
-
-
-                noResults.id =
-                    "imageToolsNoResults";
-
-
-                noResults.className =
-                    "image-tools-no-results";
-
-
-                noResults.innerHTML = `
-
-                    <i class="fa-solid fa-magnifying-glass"></i>
-
-                    <h3>
-                        No image tool found
-                    </h3>
-
-                    <p>
-                        Try another search term.
-                    </p>
-
-                `;
-
-
-                const grid =
-                    document.querySelector(
-                        ".image-tools-grid"
-                    );
-
-
-                if (grid) {
-
-                    grid.insertAdjacentElement(
-                        "afterend",
-                        noResults
-                    );
-
-                }
-
-            }
-
-
-            if (visibleCount === 0) {
-
-                noResults.classList.add(
-                    "show"
-                );
-
-            }
-
-            else {
-
-                noResults.classList.remove(
-                    "show"
-                );
-
-            }
-
-        }
-    );
-
+    filterTools();
 });

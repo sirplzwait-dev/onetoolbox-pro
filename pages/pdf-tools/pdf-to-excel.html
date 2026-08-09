@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PDF To Excel - OneToolBox</title>
+<meta name="description" content="Convert PDF text and tables to Excel online.">
+
+<link rel="stylesheet" href="../../assets/css/reset.css">
+<link rel="stylesheet" href="../../assets/css/variables.css">
+<link rel="stylesheet" href="../../assets/css/layout.css">
+<link rel="stylesheet" href="../../assets/css/components.css">
+<link rel="stylesheet" href="../../assets/css/pdf-tools/pdf-to-excel.css">
+
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+
+<body data-tool="pdf-to-excel">
+
+<div id="header-placeholder"></div>
+
+<main class="page page-offset">
+
+<section class="tool-hero">
+  <div class="container">
+    <div class="tool-badge">
+      <i class="fa-solid fa-file-excel"></i>
+      Free PDF Tool
+    </div>
+    <h1>📊 PDF To Excel</h1>
+    <p>Extract PDF text and organize it into an Excel spreadsheet.</p>
+  </div>
+</section>
+
+<section class="section">
+<div class="container">
+
+<div class="tool-grid">
+
+  <!-- Upload -->
+  <div class="tool-card">
+    <h2>Upload File</h2>
+
+    <div class="upload" id="upload" tabindex="0" role="button">
+      <i class="fa-solid fa-file-pdf upload-icon"></i>
+      <h3 id="uploadTitle">Choose File</h3>
+      <p id="uploadHint">📁 Select your PDF<br>🖱️ Drag &amp; Drop</p>
+
+      <label class="choose">
+        <i class="fa-solid fa-folder-open"></i>
+        Choose File
+        <input id="fileInput" type="file" accept="application/pdf,.pdf">
+      </label>
+    </div>
+
+    <div class="info">
+      <span>File Size</span>
+      <b id="fileSize">0 KB</b>
+    </div>
+
+    <div class="info">
+      <span>Pages</span>
+      <b id="pageCount">0</b>
+    </div>
+  </div>
+
+  <!-- Settings -->
+  <div class="tool-card settings">
+    <h2>Settings</h2>
+
+    <div class="option-box">
+      <label for="mode">Excel Format</label>
+      <select id="mode">
+        <option value="rows">Text Rows</option>
+        <option value="table">Detected Table</option>
+      </select>
+    </div>
+
+    <button id="run" class="btn primary" disabled>
+      <i class="fa-solid fa-file-excel"></i>
+      PDF To Excel
+    </button>
+
+    <div class="progress">
+      <div class="track"><div id="bar"></div></div>
+      <strong id="pct">0%</strong>
+    </div>
+
+    <p id="status" class="status">Choose a PDF file to begin.</p>
+  </div>
+
+  <!-- Result -->
+  <div class="tool-card">
+    <h2>Result</h2>
+
+    <div class="preview" id="preview">
+      <div id="resultEmpty" class="result-empty">
+        <i class="fa-regular fa-file-excel"></i>
+        <span>Your result will appear here.</span>
+      </div>
+
+      <div id="resultSummary" class="result-summary" hidden>
+        <i class="fa-solid fa-circle-check"></i>
+        <strong>Excel file ready</strong>
+        <small id="resultText">Converted successfully</small>
+      </div>
+    </div>
+
+    <div class="info">
+      <span>Result Size</span>
+      <b id="resultInfo">—</b>
+    </div>
+
+    <button id="download" class="btn success" disabled>
+      <i class="fa-solid fa-download"></i>
+      Download Excel
+    </button>
+
+    <button id="reset" class="btn danger">
+      <i class="fa-solid fa-rotate-left"></i>
+      Reset
+    </button>
+  </div>
+
+</div>
+</div>
+</section>
+
+<!-- Features -->
+<section class="section feature-section">
+<div class="container">
+
+<div class="section-heading">
+  <span>Simple &amp; Useful</span>
+  <h2>PDF To Excel Features</h2>
+  <p>Quickly turn PDF text into an editable Excel workbook.</p>
+</div>
+
+<div class="feature-grid">
+
+  <article class="feature">
+    <div class="feature-icon"><i class="fa-solid fa-file-arrow-up"></i></div>
+    <h3>Easy Upload</h3>
+    <p>Select a PDF or drag and drop it into the tool.</p>
+  </article>
+
+  <article class="feature">
+    <div class="feature-icon"><i class="fa-solid fa-table"></i></div>
+    <h3>Spreadsheet Output</h3>
+    <p>Extracted content is placed into Excel rows and columns.</p>
+  </article>
+
+  <article class="feature">
+    <div class="feature-icon"><i class="fa-solid fa-bolt"></i></div>
+    <h3>Fast Processing</h3>
+    <p>PDF pages are processed directly in your browser.</p>
+  </article>
+
+  <article class="feature">
+    <div class="feature-icon"><i class="fa-solid fa-download"></i></div>
+    <h3>Easy Download</h3>
+    <p>Download the generated XLSX file with one click.</p>
+  </article>
+
+</div>
+</div>
+</section>
+
+<!-- How to -->
+<section class="section how-section">
+<div class="container">
+
+<div class="section-heading">
+  <span>How It Works</span>
+  <h2>Convert PDF To Excel in 3 Steps</h2>
+</div>
+
+<div class="steps-grid">
+  <div class="step">
+    <div class="step-number">1</div>
+    <h3>Upload PDF</h3>
+    <p>Choose your PDF document.</p>
+  </div>
+
+  <div class="step">
+    <div class="step-number">2</div>
+    <h3>Convert</h3>
+    <p>Click PDF To Excel and let the tool process it.</p>
+  </div>
+
+  <div class="step">
+    <div class="step-number">3</div>
+    <h3>Download</h3>
+    <p>Download your Excel workbook.</p>
+  </div>
+</div>
+
+</div>
+</section>
+
+<!-- FAQ -->
+<section class="section faq-section">
+<div class="container faq">
+
+<div class="section-heading">
+  <span>FAQ</span>
+  <h2>Frequently Asked Questions</h2>
+  <p>Common questions about PDF To Excel.</p>
+</div>
+
+<div class="faq-list">
+
+<details>
+  <summary>Is PDF To Excel free?<i class="fa-solid fa-chevron-down"></i></summary>
+  <p>Yes. This browser-based version is designed for free use.</p>
+</details>
+
+<details>
+  <summary>Can it convert PDF tables?<i class="fa-solid fa-chevron-down"></i></summary>
+  <p>It can extract selectable PDF text and organize it into spreadsheet rows. Complex tables may require manual cleanup.</p>
+</details>
+
+<details>
+  <summary>Can I convert scanned PDFs?<i class="fa-solid fa-chevron-down"></i></summary>
+  <p>Scanned PDFs contain images rather than selectable text. OCR is required for reliable text extraction from scanned documents.</p>
+</details>
+
+<details>
+  <summary>Will the original PDF layout be preserved?<i class="fa-solid fa-chevron-down"></i></summary>
+  <p>No. The tool focuses on extracting content into an editable spreadsheet rather than reproducing the exact PDF design.</p>
+</details>
+
+</div>
+</div>
+</section>
+
+</main>
+
+<div id="footer-placeholder"></div>
+
+<!-- PDF.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script>
+if (window.pdfjsLib) {
+  pdfjsLib.GlobalWorkerOptions.workerSrc =
+    "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+}
+</script>
+
+<!-- SheetJS -->
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+
+<script src="../../assets/js/navigation.js"></script>
+<script src="../../assets/js/app.js"></script>
+<script src="../../assets/js/pdf-tools/pdf-to-excel.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Photo Enhancer - OneToolBox</title>
+
+    <meta name="description"
+          content="Enhance photos online for free. Adjust brightness, contrast, saturation, sharpness and enhancement level.">
+
+    <meta name="keywords"
+          content="photo enhancer, image enhancer, enhance photo online, improve image quality">
+
+    <!-- COMMON CSS -->
+
+    <link rel="stylesheet"
+          href="../../assets/css/reset.css">
+
+    <link rel="stylesheet"
+          href="../../assets/css/variables.css">
+
+    <link rel="stylesheet"
+          href="../../assets/css/layout.css">
+
+    <link rel="stylesheet"
+          href="../../assets/css/components.css">
+
+    <!-- TOOL CSS -->
+
+    <link rel="stylesheet"
+          href="../../assets/css/tools/photo-enhancer.css">
+
+    <!-- FONT AWESOME -->
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<div id="header-placeholder"></div>
+
+
+<main class="page page-offset">
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="tool-hero">
+
+    <div class="container">
+
+        <h1>
+            ✨ Photo Enhancer
+        </h1>
+
+        <p>
+            Enhance your photos with brightness,
+            contrast, saturation and sharpness controls.
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     MAIN TOOL
+===================================================== -->
+
+<section class="section">
+
+<div class="container">
+
+
+<div class="enhancer-box">
+
+
+<!-- =====================================================
+     ORIGINAL IMAGE
+===================================================== -->
+
+<div class="enhancer-card">
+
+
+    <h3>
+        <i class="fa-solid fa-image"></i>
+        Original Photo
+    </h3>
+
+
+    <div
+        class="upload-area"
+        id="uploadArea">
+
+
+        <i
+            class="fa-solid fa-cloud-arrow-up"
+            id="uploadIcon">
+        </i>
+
+
+        <img
+            id="originalPreview"
+            src=""
+            alt="Original Photo">
+
+
+        <h4 id="uploadText">
+            Upload Photo
+        </h4>
+
+
+        <p id="uploadInfo">
+
+            📁 JPG / JPEG / PNG / WebP
+
+            <br>
+
+            🖱 Drag &amp; Drop
+
+            <br>
+
+            📋 Paste Image
+
+        </p>
+
+
+        <!-- CHOOSE BUTTON -->
+
+        <label class="choose-btn">
+
+            <i class="fa-solid fa-image"></i>
+
+            Choose Photo
+
+            <input
+                type="file"
+                id="imageInput"
+                accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp">
+
+        </label>
+
+
+        <!-- RESET -->
+
+        <button
+            type="button"
+            class="btn-reset"
+            id="resetBtn">
+
+            <i class="fa-solid fa-rotate-left"></i>
+
+            Reset
+
+        </button>
+
+
+    </div>
+
+
+    <!-- INFORMATION -->
+
+    <div class="info">
+
+        <span>
+            File Size:
+        </span>
+
+        <b id="originalSize">
+            0 KB
+        </b>
+
+    </div>
+
+
+    <div class="info">
+
+        <span>
+            Dimension:
+        </span>
+
+        <b id="originalDimension">
+            0 × 0 px
+        </b>
+
+    </div>
+
+
+    <div class="info">
+
+        <span>
+            Format:
+        </span>
+
+        <b id="originalFormat">
+            -
+        </b>
+
+    </div>
+
+
+</div>
+
+
+
+<!-- =====================================================
+     ENHANCEMENT SETTINGS
+===================================================== -->
+
+<div class="enhancer-card settings-card">
+
+
+    <h3>
+        <i class="fa-solid fa-wand-magic-sparkles"></i>
+        Enhancement Settings
+    </h3>
+
+
+    <!-- ================================================
+         PRESET
+    ================================================= -->
+
+    <div class="setting-group">
+
+        <label>
+            Quick Enhancement
+        </label>
+
+
+        <div class="preset-grid">
+
+
+            <button
+                type="button"
+                class="preset-btn"
+                data-preset="natural">
+
+                <i class="fa-solid fa-leaf"></i>
+
+                Natural
+
+            </button>
+
+
+            <button
+                type="button"
+                class="preset-btn active"
+                data-preset="enhanced">
+
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+
+                Enhanced
+
+            </button>
+
+
+            <button
+                type="button"
+                class="preset-btn"
+                data-preset="vivid">
+
+                <i class="fa-solid fa-palette"></i>
+
+                Vivid
+
+            </button>
+
+
+            <button
+                type="button"
+                class="preset-btn"
+                data-preset="sharp">
+
+                <i class="fa-solid fa-bolt"></i>
+
+                Sharp
+
+            </button>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ================================================
+         ENHANCEMENT LEVEL
+    ================================================= -->
+
+    <div class="setting-group">
+
+
+        <div class="setting-heading">
+
+            <label>
+                Enhancement Level
+            </label>
+
+            <strong id="enhancementValue">
+                50%
+            </strong>
+
+        </div>
+
+
+        <input
+            type="range"
+            id="enhancementRange"
+            min="0"
+            max="100"
+            value="50"
+            step="1">
+
+    </div>
+
+
+
+    <!-- ================================================
+         BRIGHTNESS
+    ================================================= -->
+
+    <div class="setting-group">
+
+
+        <div class="setting-heading">
+
+            <label>
+                <i class="fa-solid fa-sun"></i>
+                Brightness
+            </label>
+
+            <strong id="brightnessValue">
+                0
+            </strong>
+
+        </div>
+
+
+        <input
+            type="range"
+            id="brightnessRange"
+            min="-100"
+            max="100"
+            value="0"
+            step="1">
+
+    </div>
+
+
+
+    <!-- ================================================
+         CONTRAST
+    ================================================= -->
+
+    <div class="setting-group">
+
+
+        <div class="setting-heading">
+
+            <label>
+                <i class="fa-solid fa-circle-half-stroke"></i>
+                Contrast
+            </label>
+
+            <strong id="contrastValue">
+                0
+            </strong>
+
+        </div>
+
+
+        <input
+            type="range"
+            id="contrastRange"
+            min="-100"
+            max="100"
+            value="0"
+            step="1">
+
+    </div>
+
+
+
+    <!-- ================================================
+         SATURATION
+    ================================================= -->
+
+    <div class="setting-group">
+
+
+        <div class="setting-heading">
+
+            <label>
+                <i class="fa-solid fa-droplet"></i>
+                Saturation
+            </label>
+
+            <strong id="saturationValue">
+                0
+            </strong>
+
+        </div>
+
+
+        <input
+            type="range"
+            id="saturationRange"
+            min="-100"
+            max="100"
+            value="0"
+            step="1">
+
+    </div>
+
+
+
+    <!-- ================================================
+         SHARPNESS
+    ================================================= -->
+
+    <div class="setting-group">
+
+
+        <div class="setting-heading">
+
+            <label>
+                <i class="fa-solid fa-bolt"></i>
+                Sharpness
+            </label>
+
+            <strong id="sharpnessValue">
+                0
+            </strong>
+
+        </div>
+
+
+        <input
+            type="range"
+            id="sharpnessRange"
+            min="0"
+            max="100"
+            value="0"
+            step="1">
+
+    </div>
+
+
+
+    <!-- ================================================
+         OUTPUT FORMAT
+    ================================================= -->
+
+    <div class="setting-group">
+
+
+        <label>
+            Output Format
+        </label>
+
+
+        <div class="format-display">
+
+            <i class="fa-solid fa-file-image"></i>
+
+            <span>
+                JPG
+            </span>
+
+            <strong>
+                .jpg
+            </strong>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ================================================
+         ENHANCE BUTTON
+    ================================================= -->
+
+    <button
+        type="button"
+        class="btn-primary"
+        id="enhanceBtn">
+
+        <i class="fa-solid fa-wand-magic-sparkles"></i>
+
+        Enhance Photo
+
+    </button>
+
+
+
+    <!-- ================================================
+         RESET SETTINGS
+    ================================================= -->
+
+    <button
+        type="button"
+        class="btn-secondary"
+        id="resetSettings">
+
+        <i class="fa-solid fa-arrow-rotate-left"></i>
+
+        Reset Settings
+
+    </button>
+
+
+</div>
+
+
+
+<!-- =====================================================
+     RESULT
+===================================================== -->
+
+<div class="enhancer-card">
+
+
+    <h3>
+        <i class="fa-solid fa-sparkles"></i>
+        Enhanced Result
+    </h3>
+
+
+    <div
+        class="result-preview"
+        id="resultPreview">
+
+
+        <img
+            id="resultImage"
+            src=""
+            alt="Enhanced Photo">
+
+
+        <span id="resultText">
+
+            Enhanced photo will appear here
+
+        </span>
+
+
+    </div>
+
+
+    <!-- RESULT INFO -->
+
+    <div class="info">
+
+        <span>
+            New Size:
+        </span>
+
+        <b id="newSize">
+            0 KB
+        </b>
+
+    </div>
+
+
+    <div class="info">
+
+        <span>
+            Dimension:
+        </span>
+
+        <b id="newDimension">
+            0 × 0 px
+        </b>
+
+    </div>
+
+
+    <div class="info">
+
+        <span>
+            Format:
+        </span>
+
+        <b id="newFormat">
+            JPG
+        </b>
+
+    </div>
+
+
+    <div class="info">
+
+        <span>
+            Enhancement:
+        </span>
+
+        <b id="newEnhancement">
+            50%
+        </b>
+
+    </div>
+
+
+    <!-- DOWNLOAD -->
+
+    <a
+        href="#"
+        class="btn-success disabled"
+        id="downloadBtn">
+
+        <i class="fa-solid fa-download"></i>
+
+        Download Enhanced Photo
+
+    </a>
+
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     FEATURES
+===================================================== -->
+
+<section class="section">
+
+<div class="container">
+
+
+<div class="content-card">
+
+
+<h2>
+    🚀 Photo Enhancer Features
+</h2>
+
+
+<div class="feature-grid">
+
+
+<div class="feature-item">
+
+    <i class="fa-solid fa-wand-magic-sparkles"></i>
+
+    <h3>
+        One-Click Enhancement
+    </h3>
+
+    <p>
+        Improve your photo quickly with
+        ready-made enhancement presets.
+    </p>
+
+</div>
+
+
+<div class="feature-item">
+
+    <i class="fa-solid fa-sun"></i>
+
+    <h3>
+        Brightness Control
+    </h3>
+
+    <p>
+        Make dark photos brighter or
+        reduce excessive brightness.
+    </p>
+
+</div>
+
+
+<div class="feature-item">
+
+    <i class="fa-solid fa-circle-half-stroke"></i>
+
+    <h3>
+        Contrast Control
+    </h3>
+
+    <p>
+        Adjust contrast to make details
+        more visible.
+    </p>
+
+</div>
+
+
+<div class="feature-item">
+
+    <i class="fa-solid fa-droplet"></i>
+
+    <h3>
+        Saturation
+    </h3>
+
+    <p>
+        Control the color intensity
+        of your photo.
+    </p>
+
+</div>
+
+
+<div class="feature-item">
+
+    <i class="fa-solid fa-bolt"></i>
+
+    <h3>
+        Sharpness
+    </h3>
+
+    <p>
+        Add sharpness to improve
+        visible image details.
+    </p>
+
+</div>
+
+
+<div class="feature-item">
+
+    <i class="fa-solid fa-shield-halved"></i>
+
+    <h3>
+        Browser Processing
+    </h3>
+
+    <p>
+        Process your image directly
+        inside your browser.
+    </p>
+
+</div>
+
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     HOW TO USE
+===================================================== -->
+
+<section class="section">
+
+<div class="container">
+
+
+<div class="content-card">
+
+
+<h2>
+    📖 How to Enhance a Photo
+</h2>
+
+
+<div class="steps-grid">
+
+
+<div class="step">
+
+    <span>
+        1
+    </span>
+
+    <h3>
+        Upload Photo
+    </h3>
+
+    <p>
+        Choose JPG, PNG or WebP.
+    </p>
+
+</div>
+
+
+<div class="step">
+
+    <span>
+        2
+    </span>
+
+    <h3>
+        Adjust Settings
+    </h3>
+
+    <p>
+        Choose a preset or adjust
+        individual controls.
+    </p>
+
+</div>
+
+
+<div class="step">
+
+    <span>
+        3
+    </span>
+
+    <h3>
+        Enhance
+    </h3>
+
+    <p>
+        Click Enhance Photo.
+    </p>
+
+</div>
+
+
+<div class="step">
+
+    <span>
+        4
+    </span>
+
+    <h3>
+        Download
+    </h3>
+
+    <p>
+        Preview and download
+        your enhanced photo.
+    </p>
+
+</div>
+
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     FAQ
+===================================================== -->
+
+<section class="section">
+
+<div class="container">
+
+
+<div class="content-card faq-card">
+
+
+<h2>
+    ❓ Frequently Asked Questions
+</h2>
+
+
+<details>
+
+    <summary>
+        What does this Photo Enhancer do?
+    </summary>
+
+    <p>
+        It lets you adjust brightness, contrast,
+        saturation, sharpness and overall
+        enhancement level of your image.
+    </p>
+
+</details>
+
+
+<details>
+
+    <summary>
+        Which image formats are supported?
+    </summary>
+
+    <p>
+        JPG, JPEG, PNG and WebP images are supported.
+    </p>
+
+</details>
+
+
+<details>
+
+    <summary>
+        Can I enhance a dark photo?
+    </summary>
+
+    <p>
+        Yes. Increase the brightness and contrast
+        to improve the appearance of a dark image.
+    </p>
+
+</details>
+
+
+<details>
+
+    <summary>
+        Can I make a photo sharper?
+    </summary>
+
+    <p>
+        Yes. Increase the Sharpness control and
+        preview the result before downloading.
+    </p>
+
+</details>
+
+
+<details>
+
+    <summary>
+        What are the enhancement presets?
+    </summary>
+
+    <p>
+        Natural, Enhanced, Vivid and Sharp provide
+        quick starting settings for different types
+        of photos.
+    </p>
+
+</details>
+
+
+<details>
+
+    <summary>
+        Are my photos uploaded to a server?
+    </summary>
+
+    <p>
+        No. The basic enhancement is performed
+        directly in your browser.
+    </p>
+
+</details>
+
+
+<details>
+
+    <summary>
+        Is this Photo Enhancer free?
+    </summary>
+
+    <p>
+        Yes.
+    </p>
+
+</details>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+</main>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<div id="footer-placeholder"></div>
+
+
+
+<!-- COMMON JS -->
+
+<script
+    src="../../assets/js/navigation.js">
+</script>
+
+<script
+    src="../../assets/js/app.js">
+</script>
+
+
+
+<!-- TOOL JS -->
+
+<script
+    src="../../assets/js/tools/photo-enhancer.js">
+</script>
+
+
+</body>
+
+</html>

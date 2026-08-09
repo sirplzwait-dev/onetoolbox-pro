@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Rotate PDF - OneToolBox</title>
+<meta name="description" content="Rotate PDF pages and download the rotated PDF online.">
+<link rel="stylesheet" href="../../assets/css/reset.css">
+<link rel="stylesheet" href="../../assets/css/variables.css">
+<link rel="stylesheet" href="../../assets/css/layout.css">
+<link rel="stylesheet" href="../../assets/css/components.css">
+<link rel="stylesheet" href="../../assets/css/pdf-tools/rotate-pdf.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+<body data-tool="rotate-pdf">
+<div id="header-placeholder"></div>
+
+<main class="page page-offset">
+<section class="tool-hero">
+  <div class="container">
+    <div class="tool-badge"><i class="fa-solid fa-rotate"></i> Free PDF Tool</div>
+    <h1>🔄 Rotate PDF</h1>
+    <p>Rotate all PDF pages or choose a different rotation for individual pages.</p>
+  </div>
+</section>
+
+<section class="section">
+<div class="container">
+<div class="tool-grid">
+
+<div class="tool-card">
+  <h2>Choose PDF</h2>
+  <div class="upload" id="upload" tabindex="0" role="button">
+    <i class="fa-solid fa-file-pdf upload-icon"></i>
+    <h3 id="uploadTitle">Choose File</h3>
+    <p id="uploadHint">📁 Select a PDF<br>🖱️ Drag &amp; Drop</p>
+    <label class="choose">
+      <i class="fa-solid fa-folder-open"></i>
+      Choose PDF
+      <input id="fileInput" type="file" accept="application/pdf,.pdf">
+    </label>
+  </div>
+  <div class="info"><span>File Size</span><b id="fileSize">0 KB</b></div>
+  <div class="info"><span>Total Pages</span><b id="pageCount">0</b></div>
+</div>
+
+<div class="tool-card settings">
+  <h2>Rotation</h2>
+
+  <div class="option-box">
+    <label for="rotateMode">Apply To</label>
+    <select id="rotateMode">
+      <option value="all" selected>All Pages</option>
+      <option value="odd">Odd Pages</option>
+      <option value="even">Even Pages</option>
+      <option value="custom">Custom Pages</option>
+    </select>
+  </div>
+
+  <div class="option-box" id="customBox" hidden>
+    <label for="customPages">Page Numbers</label>
+    <input id="customPages" type="text" placeholder="Example: 1, 3, 5-7">
+    <small>Only these pages will be rotated.</small>
+  </div>
+
+  <div class="rotation-buttons">
+    <button class="rotate-choice active" data-deg="90" type="button">
+      <i class="fa-solid fa-rotate-right"></i><span>90°</span>
+    </button>
+    <button class="rotate-choice" data-deg="180" type="button">
+      <i class="fa-solid fa-arrows-rotate"></i><span>180°</span>
+    </button>
+    <button class="rotate-choice" data-deg="270" type="button">
+      <i class="fa-solid fa-rotate-left"></i><span>270°</span>
+    </button>
+  </div>
+
+  <button id="run" class="btn primary" disabled>
+    <i class="fa-solid fa-rotate"></i> Rotate PDF
+  </button>
+
+  <div class="progress">
+    <div class="track"><div id="bar"></div></div>
+    <strong id="pct">0%</strong>
+  </div>
+  <p id="status" class="status">Choose a PDF file to begin.</p>
+</div>
+
+<div class="tool-card">
+  <h2>Result</h2>
+  <div class="preview">
+    <div id="resultEmpty" class="result-empty">
+      <i class="fa-regular fa-file-pdf"></i>
+      <span>Your rotated PDF will appear here.</span>
+    </div>
+    <div id="resultSummary" class="result-summary" hidden>
+      <i class="fa-solid fa-circle-check"></i>
+      <strong>PDF ready</strong>
+      <small id="resultText"></small>
+    </div>
+  </div>
+  <div class="info"><span>PDF Size</span><b id="resultInfo">—</b></div>
+  <button id="download" class="btn success" disabled>
+    <i class="fa-solid fa-download"></i> Download PDF
+  </button>
+  <button id="reset" class="btn danger">
+    <i class="fa-solid fa-rotate-left"></i> Reset
+  </button>
+</div>
+
+</div>
+</div>
+</section>
+
+<section class="section feature-section">
+<div class="container">
+<div class="section-heading">
+<span>Simple &amp; Useful</span>
+<h2>Rotate PDF Features</h2>
+<p>Fix page orientation quickly without changing the original file.</p>
+</div>
+<div class="feature-grid">
+<article class="feature"><div class="feature-icon"><i class="fa-solid fa-rotate"></i></div><h3>Easy Rotation</h3><p>Rotate PDF pages by 90°, 180° or 270°.</p></article>
+<article class="feature"><div class="feature-icon"><i class="fa-solid fa-layer-group"></i></div><h3>Page Selection</h3><p>Rotate all, odd, even or selected pages.</p></article>
+<article class="feature"><div class="feature-icon"><i class="fa-solid fa-file-pdf"></i></div><h3>Original Safe</h3><p>Your original PDF is not modified.</p></article>
+<article class="feature"><div class="feature-icon"><i class="fa-solid fa-download"></i></div><h3>Easy Download</h3><p>Download the rotated PDF with one click.</p></article>
+</div>
+</div>
+</section>
+
+<section class="section how-section">
+<div class="container">
+<div class="section-heading"><span>How It Works</span><h2>Rotate PDF in 3 Steps</h2></div>
+<div class="steps-grid">
+<div class="step"><div class="step-number">1</div><h3>Upload PDF</h3><p>Select your PDF document.</p></div>
+<div class="step"><div class="step-number">2</div><h3>Choose Rotation</h3><p>Select pages and the rotation angle.</p></div>
+<div class="step"><div class="step-number">3</div><h3>Download</h3><p>Download the rotated PDF.</p></div>
+</div>
+</div>
+</section>
+
+<section class="section faq-section">
+<div class="container faq">
+<div class="section-heading"><span>FAQ</span><h2>Frequently Asked Questions</h2></div>
+<div class="faq-list">
+<details><summary>Can I rotate all pages at once?<i class="fa-solid fa-chevron-down"></i></summary><p>Yes. Select All Pages and choose 90°, 180° or 270°.</p></details>
+<details><summary>Can I rotate only selected pages?<i class="fa-solid fa-chevron-down"></i></summary><p>Yes. Select Custom Pages and enter page numbers or ranges such as 1, 3, 5-7.</p></details>
+<details><summary>Can I rotate odd or even pages?<i class="fa-solid fa-chevron-down"></i></summary><p>Yes. Odd Pages and Even Pages are available.</p></details>
+<details><summary>Will my original PDF be changed?<i class="fa-solid fa-chevron-down"></i></summary><p>No. A new rotated PDF is created and the original remains unchanged.</p></details>
+</div>
+</div>
+</section>
+</main>
+
+<div id="footer-placeholder"></div>
+<script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+<script src="../../assets/js/navigation.js"></script>
+<script src="../../assets/js/app.js"></script>
+<script src="../../assets/js/pdf-tools/rotate-pdf.js"></script>
+</body>
+</html>

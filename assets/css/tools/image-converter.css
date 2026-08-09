@@ -531,4 +531,28 @@ height:240px;
     height:8px;
     background:#d1d5db;
     border-radius:50px;
-}\n\n/* ===================================\n   STANDARD IMAGE TOOL CONTENT\n   Same structure as Image Compressor\n=================================== */\n.tool-hero{padding:40px 0 30px;text-align:center}.tool-hero h1{font-size:40px;font-weight:800;color:#0f172a;margin:0 0 8px}.tool-hero p{color:#64748b;font-size:17px;margin:0}.content-section{padding:38px 0}.compact-section{padding-top:20px}.content-heading{text-align:center;margin-bottom:24px}.content-heading h2{margin:0 0 8px;font-size:28px;color:#0f172a}.content-heading p{max-width:760px;margin:0 auto;color:#64748b;line-height:1.7}.steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.info-card{background:#fff;border:1px solid #e5e7eb;border-radius:16px;padding:22px;box-shadow:0 6px 20px rgba(0,0,0,.06)}.step-number{width:38px;height:38px;border-radius:50%;background:#2563eb;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;margin-bottom:13px}.info-card h3{margin:0 0 8px;font-size:18px}.info-card p{margin:0;color:#64748b;line-height:1.6}.feature-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}.feature-mini{display:flex;gap:15px;align-items:flex-start;background:#fff;border:1px solid #e5e7eb;border-radius:15px;padding:18px}.feature-mini>i{font-size:22px;color:#2563eb;margin-top:3px}.feature-mini h3{margin:0 0 5px;font-size:17px}.feature-mini p{margin:0;color:#64748b;line-height:1.5}.privacy-card{display:flex;gap:18px;align-items:flex-start;padding:24px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:18px}.privacy-icon{width:48px;height:48px;flex:0 0 48px;display:flex;align-items:center;justify-content:center;border-radius:13px;background:#dcfce7;color:#15803d;font-size:21px}.privacy-card h2{margin:0 0 8px;font-size:21px}.privacy-card p{margin:0 0 8px;color:#64748b;line-height:1.6}.faq-list{max-width:850px;margin:0 auto}.faq-list details{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:0 18px;margin-bottom:10px}.faq-list summary{cursor:pointer;padding:16px 0;font-weight:700;color:#0f172a}.faq-list details p{margin:0;padding:0 0 16px;color:#64748b;line-height:1.6}.related-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.related-grid a{display:flex;align-items:center;justify-content:center;gap:9px;min-height:52px;border:1px solid #e5e7eb;border-radius:12px;background:#fff;color:#334155;text-decoration:none;font-weight:700}.related-grid a:hover{border-color:#2563eb;color:#2563eb}.ad-box{min-height:90px;border:1px dashed #cbd5e1;border-radius:14px;display:flex;align-items:center;justify-content:center;color:#94a3b8;background:#f8fafc;font-size:13px}.ad-section{padding-top:10px}@media(max-width:1100px){.steps-grid{grid-template-columns:1fr}.related-grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:700px){.tool-hero h1{font-size:30px}.feature-grid{grid-template-columns:1fr}.related-grid{grid-template-columns:1fr}.privacy-card{flex-direction:column}}\n
+}
+
+/* ===== Choose Image reliability fix ===== */
+.choose-btn{
+  position:relative !important;
+  z-index:20 !important;
+  pointer-events:auto !important;
+  user-select:none;
+}
+.choose-btn input[type="file"]{
+  position:absolute !important;
+  inset:0 !important;
+  width:100% !important;
+  height:100% !important;
+  opacity:0 !important;
+  display:block !important;
+  cursor:pointer !important;
+  z-index:30 !important;
+}
+#imageInput{
+  pointer-events:auto !important;
+}
+.upload-area{
+  position:relative;
+}

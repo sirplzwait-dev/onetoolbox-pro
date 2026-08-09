@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QR Scanner - OneToolBox</title>
+<meta name="description" content="Scan QR codes using your camera or an image. Free browser-based QR scanner.">
+<link rel="stylesheet" href="../../assets/css/reset.css">
+<link rel="stylesheet" href="../../assets/css/variables.css">
+<link rel="stylesheet" href="../../assets/css/layout.css">
+<link rel="stylesheet" href="../../assets/css/components.css">
+<link rel="stylesheet" href="../../assets/css/tools/qr-scanner.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+<body>
+
+<div id="header-placeholder"></div>
+
+<main class="page page-offset">
+
+<section class="qr-hero">
+<div class="container">
+<div class="tool-badge"><i class="fa-solid fa-qrcode"></i> Free QR Tool</div>
+<h1>QR Scanner</h1>
+<p>Scan QR codes using your camera or upload an image. Your scan is processed directly in your browser.</p>
+</div>
+</section>
+
+<section class="section">
+<div class="container">
+
+<div class="qr-workspace">
+
+<section class="scanner-card">
+
+<div class="scanner-tabs">
+<button id="cameraTab" class="scanner-tab active" type="button">
+<i class="fa-solid fa-camera"></i> Camera
+</button>
+<button id="imageTab" class="scanner-tab" type="button">
+<i class="fa-solid fa-image"></i> Image
+</button>
+</div>
+
+<div id="cameraPanel" class="scanner-panel">
+
+<div class="camera-box">
+<video id="video" autoplay playsinline muted></video>
+<div id="cameraPlaceholder" class="camera-placeholder">
+<i class="fa-solid fa-camera"></i>
+<h3>Camera Scanner</h3>
+<p>Allow camera access to scan a QR code.</p>
+</div>
+<div class="scan-frame" aria-hidden="true">
+<span class="corner tl"></span><span class="corner tr"></span>
+<span class="corner bl"></span><span class="corner br"></span>
+<div class="scan-line"></div>
+</div>
+</div>
+
+<div class="camera-actions">
+<button id="startCamera" class="primary-btn" type="button">
+<i class="fa-solid fa-camera"></i> Start Camera
+</button>
+<button id="stopCamera" class="secondary-btn" type="button" disabled>
+<i class="fa-solid fa-stop"></i> Stop
+</button>
+</div>
+
+<p id="cameraStatus" class="scanner-status">
+Camera is not running.
+</p>
+
+<p class="secure-note">
+<i class="fa-solid fa-lock"></i>
+Camera access requires a secure context such as HTTPS or localhost.
+</p>
+</div>
+
+<div id="imagePanel" class="scanner-panel" hidden>
+
+<label class="upload-zone" for="qrImageInput">
+<i class="fa-solid fa-cloud-arrow-up"></i>
+<strong>Upload QR Image</strong>
+<span>Click to choose JPG, PNG or WebP</span>
+</label>
+<input id="qrImageInput" type="file" accept="image/png,image/jpeg,image/webp" hidden>
+
+<div id="imagePreviewWrap" class="image-preview-wrap" hidden>
+<img id="qrImagePreview" alt="QR image preview">
+</div>
+
+<p id="imageStatus" class="scanner-status">Choose an image containing a QR code.</p>
+</div>
+
+</section>
+
+<aside class="result-card">
+
+<div class="result-header">
+<h2><i class="fa-solid fa-square-poll-horizontal"></i> Scan Result</h2>
+<span id="resultType" class="result-type">Waiting</span>
+</div>
+
+<div id="emptyResult" class="empty-result">
+<i class="fa-solid fa-qrcode"></i>
+<h3>No QR code scanned</h3>
+<p>Scan a QR code to see its content here.</p>
+</div>
+
+<div id="resultContent" class="result-content" hidden>
+
+<div class="result-box">
+<label>Detected Content</label>
+<div id="resultText" class="result-text"></div>
+</div>
+
+<div id="urlActions" class="url-actions" hidden>
+<a id="openLink" class="open-btn" href="#" target="_blank" rel="noopener noreferrer">
+<i class="fa-solid fa-arrow-up-right-from-square"></i> Open Link
+</a>
+</div>
+
+<div class="result-actions">
+<button id="copyResult" class="secondary-btn" type="button">
+<i class="fa-regular fa-copy"></i> Copy
+</button>
+<button id="clearResult" class="danger-btn" type="button">
+<i class="fa-solid fa-trash"></i> Clear
+</button>
+</div>
+
+</div>
+
+<div class="support-note">
+<i class="fa-solid fa-shield-halved"></i>
+<span>QR content is decoded locally. No QR data is sent to a remote server by this tool.</span>
+</div>
+
+</aside>
+
+</div>
+</div>
+</section>
+
+<section class="section">
+<div class="container">
+<div class="feature-grid">
+<div class="feature-item">
+<div class="feature-icon blue"><i class="fa-solid fa-camera"></i></div>
+<div><h3>Camera Scan</h3><p>Scan QR codes directly with your device camera.</p></div>
+</div>
+<div class="feature-item">
+<div class="feature-icon purple"><i class="fa-solid fa-image"></i></div>
+<div><h3>Image Scan</h3><p>Upload an image containing a QR code.</p></div>
+</div>
+<div class="feature-item">
+<div class="feature-icon orange"><i class="fa-solid fa-link"></i></div>
+<div><h3>Open Links</h3><p>Recognized URLs can be opened directly.</p></div>
+</div>
+<div class="feature-item">
+<div class="feature-icon green"><i class="fa-regular fa-copy"></i></div>
+<div><h3>Copy Result</h3><p>Copy the scanned content with one click.</p></div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="section">
+<div class="container">
+<div class="content-card">
+<h2>How to Scan a QR Code?</h2>
+<div class="steps-grid">
+<div class="step"><span>1</span><div><h3>Choose Method</h3><p>Use Camera or Image scanning.</p></div></div>
+<div class="step"><span>2</span><div><h3>Scan QR</h3><p>Point the camera at a QR code or upload an image.</p></div></div>
+<div class="step"><span>3</span><div><h3>View Result</h3><p>The decoded content appears in the result panel.</p></div></div>
+<div class="step"><span>4</span><div><h3>Use Result</h3><p>Copy the content or open the detected URL.</p></div></div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="section">
+<div class="container">
+<div class="content-card faq">
+<h2>Frequently Asked Questions</h2>
+<details><summary>Is QR Scanner free?</summary><p>Yes. It is designed to work in the browser without an API key.</p></details>
+<details><summary>Does the camera work on mobile?</summary><p>Yes, if the browser supports camera access and the page is served over HTTPS or localhost.</p></details>
+<details><summary>Can I scan a QR code from a photo?</summary><p>Yes. Use the Image tab and upload a JPG, PNG or WebP image.</p></details>
+<details><summary>Is my QR data uploaded?</summary><p>No. The QR decoding code runs locally in your browser.</p></details>
+<details><summary>Why does camera scanning not start?</summary><p>Check camera permission and make sure the website is running on HTTPS or localhost. Some browsers may not support the native QR detector used for camera scanning.</p></details>
+</div>
+</div>
+</section>
+
+</main>
+
+<div id="footer-placeholder"></div>
+
+<script src="../../assets/js/navigation.js"></script>
+<script src="../../assets/js/app.js"></script>
+<script src="../../assets/js/tools/qr-scanner.js"></script>
+</body>
+</html>
