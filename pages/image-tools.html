@@ -512,5 +512,47 @@ Open Tool →
 <script src="../assets/js/app.js"></script>
 <script src="../assets/js/image-tools.js"></script>
 
+<script>
+/* =====================================
+   IMAGE TOOL CARD NAVIGATION
+   Same behavior for all current and future cards
+===================================== */
+document.addEventListener("DOMContentLoaded", () => {
+
+    document.querySelectorAll(".image-tool-card").forEach(card => {
+
+        const link = card.querySelector("a[href]");
+
+        if (!link) return;
+
+        card.addEventListener("click", (event) => {
+
+            // Let the existing Open Tool link work normally.
+            if (event.target.closest("a")) return;
+
+            window.location.href = link.href;
+
+        });
+
+        card.addEventListener("keydown", (event) => {
+
+            if (event.key !== "Enter" && event.key !== " ") {
+                return;
+            }
+
+            if (event.target.closest("a")) {
+                return;
+            }
+
+            event.preventDefault();
+            window.location.href = link.href;
+
+        });
+
+    });
+
+});
+</script>
+
 </body>
 </html>

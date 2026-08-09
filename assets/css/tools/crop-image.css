@@ -1,506 +1,1748 @@
-/* ==========================================
-   OneToolBox Crop Image Tool
-========================================== */
+/* =========================================================
+   IMAGE CROP TOOL - COMPLETE CSS
+   Layout:
+   LEFT  = Upload (small / natural height)
+   CENTER = Controls (long)
+   RIGHT = Result (small / natural height)
 
-.crop-box{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:25px;
-margin-top:25px;
+   IMPORTANT:
+   - No internal scrollbar
+   - No sticky
+   - No fixed
+   - Whole page scrolls normally
+========================================================= */
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.tool-hero {
+    text-align: center;
+    padding: 35px 0 25px;
 }
 
-.crop-card{
-
-background:#fff;
-
-border-radius:18px;
-
-padding:22px;
-
-box-shadow:0 10px 25px rgba(0,0,0,.08);
-
-transition:.3s;
-
+.tool-hero h1 {
+    margin: 0;
+    font-size: 38px;
+    line-height: 1.2;
+    font-weight: 800;
+    color: #111827;
 }
 
-.crop-card:hover{
-
-transform:translateY(-5px);
-
-box-shadow:0 15px 35px rgba(0,0,0,.12);
-
-}
-
-.crop-card h3{
-
-font-size:22px;
-
-margin-bottom:20px;
-
-font-weight:700;
-
-color:#222;
-
+.tool-hero p {
+    margin: 10px 0 0;
+    color: #64748b;
+    font-size: 16px;
+    line-height: 1.6;
 }
 
 
+/* =========================================================
+   MAIN 3 COLUMN AREA
+========================================================= */
 
-/* =======================
-Upload Area
-======================= */
+.crop-workspace {
+    display: grid;
 
-.upload-area{
+    grid-template-columns:
+        minmax(0, 1fr)
+        430px
+        minmax(0, 1fr);
 
-border:2px dashed #d7d7d7;
+    gap: 24px;
 
-border-radius:16px;
+    width: 100%;
 
-padding:25px;
+    margin-top: 25px;
 
-text-align:center;
+    /*
+       VERY IMPORTANT
 
-cursor:pointer;
+       Do NOT use:
+       align-items: stretch;
 
-transition:.3s;
+       Because Upload and Result must remain
+       their own natural height.
+    */
 
-min-height:420px;
+    align-items: start;
 
-display:flex;
-
-flex-direction:column;
-
-justify-content:center;
-
-align-items:center;
-
-}
-
-.upload-area:hover{
-
-border-color:#2563eb;
-
-background:#f8fbff;
-
-}
-
-#uploadIcon{
-
-font-size:58px;
-
-color:#2563eb;
-
-margin-bottom:18px;
-
-}
-
-.crop-preview{
-
-display:none;
-
-max-width:100%;
-
-max-height:320px;
-
-border-radius:12px;
-
-margin-bottom:15px;
-
+    position: relative;
 }
 
 
+/* =========================================================
+   PANELS
+========================================================= */
 
-/* =======================
-Buttons
-======================= */
+.crop-panel {
+    min-width: 0;
 
-.choose-btn,
-.btn-reset,
-.btn-primary,
-.btn-success{
+    width: 100%;
 
-display:flex;
+    height: auto;
 
-align-items:center;
+    min-height: 0;
 
-justify-content:center;
+    max-height: none;
 
-gap:10px;
-
-width:100%;
-
-height:48px;
-
-border-radius:10px;
-
-font-weight:600;
-
-cursor:pointer;
-
-transition:.3s;
-
-text-decoration:none;
-
-margin-top:15px;
-
-}
-
-.choose-btn{
-
-background:#2563eb;
-
-color:#fff;
-
-position:relative;
-
-overflow:hidden;
-
-}
-
-.choose-btn:hover{
-
-background:#1d4ed8;
-
-}
-
-.choose-btn input{
-
-position:absolute;
-
-left:0;
-
-top:0;
-
-width:100%;
-
-height:100%;
-
-opacity:0;
-
-cursor:pointer;
-
-}
-
-.btn-reset{
-
-background:#ef4444;
-
-color:#fff;
-
-border:none;
-
-}
-
-.btn-reset:hover{
-
-background:#dc2626;
-
-}
-
-.btn-primary{
-
-background:#16a34a;
-
-color:#fff;
-
-border:none;
-
-}
-
-.btn-primary:hover{
-
-background:#15803d;
-
-}
-
-.btn-success{
-
-background:#0891b2;
-
-color:#fff;
-
-}
-
-.btn-success:hover{
-
-background:#0e7490;
-
-}
-/* ===========================
-   Settings
-=========================== */
-
-.crop-card label{
-
-display:block;
-
-margin:18px 0 8px;
-
-font-weight:600;
-
-color:#333;
-
-}
-
-.ratio-grid{
-
-display:grid;
-
-grid-template-columns:repeat(3,1fr);
-
-gap:10px;
-
-margin-bottom:18px;
-
-}
-
-.ratio-btn{
-
-height:42px;
-
-border:1px solid #ddd;
-
-background:#fff;
-
-border-radius:10px;
-
-cursor:pointer;
-
-font-weight:600;
-
-transition:.3s;
-
-}
-
-.ratio-btn:hover{
-
-background:#eef5ff;
-
-border-color:#2563eb;
-
-}
-
-.ratio-btn.active{
-
-background:#2563eb;
-
-color:#fff;
-
-border-color:#2563eb;
-
+    overflow: visible;
 }
 
 
+/* =========================================================
+   LEFT PANEL
+========================================================= */
 
-/* ===========================
-   Rotate / Flip / Zoom
-=========================== */
+.left-panel {
+    height: auto;
 
-.tool-buttons,
-.zoom-buttons{
+    align-self: start;
 
-display:grid;
-
-grid-template-columns:repeat(2,1fr);
-
-gap:12px;
-
-margin-bottom:18px;
-
-}
-
-.tool-btn{
-
-height:46px;
-
-border:none;
-
-border-radius:10px;
-
-background:#f4f4f4;
-
-cursor:pointer;
-
-font-weight:600;
-
-transition:.3s;
-
-display:flex;
-
-align-items:center;
-
-justify-content:center;
-
-gap:8px;
-
-}
-
-.tool-btn:hover{
-
-background:#2563eb;
-
-color:#fff;
-
+    overflow: visible;
 }
 
 
+/* =========================================================
+   CENTER PANEL
+========================================================= */
 
-/* ===========================
-   Cropper Preview
-=========================== */
+.center-panel {
+    height: auto;
 
-.crop-preview{
+    align-self: start;
 
-display:block;
-
-width:100%;
-
-max-height:360px;
-
-object-fit:contain;
-
-border-radius:12px;
-
+    overflow: visible;
 }
 
 
+/* =========================================================
+   RIGHT PANEL
+========================================================= */
 
-/* ===========================
-   Result Preview
-=========================== */
+.right-panel {
+    height: auto;
 
-.result-preview{
+    align-self: start;
 
-height:360px;
-
-border:2px dashed #ddd;
-
-border-radius:14px;
-
-display:flex;
-
-align-items:center;
-
-justify-content:center;
-
-background:#fafafa;
-
-overflow:hidden;
-
-margin-bottom:20px;
-
-}
-
-#resultImage{
-
-display:none;
-
-max-width:100%;
-
-max-height:100%;
-
-object-fit:contain;
-
-}
-
-#resultText{
-
-color:#777;
-
-font-size:15px;
-
-text-align:center;
-
-padding:20px;
-
+    overflow: visible;
 }
 
 
+/* =========================================================
+   CONTROL CARD
 
-/* ===========================
-   Info
-=========================== */
+   NO STICKY
+   NO FIXED
+========================================================= */
 
-.info{
+.crop-settings-card {
+    position: relative;
 
-display:flex;
+    top: auto;
 
-justify-content:space-between;
+    left: auto;
 
-align-items:center;
+    width: 100%;
 
-margin-top:14px;
+    max-width: 430px;
 
-font-size:15px;
+    height: auto;
 
-}
+    min-height: 0;
 
-.info b{
+    max-height: none;
 
-color:#111;
+    margin: 0;
 
-}
+    box-sizing: border-box;
 
+    overflow: visible;
 
-
-/* ===========================
-   Disabled Download
-=========================== */
-
-.disabled{
-
-pointer-events:none;
-
-opacity:.45;
-
+    z-index: 1;
 }
 
 
+/* =========================================================
+   LEFT / RIGHT CARD
 
-/* ===========================
-   Mobile
-=========================== */
+   IMPORTANT:
+   Do NOT make them height: 100%.
+========================================================= */
 
-@media(max-width:1100px){
+.left-panel > .crop-card,
+.right-panel > .crop-card {
+    width: 100%;
 
-.crop-box{
+    height: auto;
 
-grid-template-columns:1fr;
+    min-height: 0;
 
+    max-height: none;
+
+    box-sizing: border-box;
 }
 
-.upload-area{
 
-min-height:320px;
+/* =========================================================
+   REMOVE ALL INTERNAL SCROLL
+========================================================= */
 
+.crop-workspace,
+.crop-panel,
+.left-panel,
+.center-panel,
+.right-panel,
+.crop-card,
+.crop-settings-card {
+    overflow: visible !important;
 }
 
-.result-preview{
 
-height:280px;
+/* =========================================================
+   GENERAL CARD
+========================================================= */
 
+.crop-card {
+    width: 100%;
+
+    height: auto;
+
+    min-height: 0;
+
+    box-sizing: border-box;
+
+    background: #ffffff;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 18px;
+
+    padding: 22px;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.07);
 }
 
-.ratio-grid{
 
-grid-template-columns:repeat(2,1fr);
+/* =========================================================
+   CARD HEADING
+========================================================= */
 
+.crop-card h3 {
+    margin: 0 0 20px;
+
+    font-size: 21px;
+
+    line-height: 1.3;
+
+    font-weight: 700;
+
+    color: #1e293b;
 }
 
+
+/* =========================================================
+   UPLOAD AREA
+========================================================= */
+
+.upload-area {
+    width: 100%;
+
+    min-height: 360px;
+
+    padding: 25px;
+
+    box-sizing: border-box;
+
+    border: 2px dashed #d1d5db;
+
+    border-radius: 16px;
+
+    background: #fafafa;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease;
 }
 
-@media(max-width:600px){
+.upload-area:hover {
+    border-color: #2563eb;
 
-.ratio-grid{
-
-grid-template-columns:1fr;
-
+    background: #f8fbff;
 }
 
-.tool-buttons,
-.zoom-buttons{
+.upload-area.dragging {
+    border-color: #2563eb;
 
-grid-template-columns:1fr;
-
+    background: #eff6ff;
 }
 
+
+/* =========================================================
+   UPLOAD ICON
+========================================================= */
+
+#uploadIcon {
+    font-size: 58px;
+
+    color: #2563eb;
+
+    margin-bottom: 15px;
+}
+
+
+/* =========================================================
+   UPLOAD TEXT
+========================================================= */
+
+#uploadText {
+    margin: 5px 0 8px;
+
+    font-size: 19px;
+
+    font-weight: 700;
+
+    color: #334155;
+}
+
+#uploadInfo {
+    margin: 0;
+
+    color: #64748b;
+
+    font-size: 14px;
+
+    line-height: 1.8;
+}
+
+
+/* =========================================================
+   IMAGE PREVIEW
+========================================================= */
+
+.crop-preview {
+    display: none;
+
+    width: auto;
+
+    max-width: 100%;
+
+    max-height: 300px;
+
+    object-fit: contain;
+
+    border-radius: 12px;
+
+    margin-bottom: 15px;
+}
+
+
+/* =========================================================
+   CROPPER
+========================================================= */
+
+.cropper-container {
+    max-width: 100% !important;
+}
+
+.cropper-wrap-box,
+.cropper-canvas,
+.cropper-drag-box,
+.cropper-crop-box {
+    max-width: 100%;
+}
+
+
+/* =========================================================
+   CHOOSE IMAGE
+========================================================= */
+
+.choose-btn {
+    position: relative;
+
+    width: 100%;
+
+    min-height: 48px;
+
+    margin-top: 15px;
+
+    padding: 0 15px;
+
+    box-sizing: border-box;
+
+    border-radius: 10px;
+
+    background: #2563eb;
+
+    color: #ffffff;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    overflow: hidden;
+
+    transition: background 0.2s ease;
+}
+
+.choose-btn:hover {
+    background: #1d4ed8;
+}
+
+.choose-btn input {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    opacity: 0;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   RESET BUTTON
+========================================================= */
+
+.btn-reset {
+    width: 100%;
+
+    min-height: 44px;
+
+    margin-top: 10px;
+
+    border: 0;
+
+    border-radius: 10px;
+
+    background: #ef4444;
+
+    color: #ffffff;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.1s ease;
+}
+
+.btn-reset:hover {
+    background: #dc2626;
+}
+
+.btn-reset:active {
+    transform: scale(0.99);
+}
+
+
+/* =========================================================
+   INFO BOX
+========================================================= */
+
+.info {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    margin-top: 12px;
+
+    padding: 11px 13px;
+
+    border-radius: 9px;
+
+    background: #f8fafc;
+
+    font-size: 14px;
+
+    line-height: 1.4;
+}
+
+.info span {
+    color: #64748b;
+}
+
+.info b {
+    color: #111827;
+
+    text-align: right;
+
+    word-break: break-word;
+}
+
+
+/* =========================================================
+   CONTROL LABEL
+========================================================= */
+
+.crop-settings-card label {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 10px;
+
+    margin: 17px 0 8px;
+
+    color: #334155;
+
+    font-size: 14px;
+
+    line-height: 1.3;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   ASPECT RATIO
+========================================================= */
+
+.ratio-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 8px;
+
+    width: 100%;
+}
+
+.ratio-btn {
+    min-height: 41px;
+
+    padding: 6px;
+
+    border: 1px solid #dbe1e8;
+
+    border-radius: 9px;
+
+    background: #ffffff;
+
+    color: #334155;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease;
+}
+
+.ratio-btn:hover {
+    border-color: #2563eb;
+
+    background: #eff6ff;
+
+    color: #2563eb;
+}
+
+.ratio-btn.active {
+    background: #2563eb;
+
+    border-color: #2563eb;
+
+    color: #ffffff;
+}
+
+
+/* =========================================================
+   TOOL BUTTONS
+========================================================= */
+
+.tool-buttons {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 8px;
+
+    width: 100%;
+}
+
+.tool-btn {
+    min-height: 43px;
+
+    padding: 7px 9px;
+
+    border: 1px solid #dbe1e8;
+
+    border-radius: 9px;
+
+    background: #f8fafc;
+
+    color: #334155;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 7px;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease;
+}
+
+.tool-btn:hover {
+    background: #2563eb;
+
+    border-color: #2563eb;
+
+    color: #ffffff;
+}
+
+.tool-btn.active {
+    background: #2563eb;
+
+    border-color: #2563eb;
+
+    color: #ffffff;
+}
+
+
+/* =========================================================
+   ZOOM BUTTONS
+========================================================= */
+
+.zoom-buttons {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 8px;
+
+    width: 100%;
+}
+
+
+/* =========================================================
+   RANGE ROW
+========================================================= */
+
+.range-row {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        65px;
+
+    align-items: center;
+
+    gap: 8px;
+}
+
+
+/* =========================================================
+   RANGE SLIDERS
+========================================================= */
+
+.full-range,
+.range-row input[type="range"] {
+    display: block;
+
+    width: 100%;
+
+    height: 6px;
+
+    margin: 7px 0;
+
+    padding: 0;
+
+    appearance: none;
+
+    -webkit-appearance: none;
+
+    background: transparent;
+
+    accent-color: #2563eb;
+
+    cursor: pointer;
+}
+
+
+/* Chrome / Edge */
+
+.full-range::-webkit-slider-runnable-track,
+.range-row input[type="range"]::-webkit-slider-runnable-track {
+    width: 100%;
+
+    height: 6px;
+
+    border-radius: 20px;
+
+    background: #dbe1e8;
+}
+
+.full-range::-webkit-slider-thumb,
+.range-row input[type="range"]::-webkit-slider-thumb {
+    appearance: none;
+
+    -webkit-appearance: none;
+
+    width: 18px;
+
+    height: 18px;
+
+    margin-top: -6px;
+
+    border: 3px solid #ffffff;
+
+    border-radius: 50%;
+
+    background: #2563eb;
+
+    box-shadow:
+        0 2px 7px rgba(0, 0, 0, 0.25);
+}
+
+
+/* Firefox */
+
+.full-range::-moz-range-track,
+.range-row input[type="range"]::-moz-range-track {
+    width: 100%;
+
+    height: 6px;
+
+    border-radius: 20px;
+
+    background: #dbe1e8;
+}
+
+.full-range::-moz-range-thumb,
+.range-row input[type="range"]::-moz-range-thumb {
+    width: 18px;
+
+    height: 18px;
+
+    border: 3px solid #ffffff;
+
+    border-radius: 50%;
+
+    background: #2563eb;
+}
+
+
+/* =========================================================
+   SMALL BUTTON
+========================================================= */
+
+.small-btn {
+    min-height: 36px;
+
+    padding: 5px 9px;
+
+    border: 1px solid #dbe1e8;
+
+    border-radius: 8px;
+
+    background: #ffffff;
+
+    color: #334155;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+.small-btn:hover {
+    background: #2563eb;
+
+    border-color: #2563eb;
+
+    color: #ffffff;
+}
+
+
+/* =========================================================
+   FORMAT SELECT
+========================================================= */
+
+#formatSelect {
+    width: 100%;
+
+    height: 44px;
+
+    padding: 0 12px;
+
+    box-sizing: border-box;
+
+    border: 1px solid #dbe1e8;
+
+    border-radius: 9px;
+
+    background: #ffffff;
+
+    color: #334155;
+
+    font-size: 14px;
+
+    outline: none;
+}
+
+#formatSelect:focus {
+    border-color: #2563eb;
+}
+
+
+/* =========================================================
+   BACKGROUND BUTTONS
+========================================================= */
+
+.background-options {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 8px;
+
+    width: 100%;
+}
+
+.background-btn {
+    min-height: 40px;
+
+    border: 1px solid #dbe1e8;
+
+    border-radius: 9px;
+
+    background: #ffffff;
+
+    color: #334155;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.background-btn:hover {
+    border-color: #2563eb;
+
+    background: #eff6ff;
+}
+
+.background-btn.active {
+    border-color: #2563eb;
+
+    background: #2563eb;
+
+    color: #ffffff;
+}
+
+
+/* =========================================================
+   SECONDARY BUTTON
+========================================================= */
+
+.btn-secondary {
+    width: 100%;
+
+    min-height: 45px;
+
+    margin-top: 15px;
+
+    border: 1px solid #dbe1e8;
+
+    border-radius: 9px;
+
+    background: #f8fafc;
+
+    color: #334155;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.btn-secondary:hover {
+    background: #e2e8f0;
+
+    border-color: #cbd5e1;
+}
+
+
+/* =========================================================
+   PRIMARY BUTTON
+========================================================= */
+
+.btn-primary {
+    width: 100%;
+
+    min-height: 50px;
+
+    margin-top: 10px;
+
+    border: 0;
+
+    border-radius: 10px;
+
+    background: #16a34a;
+
+    color: #ffffff;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    font-size: 16px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.1s ease;
+}
+
+.btn-primary:hover {
+    background: #15803d;
+}
+
+.btn-primary:active {
+    transform: scale(0.99);
+}
+
+.btn-primary:disabled {
+    opacity: 0.6;
+
+    cursor: wait;
+}
+
+
+/* =========================================================
+   RESULT BOX
+========================================================= */
+
+.result-preview {
+    width: 100%;
+
+    height: 320px;
+
+    box-sizing: border-box;
+
+    border: 2px dashed #d1d5db;
+
+    border-radius: 14px;
+
+    background: #fafafa;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    overflow: hidden;
+}
+
+#resultImage {
+    display: none;
+
+    max-width: 100%;
+
+    max-height: 100%;
+
+    width: auto;
+
+    height: auto;
+
+    object-fit: contain;
+}
+
+#resultText {
+    padding: 20px;
+
+    color: #64748b;
+
+    text-align: center;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   DOWNLOAD
+========================================================= */
+
+.btn-success {
+    width: 100%;
+
+    min-height: 50px;
+
+    margin-top: 15px;
+
+    border: 0;
+
+    border-radius: 10px;
+
+    background: #0891b2;
+
+    color: #ffffff;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    text-decoration: none;
+
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+.btn-success:hover {
+    background: #0e7490;
+}
+
+.disabled {
+    pointer-events: none;
+
+    opacity: 0.45;
+}
+
+
+/* =========================================================
+   FAQ
+========================================================= */
+
+.content-section {
+    padding: 50px 0;
+}
+
+.content-heading {
+    text-align: center;
+
+    margin-bottom: 25px;
+}
+
+.content-heading h2 {
+    margin: 0 0 8px;
+
+    font-size: 28px;
+
+    line-height: 1.3;
+}
+
+.content-heading p {
+    margin: 0;
+
+    color: #64748b;
+
+    line-height: 1.7;
+}
+
+.faq-list {
+    max-width: 900px;
+
+    margin: 0 auto;
+}
+
+.faq-list details {
+    margin-bottom: 10px;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 12px;
+
+    background: #ffffff;
+
+    overflow: hidden;
+}
+
+.faq-list summary {
+    position: relative;
+
+    padding: 16px 45px 16px 18px;
+
+    cursor: pointer;
+
+    color: #1e293b;
+
+    font-weight: 700;
+
+    list-style: none;
+}
+
+.faq-list summary::-webkit-details-marker {
+    display: none;
+}
+
+.faq-list summary::after {
+    content: "+";
+
+    position: absolute;
+
+    right: 18px;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    font-size: 22px;
+
+    font-weight: 400;
+}
+
+.faq-list details[open] summary::after {
+    content: "−";
+}
+
+.faq-list details p {
+    margin: 0;
+
+    padding:
+        0 18px 18px;
+
+    color: #64748b;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   HOW TO USE
+========================================================= */
+
+.steps-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 20px;
+}
+
+.info-card {
+    padding: 22px;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 15px;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 6px 20px rgba(0, 0, 0, 0.05);
+}
+
+.info-card h3 {
+    margin: 10px 0 8px;
+
+    font-size: 18px;
+}
+
+.info-card p {
+    margin: 0;
+
+    color: #64748b;
+
+    line-height: 1.7;
+}
+
+.step-number {
+    width: 40px;
+
+    height: 40px;
+
+    border-radius: 50%;
+
+    background: #2563eb;
+
+    color: #ffffff;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   FEATURES
+========================================================= */
+
+.feature-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 18px;
+}
+
+.feature-mini {
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 15px;
+
+    padding: 20px;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 14px;
+
+    background: #ffffff;
+}
+
+.feature-mini > i {
+    min-width: 28px;
+
+    color: #2563eb;
+
+    font-size: 24px;
+}
+
+.feature-mini h3 {
+    margin: 0 0 6px;
+
+    font-size: 17px;
+}
+
+.feature-mini p {
+    margin: 0;
+
+    color: #64748b;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   PRIVACY
+========================================================= */
+
+.privacy-card {
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 18px;
+
+    padding: 24px;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 16px;
+
+    background: #f8fafc;
+}
+
+.privacy-icon {
+    color: #16a34a;
+
+    font-size: 30px;
+
+    flex-shrink: 0;
+}
+
+
+/* =========================================================
+   RELATED TOOLS
+========================================================= */
+
+.related-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 15px;
+}
+
+.related-grid a {
+    min-height: 75px;
+
+    padding: 15px;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 12px;
+
+    background: #ffffff;
+
+    color: #1e293b;
+
+    text-decoration: none;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    font-weight: 700;
+}
+
+.related-grid a:hover {
+    border-color: #2563eb;
+
+    color: #2563eb;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1100px) {
+
+    .crop-workspace {
+        grid-template-columns: 1fr;
+
+        gap: 20px;
+
+        align-items: start;
+    }
+
+
+    .crop-panel,
+    .left-panel,
+    .center-panel,
+    .right-panel {
+        width: 100%;
+
+        height: auto;
+
+        max-height: none;
+
+        overflow: visible;
+    }
+
+
+    .crop-settings-card {
+        position: relative;
+
+        top: auto;
+
+        width: 100%;
+
+        max-width: none;
+
+        height: auto;
+
+        max-height: none;
+
+        overflow: visible;
+    }
+
+
+    .left-panel > .crop-card,
+    .right-panel > .crop-card {
+        height: auto;
+    }
+
+
+    .steps-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .feature-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+
+    .related-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .tool-hero {
+        padding:
+            25px 0 20px;
+    }
+
+
+    .tool-hero h1 {
+        font-size: 30px;
+    }
+
+
+    .tool-hero p {
+        font-size: 14px;
+    }
+
+
+    .crop-workspace {
+        grid-template-columns: 1fr;
+
+        gap: 18px;
+
+        margin-top: 18px;
+    }
+
+
+    .crop-card {
+        padding: 16px;
+
+        border-radius: 15px;
+    }
+
+
+    .upload-area {
+        min-height: 320px;
+
+        padding: 18px;
+    }
+
+
+    .crop-preview {
+        max-height: 250px;
+    }
+
+
+    .ratio-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+
+    .tool-buttons,
+    .zoom-buttons {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+
+    .background-options {
+        grid-template-columns:
+            repeat(3, 1fr);
+    }
+
+
+    .result-preview {
+        height: 280px;
+    }
+
+
+    .feature-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .related-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .privacy-card {
+        flex-direction: column;
+    }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .crop-card {
+        padding: 13px;
+    }
+
+
+    .tool-buttons,
+    .zoom-buttons {
+        grid-template-columns: 1fr;
+    }
+
+
+    .background-options {
+        grid-template-columns: 1fr;
+    }
+
+
+    .ratio-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+
+    .info {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 4px;
+    }
+
+
+    .info b {
+        text-align: left;
+    }
+}
+/* =========================================================
+   FINAL SCROLL BEHAVIOUR
+   LEFT + RIGHT FOLLOW PAGE SCROLL
+   CENTER REMAINS NORMAL
+========================================================= */
+
+.crop-workspace {
+    display: grid !important;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        430px
+        minmax(0, 1fr) !important;
+
+    gap: 24px !important;
+
+    align-items: start !important;
+
+    position: relative !important;
+
+    overflow: visible !important;
+}
+
+
+/* LEFT UPLOAD BOX */
+
+.left-panel {
+    position: sticky !important;
+
+    top: 100px !important;
+
+    align-self: start !important;
+
+    height: auto !important;
+
+    max-height: none !important;
+
+    overflow: visible !important;
+
+    z-index: 10 !important;
+}
+
+
+/* CENTER CONTROL BOX */
+
+.center-panel {
+    position: relative !important;
+
+    top: auto !important;
+
+    height: auto !important;
+
+    max-height: none !important;
+
+    overflow: visible !important;
+
+    align-self: start !important;
+
+    z-index: 1 !important;
+}
+
+
+/* RIGHT RESULT BOX */
+
+.right-panel {
+    position: sticky !important;
+
+    top: 100px !important;
+
+    align-self: start !important;
+
+    height: auto !important;
+
+    max-height: none !important;
+
+    overflow: visible !important;
+
+    z-index: 10 !important;
+}
+
+
+/* CENTER CARD MUST NOT BE STICKY */
+
+.crop-settings-card {
+    position: relative !important;
+
+    top: auto !important;
+
+    left: auto !important;
+
+    right: auto !important;
+
+    height: auto !important;
+
+    max-height: none !important;
+
+    overflow: visible !important;
+
+    margin: 0 !important;
+}
+
+
+/* UPLOAD / RESULT CARD KEEP SMALL NATURAL HEIGHT */
+
+.left-panel > .crop-card,
+.right-panel > .crop-card {
+    height: auto !important;
+
+    min-height: 0 !important;
+
+    max-height: none !important;
+
+    overflow: visible !important;
+}
+
+
+/* NO INTERNAL SCROLL */
+
+.crop-workspace,
+.crop-panel,
+.left-panel,
+.center-panel,
+.right-panel,
+.crop-card,
+.crop-settings-card {
+    overflow: visible !important;
+}
+
+
+/* =========================================================
+   IMPORTANT:
+   DON'T USE THESE ON ANY PARENT
+========================================================= */
+
+.crop-workspace {
+    transform: none !important;
+
+    contain: none !important;
+}
+
+
+/* =========================================================
+   TABLET / MOBILE
+   Sticky side boxes disabled
+========================================================= */
+
+@media (max-width: 1100px) {
+
+    .crop-workspace {
+        grid-template-columns: 1fr !important;
+
+        gap: 20px !important;
+    }
+
+    .left-panel,
+    .center-panel,
+    .right-panel {
+        position: relative !important;
+
+        top: auto !important;
+
+        height: auto !important;
+
+        max-height: none !important;
+
+        overflow: visible !important;
+    }
+
+    .crop-settings-card {
+        position: relative !important;
+
+        top: auto !important;
+    }
 }
