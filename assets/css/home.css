@@ -1163,3 +1163,69 @@ font-size:30px !important;
 
 
 }
+
+/* ===== HOME HERO COMPACT / ONE-LINE TITLE ===== */
+.hero{
+    padding:8px 0 6px !important;
+}
+.hero-container{
+    min-height:250px !important;
+    gap:22px !important;
+    align-items:center !important;
+}
+.hero-title{
+    white-space:nowrap !important;
+    font-size:42px !important;
+    margin-bottom:8px !important;
+}
+.hero-description{
+    margin-bottom:12px !important;
+}
+.hero-image.tool-icons-box{
+    width:360px !important;
+    height:260px !important;
+}
+.hero-image.tool-icons-box::before{
+    width:260px !important;
+    height:260px !important;
+}
+.tool-icons-box .tool-icon{
+    width:74px !important;
+    height:74px !important;
+    font-size:34px !important;
+}
+.tool-icons-box .ai-icon{
+    width:96px !important;
+    height:96px !important;
+    font-size:44px !important;
+}
+.categories-section{
+    padding:4px 0 14px !important;
+}
+.section-heading{
+    margin-bottom:10px !important;
+}
+.section-heading h2{
+    font-size:25px !important;
+}
+@media(max-width:900px){
+    .hero{
+        padding:8px 0 4px !important;
+    }
+    .hero-container{
+        min-height:auto !important;
+    }
+    .hero-title{
+        white-space:normal !important;
+        font-size:36px !important;
+    }
+}
+@media(max-width:600px){
+    .hero-title{
+        font-size:30px !important;
+    }
+    .hero-image.tool-icons-box{
+        width:300px !important;
+        height:230px !important;
+    }
+}

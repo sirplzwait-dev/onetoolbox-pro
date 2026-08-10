@@ -1,1 +1,157 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PDF Size Reducer - OneToolBox</title><meta name="description" content="Reduce PDF size with a simple optimization profile."><link rel="stylesheet" href="../../assets/css/reset.css"><link rel="stylesheet" href="../../assets/css/variables.css"><link rel="stylesheet" href="../../assets/css/layout.css"><link rel="stylesheet" href="../../assets/css/components.css"><link rel="stylesheet" href="../../assets/css/pdf-tools/all-pdf-tools.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"></head><body data-tool="pdf-size-reducer"><div id="header-placeholder"></div><main class="page page-offset"><section class="tool-hero"><div class="container"><div class="tool-badge"><i class="fa-solid fa-down-left-and-up-right-to-center"></i> Free PDF Tool</div><h1>📄 PDF Size Reducer</h1><p>Reduce PDF size with a simple optimization profile.</p></div></section><section class="section"><div class="container"><div class="tool-grid"><div class="tool-card"><h2>Upload File</h2><div class="upload" id="upload"><i class="fa-solid fa-down-left-and-up-right-to-center"></i><h3>Choose File</h3><p>📁 Select your file<br>🖱️ Drag & Drop</p><label class="choose">Choose File <input id="fileInput" type="file" accept="application/pdf,.pdf"></label></div><div class="info"><span>File Size</span><b id="fileSize">0 KB</b></div><div class="info"><span>Pages</span><b id="pageCount">0</b></div></div><div class="tool-card settings"><h2>Settings</h2><div class="info"><span>Processing</span><b>Browser Based</b></div><p class="status">No API key required.</p><button id="run" class="btn primary" disabled><i class="fa-solid fa-wand-magic-sparkles"></i> PDF Size Reducer</button><div class="progress"><div class="track"><div id="bar"></div></div><strong id="pct">0%</strong></div><p id="status" class="status">Choose a file to begin.</p></div><div class="tool-card"><h2>Result</h2><div class="preview"><img id="result" hidden alt="Result"><pre id="resultText" hidden></pre><span id="resultEmpty">Your result will appear here.</span></div><div class="info"><span>Result Size</span><b id="resultInfo">—</b></div><button id="download" class="btn success" disabled><i class="fa-solid fa-download"></i> Download Result</button><button id="reset" class="btn danger"><i class="fa-solid fa-rotate-left"></i> Reset</button></div></div></div></section><section class="section"><div class="container"><h2 class="section-title">How to Use</h2><div class="feature-grid"><div class="feature"><i class="fa-solid fa-upload"></i><h3>Upload</h3><p>Select your PDF or supported file.</p></div><div class="feature"><i class="fa-solid fa-sliders"></i><h3>Set Options</h3><p>Choose the available settings.</p></div><div class="feature"><i class="fa-solid fa-wand-magic-sparkles"></i><h3>Process</h3><p>Run the tool in your browser.</p></div><div class="feature"><i class="fa-solid fa-download"></i><h3>Download</h3><p>Save your result.</p></div></div></div></section><section class="section"><div class="container faq"><h2 class="section-title">Frequently Asked Questions</h2><details><summary>Is this tool free?</summary><p>Yes. It is designed for browser-based use without an API key.</p></details><details><summary>Are files uploaded?</summary><p>The tool uses browser-side processing wherever the operation supports it.</p></details><details><summary>Will every PDF operation preserve the original layout?</summary><p>Some browser-side conversions rasterize pages, so exact editable structure may not be preserved.</p></details></div></section></main><div id="footer-placeholder"></div><script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script><script>pdfjsLib.GlobalWorkerOptions.workerSrc="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";</script><script src="../../assets/js/navigation.js"></script><script src="../../assets/js/app.js"></script><script src="../../assets/js/pdf-tools/all-pdf-tools.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PDF Size Reducer - OneToolBox</title>
+<meta name="description" content="Reduce PDF file size with OneToolBox PDF Size Reducer.">
+<link rel="stylesheet" href="../../assets/css/reset.css">
+<link rel="stylesheet" href="../../assets/css/variables.css">
+<link rel="stylesheet" href="../../assets/css/layout.css">
+<link rel="stylesheet" href="../../assets/css/components.css">
+<link rel="stylesheet" href="../../assets/css/pdf-tools/pdf-size-reducer.css?v=final-clean">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+
+<div id="header-placeholder"></div>
+
+<main class="page page-offset">
+
+<section class="tool-hero">
+<div class="container">
+  <h1>📉 PDF Size Reducer</h1>
+  <p>Reduce PDF file size while keeping the best practical quality.</p>
+</div>
+</section>
+
+<section class="section">
+<div class="container">
+<div class="psr-workspace">
+
+<div class="psr-card">
+  <h3>Upload PDF</h3>
+  <div class="psr-drop" id="dropZone">
+    <i class="fa-solid fa-cloud-arrow-up psr-upload-icon"></i>
+    <h4 id="fileName">Upload PDF</h4>
+    <p>📁 Choose PDF<br>🖱️ Drag &amp; Drop</p>
+    <label class="choose-btn psr-choose">
+      <i class="fa-solid fa-file-pdf"></i> Choose PDF
+      <input type="file" id="fileInput" accept="application/pdf,.pdf" hidden>
+    </label>
+    <button class="btn-reset" id="resetBtn" type="button"><i class="fa-solid fa-rotate-left"></i> Reset</button>
+  </div>
+  <div class="psr-info-row"><span>Original Size:</span><b id="originalSize">0 KB</b></div>
+  <div class="psr-info-row"><span>Pages:</span><b id="pages">0</b></div>
+</div>
+
+<div class="psr-card">
+  <h3>Compression</h3>
+
+  <label class="psr-label">Compression Level</label>
+  <div class="psr-levels">
+    <button type="button" data-level="low"><i class="fa-solid fa-feather"></i><b>Low</b><small>Best quality</small></button>
+    <button type="button" data-level="medium" class="active"><i class="fa-solid fa-scale-balanced"></i><b>Medium</b><small>Recommended</small></button>
+    <button type="button" data-level="high"><i class="fa-solid fa-compress"></i><b>High</b><small>Smallest</small></button>
+  </div>
+
+  <div class="psr-setting">
+    <div><label for="quality">Image Quality</label><strong id="qualityValue">70%</strong></div>
+    <input id="quality" class="psr-range" type="range" min="30" max="90" value="70">
+    <small><span>Smaller file</span><span>Better quality</span></small>
+  </div>
+
+  <div class="psr-setting">
+    <div><label for="dpi">Resolution</label><strong id="dpiValue">120 DPI</strong></div>
+    <input id="dpi" class="psr-range" type="range" min="72" max="180" step="6" value="120">
+    <small><span>72 DPI</span><span>180 DPI</span></small>
+  </div>
+
+  <div class="psr-tip"><i class="fa-solid fa-lightbulb"></i><span><b>Recommended:</b> Medium compression gives a good balance between size and readability.</span></div>
+
+  <button class="btn btn-primary psr-compress" id="compressBtn" type="button" disabled>
+    <i class="fa-solid fa-compress"></i> Reduce PDF Size
+  </button>
+
+  <div class="psr-progress"><div id="progressBar"></div></div>
+  <div class="psr-progress-text"><span id="status">Choose a PDF to begin.</span><b id="percent">0%</b></div>
+</div>
+
+<div class="psr-card">
+  <h3>Reduced PDF</h3>
+  <div class="psr-result">
+    <i class="fa-solid fa-file-circle-check"></i>
+    <h4>Ready when you are</h4>
+    <p>Upload a PDF and reduce its size.</p>
+  </div>
+
+  <div class="psr-result-stats">
+    <div><span>Original</span><b id="resultOriginal">—</b></div>
+    <div><i class="fa-solid fa-arrow-right"></i></div>
+    <div><span>Reduced</span><b id="resultSize">—</b></div>
+  </div>
+
+  <div class="psr-saved" id="saved">Size reduction: —</div>
+
+  <button class="btn btn-success psr-download" id="downloadBtn" type="button" disabled>
+    <i class="fa-solid fa-download"></i> Download PDF
+  </button>
+</div>
+
+</div>
+</div>
+</section>
+
+<section class="section psr-section">
+<div class="container">
+<h2 class="psr-section-title">How to Reduce PDF Size</h2>
+<div class="psr-step-grid">
+<div class="psr-step-card"><div class="psr-step-no">1</div><h3>Upload PDF</h3><p>Choose a PDF or drag it into the upload area.</p></div>
+<div class="psr-step-card"><div class="psr-step-no">2</div><h3>Adjust Quality</h3><p>Choose compression level, image quality and resolution.</p></div>
+<div class="psr-step-card"><div class="psr-step-no">3</div><h3>Reduce &amp; Download</h3><p>Start compression, review the reduced size and download the PDF.</p></div>
+</div>
+</div>
+</section>
+
+<section class="section psr-section">
+<div class="container">
+<h2 class="psr-section-title">What Can You Use It For?</h2>
+<div class="psr-use-grid">
+<div class="psr-use-card"><div class="psr-use-icon"><i class="fa-solid fa-file-arrow-down"></i></div><div><h3>Smaller PDF</h3><p>Reduce large PDF files for easier sharing and storage.</p></div></div>
+<div class="psr-use-card"><div class="psr-use-icon"><i class="fa-solid fa-globe"></i></div><div><h3>Online Forms</h3><p>Prepare smaller PDFs when websites impose file-size limits.</p></div></div>
+<div class="psr-use-card"><div class="psr-use-icon"><i class="fa-solid fa-envelope"></i></div><div><h3>Email &amp; Sharing</h3><p>Make PDF files easier to send and upload.</p></div></div>
+<div class="psr-use-card"><div class="psr-use-icon"><i class="fa-solid fa-mobile-screen-button"></i></div><div><h3>Mobile Friendly</h3><p>Use the reducer from phone, tablet or computer.</p></div></div>
+</div>
+</div>
+</section>
+
+<section class="section psr-section psr-privacy-section">
+<div class="container">
+<div class="psr-privacy"><div class="psr-privacy-icon"><i class="fa-solid fa-shield-halved"></i></div><div><h2>Privacy &amp; File Handling</h2><p>This PDF reducer performs its main processing in the browser. It does not upload the selected PDF to a OneToolBox server.</p></div></div>
+</div>
+</section>
+
+<section class="section psr-section psr-faq-section">
+<div class="container">
+<h2 class="psr-section-title">Frequently Asked Questions</h2>
+<div class="psr-faq">
+<details><summary>Is the PDF Size Reducer free?</summary><p>Yes. The tool is designed for browser-based PDF size reduction without an API key.</p></details>
+<details><summary>Does it upload my PDF?</summary><p>No. The selected PDF is processed in your browser.</p></details>
+<details><summary>Will every PDF become smaller?</summary><p>Not necessarily. PDFs that are already optimized may show little or no reduction.</p></details>
+<details><summary>Which compression level should I use?</summary><p>Medium is a good starting point. Use High when smaller size is the priority and Low when quality matters more.</p></details>
+<details><summary>Will my original PDF be changed?</summary><p>No. Your original file is not modified. A separate reduced PDF is created for download.</p></details>
+</div>
+</div>
+</section>
+
+</main>
+
+<div id="footer-placeholder"></div>
+
+<script src="../../assets/js/navigation.js"></script>
+<script src="../../assets/js/app.js"></script>
+<script src="../../assets/js/pdf-tools/pdf-size-reducer.js"></script>
+</body>
+</html>

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>PDF Editor - OneToolBox</title>
-<link rel="stylesheet" href="../../assets/css/pdf-tools/pdf-editor.css?v=10">
+<link rel="stylesheet" href="../../assets/css/pdf-tools/pdf-editor.css?v=13">
 <link rel="preconnect" href="https://cdnjs.cloudflare.com">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
@@ -48,7 +48,7 @@
     </div>
 
     <div class="pagebar">
-      <div class="page-number" id="pageNumber">1</div>
+      <button id="prevPage" class="nav-page">‹</button><div class="page-number" id="pageNumber">1</div><span id="pageTotal">/ 1</span><button id="nextPage" class="nav-page">›</button>
       <div class="page-actions">
         <button id="deletePage" title="Delete page">♧</button>
         <button id="zoomIn" title="Zoom in">⌕+</button>
@@ -93,6 +93,6 @@
 <input id="imageInput" type="file" accept="image/png,image/jpeg,image/webp" hidden>
 <input id="signatureInput" type="file" accept="image/png,image/jpeg,image/webp" hidden>
 
-<script src="../../assets/js/pdf-tools/pdf-editor.js?v=10"></script>
+<script src="../../assets/js/pdf-tools/pdf-editor.js?v=13"></script>
 </body>
 </html>

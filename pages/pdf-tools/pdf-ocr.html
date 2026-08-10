@@ -1,1 +1,117 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PDF OCR - OneToolBox</title><meta name="description" content="Extract text from image-based PDF pages."><link rel="stylesheet" href="../../assets/css/reset.css"><link rel="stylesheet" href="../../assets/css/variables.css"><link rel="stylesheet" href="../../assets/css/layout.css"><link rel="stylesheet" href="../../assets/css/components.css"><link rel="stylesheet" href="../../assets/css/pdf-tools/all-pdf-tools.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"></head><body data-tool="pdf-ocr"><div id="header-placeholder"></div><main class="page page-offset"><section class="tool-hero"><div class="container"><div class="tool-badge"><i class="fa-solid fa-font"></i> Free PDF Tool</div><h1>📄 PDF OCR</h1><p>Extract text from image-based PDF pages.</p></div></section><section class="section"><div class="container"><div class="tool-grid"><div class="tool-card"><h2>Upload File</h2><div class="upload" id="upload"><i class="fa-solid fa-font"></i><h3>Choose File</h3><p>📁 Select your file<br>🖱️ Drag & Drop</p><label class="choose">Choose File <input id="fileInput" type="file" accept="application/pdf,.pdf"></label></div><div class="info"><span>File Size</span><b id="fileSize">0 KB</b></div><div class="info"><span>Pages</span><b id="pageCount">0</b></div></div><div class="tool-card settings"><h2>Settings</h2><div class="info"><span>Processing</span><b>Browser Based</b></div><p class="status">No API key required.</p><button id="run" class="btn primary" disabled><i class="fa-solid fa-wand-magic-sparkles"></i> PDF OCR</button><div class="progress"><div class="track"><div id="bar"></div></div><strong id="pct">0%</strong></div><p id="status" class="status">Choose a file to begin.</p></div><div class="tool-card"><h2>Result</h2><div class="preview"><img id="result" hidden alt="Result"><pre id="resultText" hidden></pre><span id="resultEmpty">Your result will appear here.</span></div><div class="info"><span>Result Size</span><b id="resultInfo">—</b></div><button id="download" class="btn success" disabled><i class="fa-solid fa-download"></i> Download Result</button><button id="reset" class="btn danger"><i class="fa-solid fa-rotate-left"></i> Reset</button></div></div></div></section><section class="section"><div class="container"><h2 class="section-title">How to Use</h2><div class="feature-grid"><div class="feature"><i class="fa-solid fa-upload"></i><h3>Upload</h3><p>Select your PDF or supported file.</p></div><div class="feature"><i class="fa-solid fa-sliders"></i><h3>Set Options</h3><p>Choose the available settings.</p></div><div class="feature"><i class="fa-solid fa-wand-magic-sparkles"></i><h3>Process</h3><p>Run the tool in your browser.</p></div><div class="feature"><i class="fa-solid fa-download"></i><h3>Download</h3><p>Save your result.</p></div></div></div></section><section class="section"><div class="container faq"><h2 class="section-title">Frequently Asked Questions</h2><details><summary>Is this tool free?</summary><p>Yes. It is designed for browser-based use without an API key.</p></details><details><summary>Are files uploaded?</summary><p>The tool uses browser-side processing wherever the operation supports it.</p></details><details><summary>Will every PDF operation preserve the original layout?</summary><p>Some browser-side conversions rasterize pages, so exact editable structure may not be preserved.</p></details></div></section></main><div id="footer-placeholder"></div><script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script><script>pdfjsLib.GlobalWorkerOptions.workerSrc="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";</script><script src="../../assets/js/navigation.js"></script><script src="../../assets/js/app.js"></script><script src="../../assets/js/pdf-tools/all-pdf-tools.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PDF OCR - OneToolBox</title>
+<link rel="stylesheet" href="../../assets/css/pdf-tools/pdf-ocr.css?v=1">
+</head>
+<body>
+<header class="header">
+  <a class="logo" href="../../index.html">One<span>Tool</span>Box</a>
+  <nav>
+    <a href="../../index.html">Home</a>
+    <a href="../../index.html#categories">Categories</a>
+    <a href="../../about.html">About</a>
+    <a href="../../contact.html">Contact</a>
+  </nav>
+  <div class="head-right">
+    <input id="search" placeholder="Search tools...">
+    <button id="theme" aria-label="Theme">☾</button>
+  </div>
+</header>
+
+<main>
+<section class="intro">
+  <h1>PDF OCR</h1>
+  <p>Extract text from scanned or image-based PDF files directly in your browser.</p>
+</section>
+
+<section class="workspace">
+  <aside class="card upload-card">
+    <h2>Upload PDF</h2>
+    <div class="drop" id="drop">
+      <div class="pdf-icon">PDF</div>
+      <h3 id="fileTitle">Choose PDF file</h3>
+      <p>Drag &amp; Drop your PDF here</p>
+      <button class="blue" id="choose">Choose PDF</button>
+      <input id="file" type="file" accept="application/pdf" hidden>
+    </div>
+    <div class="stats"><span>File Size</span><b id="fileSize">0 KB</b></div>
+    <div class="stats"><span>Total Pages</span><b id="pageCount">0</b></div>
+    <div class="block">
+      <label>OCR Language</label>
+      <select id="lang">
+        <option value="eng">English</option>
+        <option value="hin">Hindi</option>
+        <option value="eng+hin">English + Hindi</option>
+      </select>
+    </div>
+    <div class="note">Files are processed in your browser. No upload is required.</div>
+  </aside>
+
+  <section class="card center">
+    <div class="toolbar">
+      <div><strong>OCR Preview</strong><span id="pageLabel">Page 0 / 0</span></div>
+      <div class="pager"><button id="prev">‹</button><button id="next">›</button></div>
+    </div>
+    <div class="preview" id="preview">
+      <div class="empty"><div>🔎</div><h2>Your PDF preview will appear here</h2><p>Upload a PDF to start OCR.</p></div>
+      <canvas id="pdfCanvas" hidden></canvas>
+    </div>
+    <div class="progress"><div id="progressBar"></div></div>
+    <div class="progress-line"><span id="status">Ready</span><b id="percent">0%</b></div>
+    <button class="blue action" id="ocr" disabled>🔎 Start OCR</button>
+  </section>
+
+  <aside class="card result-card">
+    <h2>Extracted Text</h2>
+    <textarea id="result" placeholder="OCR text will appear here..." spellcheck="false"></textarea>
+    <div class="result-actions">
+      <button class="green" id="downloadTxt" disabled>⬇ Download TXT</button>
+      <button class="light" id="copy" disabled>Copy Text</button>
+    </div>
+    <button class="reset" id="reset">↻ Reset</button>
+  </aside>
+</section>
+
+<section class="info">
+  <div class="info-card">
+    <h2>Features</h2>
+    <ul>
+      <li>OCR scanned/image-based PDFs</li>
+      <li>English and Hindi OCR</li>
+      <li>Page-by-page progress</li>
+      <li>Large PDF preview</li>
+      <li>Copy extracted text</li>
+      <li>Download OCR text as TXT</li>
+    </ul>
+  </div>
+  <div class="info-card">
+    <h2>How it works</h2>
+    <ol>
+      <li>Select your scanned PDF.</li>
+      <li>Choose the OCR language.</li>
+      <li>Click Start OCR.</li>
+      <li>Review and download the text.</li>
+    </ol>
+  </div>
+  <div class="info-card">
+    <h2>FAQ</h2>
+    <details><summary>Can it read scanned PDFs?</summary><p>Yes. Each PDF page is rendered as an image and processed with OCR.</p></details>
+    <details><summary>Does Hindi OCR work?</summary><p>Yes, select Hindi or English + Hindi. The first language load requires an internet connection.</p></details>
+    <details><summary>Are my files uploaded?</summary><p>No PDF upload to a server is required by this tool.</p></details>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div><b>OneToolBox</b><br><span>All Online Tools in One Place</span></div>
+  <div>PDF OCR • Browser Based</div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+<script src="../../assets/js/pdf-tools/pdf-ocr.js?v=1"></script>
+</body>
+</html>
