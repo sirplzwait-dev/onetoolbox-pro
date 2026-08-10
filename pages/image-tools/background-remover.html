@@ -37,7 +37,6 @@
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
-<link rel="stylesheet" href="../assets/css/tool-content.css">
 <script id="otb-theme-boot">(()=>{try{if(localStorage.getItem("onetoolbox-theme")==="dark")document.documentElement.classList.add("otb-dark-preload")}catch(e){}})();</script>
 <style id="otb-theme-boot-style">html.otb-dark-preload{background:#0f172a}html.otb-dark-preload body{background:#0f172a}</style>
 <link rel="preconnect" href="https://cdnjs.cloudflare.com">
@@ -168,7 +167,15 @@
 
                     <!-- File Information -->
 
-                    <div class="file-info">
+                    <div id="uploadPreview" class="upload-preview" aria-label="Selected image preview">
+                            <img id="originalPreview" alt="Selected original image">
+                            <div class="upload-preview-meta">
+                                <strong>Selected Image</strong>
+                                <span>Ready to remove background</span>
+                            </div>
+                        </div>
+
+                        <div class="file-info">
 
 
                         <div>
@@ -337,6 +344,8 @@
                             <li>
 
                                 First use may take longer while the AI model loads.
+                        <br>
+                        Fine hair and edges are processed with the high-quality model.
 
                             </li>
 
@@ -370,7 +379,7 @@
 
                         <img
                             id="beforeImg"
-                            class="preview-image"
+                            class="preview-image result-before-image"
                             alt="Original Image">
 
 
@@ -484,11 +493,44 @@
      type="module" is required.
 ========================================== -->
 
-<script
-    type="module"
-    src="../../assets/js/tools/remove-background.js">
-</script>
+<script src="../../assets/js/tools/remove-background.js"></script>
 
+
+
+<!-- OneToolBox Processing Modal -->
+<div id="aiProcessingModal" class="ai-modal" aria-hidden="true">
+  <div class="ai-modal-backdrop"></div>
+  <div class="ai-modal-card" role="dialog" aria-modal="true" aria-labelledby="aiModalTitle">
+    <div class="ai-modal-icon-wrap">
+      <div class="ai-modal-spinner"></div>
+      <i class="fa-solid fa-wand-magic-sparkles ai-modal-icon"></i>
+    </div>
+
+    <h3 id="aiModalTitle">Removing Background</h3>
+    <p id="aiModalMessage">Preparing your image...</p>
+
+    <div class="ai-modal-progress">
+      <div id="aiModalProgressBar"></div>
+    </div>
+
+    <div class="ai-modal-progress-row">
+      <span id="aiModalStage">Preparing image</span>
+      <strong id="aiModalProgress">0%</strong>
+    </div>
+
+    <div id="aiModalDone" class="ai-modal-done">
+      <i class="fa-solid fa-circle-check"></i>
+      Background removed successfully
+    </div>
+
+    <div id="aiModalError" class="ai-modal-error">
+      <i class="fa-solid fa-circle-exclamation"></i>
+      <span id="aiModalErrorText">Something went wrong.</span>
+    </div>
+
+    <button id="aiModalClose" type="button" class="ai-modal-close">Cancel</button>
+  </div>
+</div>
 
 </body>
 

@@ -1,89 +1,286 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Image to PDF Converter - OneToolBox</title>
-<meta name="description" content="Convert JPG, PNG and WEBP images to PDF online for free.">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Image to PDF - OneToolBox</title>
+<meta name="description" content="Convert multiple JPG, PNG and WEBP images into a single PDF online.">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 <link rel="stylesheet" href="../../assets/css/reset.css">
 <link rel="stylesheet" href="../../assets/css/variables.css">
 <link rel="stylesheet" href="../../assets/css/layout.css">
 <link rel="stylesheet" href="../../assets/css/components.css">
 <link rel="stylesheet" href="../../assets/css/tools/image-to-pdf.css">
-<link rel="stylesheet" href="../assets/css/tool-content.css">
-<script id="otb-theme-boot">(()=>{try{if(localStorage.getItem("onetoolbox-theme")==="dark")document.documentElement.classList.add("otb-dark-preload")}catch(e){}})();</script>
-<style id="otb-theme-boot-style">html.otb-dark-preload{background:#0f172a}html.otb-dark-preload body{background:#0f172a}</style>
-<link rel="preconnect" href="https://cdnjs.cloudflare.com">
 </head>
+
 <body>
 <div id="header-placeholder"></div>
+
 <main class="page page-offset">
-<section class="tool-hero"><div class="container"><h1>🖼️ Image to PDF</h1><p>Convert multiple images into a single PDF quickly and easily.</p></div></section>
-<section class="section"><div class="container"><div class="pdf-workspace">
-<div class="pdf-panel"><div class="pdf-card"><h3><i class="fa-solid fa-images"></i> Upload Images</h3>
-<div class="pdf-upload-area" id="uploadArea">
-<i class="fa-solid fa-cloud-arrow-up" id="uploadIcon"></i>
-<div class="selected-preview" id="selectedPreview"><img id="selectedPreviewImage" alt="Selected image preview"></div>
-<h4 id="uploadTitle">Upload Images</h4><p id="uploadDescription">Select multiple images, drag &amp; drop or paste.</p>
-<label class="pdf-choose-btn"><i class="fa-solid fa-folder-open"></i> Choose Images
-<input type="file" id="imageInput" accept="image/jpeg,image/png,image/webp,image/jpg" multiple></label>
-<button type="button" class="pdf-clear-btn" id="clearAllBtn"><i class="fa-solid fa-trash"></i> Clear All</button>
-<div class="image-list" id="imageList"></div>
-</div>
-<div class="pdf-info"><span>Images</span><b id="imageCount">0</b></div>
-<div class="pdf-info"><span>Total Size</span><b id="totalSize">0 KB</b></div>
-</div></div>
+  <section class="tool-hero">
+    <div class="container">
+      <h1><i class="fa-solid fa-file-pdf"></i> Image to PDF</h1>
+      <p>Combine multiple images into one clean PDF — fast, simple and browser-based.</p>
+    </div>
+  </section>
 
-<div class="pdf-panel"><div class="pdf-card pdf-control-card"><h3><i class="fa-solid fa-sliders"></i> PDF Settings</h3>
-<label>Page Size</label><div class="pdf-option-grid">
-<button type="button" class="pdf-option active" data-page-size="A4">A4</button><button type="button" class="pdf-option" data-page-size="A3">A3</button><button type="button" class="pdf-option" data-page-size="LETTER">Letter</button><button type="button" class="pdf-option" data-page-size="LEGAL">Legal</button><button type="button" class="pdf-option" data-page-size="AUTO">Auto</button>
-</div>
-<label>Orientation</label><div class="pdf-option-grid two"><button type="button" class="orientation-btn active" data-orientation="portrait">Portrait</button><button type="button" class="orientation-btn" data-orientation="landscape">Landscape</button></div>
-<label>Image Fit</label><div class="pdf-option-grid two"><button type="button" class="fit-btn active" data-fit="contain">Contain</button><button type="button" class="fit-btn" data-fit="cover">Cover</button></div>
-<label>Margin <span id="marginValue">10 mm</span></label><input type="range" id="marginRange" class="pdf-range" min="0" max="40" value="10">
-<label>Image Quality <span id="qualityValue">90%</span></label><input type="range" id="qualityRange" class="pdf-range" min="30" max="100" value="90">
-<label>Compression</label><div class="pdf-option-grid"><button type="button" class="compression-btn" data-compression="low">Small</button><button type="button" class="compression-btn active" data-compression="medium">Medium</button><button type="button" class="compression-btn" data-compression="high">High Quality</button></div>
-<label>Page Background</label><div class="pdf-background-grid"><button type="button" class="background-btn active" data-background="#ffffff">White</button><button type="button" class="background-btn" data-background="#f3f4f6">Light Gray</button><button type="button" class="background-btn" data-background="#000000">Black</button></div>
-<label>PDF File Name</label><input type="text" id="pdfFileName" class="pdf-text-input" value="onetoolbox-images">
-<button type="button" class="pdf-generate-btn" id="generatePdfBtn" disabled><i class="fa-solid fa-file-pdf"></i> Generate PDF</button>
-<button type="button" class="pdf-reset-btn" id="resetSettingsBtn"><i class="fa-solid fa-rotate-left"></i> Reset Settings</button>
-</div></div>
+  <section class="section tool-main">
+    <div class="container">
+      <div class="pdf-workspace">
 
-<div class="pdf-panel"><div class="pdf-card"><h3><i class="fa-solid fa-file-pdf"></i> PDF Result</h3>
-<div class="pdf-preview-box"><div class="pdf-preview-placeholder" id="pdfPlaceholder"><i class="fa-solid fa-file-pdf"></i><p>PDF preview will appear here.</p></div><iframe id="pdfPreview" title="PDF Preview"></iframe></div>
-<div class="pdf-info"><span>Pages</span><b id="pdfPages">0</b></div><div class="pdf-info"><span>PDF Size</span><b id="pdfSize">0 KB</b></div><div class="pdf-info"><span>File Name</span><b id="pdfResultName">-</b></div>
-<a href="#" id="downloadPdfBtn" class="pdf-download-btn disabled"><i class="fa-solid fa-download"></i> Download PDF</a>
-</div></div>
-</div></div></section>
+        <!-- Upload -->
+        <div class="pdf-card upload-card">
+          <div class="card-title">
+            <div>
+              <span class="title-icon blue"><i class="fa-solid fa-images"></i></span>
+              <div>
+                <h2>Upload Images</h2>
+                <p>JPG, PNG or WEBP • Multiple images</p>
+              </div>
+            </div>
+            <span class="count-pill" id="imageCount">0 images</span>
+          </div>
 
-<section class="content-section"><div class="container"><div class="content-heading"><h2>How to Convert Images to PDF</h2><p>Create your PDF in three simple steps.</p></div><div class="steps-grid">
-<div class="info-card"><div class="step-number">1</div><h3>Upload Images</h3><p>Select one or multiple JPG, PNG or WEBP images.</p></div>
-<div class="info-card"><div class="step-number">2</div><h3>Customize PDF</h3><p>Select page size, orientation, margin and image quality.</p></div>
-<div class="info-card"><div class="step-number">3</div><h3>Download PDF</h3><p>Generate your PDF and download it instantly.</p></div>
-</div></div></section>
+          <div class="drop-zone" id="uploadArea">
+            <input type="file" id="imageInput" accept="image/jpeg,image/png,image/webp" multiple hidden>
+            <div class="drop-icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+            <h3>Drag & Drop Images Here</h3>
+            <p>or choose images from your device</p>
+            <button type="button" class="choose-btn" id="chooseBtn">
+              <i class="fa-solid fa-folder-open"></i> Choose Images
+            </button>
+            <div class="drop-hint"><i class="fa-solid fa-arrow-down"></i> You can drop multiple images at once</div>
+          </div>
 
-<section class="content-section"><div class="container"><div class="content-heading"><h2>Image to PDF Features</h2></div><div class="feature-grid">
-<div class="feature-mini"><i class="fa-solid fa-images"></i><div><h3>Multiple Images</h3><p>Combine multiple images into one PDF file.</p></div></div>
-<div class="feature-mini"><i class="fa-solid fa-file"></i><div><h3>A4 Support</h3><p>Create standard A4 PDFs easily.</p></div></div>
-<div class="feature-mini"><i class="fa-solid fa-arrows-left-right"></i><div><h3>Orientation</h3><p>Choose portrait or landscape.</p></div></div>
-<div class="feature-mini"><i class="fa-solid fa-sliders"></i><div><h3>Quality Control</h3><p>Adjust image quality before creating PDF.</p></div></div>
-<div class="feature-mini"><i class="fa-solid fa-compress"></i><div><h3>Compression</h3><p>Reduce PDF size with compression.</p></div></div>
-<div class="feature-mini"><i class="fa-solid fa-shield-halved"></i><div><h3>Browser Processing</h3><p>Images are processed directly in your browser.</p></div></div>
-</div></div></section>
+          <div class="upload-stats">
+            <div><span>Total Size</span><strong id="totalSize">0 KB</strong></div>
+            <div><span>Pages</span><strong id="pageCount">0</strong></div>
+          </div>
 
-<section class="content-section"><div class="container"><div class="content-heading"><h2>Frequently Asked Questions</h2></div><div class="faq-list">
-<details><summary>How many images can I convert?</summary><p>You can select multiple images and combine them into a single PDF.</p></details>
-<details><summary>Which image formats are supported?</summary><p>JPG, JPEG, PNG and WEBP images are supported.</p></details>
-<details><summary>Can I create an A4 PDF?</summary><p>Yes. A4 is selected by default.</p></details>
-<details><summary>Can I change PDF orientation?</summary><p>Yes. You can select Portrait or Landscape.</p></details>
-<details><summary>Can I reduce PDF file size?</summary><p>Yes. Use quality and compression settings.</p></details>
-<details><summary>Are my images uploaded to a server?</summary><p>The PDF is generated directly in your browser.</p></details>
-</div></div></section>
-<section class="otb-tool-info"><div class="container"><div class="otb-tool-info-head"><h2>Features</h2><p>Convert JPG, PNG and WEBP images to PDF online for free.</p></div><div class="otb-tool-info-grid"><div class="otb-tool-info-card"><h3>Simple workflow</h3><ul><li>Clear controls focused on the main Image task.</li><li>Useful settings are kept close to the tool workspace.</li><li>Results can be reviewed before the final download where supported.</li></ul></div><div class="otb-tool-info-card"><h3>Browser friendly</h3><ul><li>Works directly from a modern web browser.</li><li>No desktop installation is required for normal use.</li><li>Responsive layout for computer, tablet and phone screens.</li></ul></div><div class="otb-tool-info-card"><h3>Practical output</h3><ul><li>Designed for everyday file and content tasks.</li><li>Original input is not changed by the download step.</li><li>Easy reset and repeat workflow where supported.</li></ul></div></div></div></section>
-<section class="otb-tool-info"><div class="container"><div class="otb-tool-info-head"><h2>How It Works</h2><p>Use 🖼️ Image to PDF in a few simple steps.</p></div><div class="otb-tool-info-grid"><div class="otb-tool-info-card"><h3>1. Open the tool</h3><p>Open this page and review the available options before starting.</p></div><div class="otb-tool-info-card"><h3>2. Add your input</h3><p>Select, enter or drop the content required by the tool, then choose the settings you need.</p></div><div class="otb-tool-info-card"><h3>3. Process & download</h3><p>Run the tool, check the result, make adjustments if available, and download the finished file or result.</p></div></div></div></section>
+          <div class="image-list" id="imageList">
+            <div class="empty-list">
+              <i class="fa-regular fa-images"></i>
+              <span>Your selected images will appear here</span>
+            </div>
+          </div>
+
+          <button type="button" class="clear-btn" id="clearAllBtn">
+            <i class="fa-solid fa-trash-can"></i> Clear All
+          </button>
+        </div>
+
+        <!-- Settings -->
+        <div class="pdf-card settings-card">
+          <div class="card-title">
+            <div>
+              <span class="title-icon purple"><i class="fa-solid fa-sliders"></i></span>
+              <div>
+                <h2>PDF Settings</h2>
+                <p>Customize your document</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="setting-group">
+            <label>Page Size</label>
+            <select id="pageSize" class="select-control">
+              <option value="A4" selected>A4</option>
+              <option value="A3">A3</option>
+              <option value="LETTER">Letter</option>
+              <option value="LEGAL">Legal</option>
+              <option value="AUTO">Auto</option>
+            </select>
+          </div>
+
+          <div class="setting-group">
+            <label>Orientation</label>
+            <div class="choice-grid two">
+              <button type="button" class="choice active" data-orientation="portrait">
+                <i class="fa-solid fa-file"></i> Portrait
+              </button>
+              <button type="button" class="choice" data-orientation="landscape">
+                <i class="fa-solid fa-file-lines"></i> Landscape
+              </button>
+            </div>
+          </div>
+
+          <div class="setting-group">
+            <label>Image Fit</label>
+            <div class="choice-grid two">
+              <button type="button" class="choice active" data-fit="contain">
+                <i class="fa-solid fa-expand"></i> Contain
+              </button>
+              <button type="button" class="choice" data-fit="cover">
+                <i class="fa-solid fa-up-right-and-down-left-from-center"></i> Cover
+              </button>
+            </div>
+          </div>
+
+          <div class="setting-group">
+            <label>Margin <b id="marginValue">10 mm</b></label>
+            <input type="range" id="marginRange" min="0" max="40" value="10">
+          </div>
+
+          <div class="setting-group">
+            <label>Image Quality <b id="qualityValue">90%</b></label>
+            <input type="range" id="qualityRange" min="40" max="100" value="90">
+          </div>
+
+          <div class="setting-group">
+            <label>Compression</label>
+            <div class="choice-grid three">
+              <button type="button" class="choice" data-compression="small">Small</button>
+              <button type="button" class="choice active" data-compression="medium">Medium</button>
+              <button type="button" class="choice" data-compression="high">High Quality</button>
+            </div>
+          </div>
+
+          <div class="setting-group">
+            <label>Page Background</label>
+            <div class="color-grid">
+              <button type="button" class="color-choice active" data-bg="#ffffff"><span style="background:#fff"></span>White</button>
+              <button type="button" class="color-choice" data-bg="#f3f4f6"><span style="background:#f3f4f6"></span>Gray</button>
+              <button type="button" class="color-choice" data-bg="#000000"><span style="background:#000"></span>Black</button>
+            </div>
+          </div>
+
+          
+
+          <button type="button" class="generate-btn" id="generatePdfBtn">
+            <i class="fa-solid fa-file-pdf"></i> Generate PDF
+          </button>
+          <button type="button" class="reset-btn" id="resetSettingsBtn">
+            <i class="fa-solid fa-rotate-left"></i> Reset Settings
+          </button>
+        </div>
+
+        <!-- Result -->
+        <div class="pdf-card result-card">
+          <div class="card-title">
+            <div>
+              <span class="title-icon red"><i class="fa-solid fa-file-pdf"></i></span>
+              <div>
+                <h2>PDF Result</h2>
+                <p>Your generated PDF appears here</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="pdf-preview-box">
+            <div class="pdf-placeholder" id="pdfPlaceholder">
+              <i class="fa-regular fa-file-pdf"></i>
+              <strong>PDF Preview</strong>
+              <span>Generate your PDF to see it here.</span>
+            </div>
+            <iframe id="pdfPreview" title="PDF Preview"></iframe>
+          </div>
+
+          <div class="result-stats">
+            <div><span>Pages</span><strong id="pdfPages">0</strong></div>
+            <div><span>PDF Size</span><strong id="pdfSize">0 KB</strong></div>
+          </div>
+
+          <a href="#" id="downloadPdfBtn" class="download-btn disabled">
+            <i class="fa-solid fa-download"></i> Download PDF
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="container">
+      <div class="content-heading">
+        <h2>How to Convert Images to PDF</h2>
+        <p>Create a PDF in three simple steps.</p>
+      </div>
+      <div class="steps-grid">
+        <div class="info-card"><span class="step-number">1</span><h3>Upload Images</h3><p>Choose multiple JPG, PNG or WEBP images or drag them into the upload box.</p></div>
+        <div class="info-card"><span class="step-number">2</span><h3>Customize PDF</h3><p>Select page size, orientation, image fit, margin and quality.</p></div>
+        <div class="info-card"><span class="step-number">3</span><h3>Download PDF</h3><p>Generate the PDF and download it instantly.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="container">
+      <div class="content-heading"><h2>Image to PDF Features</h2></div>
+      <div class="feature-grid">
+        <div class="feature-mini"><i class="fa-solid fa-images"></i><div><h3>Multiple Images</h3><p>Combine multiple images into one PDF.</p></div></div>
+        <div class="feature-mini"><i class="fa-solid fa-file"></i><div><h3>A4 Support</h3><p>Create standard A4 PDFs easily.</p></div></div>
+        <div class="feature-mini"><i class="fa-solid fa-arrows-left-right"></i><div><h3>Orientation</h3><p>Choose portrait or landscape.</p></div></div>
+        <div class="feature-mini"><i class="fa-solid fa-sliders"></i><div><h3>Quality Control</h3><p>Adjust image quality before export.</p></div></div>
+        <div class="feature-mini"><i class="fa-solid fa-compress"></i><div><h3>Compression</h3><p>Control the output file size.</p></div></div>
+        <div class="feature-mini"><i class="fa-solid fa-shield-halved"></i><div><h3>Browser Processing</h3><p>Images are processed directly in your browser.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section faq-section">
+    <div class="container narrow">
+      <div class="content-heading"><h2>Frequently Asked Questions</h2></div>
+      <div class="faq-list">
+        <details><summary>How many images can I convert?</summary><p>You can select multiple images and combine them into one PDF. The practical limit depends on your device memory.</p></details>
+        <details><summary>Which image formats are supported?</summary><p>JPG, JPEG, PNG and WEBP images are supported.</p></details>
+        <details><summary>Can I create an A4 PDF?</summary><p>Yes. A4 is selected by default. A3, Letter, Legal and Auto are also available.</p></details>
+        <details><summary>Can I change PDF orientation?</summary><p>Yes. You can switch between Portrait and Landscape.</p></details>
+        <details><summary>Are my images uploaded to a server?</summary><p>This tool creates the PDF in your browser using jsPDF. Your selected images are not sent to a OneToolBox server by this page.</p></details>
+      </div>
+    </div>
+  </section>
 </main>
+
 <div id="footer-placeholder"></div>
-<script src="../../assets/js/navigation.js"></script><script src="../../assets/js/app.js"></script>
+
+<footer class="otb-footer">
+  <div class="otb-footer-inner">
+    <div class="otb-footer-brand">
+      <strong>OneToolBox</strong>
+      <span>All tools in one place.</span>
+    </div>
+    <div class="otb-footer-links">
+      <span>Image Tools</span>
+      <span>PDF Tools</span>
+      <span>Video Tools</span>
+      <span>Free Online Tools</span>
+    </div>
+    <div class="otb-footer-copy">© <span id="otbFooterYear"></span> OneToolBox</div>
+  </div>
+</footer>
+
+
+<div class="pdf-modal" id="pdfModal" aria-hidden="true">
+  <div class="pdf-modal-backdrop"></div>
+  <div class="pdf-modal-card">
+    <div class="modal-icon"><i class="fa-solid fa-file-pdf"></i></div>
+    <h3 id="modalTitle">Generating PDF</h3>
+    <p id="modalText">Preparing your images...</p>
+    <div class="modal-progress"><span id="modalProgress"></span></div>
+    <div class="modal-progress-row"><span id="modalStage">Preparing</span><b id="modalPercent">0%</b></div>
+    <button type="button" id="modalDone" class="modal-done">Done</button>
+  </div>
+</div>
+
+<script src="../../assets/js/navigation.js"></script>
+<script src="../../assets/js/app.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="../../assets/js/tools/image-to-pdf.js"></script>
-</body></html>
+<script>
+(function(){
+  const y=document.getElementById("otbFooterYear");
+  if(y) y.textContent=new Date().getFullYear();
+  const p=document.getElementById("footer-placeholder");
+  const f=document.querySelector(".otb-footer");
+  if(!p||!f) return;
+  const observer=new MutationObserver(function(){
+    if(p.children.length || p.textContent.trim()){
+      f.style.display="none";
+      observer.disconnect();
+    }
+  });
+  observer.observe(p,{childList:true,subtree:true,characterData:true});
+})();
+</script>
+</body>
+</html>

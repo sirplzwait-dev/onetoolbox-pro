@@ -1,704 +1,354 @@
-/* ==========================================
-   OneToolBox
-   AI Background Remover
-========================================== */
+/* ==========================================================
+   OneToolBox — AI Background Remover
+   Balanced full-page layout
+========================================================== */
 
+.tool-hero{padding:26px 0 20px;text-align:center}
+.tool-hero h1{margin:0 0 7px;font-size:clamp(28px,3vw,38px);line-height:1.2;font-weight:800;color:#0f172a}
+.tool-hero h1 i{margin-right:8px;color:#2563eb}
+.tool-hero p{margin:0 auto;max-width:720px;color:#64748b;font-size:15px;line-height:1.6}
 
-/* ==========================================
-   Hero
-========================================== */
+.tool-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;align-items:stretch}
+.tool-card{min-width:0;background:#fff;border:1px solid #dbe3ec;border-radius:18px;padding:18px;box-shadow:0 8px 26px rgba(15,23,42,.06);display:flex;flex-direction:column}
+.tool-card:hover{border-color:#bfdbfe;box-shadow:0 12px 30px rgba(37,99,235,.09)}
+.tool-card h2{margin:0 0 13px;color:#0f172a;font-size:18px;line-height:1.3;font-weight:800;display:flex;align-items:center;gap:8px}
+.tool-card h2 i{color:#2563eb}
 
-.tool-hero {
+.upload-area{cursor:pointer;min-height:285px;border:2px dashed #cbd5e1;border-radius:16px;background:#f8fbff;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:18px;transition:.2s ease}
+.upload-area:hover,.upload-area.dragover{border-color:#2563eb;background:#eff6ff}
+.upload-icon{font-size:48px;color:#2563eb;margin-bottom:10px}
+.upload-area h3{margin:0;color:#0f172a;font-size:18px}
+.upload-area p{margin:7px 0 13px;color:#64748b;font-size:13px}
+.upload-area small{margin-top:10px;color:#64748b;font-size:12px}
 
-    text-align: center;
+.primary-btn,.secondary-btn{border:0;border-radius:11px;min-height:46px;padding:10px 16px;font-size:14px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;transition:.2s ease;box-sizing:border-box}
+.primary-btn{background:#2563eb;color:#fff}
+.primary-btn:hover{background:#1d4ed8;transform:translateY(-1px);box-shadow:0 7px 16px rgba(37,99,235,.18)}
+.secondary-btn{background:#f1f5f9;color:#334155;border:1px solid #cbd5e1}
+.secondary-btn:hover{background:#e2e8f0}
+.primary-btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.full-btn{width:100%;margin-bottom:10px}
 
-    padding: 55px 20px 35px;
+.file-info{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:11px}
+.file-info>div,.result-info>div{padding:10px;border:1px solid #e5e7eb;border-radius:11px;background:#f8fafc;text-align:center}
+.file-info span,.result-info span{display:block;color:#64748b;font-size:11px;margin-bottom:3px}
+.file-info strong,.result-info strong{color:#0f172a;font-size:13px}
 
+.processing-box{margin:3px 0 11px;padding:14px;border:1px solid #dbeafe;border-radius:13px;background:#f8fbff;text-align:center}
+.processing-box p{margin:8px 0 7px;color:#334155;font-size:12px;font-weight:700}
+.processing-box small{display:block;margin-top:6px;color:#64748b;font-size:10px}
+.loader{width:34px;height:34px;margin:auto;border:4px solid #dbeafe;border-top-color:#2563eb;border-radius:50%;animation:bgspin .8s linear infinite}
+@keyframes bgspin{to{transform:rotate(360deg)}}
+.progress-wrapper{height:6px;overflow:hidden;border-radius:999px;background:#dbe3ef}
+.progress-bar{width:0;height:100%;border-radius:999px;background:#2563eb;transition:width .2s}
+#progressText{font-weight:700}
+
+.tool-note{margin-top:auto;padding:14px;border:1px solid #e5e7eb;border-radius:13px;background:#f8fafc}
+.tool-note h4{margin:0 0 7px;color:#0f172a;font-size:14px}
+.tool-note ul{margin:0;padding-left:17px;color:#64748b;font-size:11px;line-height:1.6}
+.tool-note li{margin-bottom:3px}
+
+.background-controls{margin:3px 0 11px;padding:12px;border:1px solid #dbeafe;border-radius:13px;background:#f8fbff}
+.background-title{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:9px}
+.background-title span{color:#0f172a;font-size:12px;font-weight:800}
+.background-title span i{color:#2563eb;margin-right:5px}
+.background-title small{color:#64748b;font-size:10px}
+.background-options{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.background-option{min-height:36px;padding:5px 4px;border:1px solid #cbd5e1;border-radius:8px;background:#fff;color:#475569;font-size:10px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:4px;transition:.18s}
+.background-option:hover{border-color:#93c5fd;background:#eff6ff}
+.background-option.active{border-color:#2563eb;background:#eff6ff;color:#2563eb;box-shadow:0 0 0 2px rgba(37,99,235,.07)}
+.background-swatch{width:12px;height:12px;border-radius:50%;border:1px solid #cbd5e1;background:var(--swatch);display:inline-block}
+.background-option[data-background="transparent"] .background-swatch{background:linear-gradient(45deg,#e2e8f0 25%,#fff 25%,#fff 50%,#e2e8f0 50%,#e2e8f0 75%,#fff 75%);background-size:6px 6px}
+
+.result-head{display:flex;justify-content:space-between;align-items:center;margin:-2px 0 10px}
+.result-head span{font-size:12px;font-weight:800;color:#334155}
+.result-head small{font-size:10px;color:#94a3b8}
+
+.result-area{height:285px;min-height:285px;border:2px dashed #d1d5db;border-radius:16px;padding:10px;display:flex;align-items:center;justify-content:center;overflow:hidden;background-color:#f8fafc;background-image:linear-gradient(45deg,#e9eef3 25%,transparent 25%),linear-gradient(-45deg,#e9eef3 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#e9eef3 75%),linear-gradient(-45deg,transparent 75%,#e9eef3 75%);background-size:20px 20px;background-position:0 0,0 10px,10px -10px,-10px 0}
+.preview-image{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;border-radius:9px;display:none}
+.placeholder{text-align:center;color:#94a3b8}
+.placeholder i{font-size:46px;margin-bottom:8px;color:#cbd5e1}
+.placeholder p{margin:0;font-size:12px}
+.result-info{margin-top:10px}
+#downloadBtn{margin-top:9px;background:#16a34a}
+#downloadBtn:hover{background:#15803d}
+
+.otb-tool-info{padding:38px 0}
+.otb-tool-info-head{text-align:center;max-width:760px;margin:0 auto 20px}
+.otb-tool-info-head h2{margin:0 0 6px;color:#0f172a;font-size:25px}
+.otb-tool-info-head p{margin:0;color:#64748b;font-size:13px;line-height:1.6}
+.otb-tool-info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}
+.otb-tool-info-card{padding:16px;background:#fff;border:1px solid #e5e7eb;border-radius:14px;box-shadow:0 5px 18px rgba(15,23,42,.04)}
+.otb-tool-info-card h3{margin:0 0 6px;color:#0f172a;font-size:15px}
+.otb-tool-info-card p,.otb-tool-info-card li{color:#64748b;font-size:12px;line-height:1.6}
+.otb-tool-info-card ul{margin:0;padding-left:17px}
+.otb-tool-faq .otb-tool-info-card{max-width:900px;margin:auto}
+.otb-tool-faq details{border-bottom:1px solid #e5e7eb}
+.otb-tool-faq details:last-child{border-bottom:0}
+.otb-tool-faq summary{padding:14px 3px;cursor:pointer;color:#0f172a;font-size:13px;font-weight:750;list-style:none}
+.otb-tool-faq summary::-webkit-details-marker{display:none}
+.otb-tool-faq summary::after{content:"+";float:right;color:#2563eb;font-size:18px}
+.otb-tool-faq details[open] summary::after{content:"−"}
+.otb-tool-faq details p{margin:0;padding:0 3px 14px;color:#64748b;font-size:12px;line-height:1.6}
+
+body.dark .tool-hero h1,body.dark .tool-card h2,body.dark .upload-area h3,body.dark .file-info strong,body.dark .result-info strong,body.dark .tool-note h4,body.dark .background-title span,body.dark .result-head span,body.dark .otb-tool-info-head h2,body.dark .otb-tool-info-card h3,body.dark .otb-tool-faq summary{color:#f8fafc}
+body.dark .tool-hero p,body.dark .upload-area p,body.dark .upload-area small{color:#94a3b8}
+body.dark .tool-card,body.dark .otb-tool-info-card{background:#111827;border-color:#334155}
+body.dark .upload-area,body.dark .file-info>div,body.dark .result-info>div,body.dark .tool-note,body.dark .processing-box,body.dark .background-controls{background:#0f172a;border-color:#334155}
+body.dark .background-option{background:#111827;color:#cbd5e1;border-color:#334155}
+body.dark .result-area{background-color:#0f172a}
+body.dark .otb-tool-info-card p,body.dark .otb-tool-info-card li,body.dark .otb-tool-info-head p,body.dark .otb-tool-faq details p{color:#94a3b8}
+
+@media(max-width:1000px){
+ .tool-grid{grid-template-columns:1fr 1fr}
+ .tool-grid>.tool-card:last-child{grid-column:1/-1}
+ .otb-tool-info-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:700px){
+ .tool-hero{padding:22px 0 17px}
+ .tool-hero h1{font-size:28px}
+ .tool-grid{grid-template-columns:1fr;gap:13px}
+ .tool-grid>.tool-card:last-child{grid-column:auto}
+ .tool-card{padding:15px}
+ .upload-area,.result-area{min-height:255px;height:255px}
+ .background-options{grid-template-columns:repeat(2,1fr)}
+ .otb-tool-info{padding:30px 0}
+ .otb-tool-info-grid{grid-template-columns:1fr}
+}
+@media(max-width:420px){
+ .file-info{grid-template-columns:1fr 1fr}
 }
 
+/* Selected image preview stays in Upload card */
+.upload-preview{
+  display:none;
+  width:100%;
+  margin:0 0 12px;
+  border:1px solid #dbe3ec;
+  border-radius:14px;
+  overflow:hidden;
+  background:#fff;
+  text-align:center;
+}
+.upload-preview.has-image{display:block}
+.upload-preview img{
+  display:block;
+  width:100%;
+  height:190px;
+  object-fit:contain;
+  background:#f1f5f9;
+}
+.upload-preview-meta{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+  padding:8px 10px;
+  background:#fff;
+  text-align:left;
+}
+.upload-preview-meta strong{font-size:11px;color:#0f172a}
+.upload-preview-meta span{font-size:10px;color:#64748b}
 
-.tool-hero h1 {
-
-    margin: 0;
-
-    font-size: 42px;
-
-    font-weight: 800;
-
+/* Result contains only the processed image */
+.result-area .result-before-image{display:none!important}
+.result-area #afterImg{
+  display:none;
+  width:100%;
+  height:100%;
+  max-width:100%;
+  max-height:100%;
+  object-fit:contain;
+  object-position:center;
+  border-radius:9px;
 }
 
+/* Give the preview maximum useful area */
+.result-area{position:relative}
+.result-area #resultPlaceholder{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
 
-.tool-hero h1 i {
-
-    margin-right: 10px;
-
+/* Quality hint */
+.quality-note{
+  margin-top:8px;
+  font-size:10px;
+  color:#64748b;
+  line-height:1.45;
 }
 
+body.dark .upload-preview,
+body.dark .upload-preview-meta{background:#111827;border-color:#334155}
+body.dark .upload-preview-meta strong{color:#f8fafc}
+body.dark .upload-preview-meta span{color:#94a3b8}
+body.dark .upload-preview img{background:#0f172a}
 
-.tool-hero p {
-
-    margin-top: 12px;
-
-    font-size: 18px;
-
-    opacity: 0.7;
-
+@media(max-width:700px){
+  .upload-preview img{height:170px}
 }
 
+/* ==========================================================
+   OneToolBox AI Processing Modal
+========================================================== */
+body.ai-modal-open{overflow:hidden}
 
-/* ==========================================
-   Tool Grid
-========================================== */
+.ai-modal{
+  position:fixed;
+  inset:0;
+  z-index:99999;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  transition:opacity .22s ease,visibility .22s ease;
+}
+.ai-modal.show{
+  opacity:1;
+  visibility:visible;
+  pointer-events:auto;
+}
+.ai-modal-backdrop{
+  position:absolute;
+  inset:0;
+  background:rgba(15,23,42,.58);
+  backdrop-filter:blur(5px);
+}
+.ai-modal-card{
+  position:relative;
+  z-index:1;
+  width:min(420px,100%);
+  padding:28px 25px 23px;
+  border:1px solid rgba(255,255,255,.7);
+  border-radius:22px;
+  background:rgba(255,255,255,.98);
+  box-shadow:0 25px 70px rgba(15,23,42,.28);
+  text-align:center;
+  transform:translateY(12px) scale(.97);
+  transition:transform .22s ease;
+}
+.ai-modal.show .ai-modal-card{transform:translateY(0) scale(1)}
 
-.tool-grid {
+.ai-modal-icon-wrap{
+  position:relative;
+  width:76px;
+  height:76px;
+  margin:0 auto 17px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.ai-modal-spinner{
+  position:absolute;
+  inset:0;
+  border:4px solid #dbeafe;
+  border-top-color:#2563eb;
+  border-right-color:#60a5fa;
+  border-radius:50%;
+  animation:aiModalSpin .85s linear infinite;
+}
+.ai-modal-icon{
+  color:#2563eb;
+  font-size:27px;
+}
+@keyframes aiModalSpin{to{transform:rotate(360deg)}}
 
-    display: grid;
+.ai-modal-card h3{
+  margin:0 0 7px;
+  color:#0f172a;
+  font-size:21px;
+  font-weight:800;
+}
+.ai-modal-card>p{
+  margin:0 auto 19px;
+  max-width:330px;
+  color:#64748b;
+  font-size:13px;
+  line-height:1.55;
+}
+.ai-modal-progress{
+  width:100%;
+  height:8px;
+  overflow:hidden;
+  border-radius:999px;
+  background:#e5e7eb;
+}
+.ai-modal-progress>div{
+  width:0;
+  height:100%;
+  border-radius:inherit;
+  background:linear-gradient(90deg,#2563eb,#60a5fa);
+  transition:width .25s ease;
+}
+.ai-modal-progress-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin-top:8px;
+  color:#64748b;
+  font-size:11px;
+}
+.ai-modal-progress-row strong{color:#2563eb}
 
-    grid-template-columns:
-        repeat(3, minmax(0, 1fr));
+.ai-modal-done,.ai-modal-error{
+  display:none;
+  margin:15px 0 0;
+  padding:10px 12px;
+  border-radius:11px;
+  font-size:12px;
+  line-height:1.45;
+}
+.ai-modal-done.show{
+  display:block;
+  color:#15803d;
+  background:#f0fdf4;
+  border:1px solid #bbf7d0;
+}
+.ai-modal-done i{margin-right:5px}
+.ai-modal-error.show{
+  display:block;
+  color:#b91c1c;
+  background:#fef2f2;
+  border:1px solid #fecaca;
+}
+.ai-modal-error i{margin-right:5px}
 
-    gap: 22px;
-
-    align-items: start;
-
+.ai-modal-close{
+  margin-top:16px;
+  min-width:105px;
+  min-height:40px;
+  padding:9px 17px;
+  border:1px solid #cbd5e1;
+  border-radius:10px;
+  background:#f8fafc;
+  color:#334155;
+  font-size:13px;
+  font-weight:800;
+  cursor:pointer;
+}
+.ai-modal-close:hover{background:#e2e8f0}
+.ai-modal-close[data-processing="true"]{
+  opacity:.45;
+  cursor:not-allowed;
 }
 
-
-/* ==========================================
-   Tool Card
-========================================== */
-
-.tool-card {
-
-    background: #ffffff;
-
-    border-radius: 20px;
-
-    padding: 24px;
-
-    border: 1px solid #e5e7eb;
-
-    box-shadow:
-        0 10px 30px rgba(0, 0, 0, 0.06);
-
+body.dark .ai-modal-card{
+  background:#111827;
+  border-color:#334155;
+}
+body.dark .ai-modal-card h3{color:#f8fafc}
+body.dark .ai-modal-card>p,
+body.dark .ai-modal-progress-row{color:#94a3b8}
+body.dark .ai-modal-progress{background:#334155}
+body.dark .ai-modal-close{
+  background:#1e293b;
+  border-color:#475569;
+  color:#e2e8f0;
 }
 
-
-.tool-card h2 {
-
-    margin: 0 0 20px;
-
-    font-size: 23px;
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 10px;
-
-}
-
-
-.tool-card h2 i {
-
-    color: #2563eb;
-
-}
-
-
-/* ==========================================
-   Upload Area
-========================================== */
-
-.upload-area {
-
-    min-height: 315px;
-
-    border: 2px dashed #2563eb;
-
-    border-radius: 18px;
-
-    display: flex;
-
-    flex-direction: column;
-
-    align-items: center;
-
-    justify-content: center;
-
-    text-align: center;
-
-    padding: 25px;
-
-    background: #f8fbff;
-
-    transition:
-        0.2s ease;
-
-}
-
-
-.upload-area.dragover {
-
-    background: #eef5ff;
-
-    border-color: #1d4ed8;
-
-    transform: scale(1.01);
-
-}
-
-
-.upload-icon {
-
-    font-size: 62px;
-
-    color: #2563eb;
-
-    margin-bottom: 15px;
-
-}
-
-
-.upload-area h3 {
-
-    margin: 0;
-
-    font-size: 22px;
-
-}
-
-
-.upload-area p {
-
-    margin: 10px 0 18px;
-
-    opacity: 0.65;
-
-}
-
-
-.upload-area small {
-
-    margin-top: 15px;
-
-    opacity: 0.65;
-
-}
-
-
-/* ==========================================
-   Buttons
-========================================== */
-
-.primary-btn,
-.secondary-btn {
-
-    border: none;
-
-    border-radius: 12px;
-
-    min-height: 52px;
-
-    padding: 13px 20px;
-
-    font-size: 16px;
-
-    font-weight: 700;
-
-    cursor: pointer;
-
-    display: inline-flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    gap: 9px;
-
-    text-decoration: none;
-
-    transition:
-        transform 0.15s ease,
-        opacity 0.15s ease;
-
-}
-
-
-.primary-btn {
-
-    background: #2563eb;
-
-    color: #ffffff;
-
-}
-
-
-.primary-btn:hover {
-
-    transform: translateY(-1px);
-
-    opacity: 0.92;
-
-}
-
-
-.secondary-btn {
-
-    background: #f1f3f5;
-
-    color: #111827;
-
-}
-
-
-.secondary-btn:hover {
-
-    transform: translateY(-1px);
-
-}
-
-
-.primary-btn:disabled {
-
-    opacity: 0.55;
-
-    cursor: not-allowed;
-
-    transform: none;
-
-}
-
-
-.full-btn {
-
-    width: 100%;
-
-    margin-bottom: 12px;
-
-}
-
-
-/* ==========================================
-   File Information
-========================================== */
-
-.file-info {
-
-    display: grid;
-
-    grid-template-columns: 1fr 1fr;
-
-    gap: 12px;
-
-    margin-top: 16px;
-
-}
-
-
-.file-info > div {
-
-    background: #f8fafc;
-
-    border: 1px solid #e5e7eb;
-
-    border-radius: 12px;
-
-    padding: 14px;
-
-    text-align: center;
-
-}
-
-
-.file-info span,
-.result-info span {
-
-    display: block;
-
-    font-size: 13px;
-
-    opacity: 0.65;
-
-    margin-bottom: 5px;
-
-}
-
-
-.file-info strong,
-.result-info strong {
-
-    font-size: 16px;
-
-}
-
-
-/* ==========================================
-   Processing
-========================================== */
-
-.processing-box {
-
-    text-align: center;
-
-    background: #f8fafc;
-
-    border: 1px solid #e5e7eb;
-
-    border-radius: 15px;
-
-    padding: 20px;
-
-    margin-top: 8px;
-
-    margin-bottom: 18px;
-
-}
-
-
-.processing-box p {
-
-    margin: 12px 0 8px;
-
-    font-weight: 600;
-
-}
-
-
-.processing-box small {
-
-    display: block;
-
-    margin-top: 8px;
-
-    opacity: 0.7;
-
-}
-
-
-/* ==========================================
-   Loader
-========================================== */
-
-.loader {
-
-    width: 48px;
-
-    height: 48px;
-
-    border-radius: 50%;
-
-    border: 5px solid #e5e7eb;
-
-    border-top-color: #2563eb;
-
-    animation:
-        backgroundLoader 0.8s linear infinite;
-
-    margin: 0 auto;
-
-}
-
-
-@keyframes backgroundLoader {
-
-    to {
-
-        transform: rotate(360deg);
-
-    }
-
-}
-
-
-/* ==========================================
-   Progress
-========================================== */
-
-.progress-wrapper {
-
-    width: 100%;
-
-    height: 8px;
-
-    background: #e5e7eb;
-
-    border-radius: 20px;
-
-    overflow: hidden;
-
-    margin-top: 15px;
-
-}
-
-
-.progress-bar {
-
-    width: 0%;
-
-    height: 100%;
-
-    background: #2563eb;
-
-    border-radius: inherit;
-
-    transition: width 0.2s ease;
-
-}
-
-
-/* ==========================================
-   Tips
-========================================== */
-
-.tool-note {
-
-    margin-top: 18px;
-
-    padding: 18px;
-
-    border-radius: 15px;
-
-    background: #f8fafc;
-
-    border: 1px solid #e5e7eb;
-
-}
-
-
-.tool-note h4 {
-
-    margin: 0 0 12px;
-
-    font-size: 17px;
-
-}
-
-
-.tool-note ul {
-
-    margin: 0;
-
-    padding-left: 20px;
-
-}
-
-
-.tool-note li {
-
-    margin-bottom: 9px;
-
-    line-height: 1.5;
-
-}
-
-
-/* ==========================================
-   Result Area
-========================================== */
-
-.result-area {
-
-    min-height: 320px;
-
-    border: 2px dashed #d1d5db;
-
-    border-radius: 18px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    padding: 15px;
-
-    position: relative;
-
-    overflow: hidden;
-
-    background-color: #f8fafc;
-
-    background-image:
-        linear-gradient(45deg, #eef1f4 25%, transparent 25%),
-        linear-gradient(-45deg, #eef1f4 25%, transparent 25%),
-        linear-gradient(45deg, transparent 75%, #eef1f4 75%),
-        linear-gradient(-45deg, transparent 75%, #eef1f4 75%);
-
-    background-size: 24px 24px;
-
-    background-position:
-        0 0,
-        0 12px,
-        12px -12px,
-        -12px 0;
-
-}
-
-
-.preview-image {
-
-    max-width: 100%;
-
-    max-height: 520px;
-
-    width: auto;
-
-    height: auto;
-
-    object-fit: contain;
-
-    border-radius: 10px;
-
-    display: none;
-
-}
-
-
-.placeholder {
-
-    text-align: center;
-
-    opacity: 0.5;
-
-}
-
-
-.placeholder i {
-
-    font-size: 50px;
-
-    margin-bottom: 12px;
-
-}
-
-
-.placeholder p {
-
-    margin: 0;
-
-}
-
-
-/* ==========================================
-   Result Information
-========================================== */
-
-.result-info {
-
-    margin-top: 15px;
-
-}
-
-
-.result-info > div {
-
-    background: #f8fafc;
-
-    border: 1px solid #e5e7eb;
-
-    border-radius: 12px;
-
-    padding: 14px;
-
-    text-align: center;
-
-}
-
-
-/* ==========================================
-   Responsive
-========================================== */
-
-@media (max-width: 1000px) {
-
-    .tool-grid {
-
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr));
-
-    }
-
-}
-
-
-@media (max-width: 700px) {
-
-    .tool-hero {
-
-        padding-top: 35px;
-
-    }
-
-
-    .tool-hero h1 {
-
-        font-size: 30px;
-
-    }
-
-
-    .tool-hero p {
-
-        font-size: 16px;
-
-    }
-
-
-    .tool-grid {
-
-        grid-template-columns: 1fr;
-
-    }
-
-
-    .tool-card {
-
-        padding: 18px;
-
-    }
-
-
-    .upload-area {
-
-        min-height: 280px;
-
-    }
-
-
-    .result-area {
-
-        min-height: 280px;
-
-    }
-
-}
-
-
-/* ==========================================
-   Small Mobile
-========================================== */
-
-@media (max-width: 420px) {
-
-    .file-info {
-
-        grid-template-columns: 1fr;
-
-    }
-
-
-    .tool-card h2 {
-
-        font-size: 20px;
-
-    }
-
-
-    .upload-icon {
-
-        font-size: 50px;
-
-    }
-
+@media(max-width:480px){
+  .ai-modal-card{padding:24px 18px 20px;border-radius:18px}
+  .ai-modal-icon-wrap{width:68px;height:68px}
+  .ai-modal-card h3{font-size:19px}
 }

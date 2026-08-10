@@ -1,1778 +1,241 @@
-"use strict";
+/* OneToolBox Image to PDF */
+(() => {
+  "use strict";
 
-document.addEventListener("DOMContentLoaded", function () {
+  const $ = id => document.getElementById(id);
+  const state = {
+    images: [],
+    orientation: "portrait",
+    fit: "contain",
+    pageSize: "A4",
+    margin: 10,
+    quality: 0.90,
+    compression: "medium",
+    background: "#ffffff",
+    pdfUrl: ""
+  };
 
-    /* =====================================================
-       ELEMENTS
-    ===================================================== */
+  const imageInput=$("imageInput"), uploadArea=$("uploadArea"), chooseBtn=$("chooseBtn");
+  const imageList=$("imageList"), imageCount=$("imageCount"), pageCount=$("pageCount");
+  const totalSize=$("totalSize"), clearAllBtn=$("clearAllBtn");
+  const generateBtn=$("generatePdfBtn"), downloadBtn=$("downloadPdfBtn");
+  const pdfPreview=$("pdfPreview"), pdfPlaceholder=$("pdfPlaceholder");
+  const pdfPages=$("pdfPages"), pdfSize=$("pdfSize");
+  const marginRange=$("marginRange"), marginValue=$("marginValue");
+  const qualityRange=$("qualityRange"), qualityValue=$("qualityValue");
+  const pageSize=$("pageSize"), resetBtn=$("resetSettingsBtn");
+  const modal=$("pdfModal"), modalText=$("modalText"), modalStage=$("modalStage");
+  const modalProgress=$("modalProgress"), modalPercent=$("modalPercent"), modalDone=$("modalDone");
 
-    const input = document.getElementById("imageInput");
-    const uploadArea = document.getElementById("uploadArea");
-    const imageList = document.getElementById("imageList");
+  const fmt = bytes => bytes < 1024 ? `${bytes} B` :
+    bytes < 1048576 ? `${(bytes/1024).toFixed(1)} KB` : `${(bytes/1048576).toFixed(2)} MB`;
 
-    const uploadIcon = document.getElementById("uploadIcon");
-    const uploadTitle = document.getElementById("uploadTitle");
-    const uploadDescription =
-        document.getElementById("uploadDescription");
+  function modalOpen(){
+    modal.classList.add("show");
+    modal.classList.remove("completed");
+    modal.setAttribute("aria-hidden","false");
+    setProgress(0,"Preparing","Preparing your images...");
+  }
+  function modalClose(){
+    modal.classList.remove("show");
+    modal.setAttribute("aria-hidden","true");
+  }
+  function setProgress(v,stage,text){
+    const n=Math.max(0,Math.min(100,v));
+    modalProgress.style.width=n+"%";
+    modalPercent.textContent=Math.round(n)+"%";
+    modalStage.textContent=stage;
+    modalText.textContent=text;
+  }
 
-    const clearBtn =
-        document.getElementById("clearAllBtn");
+  function addFiles(files){
+    const valid=[...files].filter(f=>/^image\/(jpeg|png|webp)$/.test(f.type));
+    if(!valid.length) return;
+    valid.forEach(file=>{
+      state.images.push({
+        file,
+        url:URL.createObjectURL(file),
+        id:crypto.randomUUID ? crypto.randomUUID() : Date.now()+"-"+Math.random()
+      });
+    });
+    renderList();
+  }
 
-    const imageCount =
-        document.getElementById("imageCount");
-
-    const totalSize =
-        document.getElementById("totalSize");
-
-    const generateBtn =
-        document.getElementById("generatePdfBtn");
-
-    const resetBtn =
-        document.getElementById("resetSettingsBtn");
-
-    const marginRange =
-        document.getElementById("marginRange");
-
-    const marginValue =
-        document.getElementById("marginValue");
-
-    const qualityRange =
-        document.getElementById("qualityRange");
-
-    const qualityValue =
-        document.getElementById("qualityValue");
-
-    const fileNameInput =
-        document.getElementById("pdfFileName");
-
-    const pdfPreview =
-        document.getElementById("pdfPreview");
-
-    const pdfPlaceholder =
-        document.getElementById("pdfPlaceholder");
-
-    const pdfPages =
-        document.getElementById("pdfPages");
-
-    const pdfSize =
-        document.getElementById("pdfSize");
-
-    const pdfResultName =
-        document.getElementById("pdfResultName");
-
-    const downloadBtn =
-        document.getElementById("downloadPdfBtn");
-
-
-    /* =====================================================
-       CHECK
-    ===================================================== */
-
-    if (!input) {
-        console.error("imageInput not found");
-        return;
+  function renderList(){
+    imageList.innerHTML="";
+    if(!state.images.length){
+      imageList.innerHTML='<div class="empty-list"><i class="fa-regular fa-images"></i><span>Your selected images will appear here</span></div>';
+    } else {
+      state.images.forEach((item,index)=>{
+        const row=document.createElement("div");
+        row.className="image-item";
+        row.innerHTML=`
+          <img class="image-thumb" src="${item.url}" alt="">
+          <div class="image-name">
+            <strong title="${escapeHtml(item.file.name)}">${escapeHtml(item.file.name)}</strong>
+            <span>${fmt(item.file.size)} • Page ${index+1}</span>
+          </div>
+          <div class="image-actions">
+            <button type="button" title="Move up" data-action="up" data-index="${index}" ${index===0?"disabled":""}><i class="fa-solid fa-chevron-up"></i></button>
+            <button type="button" title="Move down" data-action="down" data-index="${index}" ${index===state.images.length-1?"disabled":""}><i class="fa-solid fa-chevron-down"></i></button>
+            <button type="button" title="Remove" data-action="remove" data-index="${index}"><i class="fa-solid fa-xmark"></i></button>
+          </div>`;
+        imageList.appendChild(row);
+      });
     }
+    const bytes=state.images.reduce((s,x)=>s+x.file.size,0);
+    imageCount.textContent=`${state.images.length} image${state.images.length===1?"":"s"}`;
+    pageCount.textContent=state.images.length;
+    totalSize.textContent=fmt(bytes);
+  }
 
-    if (!imageList) {
-        console.error("imageList not found");
-        return;
-    }
+  function escapeHtml(s){
+    return s.replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));
+  }
 
+  imageList.addEventListener("click",e=>{
+    const b=e.target.closest("button"); if(!b) return;
+    const i=Number(b.dataset.index), action=b.dataset.action;
+    if(action==="remove") state.images.splice(i,1);
+    if(action==="up" && i>0) [state.images[i-1],state.images[i]]=[state.images[i],state.images[i-1]];
+    if(action==="down" && i<state.images.length-1) [state.images[i+1],state.images[i]]=[state.images[i],state.images[i+1]];
+    renderList();
+  });
 
-    /* =====================================================
-       DATA
-    ===================================================== */
+  chooseBtn.addEventListener("click",e=>{e.preventDefault();e.stopPropagation();imageInput.click()});
+  imageInput.addEventListener("change",e=>{addFiles(e.target.files);e.target.value=""});
 
-    let images = [];
+  uploadArea.addEventListener("dragover",e=>{e.preventDefault();uploadArea.classList.add("dragover")});
+  uploadArea.addEventListener("dragleave",()=>uploadArea.classList.remove("dragover"));
+  uploadArea.addEventListener("drop",e=>{
+    e.preventDefault();uploadArea.classList.remove("dragover");addFiles(e.dataTransfer.files);
+  });
+  uploadArea.addEventListener("click",e=>{
+    if(!e.target.closest("#chooseBtn")) imageInput.click();
+  });
 
-    let pdfUrl = null;
+  document.addEventListener("paste",e=>{
+    const files=[...e.clipboardData.items].filter(i=>i.type.startsWith("image/")).map(i=>i.getAsFile());
+    if(files.length)addFiles(files);
+  });
 
-    let settings = {
+  clearAllBtn.addEventListener("click",()=>{
+    state.images.forEach(x=>URL.revokeObjectURL(x.url));
+    state.images=[]; renderList();
+  });
 
-        pageSize: "A4",
+  document.querySelectorAll("[data-orientation]").forEach(b=>b.addEventListener("click",()=>{
+    document.querySelectorAll("[data-orientation]").forEach(x=>x.classList.remove("active"));
+    b.classList.add("active"); state.orientation=b.dataset.orientation;
+  }));
+  document.querySelectorAll("[data-fit]").forEach(b=>b.addEventListener("click",()=>{
+    document.querySelectorAll("[data-fit]").forEach(x=>x.classList.remove("active"));
+    b.classList.add("active"); state.fit=b.dataset.fit;
+  }));
+  document.querySelectorAll("[data-compression]").forEach(b=>b.addEventListener("click",()=>{
+    document.querySelectorAll("[data-compression]").forEach(x=>x.classList.remove("active"));
+    b.classList.add("active"); state.compression=b.dataset.compression;
+    const q={small:.65,medium:.82,high:.95}[state.compression];
+    state.quality=q; qualityRange.value=Math.round(q*100); qualityValue.textContent=Math.round(q*100)+"%";
+  }));
+  document.querySelectorAll("[data-bg]").forEach(b=>b.addEventListener("click",()=>{
+    document.querySelectorAll("[data-bg]").forEach(x=>x.classList.remove("active"));
+    b.classList.add("active"); state.background=b.dataset.bg;
+  }));
 
-        orientation: "portrait",
+  marginRange.addEventListener("input",()=>{state.margin=+marginRange.value;marginValue.textContent=state.margin+" mm"});
+  qualityRange.addEventListener("input",()=>{state.quality=+qualityRange.value/100;qualityValue.textContent=qualityRange.value+"%"});
+  pageSize.addEventListener("change",()=>state.pageSize=pageSize.value);
 
-        fit: "contain",
+  resetBtn.addEventListener("click",()=>{
+    state.orientation="portrait";state.fit="contain";state.pageSize="A4";state.margin=10;state.quality=.90;state.compression="medium";state.background="#ffffff";
+    pageSize.value="A4";marginRange.value=10;marginValue.textContent="10 mm";qualityRange.value=90;qualityValue.textContent="90%";
+    document.querySelectorAll(".choice").forEach(b=>b.classList.remove("active"));
+    document.querySelector('[data-orientation="portrait"]').classList.add("active");
+    document.querySelector('[data-fit="contain"]').classList.add("active");
+    document.querySelector('[data-compression="medium"]').classList.add("active");
+    document.querySelectorAll(".color-choice").forEach(b=>b.classList.remove("active"));
+    document.querySelector('[data-bg="#ffffff"]').classList.add("active");
+  });
 
-        margin: 10,
+  function loadImage(file){
+    return new Promise((resolve,reject)=>{
+      const img=new Image();
+      const url=URL.createObjectURL(file);
+      img.onload=()=>{URL.revokeObjectURL(url);resolve(img)};
+      img.onerror=()=>{URL.revokeObjectURL(url);reject(new Error("Image could not be loaded."))};
+      img.src=url;
+    });
+  }
 
-        quality: 90,
+  function pageFormat(){
+    if(state.pageSize==="AUTO") return null;
+    return state.pageSize;
+  }
 
-        compression: "medium",
-
-        background: "#ffffff"
-
-    };
-
-
-    /* =====================================================
-       PREVIEW BOX
-    ===================================================== */
-
-    let previewBox =
-        document.getElementById("jsImagePreview");
-
-    if (!previewBox) {
-
-        previewBox =
-            document.createElement("div");
-
-        previewBox.id =
-            "jsImagePreview";
-
-        previewBox.style.cssText = `
-            display:none;
-            width:100%;
-            margin:15px 0;
-            padding:8px;
-            box-sizing:border-box;
-            border:1px solid #dbe3ec;
-            border-radius:12px;
-            background:#fff;
-        `;
-
-        const previewImg =
-            document.createElement("img");
-
-        previewImg.id =
-            "jsPreviewImage";
-
-        previewImg.style.cssText = `
-            display:block;
-            width:100%;
-            height:220px;
-            object-fit:contain;
-            border-radius:8px;
-            background:#f8fafc;
-        `;
-
-        previewBox.appendChild(previewImg);
-
-        if (uploadIcon) {
-
-            uploadIcon.insertAdjacentElement(
-                "afterend",
-                previewBox
-            );
-
-        } else {
-
-            uploadArea.prepend(
-                previewBox
-            );
-
+  async function generate(){
+    if(!state.images.length){alert("Please choose at least one image.");return}
+    if(!window.jspdf?.jsPDF){alert("PDF engine is still loading. Please try again.");return}
+    generateBtn.disabled=true; modalOpen();
+    try{
+      const {jsPDF}=window.jspdf;
+      let doc=null;
+      const format=pageFormat();
+      for(let i=0;i<state.images.length;i++){
+        setProgress((i/state.images.length)*90,"Processing image",`Adding image ${i+1} of ${state.images.length}...`);
+        const img=await loadImage(state.images[i].file);
+        let orient=state.orientation;
+        if(state.pageSize==="AUTO"){
+          orient=img.naturalWidth>img.naturalHeight?"landscape":"portrait";
         }
-
-    }
-
-
-    const previewImage =
-        document.getElementById(
-            "jsPreviewImage"
-        );
-
-
-    /* =====================================================
-       FORMAT SIZE
-    ===================================================== */
-
-    function formatSize(bytes) {
-
-        if (!bytes) {
-            return "0 KB";
-        }
-
-        if (bytes < 1024) {
-            return bytes + " B";
-        }
-
-        if (bytes < 1024 * 1024) {
-
-            return (
-                bytes / 1024
-            ).toFixed(1) + " KB";
-
-        }
-
-        return (
-            bytes / (1024 * 1024)
-        ).toFixed(2) + " MB";
-
-    }
-
-
-    /* =====================================================
-       READ IMAGE
-    ===================================================== */
-
-    function readImage(file) {
-
-        return new Promise(function (resolve, reject) {
-
-            const reader =
-                new FileReader();
-
-            reader.onload =
-                function (event) {
-
-                    const img =
-                        new Image();
-
-                    img.onload =
-                        function () {
-
-                            resolve({
-
-                                id:
-                                    Date.now() +
-                                    "_" +
-                                    Math.random()
-                                        .toString(36)
-                                        .substring(2),
-
-                                name:
-                                    file.name,
-
-                                size:
-                                    file.size,
-
-                                type:
-                                    file.type,
-
-                                src:
-                                    event.target.result,
-
-                                width:
-                                    img.naturalWidth,
-
-                                height:
-                                    img.naturalHeight
-
-                            });
-
-                        };
-
-                    img.onerror =
-                        reject;
-
-                    img.src =
-                        event.target.result;
-
-                };
-
-            reader.onerror =
-                reject;
-
-            reader.readAsDataURL(
-                file
-            );
-
-        });
-
-    }
-
-
-    /* =====================================================
-       ADD FILES
-    ===================================================== */
-
-    async function addFiles(fileList) {
-
-        const files =
-            Array.from(
-                fileList || []
-            );
-
-        if (!files.length) {
-            return;
-        }
-
-        for (
-            const file of files
-        ) {
-
-            if (
-                !file.type ||
-                !file.type.startsWith("image/")
-            ) {
-                continue;
-            }
-
-            try {
-
-                const image =
-                    await readImage(file);
-
-                images.push(image);
-
-            } catch (error) {
-
-                console.error(
-                    "Image error:",
-                    error
-                );
-
-            }
-
-        }
-
-        renderImages();
-
-        input.value = "";
-
-    }
-
-
-    /* =====================================================
-       CHOOSE IMAGE
-    ===================================================== */
-
-    input.addEventListener(
-        "change",
-        function (event) {
-
-            addFiles(
-                event.target.files
-            );
-
-        }
-    );
-
-
-    /* =====================================================
-       SHOW PREVIEW
-    ===================================================== */
-
-    function showPreview(image) {
-
-        if (!image) {
-
-            previewBox.style.display =
-                "none";
-
-            previewImage.removeAttribute(
-                "src"
-            );
-
-            return;
-        }
-
-        previewImage.src =
-            image.src;
-
-        previewBox.style.display =
-            "block";
-
-    }
-
-
-    /* =====================================================
-       RENDER IMAGES
-    ===================================================== */
-
-    function renderImages() {
-
-        imageList.innerHTML = "";
-
-        if (!images.length) {
-
-            imageList.style.display =
-                "none";
-
-            showPreview(null);
-
-            if (uploadIcon) {
-
-                uploadIcon.style.display =
-                    "block";
-
-            }
-
-            if (uploadTitle) {
-
-                uploadTitle.textContent =
-                    "Upload Images";
-
-            }
-
-            if (uploadDescription) {
-
-                uploadDescription.textContent =
-                    "Select multiple images, drag & drop or paste.";
-
-            }
-
-            updateInfo();
-
-            return;
-        }
-
-
-        showPreview(
-            images[0]
-        );
-
-
-        if (uploadIcon) {
-
-            uploadIcon.style.display =
-                "none";
-
-        }
-
-
-        if (uploadTitle) {
-
-            uploadTitle.textContent =
-                images.length +
-                " Image" +
-                (
-                    images.length > 1
-                        ? "s"
-                        : ""
-                ) +
-                " Selected";
-
-        }
-
-
-        if (uploadDescription) {
-
-            uploadDescription.textContent =
-                "Click a thumbnail to preview it.";
-
-        }
-
-
-        imageList.style.display =
-            "flex";
-
-
-        images.forEach(
-            function (image, index) {
-
-                const item =
-                    document.createElement(
-                        "div"
-                    );
-
-                item.className =
-                    "image-item";
-
-                item.dataset.id =
-                    image.id;
-
-                item.innerHTML = `
-
-                    <img
-                        class="image-thumb"
-                        src="${image.src}"
-                        alt=""
-                    >
-
-                    <div
-                        class="image-item-info"
-                    >
-
-                        <div
-                            class="image-item-name"
-                            title="${image.name}"
-                        >
-                            ${index + 1}.
-                            ${image.name}
-                        </div>
-
-                        <div
-                            class="image-item-size"
-                        >
-                            ${formatSize(image.size)}
-                            •
-                            ${image.width}
-                            ×
-                            ${image.height}px
-                        </div>
-
-                    </div>
-
-                    <button
-                        type="button"
-                        class="remove-image-btn"
-                        data-id="${image.id}"
-                    >
-                        ×
-                    </button>
-
-                `;
-
-                imageList.appendChild(
-                    item
-                );
-
-            }
-        );
-
-
-        updateInfo();
-
-    }
-
-
-    /* =====================================================
-       THUMBNAIL CLICK / REMOVE
-    ===================================================== */
-
-    imageList.addEventListener(
-        "click",
-        function (event) {
-
-            const removeBtn =
-                event.target.closest(
-                    ".remove-image-btn"
-                );
-
-
-            if (removeBtn) {
-
-                event.preventDefault();
-                event.stopPropagation();
-
-                const id =
-                    removeBtn.dataset.id;
-
-                images =
-                    images.filter(
-                        function (image) {
-
-                            return (
-                                image.id != id
-                            );
-
-                        }
-                    );
-
-                renderImages();
-
-                return;
-            }
-
-
-            const item =
-                event.target.closest(
-                    ".image-item"
-                );
-
-
-            if (!item) {
-                return;
-            }
-
-
-            const image =
-                images.find(
-                    function (image) {
-
-                        return (
-                            image.id ==
-                            item.dataset.id
-                        );
-
-                    }
-                );
-
-
-            if (image) {
-
-                showPreview(
-                    image
-                );
-
-            }
-
-        }
-    );
-
-
-    /* =====================================================
-       CLEAR ALL
-    ===================================================== */
-
-    if (clearBtn) {
-
-        clearBtn.addEventListener(
-            "click",
-            function () {
-
-                images = [];
-
-                input.value = "";
-
-                renderImages();
-
-                resetPDFPreview();
-
-            }
-        );
-
-    }
-
-
-    /* =====================================================
-       DRAG & DROP
-    ===================================================== */
-
-    if (uploadArea) {
-
-        uploadArea.addEventListener(
-            "dragover",
-            function (event) {
-
-                event.preventDefault();
-
-                uploadArea.classList.add(
-                    "dragging"
-                );
-
-            }
-        );
-
-
-        uploadArea.addEventListener(
-            "dragleave",
-            function () {
-
-                uploadArea.classList.remove(
-                    "dragging"
-                );
-
-            }
-        );
-
-
-        uploadArea.addEventListener(
-            "drop",
-            function (event) {
-
-                event.preventDefault();
-
-                uploadArea.classList.remove(
-                    "dragging"
-                );
-
-                addFiles(
-                    event.dataTransfer.files
-                );
-
-            }
-        );
-
-    }
-
-
-    /* =====================================================
-       UPDATE IMAGE INFO
-    ===================================================== */
-
-    function updateInfo() {
-
-        if (imageCount) {
-
-            imageCount.textContent =
-                images.length;
-
-        }
-
-
-        let total = 0;
-
-        images.forEach(
-            function (image) {
-
-                total +=
-                    image.size;
-
-            }
-        );
-
-
-        if (totalSize) {
-
-            totalSize.textContent =
-                formatSize(total);
-
-        }
-
-
-        if (generateBtn) {
-
-            generateBtn.disabled =
-                images.length === 0;
-
-        }
-
-    }
-
-
-    /* =====================================================
-       ACTIVE BUTTON
-    ===================================================== */
-
-    function activate(
-        selector,
-        attribute,
-        value
-    ) {
-
-        document
-            .querySelectorAll(selector)
-            .forEach(
-                function (button) {
-
-                    button.classList.toggle(
-                        "active",
-                        button.getAttribute(
-                            attribute
-                        ) === value
-                    );
-
-                }
-            );
-
-    }
-
-
-    /* =====================================================
-       PAGE SIZE BUTTONS
-    ===================================================== */
-
-    document
-        .querySelectorAll(
-            ".pdf-option"
-        )
-        .forEach(
-            function (button) {
-
-                button.addEventListener(
-                    "click",
-                    function () {
-
-                        settings.pageSize =
-                            button.dataset.pageSize;
-
-                        activate(
-                            ".pdf-option",
-                            "data-page-size",
-                            settings.pageSize
-                        );
-
-                    }
-                );
-
-            }
-        );
-
-
-    /* =====================================================
-       ORIENTATION
-    ===================================================== */
-
-    document
-        .querySelectorAll(
-            ".orientation-btn"
-        )
-        .forEach(
-            function (button) {
-
-                button.addEventListener(
-                    "click",
-                    function () {
-
-                        settings.orientation =
-                            button.dataset.orientation;
-
-                        activate(
-                            ".orientation-btn",
-                            "data-orientation",
-                            settings.orientation
-                        );
-
-                    }
-                );
-
-            }
-        );
-
-
-    /* =====================================================
-       FIT
-    ===================================================== */
-
-    document
-        .querySelectorAll(
-            ".fit-btn"
-        )
-        .forEach(
-            function (button) {
-
-                button.addEventListener(
-                    "click",
-                    function () {
-
-                        settings.fit =
-                            button.dataset.fit;
-
-                        activate(
-                            ".fit-btn",
-                            "data-fit",
-                            settings.fit
-                        );
-
-                    }
-                );
-
-            }
-        );
-
-
-    /* =====================================================
-       MARGIN
-    ===================================================== */
-
-    if (marginRange) {
-
-        marginRange.addEventListener(
-            "input",
-            function () {
-
-                settings.margin =
-                    Number(
-                        marginRange.value
-                    );
-
-                if (marginValue) {
-
-                    marginValue.textContent =
-                        settings.margin +
-                        " mm";
-
-                }
-
-            }
-        );
-
-    }
-
-
-    /* =====================================================
-       QUALITY
-    ===================================================== */
-
-    if (qualityRange) {
-
-        qualityRange.addEventListener(
-            "input",
-            function () {
-
-                settings.quality =
-                    Number(
-                        qualityRange.value
-                    );
-
-                if (qualityValue) {
-
-                    qualityValue.textContent =
-                        settings.quality +
-                        "%";
-
-                }
-
-            }
-        );
-
-    }
-
-
-    /* =====================================================
-       COMPRESSION
-    ===================================================== */
-
-    document
-        .querySelectorAll(
-            ".compression-btn"
-        )
-        .forEach(
-            function (button) {
-
-                button.addEventListener(
-                    "click",
-                    function () {
-
-                        settings.compression =
-                            button.dataset.compression;
-
-
-                        activate(
-                            ".compression-btn",
-                            "data-compression",
-                            settings.compression
-                        );
-
-
-                        if (
-                            settings.compression ===
-                            "low"
-                        ) {
-
-                            settings.quality =
-                                60;
-
-                        }
-                        else if (
-                            settings.compression ===
-                            "medium"
-                        ) {
-
-                            settings.quality =
-                                80;
-
-                        }
-                        else {
-
-                            settings.quality =
-                                95;
-
-                        }
-
-
-                        if (qualityRange) {
-
-                            qualityRange.value =
-                                settings.quality;
-
-                        }
-
-
-                        if (qualityValue) {
-
-                            qualityValue.textContent =
-                                settings.quality +
-                                "%";
-
-                        }
-
-                    }
-                );
-
-            }
-        );
-
-
-    /* =====================================================
-       BACKGROUND
-    ===================================================== */
-
-    document
-        .querySelectorAll(
-            ".background-btn"
-        )
-        .forEach(
-            function (button) {
-
-                button.addEventListener(
-                    "click",
-                    function () {
-
-                        settings.background =
-                            button.dataset.background;
-
-                        activate(
-                            ".background-btn",
-                            "data-background",
-                            settings.background
-                        );
-
-                    }
-                );
-
-            }
-        );
-
-
-    /* =====================================================
-       PAGE SIZE
-    ===================================================== */
-
-    function getPageSize() {
-
-        const sizes = {
-
-            A4:
-                [210, 297],
-
-            A3:
-                [297, 420],
-
-            LETTER:
-                [215.9, 279.4],
-
-            LEGAL:
-                [215.9, 355.6]
-
-        };
-
-
-        if (
-            settings.pageSize ===
-            "AUTO"
-        ) {
-
-            if (
-                images[0] &&
-                images[0].width >
-                images[0].height
-            ) {
-
-                return [
-                    297,
-                    210
-                ];
-
-            }
-
-            return [
-                210,
-                297
-            ];
-
-        }
-
-
-        return (
-            sizes[
-                settings.pageSize
-            ] ||
-            sizes.A4
-        );
-
-    }
-
-
-    /* =====================================================
-       PREPARE IMAGE
-    ===================================================== */
-
-    function prepareImage(image) {
-
-        return new Promise(
-            function (resolve) {
-
-                const img =
-                    new Image();
-
-                img.onload =
-                    function () {
-
-                        let width =
-                            img.naturalWidth;
-
-                        let height =
-                            img.naturalHeight;
-
-
-                        let maxWidth =
-                            2200;
-
-
-                        if (
-                            settings.compression ===
-                            "low"
-                        ) {
-
-                            maxWidth =
-                                1400;
-
-                        }
-                        else if (
-                            settings.compression ===
-                            "high"
-                        ) {
-
-                            maxWidth =
-                                3200;
-
-                        }
-
-
-                        if (
-                            width >
-                            maxWidth
-                        ) {
-
-                            const ratio =
-                                maxWidth /
-                                width;
-
-                            width =
-                                Math.round(
-                                    width *
-                                    ratio
-                                );
-
-                            height =
-                                Math.round(
-                                    height *
-                                    ratio
-                                );
-
-                        }
-
-
-                        const canvas =
-                            document.createElement(
-                                "canvas"
-                            );
-
-
-                        canvas.width =
-                            width;
-
-                        canvas.height =
-                            height;
-
-
-                        const ctx =
-                            canvas.getContext(
-                                "2d"
-                            );
-
-
-                        ctx.fillStyle =
-                            settings.background;
-
-
-                        ctx.fillRect(
-                            0,
-                            0,
-                            width,
-                            height
-                        );
-
-
-                        ctx.drawImage(
-                            img,
-                            0,
-                            0,
-                            width,
-                            height
-                        );
-
-
-                        resolve({
-
-                            data:
-                                canvas.toDataURL(
-                                    "image/jpeg",
-                                    settings.quality /
-                                    100
-                                ),
-
-                            width:
-                                width,
-
-                            height:
-                                height
-
-                        });
-
-                    };
-
-
-                img.src =
-                    image.src;
-
-            }
-        );
-
-    }
-
-
-    /* =====================================================
-       DRAW IMAGE
-    ===================================================== */
-
-    function drawImage(
-        pdf,
-        image,
-        pageWidth,
-        pageHeight
-    ) {
-
-        const availableWidth =
-            pageWidth -
-            settings.margin *
-            2;
-
-
-        const availableHeight =
-            pageHeight -
-            settings.margin *
-            2;
-
-
-        const imageRatio =
-            image.width /
-            image.height;
-
-
-        const pageRatio =
-            availableWidth /
-            availableHeight;
-
-
-        let width;
-        let height;
-
-
-        if (
-            settings.fit ===
-            "cover"
-        ) {
-
-            if (
-                imageRatio >
-                pageRatio
-            ) {
-
-                height =
-                    availableHeight;
-
-                width =
-                    height *
-                    imageRatio;
-
-            }
-            else {
-
-                width =
-                    availableWidth;
-
-                height =
-                    width /
-                    imageRatio;
-
-            }
-
-        }
-        else {
-
-            if (
-                imageRatio >
-                pageRatio
-            ) {
-
-                width =
-                    availableWidth;
-
-                height =
-                    width /
-                    imageRatio;
-
-            }
-            else {
-
-                height =
-                    availableHeight;
-
-                width =
-                    height *
-                    imageRatio;
-
-            }
-
-        }
-
-
-        const x =
-            (
-                pageWidth -
-                width
-            ) / 2;
-
-
-        const y =
-            (
-                pageHeight -
-                height
-            ) / 2;
-
-
-        pdf.addImage(
-            image.data,
-            "JPEG",
-            x,
-            y,
-            width,
-            height,
-            undefined,
-            "FAST"
-        );
-
-    }
-
-
-    /* =====================================================
-       GENERATE PDF
-    ===================================================== */
-
-    if (generateBtn) {
-
-        generateBtn.addEventListener(
-            "click",
-            async function () {
-
-                if (!images.length) {
-
-                    alert(
-                        "Please choose images first."
-                    );
-
-                    return;
-
-                }
-
-
-                if (
-                    !window.jspdf ||
-                    !window.jspdf.jsPDF
-                ) {
-
-                    alert(
-                        "jsPDF library load nahi hui."
-                    );
-
-                    return;
-
-                }
-
-
-                const oldText =
-                    generateBtn.innerHTML;
-
-
-                generateBtn.disabled =
-                    true;
-
-
-                generateBtn.innerHTML =
-                    '<i class="fa-solid fa-spinner fa-spin"></i> Creating PDF...';
-
-
-                try {
-
-                    let [
-                        pageWidth,
-                        pageHeight
-                    ] =
-                        getPageSize();
-
-
-                    if (
-                        settings.orientation ===
-                        "landscape"
-                    ) {
-
-                        [
-                            pageWidth,
-                            pageHeight
-                        ] =
-                        [
-                            pageHeight,
-                            pageWidth
-                        ];
-
-                    }
-
-
-                    const pdf =
-                        new window.jspdf.jsPDF({
-
-                            orientation:
-                                settings.orientation,
-
-                            unit:
-                                "mm",
-
-                            format:
-                                [
-                                    pageWidth,
-                                    pageHeight
-                                ],
-
-                            compress:
-                                true
-
-                        });
-
-
-                    for (
-                        let i = 0;
-                        i < images.length;
-                        i++
-                    ) {
-
-                        if (i > 0) {
-
-                            pdf.addPage(
-                                [
-                                    pageWidth,
-                                    pageHeight
-                                ],
-                                settings.orientation
-                            );
-
-                        }
-
-
-                        const prepared =
-                            await prepareImage(
-                                images[i]
-                            );
-
-
-                        drawImage(
-                            pdf,
-                            prepared,
-                            pageWidth,
-                            pageHeight
-                        );
-
-                    }
-
-
-                    const blob =
-                        pdf.output(
-                            "blob"
-                        );
-
-
-                    if (pdfUrl) {
-
-                        URL.revokeObjectURL(
-                            pdfUrl
-                        );
-
-                    }
-
-
-                    pdfUrl =
-                        URL.createObjectURL(
-                            blob
-                        );
-
-
-                    if (pdfPreview) {
-
-                        pdfPreview.src =
-                            pdfUrl;
-
-                        pdfPreview.style.display =
-                            "block";
-
-                    }
-
-
-                    if (pdfPlaceholder) {
-
-                        pdfPlaceholder.style.display =
-                            "none";
-
-                    }
-
-
-                    if (pdfPages) {
-
-                        pdfPages.textContent =
-                            images.length;
-
-                    }
-
-
-                    if (pdfSize) {
-
-                        pdfSize.textContent =
-                            formatSize(
-                                blob.size
-                            );
-
-                    }
-
-
-                    let filename =
-                        fileNameInput &&
-                        fileNameInput.value.trim()
-                            ? fileNameInput.value.trim()
-                            : "onetoolbox-images";
-
-
-                    filename =
-                        filename.replace(
-                            /\.pdf$/i,
-                            ""
-                        );
-
-
-                    filename +=
-                        ".pdf";
-
-
-                    if (pdfResultName) {
-
-                        pdfResultName.textContent =
-                            filename;
-
-                    }
-
-
-                    if (downloadBtn) {
-
-                        downloadBtn.href =
-                            pdfUrl;
-
-                        downloadBtn.download =
-                            filename;
-
-                        downloadBtn.classList.remove(
-                            "disabled"
-                        );
-
-                    }
-
-                }
-                catch (error) {
-
-                    console.error(
-                        "PDF Error:",
-                        error
-                    );
-
-                    alert(
-                        "PDF create karte waqt error aaya."
-                    );
-
-                }
-                finally {
-
-                    generateBtn.disabled =
-                        images.length === 0;
-
-                    generateBtn.innerHTML =
-                        oldText;
-
-                }
-
-            }
-        );
-
-    }
-
-
-    /* =====================================================
-       RESET SETTINGS
-    ===================================================== */
-
-    if (resetBtn) {
-
-        resetBtn.addEventListener(
-            "click",
-            function () {
-
-                settings = {
-
-                    pageSize:
-                        "A4",
-
-                    orientation:
-                        "portrait",
-
-                    fit:
-                        "contain",
-
-                    margin:
-                        10,
-
-                    quality:
-                        90,
-
-                    compression:
-                        "medium",
-
-                    background:
-                        "#ffffff"
-
-                };
-
-
-                activate(
-                    ".pdf-option",
-                    "data-page-size",
-                    "A4"
-                );
-
-
-                activate(
-                    ".orientation-btn",
-                    "data-orientation",
-                    "portrait"
-                );
-
-
-                activate(
-                    ".fit-btn",
-                    "data-fit",
-                    "contain"
-                );
-
-
-                activate(
-                    ".compression-btn",
-                    "data-compression",
-                    "medium"
-                );
-
-
-                activate(
-                    ".background-btn",
-                    "data-background",
-                    "#ffffff"
-                );
-
-
-                if (marginRange) {
-
-                    marginRange.value =
-                        10;
-
-                }
-
-
-                if (marginValue) {
-
-                    marginValue.textContent =
-                        "10 mm";
-
-                }
-
-
-                if (qualityRange) {
-
-                    qualityRange.value =
-                        90;
-
-                }
-
-
-                if (qualityValue) {
-
-                    qualityValue.textContent =
-                        "90%";
-
-                }
-
-            }
-        );
-
-    }
-
-
-    /* =====================================================
-       RESET PDF
-    ===================================================== */
-
-    function resetPDFPreview() {
-
-        if (pdfUrl) {
-
-            URL.revokeObjectURL(
-                pdfUrl
-            );
-
-            pdfUrl =
-                null;
-
-        }
-
-
-        if (pdfPreview) {
-
-            pdfPreview.removeAttribute(
-                "src"
-            );
-
-            pdfPreview.style.display =
-                "none";
-
-        }
-
-
-        if (pdfPlaceholder) {
-
-            pdfPlaceholder.style.display =
-                "flex";
-
-        }
-
-
-        if (pdfPages) {
-
-            pdfPages.textContent =
-                "0";
-
-        }
-
-
-        if (pdfSize) {
-
-            pdfSize.textContent =
-                "0 KB";
-
-        }
-
-
-        if (pdfResultName) {
-
-            pdfResultName.textContent =
-                "-";
-
-        }
-
-
-        if (downloadBtn) {
-
-            downloadBtn.href =
-                "#";
-
-            downloadBtn.classList.add(
-                "disabled"
-            );
-
-        }
-
-    }
-
-
-    /* =====================================================
-       INITIALIZE
-    ===================================================== */
-
-    renderImages();
-
-    updateInfo();
-
-    resetPDFPreview();
-
-
-    console.log(
-        "Image to PDF JS loaded successfully."
-    );
-
-});
+        if(!doc) doc=new jsPDF({orientation:orient,unit:"mm",format:format||[210,297],compress:true});
+        else doc.addPage(format||[210,297],orient);
+
+        const pageW=doc.internal.pageSize.getWidth(), pageH=doc.internal.pageSize.getHeight();
+        doc.setFillColor(state.background);
+        doc.rect(0,0,pageW,pageH,"F");
+
+        const margin=state.margin;
+        const maxW=Math.max(1,pageW-margin*2), maxH=Math.max(1,pageH-margin*2);
+        const iw=img.naturalWidth, ih=img.naturalHeight;
+        const scale=state.fit==="cover"?Math.max(maxW/iw,maxH/ih):Math.min(maxW/iw,maxH/ih);
+        const w=iw*scale,h=ih*scale;
+        const x=(pageW-w)/2,y=(pageH-h)/2;
+
+        const canvas=document.createElement("canvas");
+        const maxPixels=state.compression==="small"?1400000:state.compression==="medium"?2200000:3500000;
+        const ratio=Math.min(1,Math.sqrt(maxPixels/(iw*ih)));
+        canvas.width=Math.max(1,Math.round(iw*ratio));
+        canvas.height=Math.max(1,Math.round(ih*ratio));
+        const ctx=canvas.getContext("2d",{alpha:false});
+        ctx.fillStyle=state.background;ctx.fillRect(0,0,canvas.width,canvas.height);
+        ctx.drawImage(img,0,0,canvas.width,canvas.height);
+        const data=canvas.toDataURL("image/jpeg",state.quality);
+        doc.addImage(data,"JPEG",x,y,w,h,undefined,"FAST");
+      }
+
+      setProgress(96,"Finalizing","Creating your PDF...");
+      const blob=doc.output("blob");
+      if(state.pdfUrl) URL.revokeObjectURL(state.pdfUrl);
+      state.pdfUrl=URL.createObjectURL(blob);
+
+      pdfPreview.src=state.pdfUrl;pdfPreview.style.display="block";pdfPlaceholder.style.display="none";
+      pdfPages.textContent=state.images.length;pdfSize.textContent=fmt(blob.size);
+      const originalName = state.images[0].file.name.replace(/\.[^/.]+$/,"");
+      const safe = (originalName + " - OneToolBox").replace(/[\\/:*?"<>|]+/g,"-").trim();
+      downloadBtn.href=state.pdfUrl;
+      downloadBtn.download=(safe.endsWith(".pdf")?safe:safe+".pdf");
+      downloadBtn.classList.remove("disabled");
+      setProgress(100,"Completed","Your PDF is ready.");
+      modal.classList.add("completed");
+    }catch(err){
+      console.error(err);setProgress(0,"Error","Could not generate the PDF.");alert("PDF generation failed. Please try again.");
+      modalClose();
+    }finally{generateBtn.disabled=false}
+  }
+
+  generateBtn.addEventListener("click",generate);
+  modalDone.addEventListener("click",modalClose);
+
+  renderList();
+})();
