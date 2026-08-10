@@ -592,3 +592,297 @@ body.dark .flip-card select{
     font-size:16px;
   }
 }
+
+
+/* =========================================================
+   OneToolBox — Mobile Premium Polish
+   ========================================================= */
+
+@media (max-width: 768px){
+
+  body{
+    overflow-x:hidden;
+  }
+
+  .page-offset{
+    padding-top:64px !important;
+  }
+
+  .tool-hero{
+    padding:22px 12px 16px !important;
+    margin:0 !important;
+  }
+
+  .tool-hero h1{
+    font-size:32px !important;
+    line-height:1.15 !important;
+    margin-bottom:9px !important;
+  }
+
+  .tool-hero p{
+    font-size:15px !important;
+    line-height:1.55 !important;
+    max-width:100% !important;
+  }
+
+  .section{
+    padding:12px 0 22px !important;
+  }
+
+  .container{
+    padding-left:12px !important;
+    padding-right:12px !important;
+  }
+
+  .flip-box{
+    display:flex !important;
+    flex-direction:column !important;
+    gap:15px !important;
+    width:100%;
+  }
+
+  .flip-card,
+  .content-card{
+    width:100% !important;
+    border:1.5px solid #cbd5e1 !important;
+    border-radius:18px !important;
+    box-shadow:0 7px 22px rgba(15,23,42,.08) !important;
+    overflow:hidden;
+  }
+
+  .flip-card{
+    padding:17px !important;
+    background:linear-gradient(145deg,#ffffff,#f8fbff) !important;
+  }
+
+  .flip-card:nth-child(1){
+    border-color:#bfdbfe !important;
+    background:linear-gradient(145deg,#ffffff,#eff6ff) !important;
+  }
+
+  .flip-card:nth-child(2){
+    border-color:#c7d2fe !important;
+    background:linear-gradient(145deg,#ffffff,#eef2ff) !important;
+  }
+
+  .flip-card:nth-child(3){
+    border-color:#bae6fd !important;
+    background:linear-gradient(145deg,#ffffff,#f0f9ff) !important;
+  }
+
+  .flip-card h3{
+    font-size:20px !important;
+    margin-bottom:14px !important;
+  }
+
+  .upload-area{
+    min-height:260px !important;
+    padding:17px 12px !important;
+    border-width:2px !important;
+    border-color:#93c5fd !important;
+    border-radius:15px !important;
+    background:rgba(239,246,255,.72) !important;
+  }
+
+  .upload-area>i{
+    font-size:42px !important;
+  }
+
+  .upload-area h4{
+    font-size:18px !important;
+  }
+
+  .upload-area p{
+    font-size:13px !important;
+    line-height:1.7 !important;
+  }
+
+  .choose-btn{
+    width:min(100%,220px) !important;
+    min-height:48px !important;
+    font-size:15px !important;
+    border-radius:11px !important;
+    box-shadow:0 5px 14px rgba(37,99,235,.22);
+  }
+
+  .btn-reset,
+  .btn-secondary,
+  .btn-primary,
+  .btn-success,
+  .flip-control,
+  .quick-flip-btn{
+    min-height:47px !important;
+    font-size:14px !important;
+    border-radius:11px !important;
+  }
+
+  .quick-flip-grid{
+    grid-template-columns:1fr 1fr !important;
+    gap:9px !important;
+  }
+
+  .info{
+    min-height:44px !important;
+    padding:9px 11px !important;
+    border-radius:10px !important;
+    background:rgba(255,255,255,.72) !important;
+  }
+
+  .info span,
+  .info b{
+    font-size:13px !important;
+  }
+
+  .image-preview{
+    min-height:270px !important;
+    border-radius:14px !important;
+  }
+
+  .image-preview img{
+    max-height:250px !important;
+  }
+
+  .content-card{
+    padding:19px !important;
+  }
+
+  .content-card h2{
+    font-size:25px !important;
+    line-height:1.3 !important;
+    margin-bottom:18px !important;
+  }
+
+  .feature-grid,
+  .steps-grid{
+    display:grid !important;
+    grid-template-columns:1fr !important;
+    gap:12px !important;
+  }
+
+  .feature-item,
+  .step{
+    padding:17px !important;
+    border:1.5px solid #dbeafe !important;
+    border-radius:14px !important;
+    background:linear-gradient(145deg,#ffffff,#f8fbff) !important;
+    box-shadow:0 4px 14px rgba(15,23,42,.05);
+  }
+
+  .feature-item i{
+    width:44px !important;
+    height:44px !important;
+    margin-bottom:10px !important;
+    font-size:18px !important;
+  }
+
+  .feature-item h3,
+  .step h3{
+    font-size:18px !important;
+  }
+
+  .feature-item p,
+  .step p{
+    font-size:15px !important;
+    line-height:1.65 !important;
+  }
+
+  .faq-card{
+    padding:17px !important;
+  }
+
+  .faq-card summary{
+    padding:16px 32px 16px 2px !important;
+    font-size:16px !important;
+    line-height:1.5 !important;
+  }
+
+  .faq-card summary::after{
+    right:1px !important;
+    top:12px !important;
+  }
+
+  .faq-card details p{
+    padding:0 27px 17px 2px !important;
+    font-size:15px !important;
+    line-height:1.7 !important;
+  }
+}
+
+@media (max-width:420px){
+
+  .page-offset{
+    padding-top:60px !important;
+  }
+
+  .tool-hero h1{
+    font-size:29px !important;
+  }
+
+  .tool-hero p{
+    font-size:14px !important;
+  }
+
+  .flip-card{
+    padding:14px !important;
+    border-radius:16px !important;
+  }
+
+  .flip-card h3{
+    font-size:19px !important;
+  }
+
+  .upload-area{
+    min-height:245px !important;
+  }
+
+  .quick-flip-grid{
+    grid-template-columns:1fr !important;
+  }
+
+  .content-card{
+    padding:16px !important;
+    border-radius:16px !important;
+  }
+
+  .content-card h2{
+    font-size:23px !important;
+  }
+}
+
+/* Dark mode mobile */
+@media (max-width:768px){
+  html.otb-dark .flip-card,
+  body.dark .flip-card{
+    background:linear-gradient(145deg,#111827,#172033) !important;
+    border-color:#334155 !important;
+  }
+
+  html.otb-dark .flip-card:nth-child(1),
+  html.otb-dark .flip-card:nth-child(2),
+  html.otb-dark .flip-card:nth-child(3),
+  body.dark .flip-card:nth-child(1),
+  body.dark .flip-card:nth-child(2),
+  body.dark .flip-card:nth-child(3){
+    border-color:#3b82f6 !important;
+  }
+
+  html.otb-dark .upload-area,
+  body.dark .upload-area{
+    background:#0f172a !important;
+    border-color:#3b82f6 !important;
+  }
+
+  html.otb-dark .feature-item,
+  html.otb-dark .step,
+  body.dark .feature-item,
+  body.dark .step{
+    background:linear-gradient(145deg,#111827,#172033) !important;
+    border-color:#334155 !important;
+  }
+
+  html.otb-dark .info,
+  body.dark .info{
+    background:#0f172a !important;
+    border-color:#334155 !important;
+  }
+}
