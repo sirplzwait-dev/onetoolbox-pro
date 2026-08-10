@@ -1,0 +1,323 @@
+/* Keep the fixed header and page offset perfectly aligned. */
+:root{ --header-height:64px !important; }
+
+
+/* =========================================================
+   OneToolBox — Compact Title Bar
+   Only controls the common header. Tool-page CSS untouched.
+   ========================================================= */
+
+.otb-compact-header{
+  height:64px !important;
+  min-height:64px !important;
+  position:relative;
+  z-index:99990;
+  background:#ffffff !important;
+  border-bottom:1px solid #e5eaf1 !important;
+  box-shadow:0 3px 14px rgba(15,23,42,.08) !important;
+}
+
+.otb-header-container{
+  height:64px !important;
+  min-height:64px !important;
+  max-width:1400px;
+  margin:0 auto;
+  padding:0 18px !important;
+  display:flex !important;
+  align-items:center !important;
+  gap:10px !important;
+}
+
+.otb-logo{
+  flex:0 0 auto !important;
+  display:flex !important;
+  align-items:center !important;
+  gap:7px !important;
+  text-decoration:none !important;
+}
+.otb-logo img{
+  width:36px !important;
+  height:36px !important;
+  object-fit:contain !important;
+}
+.otb-logo .logo-text h1{
+  margin:0 !important;
+  font-size:20px !important;
+  line-height:1 !important;
+  font-weight:800 !important;
+  color:#172033 !important;
+}
+.otb-logo .logo-text span{
+  display:block !important;
+  margin-top:3px !important;
+  font-size:9px !important;
+  line-height:1 !important;
+  color:#7b8798 !important;
+  white-space:nowrap !important;
+}
+
+.otb-title-nav{
+  display:flex !important;
+  align-items:center !important;
+  gap:5px !important;
+  flex:1 1 auto !important;
+  min-width:0 !important;
+  overflow:hidden !important;
+}
+
+.otb-title-nav > a,
+.otb-more-btn{
+  height:36px !important;
+  min-height:36px !important;
+  padding:0 10px !important;
+  border:1px solid #dfe5ed !important;
+  border-radius:10px !important;
+  background:#f8fafc !important;
+  color:#243044 !important;
+  text-decoration:none !important;
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  white-space:nowrap !important;
+  font-size:12px !important;
+  font-weight:700 !important;
+  line-height:1 !important;
+  cursor:pointer !important;
+  transition:all .16s ease !important;
+}
+
+.otb-title-nav > a:hover,
+.otb-title-nav > a.active,
+.otb-more-btn:hover,
+.otb-more-btn.active{
+  background:#2f6fe4 !important;
+  color:#ffffff !important;
+  border-color:#2f6fe4 !important;
+  box-shadow:0 4px 10px rgba(47,111,228,.18) !important;
+}
+
+.otb-more{
+  position:relative;
+  overflow:visible !important;
+  flex:0 0 auto;
+  height:44px;
+  display:flex;
+  align-items:center;
+}
+.otb-more-btn i{
+  margin-left:5px;
+  font-size:9px;
+  transition:transform .15s ease;
+}
+.otb-more:hover .otb-more-btn i,
+.otb-more.open .otb-more-btn i{
+  transform:rotate(180deg);
+}
+
+.otb-more-menu{
+  position:absolute;
+  top:42px;
+  right:0;
+  width:235px;
+  padding:7px;
+  background:#ffffff;
+  border:1px solid #dfe5ed;
+  border-radius:12px;
+  box-shadow:0 16px 35px rgba(15,23,42,.16);
+  display:none;
+  z-index:999999;
+}
+.otb-more:hover .otb-more-menu,
+.otb-more:focus-within .otb-more-menu,
+.otb-more.open .otb-more-menu{
+  display:block;
+}
+.otb-more-menu a{
+  display:block;
+  padding:9px 11px;
+  margin:2px 0;
+  border-radius:8px;
+  text-decoration:none !important;
+  color:#263449 !important;
+  font-size:12px !important;
+  font-weight:600 !important;
+  transition:.14s ease;
+}
+.otb-more-menu a:hover,
+.otb-more-menu a.active{
+  background:#edf4ff !important;
+  color:#2563eb !important;
+}
+
+.otb-header-search{
+  flex:0 0 190px !important;
+  width:190px !important;
+  position:relative !important;
+}
+.otb-header-search input{
+  width:100% !important;
+  height:36px !important;
+  box-sizing:border-box !important;
+  padding:0 34px 0 12px !important;
+  border:1px solid #dfe5ed !important;
+  border-radius:18px !important;
+  background:#ffffff !important;
+  color:#172033 !important;
+  font-size:12px !important;
+  outline:none !important;
+}
+.otb-header-search input:focus{
+  border-color:#8db4f4 !important;
+  box-shadow:0 0 0 3px rgba(47,111,228,.08) !important;
+}
+.otb-header-search .search-icon{
+  position:absolute !important;
+  right:12px !important;
+  top:50% !important;
+  transform:translateY(-50%) !important;
+  color:#64748b !important;
+  pointer-events:none !important;
+}
+
+.otb-search-results{
+  position:absolute;
+  left:0;
+  right:0;
+  top:42px;
+  display:none;
+  background:#fff;
+  border:1px solid #dfe5ed;
+  border-radius:12px;
+  box-shadow:0 16px 35px rgba(15,23,42,.16);
+  overflow:hidden;
+  z-index:1000000;
+}
+.otb-search-results.show{display:block}
+.otb-search-item{
+  display:block;
+  padding:9px 11px;
+  color:#172033 !important;
+  text-decoration:none !important;
+  border-bottom:1px solid #eef2f7;
+}
+.otb-search-item:last-child{border-bottom:0}
+.otb-search-item:hover{background:#eff6ff}
+.otb-search-item strong{display:block;font-size:12px}
+.otb-search-item small{display:block;margin-top:2px;color:#7b8798;font-size:10px}
+.otb-search-empty{padding:12px;text-align:center;color:#7b8798;font-size:12px}
+
+.otb-header-actions{
+  flex:0 0 auto !important;
+  display:flex !important;
+  align-items:center !important;
+  gap:6px !important;
+}
+.otb-theme-btn,
+.otb-mobile-btn{
+  width:36px !important;
+  height:36px !important;
+  min-width:36px !important;
+  border:1px solid #dfe5ed !important;
+  border-radius:50% !important;
+  background:#ffffff !important;
+  color:#172033 !important;
+  cursor:pointer !important;
+}
+.otb-theme-btn:hover,
+.otb-mobile-btn:hover{
+  background:#eff6ff !important;
+  color:#2563eb !important;
+}
+.otb-mobile-btn{display:none !important}
+
+.otb-mobile-menu{display:none !important}
+
+/* Dark mode — only common header */
+body.dark .otb-compact-header{
+  background:#111827 !important;
+  border-bottom-color:#263449 !important;
+}
+body.dark .otb-logo .logo-text h1{color:#f8fafc !important}
+body.dark .otb-logo .logo-text span{color:#94a3b8 !important}
+body.dark .otb-title-nav > a,
+body.dark .otb-more-btn{
+  background:#1b2638 !important;
+  border-color:#334155 !important;
+  color:#e5e7eb !important;
+}
+body.dark .otb-title-nav > a:hover,
+body.dark .otb-title-nav > a.active,
+body.dark .otb-more-btn:hover,
+body.dark .otb-more-btn.active{
+  background:#2563eb !important;
+  border-color:#2563eb !important;
+  color:#fff !important;
+}
+body.dark .otb-more-menu,
+body.dark .otb-search-results{
+  background:#172033 !important;
+  border-color:#334155 !important;
+}
+body.dark .otb-more-menu a,
+body.dark .otb-search-item{
+  color:#e5e7eb !important;
+}
+body.dark .otb-more-menu a:hover,
+body.dark .otb-more-menu a.active,
+body.dark .otb-search-item:hover{
+  background:#111827 !important;
+  color:#60a5fa !important;
+}
+body.dark .otb-header-search input{
+  background:#172033 !important;
+  border-color:#334155 !important;
+  color:#f8fafc !important;
+}
+body.dark .otb-theme-btn,
+body.dark .otb-mobile-btn{
+  background:#172033 !important;
+  border-color:#334155 !important;
+  color:#f8fafc !important;
+}
+
+@media(max-width:1200px){
+  .otb-title-nav > a,
+  .otb-more-btn{padding:0 7px !important;font-size:11px !important}
+  .otb-header-search{flex-basis:155px !important;width:155px !important}
+}
+@media(max-width:1000px){
+  .otb-title-nav > a:nth-child(6){display:none !important}
+  .otb-header-search{flex-basis:140px !important;width:140px !important}
+}
+@media(max-width:800px){
+  :root{ --header-height:58px !important; }
+  .otb-title-nav,.otb-header-search{display:none !important}
+  .otb-mobile-btn{display:block !important}
+  .otb-mobile-menu{
+    position:absolute;
+    top:var(--header-height);
+    left:0;
+    right:0;
+    background:#fff;
+    border-bottom:1px solid #dfe5ed;
+    box-shadow:0 12px 28px rgba(15,23,42,.12);
+    z-index:99989;
+    flex-direction:column;
+    padding:8px;
+  }
+  .otb-mobile-menu.show{display:flex !important}
+  .otb-mobile-menu a{
+    padding:11px 12px;
+    border-radius:8px;
+    text-decoration:none !important;
+    color:#263449 !important;
+    font-size:13px !important;
+    font-weight:600 !important;
+  }
+  .otb-mobile-menu a:hover,
+  .otb-mobile-menu a.active{background:#edf4ff !important;color:#2563eb !important}
+  body.dark .otb-mobile-menu{background:#111827;border-color:#263449}
+  body.dark .otb-mobile-menu a{color:#e5e7eb !important}
+  body.dark .otb-mobile-menu a:hover,
+  body.dark .otb-mobile-menu a.active{background:#172033 !important;color:#60a5fa !important}
+}

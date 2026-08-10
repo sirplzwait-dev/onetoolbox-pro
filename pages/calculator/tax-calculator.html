@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="../../assets/css/tools/tax-calculator.css">
 <link rel="stylesheet" href="../../assets/css/tool-ui.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<link rel="stylesheet" href="../../assets/css/real-tool-ui.css">
 </head>
 <body>
 <div id="header-placeholder"></div>
@@ -24,14 +25,7 @@
 <div class="otb-tool-layout">
 <div class="otb-tool-card">
 <h2><i class="fa-solid fa-wand-magic-sparkles"></i> Tax Calculator</h2>
-<p class="otb-help">Select your file or enter your data below. This tool works directly in your browser where supported.</p>
-<div class="otb-upload" id="uploadBox">
-<i class="fa-solid fa-cloud-arrow-up"></i>
-<strong>Choose File</strong>
-<span>or drag & drop here</span>
-<label class="otb-btn otb-primary">Choose File<input id="fileInput" type="file" hidden></label>
-</div>
-<div id="fileInfo" class="otb-file-info" hidden></div>
+<p class="otb-help">Enter your values below and calculate instantly in your browser.</p>
 <div class="otb-fields" id="toolFields">
 <label>Input</label>
 <textarea id="toolInput" placeholder="Enter text or data here..."></textarea>
@@ -48,7 +42,7 @@
 <aside class="otb-info-card">
 <h3>About this tool</h3>
 <p>Calculate tax amount.</p>
-<ul><li>Simple and responsive interface</li><li>Files stay in your browser for supported operations</li><li>Works with the OneToolBox design system</li></ul>
+<ul><li>Simple and responsive interface</li><li>Calculations run directly in your browser</li><li>Works with the OneToolBox design system</li></ul>
 </aside>
 </div></div></section>
 </main>
@@ -56,4 +50,6 @@
 <script src="../../assets/js/app.js"></script>
 <script src="../../assets/js/navigation.js"></script>
 <script src="../../assets/js/tools/tax-calculator.js"></script>
+<script src="../../assets/js/tool-engine.js"></script>
+<script src="../../assets/js/real-tool-engine.js"></script>
 </body></html>

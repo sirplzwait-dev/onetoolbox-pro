@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded",function(){
     const noResults = document.getElementById("noResults");
 
     function filterTools(){
-        const query = search.value.trim().toLowerCase();
+        const query = search ? search.value.trim().toLowerCase() : "";
         let visible = 0;
 
         cards.forEach(function(card){
@@ -29,17 +29,21 @@ document.addEventListener("DOMContentLoaded",function(){
         });
 
         count.textContent = visible;
-        clear.hidden = !query;
-        noResults.hidden = visible !== 0;
+        if(clear) clear.hidden = !query;
+        if(noResults) noResults.hidden = visible !== 0;
     }
 
-    search.addEventListener("input",filterTools);
+    if(search){
+        search.addEventListener("input",filterTools);
+    }
 
-    clear.addEventListener("click",function(){
-        search.value = "";
-        filterTools();
-        search.focus();
-    });
+    if(clear){
+        clear.addEventListener("click",function(){
+            if(search) search.value = "";
+            filterTools();
+            if(search) search.focus();
+        });
+    }
 
     /* Whole card is clickable, while the actual <a> keeps normal link behavior. */
     cards.forEach(function(card){

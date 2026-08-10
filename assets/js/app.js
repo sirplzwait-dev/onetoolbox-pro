@@ -47,7 +47,9 @@ const App = {
 
             this.loadHeader(),
 
-            this.loadFooter()
+            this.loadFooter(),
+
+            this.ensureSharedAssets()
 
         ]);
 
@@ -91,6 +93,43 @@ const App = {
 
         this.updateScrollButton();
 
+    },
+
+
+    /* ==========================================
+       SHARED ASSETS — EVERY PAGE
+    ========================================== */
+
+    async ensureSharedAssets() {
+
+        const loadScript = (src) => new Promise((resolve) => {
+            if ([...document.scripts].some(s => s.src && s.src.includes(src))) {
+                resolve();
+                return;
+            }
+
+            const script = document.createElement("script");
+            script.src = src;
+            script.onload = resolve;
+            script.onerror = () => {
+                console.warn("OneToolBox shared script unavailable:", src);
+                resolve();
+            };
+            document.head.appendChild(script);
+        });
+
+        const loadCss = (href) => {
+            if ([...document.querySelectorAll('link[rel="stylesheet"]')].some(l => l.href && l.href.includes(href))) return;
+            const link = document.createElement("link");
+            link.rel = "stylesheet";
+            link.href = href;
+            document.head.appendChild(link);
+        };
+
+        loadCss("/assets/css/dark.css");
+
+        await loadScript("/assets/js/theme.js");
+        await loadScript("/assets/js/search.js");
     },
 
 

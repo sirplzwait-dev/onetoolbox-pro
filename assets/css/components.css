@@ -2374,3 +2374,261 @@ div.fab{
     position:absolute !important;
     left:-9999px !important;
 }
+
+/* ==========================================================
+   OneToolBox 2026 FINAL HEADER / FOOTER / GLOBAL SEARCH FIX
+   Kept at the end intentionally: it safely overrides legacy
+   duplicate rules without changing the site's page structure.
+========================================================== */
+
+.header{
+  height:64px !important;
+  background:rgba(255,255,255,.96) !important;
+  border-bottom:1px solid #e2e8f0 !important;
+  box-shadow:0 2px 12px rgba(15,23,42,.08) !important;
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  z-index:10000 !important;
+}
+
+.header-container{
+  height:64px !important;
+  max-width:1440px !important;
+  padding:0 16px !important;
+  gap:10px !important;
+  display:flex !important;
+  align-items:center !important;
+}
+
+.logo{gap:8px !important; flex:0 0 auto !important;}
+.logo img{width:36px !important;height:36px !important;object-fit:contain !important;}
+.logo-text h1{font-size:19px !important;line-height:1 !important;margin:0 !important;}
+.logo-text span{display:none !important;}
+
+.compact-category-nav{
+  display:flex !important;
+  align-items:center !important;
+  gap:4px !important;
+  flex:1 1 auto !important;
+  min-width:0 !important;
+  overflow:visible !important;
+}
+
+.compact-category-nav > a,
+.more-tools-btn{
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  white-space:nowrap !important;
+  gap:5px !important;
+  min-height:34px !important;
+  padding:7px 10px !important;
+  border-radius:9px !important;
+  border:1px solid #e2e8f0 !important;
+  background:#fff !important;
+  color:#0f172a !important;
+  font-size:12px !important;
+  font-weight:700 !important;
+  text-decoration:none !important;
+  box-shadow:none !important;
+  transition:background .18s ease,color .18s ease,border-color .18s ease !important;
+}
+
+.compact-category-nav > a:hover,
+.more-tools-btn:hover,
+.compact-category-nav > a.active{
+  background:#2563eb !important;
+  color:#fff !important;
+  border-color:#2563eb !important;
+  transform:none !important;
+}
+
+.more-tools{position:relative !important; flex:0 0 auto !important; padding:8px 0 !important; margin:0 !important;}
+.more-tools::after{content:"";position:absolute;left:-10px;right:-10px;top:100%;height:10px;}
+.more-tools-btn{cursor:pointer !important;font-family:inherit !important;}
+.more-tools-btn i{font-size:9px !important;transition:transform .18s ease;}
+.more-tools.open .more-tools-btn i{transform:rotate(180deg);}
+
+.more-tools-menu{
+  position:absolute !important;
+  top:calc(100% + 2px) !important;
+  right:0 !important;
+  min-width:220px !important;
+  padding:7px !important;
+  display:none !important;
+  background:#fff !important;
+  border:1px solid #e2e8f0 !important;
+  border-radius:12px !important;
+  box-shadow:0 16px 38px rgba(15,23,42,.16) !important;
+  z-index:100000 !important;
+}
+.more-tools:hover .more-tools-menu,
+.more-tools:focus-within .more-tools-menu,
+.more-tools.open .more-tools-menu{display:block !important;}
+.more-tools-menu a{
+  display:block !important;
+  padding:9px 11px !important;
+  margin:1px 0 !important;
+  border-radius:8px !important;
+  color:#334155 !important;
+  font-size:12px !important;
+  font-weight:600 !important;
+  text-decoration:none !important;
+}
+.more-tools-menu a:hover{background:#eff6ff !important;color:#2563eb !important;padding-left:13px !important;}
+
+.header-search{
+  position:relative !important;
+  width:170px !important;
+  flex:0 0 170px !important;
+  z-index:100001 !important;
+}
+.header-search input{
+  width:100% !important;
+  height:36px !important;
+  padding:0 34px 0 12px !important;
+  border:1px solid #dbe3ee !important;
+  border-radius:9px !important;
+  background:#f8fafc !important;
+  color:#0f172a !important;
+  font-size:12px !important;
+  outline:none !important;
+  box-shadow:none !important;
+}
+.header-search input:focus{border-color:#2563eb !important;box-shadow:0 0 0 3px rgba(37,99,235,.10) !important;background:#fff !important;}
+.search-icon{right:12px !important;color:#64748b !important;pointer-events:none !important;}
+
+.search-result{
+  position:absolute !important;
+  top:calc(100% + 7px) !important;
+  left:0 !important;
+  right:0 !important;
+  max-height:390px !important;
+  overflow:auto !important;
+  padding:6px !important;
+  background:#fff !important;
+  border:1px solid #e2e8f0 !important;
+  border-radius:12px !important;
+  box-shadow:0 18px 45px rgba(15,23,42,.18) !important;
+  z-index:100002 !important;
+}
+.search-result[hidden]{display:none !important;}
+.search-item{display:block !important;padding:9px 10px !important;border-radius:8px !important;text-decoration:none !important;color:#0f172a !important;}
+.search-item:hover,.search-item.active{background:#eff6ff !important;}
+.search-item strong{display:block !important;font-size:12px !important;line-height:1.25 !important;}
+.search-item small{display:block !important;margin-top:2px !important;color:#64748b !important;font-size:10px !important;}
+.search-empty{padding:12px !important;color:#64748b !important;font-size:12px !important;text-align:center !important;}
+.search-heading{padding:7px 10px 5px !important;color:#64748b !important;font-size:10px !important;font-weight:700 !important;text-transform:uppercase !important;}
+
+.header-actions{gap:6px !important;flex:0 0 auto !important;}
+.theme-btn,.mobile-btn{
+  width:36px !important;height:36px !important;border-radius:9px !important;
+  display:flex !important;align-items:center !important;justify-content:center !important;
+  background:#fff !important;border:1px solid #e2e8f0 !important;color:#334155 !important;
+  cursor:pointer !important;
+}
+.theme-btn:hover,.mobile-btn:hover{background:#eff6ff !important;color:#2563eb !important;}
+.mobile-btn{display:none !important;}
+.page.page-offset{padding-top:60px !important;}
+
+/* Compact category/tool-menu top spacing */
+.image-tools-hero,.pdf-tools-hero,.video-tools-hero,.audio-tools-hero,.ai-tools-hero,.document-tools-hero,.calculator-tools-hero,.utility-tools-hero,.developer-tools-hero,.converter-tools-hero{
+  padding-top:24px !important;
+  padding-bottom:20px !important;
+}
+.image-tools-hero h1,.pdf-tools-hero h1,.video-tools-hero h1,.audio-tools-hero h1,.ai-tools-hero h1,.document-tools-hero h1,.calculator-tools-hero h1,.utility-tools-hero h1,.developer-tools-hero h1,.converter-tools-hero h1{
+  margin-top:0 !important;
+  margin-bottom:7px !important;
+}
+
+
+.mobile-menu{
+  top:64px !important;
+  z-index:9999 !important;
+  padding:12px !important;
+  background:#fff !important;
+  border-top:1px solid #e2e8f0 !important;
+  box-shadow:0 15px 30px rgba(15,23,42,.12) !important;
+}
+.mobile-menu a{padding:10px 12px !important;font-size:14px !important;}
+.mobile-search-wrap{padding:0 0 8px !important;}
+.mobile-search{width:100% !important;height:40px !important;border:1px solid #dbe3ee !important;border-radius:9px !important;padding:0 12px !important;outline:none !important;}
+
+/* Category-page search bars are intentionally removed in favour of the global header search. */
+.image-tools-search,
+.pdf-tools-search,
+.video-tools-search,
+.audio-tools-search,
+.ai-tools-search,
+.document-tools-search,
+.calculator-tools-search,
+.utility-tools-search,
+.developer-tools-search,
+.converter-tools-search{display:none !important;}
+
+/* One-line footer: no dead navigation links. */
+.footer{
+  background:#0f172a !important;
+  color:#cbd5e1 !important;
+  padding:12px 0 !important;
+  border-top:1px solid rgba(255,255,255,.08) !important;
+}
+.footer-one-line{
+  min-height:28px !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  flex-wrap:wrap !important;
+  gap:7px !important;
+  text-align:center !important;
+  font-size:11px !important;
+  line-height:1.35 !important;
+}
+.footer-one-line .footer-separator{color:#64748b !important;}
+
+/* Real dark mode for the whole shared shell. */
+body.dark{background:#0b1220 !important;color:#e5e7eb !important;}
+body.dark .header{background:rgba(15,23,42,.96) !important;border-bottom-color:#334155 !important;}
+body.dark .logo-text h1{color:#f8fafc !important;}
+body.dark .compact-category-nav > a,
+body.dark .more-tools-btn,
+body.dark .theme-btn,
+body.dark .mobile-btn{background:#111c30 !important;border-color:#334155 !important;color:#e2e8f0 !important;}
+body.dark .compact-category-nav > a:hover,
+body.dark .more-tools-btn:hover,
+body.dark .compact-category-nav > a.active{background:#2563eb !important;color:#fff !important;border-color:#2563eb !important;}
+body.dark .header-search input{background:#111c30 !important;border-color:#334155 !important;color:#f8fafc !important;}
+body.dark .header-search input:focus{background:#0f172a !important;}
+body.dark .more-tools-menu,
+body.dark .search-result,
+body.dark .mobile-menu{background:#0f172a !important;border-color:#334155 !important;}
+body.dark .more-tools-menu a,
+body.dark .search-item{color:#e2e8f0 !important;}
+body.dark .more-tools-menu a:hover,
+body.dark .search-item:hover,
+body.dark .search-item.active{background:#172554 !important;color:#93c5fd !important;}
+body.dark .search-item small{color:#94a3b8 !important;}
+body.dark .footer{background:#020617 !important;}
+body.dark .mobile-search{background:#111c30 !important;border-color:#334155 !important;color:#f8fafc !important;}
+
+@media(max-width:1250px){
+  .compact-category-nav > a,.more-tools-btn{font-size:11px !important;padding:7px 8px !important;}
+  .header-search{width:150px !important;flex-basis:150px !important;}
+}
+@media(max-width:1050px){
+  .compact-category-nav > a:nth-of-type(6){display:none !important;}
+  .header-search{width:140px !important;flex-basis:140px !important;}
+}
+@media(max-width:850px){
+  .compact-category-nav{display:none !important;}
+  .header-search{display:none !important;}
+  .mobile-btn{display:flex !important;}
+  .logo-text h1{font-size:18px !important;}
+}
+@media(max-width:600px){
+  .footer-one-line{gap:5px !important;font-size:10px !important;padding-inline:10px !important;}
+  .footer-one-line .footer-separator{display:none !important;}
+}
+
+/* Global header search is the only search UI on category pages. */
+body .image-tools-search,body .pdf-tools-search,body .video-tools-search,body .audio-tools-search,body .ai-tools-search,body .document-tools-search,body .calculator-tools-search,body .utility-tools-search,body .developer-tools-search,body .converter-tools-search,body #imageSearch,body #pdfSearch,body #videoSearch,body #audioSearch,body #aiSearch,body #documentSearch,body #calculatorSearch,body #utilitySearch,body #developerSearch,body #converterSearch{display:none !important;}

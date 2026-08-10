@@ -1,0 +1,34 @@
+/* OneToolBox shared dark mode */
+body.dark{background:#0b1220;color:#e5e7eb;}
+body.dark .card,body.dark .category-card,body.dark .tool-card,body.dark .feature-card{background:#111827;border-color:#334155;color:#e5e7eb;}
+body.dark input,body.dark select,body.dark textarea{background:#0f172a;color:#e5e7eb;border-color:#334155;}
+body.dark .section-heading p,body.dark .hero-description,body.dark .hero-subtitle{color:#94a3b8;}
+
+/* Shared page surfaces */
+body.dark .hero,
+body.dark .section,
+body.dark main,
+body.dark .tool-hero,
+body.dark .image-tools-hero,
+body.dark .pdf-tools-hero,
+body.dark .video-tools-hero,
+body.dark .audio-tools-hero,
+body.dark .category-card,
+body.dark .tool-card,
+body.dark .image-tool-card,
+body.dark .pdf-tool-card,
+body.dark .video-tool-card,
+body.dark .audio-tool-card,
+body.dark .ai-tool-card,
+body.dark .document-tool-card,
+body.dark .calculator-tool-card,
+body.dark .utility-tool-card,
+body.dark .developer-tool-card,
+body.dark .converter-tool-card,
+body.dark .card,
+body.dark .feature-card {
+  color:#e5e7eb;
+}
+body.dark h1,body.dark h2,body.dark h3,body.dark h4,body.dark h5,body.dark strong{color:#f8fafc;}
+body.dark p,body.dark .section-heading p,body.dark .hero-description,body.dark .hero-subtitle{color:#94a3b8;}
+body.dark a{color:#93c5fd;}

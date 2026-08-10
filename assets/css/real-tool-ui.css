@@ -1,0 +1,20 @@
+
+/* Tool-specific input presentation */
+.upload-label{display:block;font-weight:700;margin-bottom:8px}
+#toolFields input,#toolFields textarea,#toolFields select{
+ width:100%;box-sizing:border-box;margin:8px 0;padding:12px 14px;
+ border:1px solid var(--border,#dbe3ee);border-radius:12px;
+ background:var(--bg-card,#fff);color:var(--text,#172033);
+}
+#toolFields textarea{min-height:150px;resize:vertical}
+#toolFields input[type=color]{height:48px;padding:4px}
+#toolFields input[type=checkbox]{width:auto;margin-right:8px}
+
+/* Real calculator UI */
+.otb-upload{display:none!important}
+#toolFields{display:flex;flex-direction:column;gap:8px}
+#toolFields input,#toolFields textarea{font-size:18px;min-height:52px}
+.calc-keypad{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:14px}
+.calc-keypad button{border:1px solid var(--border,#dbe3ee);background:#f8fafc;border-radius:12px;min-height:52px;font-size:18px;font-weight:700;cursor:pointer}
+.calc-keypad button:hover{background:#2563eb;color:#fff}
+@media(max-width:700px){.calc-keypad{gap:7px}.calc-keypad button{min-height:48px}}
