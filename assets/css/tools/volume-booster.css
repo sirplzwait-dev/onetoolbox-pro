@@ -1,0 +1,6 @@
+/* Volume Booster — tool-specific stylesheet */
+.otb-tool-page .tool-hero h1{font-size:34px}
+.otb-tool-page .tool-hero p{max-width:760px}
+.otb-tool-page .otb-tool-card,.otb-tool-page .otb-info-card{background:var(--bg-card);border:1px solid var(--border);border-radius:20px;box-shadow:var(--shadow-sm)}
+.otb-tool-page .otb-tool-card{padding:28px}
+.otb-tool-page .otb-info-card{padding:24px;height:max-content}

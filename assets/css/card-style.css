@@ -1,0 +1,114 @@
+/* =====================================================
+   ONETOOLBOX - FULL CLICKABLE TOOL CARDS
+   Related-color backgrounds + hover states
+   ===================================================== */
+
+.category-card,
+.tool-card,
+[class$="-tool-card"]{
+  cursor:pointer !important;
+  position:relative;
+  overflow:hidden;
+  transition:transform .22s ease, box-shadow .22s ease, background .22s ease, border-color .22s ease !important;
+}
+
+.category-card:hover,
+.tool-card:hover,
+[class$="-tool-card"]:hover{
+  transform:translateY(-6px);
+  box-shadow:0 14px 32px rgba(15,23,42,.14) !important;
+}
+
+.category-card:focus-visible,
+.tool-card:focus-visible,
+[class$="-tool-card"]:focus-visible{
+  outline:3px solid rgba(37,99,235,.28);
+  outline-offset:3px;
+}
+
+/* Full card color according to the related tool icon color. */
+[class$="-tool-card"]:has([class*="-tool-icon"].blue){
+  background:linear-gradient(145deg,#eff6ff,#dbeafe) !important;
+  border-color:#bfdbfe !important;
+}
+[class$="-tool-card"]:has([class*="-tool-icon"].green){
+  background:linear-gradient(145deg,#f0fdf4,#dcfce7) !important;
+  border-color:#bbf7d0 !important;
+}
+[class$="-tool-card"]:has([class*="-tool-icon"].red){
+  background:linear-gradient(145deg,#fff1f2,#ffe4e6) !important;
+  border-color:#fecdd3 !important;
+}
+[class$="-tool-card"]:has([class*="-tool-icon"].orange){
+  background:linear-gradient(145deg,#fff7ed,#ffedd5) !important;
+  border-color:#fed7aa !important;
+}
+[class$="-tool-card"]:has([class*="-tool-icon"].purple){
+  background:linear-gradient(145deg,#faf5ff,#f3e8ff) !important;
+  border-color:#e9d5ff !important;
+}
+[class$="-tool-card"]:has([class*="-tool-icon"].yellow){
+  background:linear-gradient(145deg,#fefce8,#fef3c7) !important;
+  border-color:#fde68a !important;
+}
+
+/* Make the Home tool cards follow the same full-color system. */
+.tool-card:has(.tool-icon.blue),
+.category-card:has(.category-icon.blue){
+  background:linear-gradient(145deg,#eff6ff,#dbeafe) !important;
+  border-color:#bfdbfe !important;
+}
+.tool-card:has(.tool-icon.green),
+.category-card:has(.category-icon.green){
+  background:linear-gradient(145deg,#f0fdf4,#dcfce7) !important;
+  border-color:#bbf7d0 !important;
+}
+.tool-card:has(.tool-icon.red),
+.category-card:has(.category-icon.red){
+  background:linear-gradient(145deg,#fff1f2,#ffe4e6) !important;
+  border-color:#fecdd3 !important;
+}
+.tool-card:has(.tool-icon.orange),
+.category-card:has(.category-icon.orange){
+  background:linear-gradient(145deg,#fff7ed,#ffedd5) !important;
+  border-color:#fed7aa !important;
+}
+.tool-card:has(.tool-icon.purple),
+.category-card:has(.category-icon.purple){
+  background:linear-gradient(145deg,#faf5ff,#f3e8ff) !important;
+  border-color:#e9d5ff !important;
+}
+.tool-card:has(.tool-icon.yellow),
+.category-card:has(.category-icon.yellow){
+  background:linear-gradient(145deg,#fefce8,#fef3c7) !important;
+  border-color:#fde68a !important;
+}
+
+/* Keep text readable on colored cards. */
+[class$="-tool-card"] h3,
+.tool-card h3,
+.category-card h3{
+  color:#172033;
+}
+[class$="-tool-card"] p,
+.tool-card p,
+.category-card p{
+  color:#475569;
+}
+
+/* Dark mode */
+[data-theme="dark"] [class$="-tool-card"],
+[data-theme="dark"] .tool-card,
+[data-theme="dark"] .category-card{
+  color:#e5e7eb !important;
+}
+[data-theme="dark"] [class$="-tool-card"] h3,
+[data-theme="dark"] .tool-card h3,
+[data-theme="dark"] .category-card h3{
+  color:#f8fafc !important;
+}
+[data-theme="dark"] [class$="-tool-card"] p,
+[data-theme="dark"] .tool-card p,
+[data-theme="dark"] .category-card p{
+  color:#cbd5e1 !important;
+}
