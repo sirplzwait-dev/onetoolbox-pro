@@ -1,113 +1,51 @@
-/* OneToolBox Global Search */
+/* OneToolBox Global Search — shared on every page */
 "use strict";
-
 const Search = {
   data: [],
-  loaded: false,
-  cacheKey: "otb-search-data-v1",
-  cacheTtl: 86400000,
-
+  ready: false,
   async init() {
-    await this.loadData();
-    this.bind();
-  },
-
-  async loadData() {
+    const inputs = [document.getElementById("globalSearch"), document.getElementById("mobileGlobalSearch")].filter(Boolean);
+    if (!inputs.length) return;
+    const box = document.getElementById("searchResult") || this.createBox(inputs[0]);
     try {
-      const cached = JSON.parse(localStorage.getItem(this.cacheKey) || "null");
-      if (cached && Array.isArray(cached.data) && Date.now() - cached.time < this.cacheTtl) {
-        this.data = cached.data;
-        this.loaded = true;
-        return;
-      }
-    } catch (_) {}
-    try {
-      const response = await fetch("/data/search.json", { cache: "force-cache" });
-      if (!response.ok) throw new Error(`Search data HTTP ${response.status}`);
-      const data = await response.json();
-      this.data = Array.isArray(data) ? data : [];
-      this.loaded = true;
-      try { localStorage.setItem(this.cacheKey, JSON.stringify({time:Date.now(),data:this.data})); } catch (_) {}
-    } catch (error) {
-      console.warn("Search data unavailable:", error);
-      this.data = [];
-    }
-  },
-
-  inputs() {
-    return [...document.querySelectorAll("#globalSearch, #mobileGlobalSearch")];
-  },
-
-  bind() {
-    this.inputs().forEach(input => {
-      input.addEventListener("input", () => this.search(input.value, input));
-      input.addEventListener("focus", () => {
-        if (input.value.trim()) this.search(input.value, input);
-      });
+      const res = await fetch("/data/search.json", {cache:"no-store"});
+      this.data = res.ok ? await res.json() : [];
+    } catch(e) { console.warn("Search data could not be loaded", e); this.data=[]; }
+    this.ready = true;
+    inputs.forEach(input => {
+      input.addEventListener("input", () => this.search(input.value, box));
+      input.addEventListener("focus", () => { if(input.value.trim()) this.search(input.value, box); });
       input.addEventListener("keydown", e => {
-        if (e.key === "Escape") {
-          input.value = "";
-          this.hide();
-          input.blur();
+        if(e.key === "Enter") {
+          const first = box.querySelector("a.search-item, a.global-search-item");
+          if(first){ e.preventDefault(); location.href = first.getAttribute("href"); }
         }
-        if (e.key === "Enter") {
-          const first = document.querySelector(".search-result:not([hidden]) .search-item");
-          if (first) window.location.href = first.href;
-        }
+        if(e.key === "Escape") { input.value=""; this.hide(box); }
       });
     });
-
     document.addEventListener("click", e => {
-      if (!e.target.closest(".header-search, .mobile-search-wrap, .search-result")) this.hide();
+      if(!e.target.closest(".header-search") && !e.target.closest(".mobile-search-wrap")) this.hide(box);
     });
   },
-
-  normalize(value) {
-    return String(value || "").toLowerCase().trim();
+  createBox(input){
+    const box=document.createElement("div");
+    box.id="searchResult"; box.className="search-result"; box.hidden=true;
+    input.parentElement.appendChild(box); return box;
   },
-
-  search(keyword) {
-    const q = this.normalize(keyword);
-    if (!q) return this.hide();
-
-    const terms = q.split(/\s+/).filter(Boolean);
-    const result = this.data.filter(item => {
-      const haystack = this.normalize([
-        item.title,
-        item.name,
-        item.category,
-        item.keywords,
-        item.description
-      ].join(" "));
-      return terms.every(term => haystack.includes(term));
-    }).slice(0, 12);
-
-    this.render(result, q);
+  search(value, box){
+    const q=String(value||"").trim().toLowerCase();
+    if(!q){this.hide(box);return;}
+    const result=this.data.filter(x=>{
+      const hay=[x.title,x.name,x.category,x.keywords,x.description].filter(Boolean).join(" ").toLowerCase();
+      return q.split(/\s+/).every(word=>hay.includes(word));
+    }).slice(0,15);
+    box.innerHTML=result.length ? result.map(x=>{
+      const name=x.title||x.name||"Tool";
+      const url=String(x.url||"");
+      return `<a class="search-item" href="${url}"><strong>${this.escape(name)}</strong><small>${this.escape(x.category||"")}</small></a>`;
+    }).join("") : `<div class="search-empty">No tool found</div>`;
+    box.hidden=false; box.classList.add("show");
   },
-
-  render(result, query) {
-    const boxes = document.querySelectorAll(".search-result");
-    boxes.forEach(box => {
-      box.hidden = false;
-      if (!result.length) {
-        box.innerHTML = `<div class="search-empty">No tool found for “${this.escape(query)}”</div>`;
-        return;
-      }
-      box.innerHTML = `<div class="search-heading">Tools</div>` + result.map(item => {
-        const title = item.title || item.name || "Untitled Tool";
-        return `<a href="${item.url}" class="search-item"><strong>${this.escape(title)}</strong><small>${this.escape(item.category || "Tool")}</small></a>`;
-      }).join("");
-    });
-  },
-
-  hide() {
-    document.querySelectorAll(".search-result").forEach(box => {
-      box.hidden = true;
-      box.innerHTML = "";
-    });
-  },
-
-  escape(value) {
-    return String(value).replace(/[&<>\"]/g, char => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[char]));
-  }
+  hide(box){ if(!box)return; box.hidden=true; box.classList.remove("show"); },
+  escape(s){return String(s).replace(/[&<>'"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;","\"":"&quot;"}[c]));}
 };

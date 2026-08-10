@@ -1229,3 +1229,29 @@ font-size:30px !important;
         height:230px !important;
     }
 }
+
+
+/* ===== HOME CARDS: clear border + subtle color, desktop/mobile ===== */
+.category-card{
+  background:linear-gradient(145deg,#ffffff,#f7faff) !important;
+  border:1px solid #cfd9e8 !important;
+  box-shadow:0 5px 16px rgba(37,99,235,.06) !important;
+}
+.tool-card{
+  background:linear-gradient(145deg,#ffffff,#f8faff) !important;
+  border:1px solid #cfd9e8 !important;
+  box-shadow:0 5px 16px rgba(37,99,235,.06) !important;
+}
+.category-card:hover,.tool-card:hover{
+  border-color:#7ea7e8 !important;
+  box-shadow:0 12px 25px rgba(37,99,235,.12) !important;
+}
+body.dark .category-card,body.dark .tool-card{
+  background:linear-gradient(145deg,#172033,#111827) !important;
+  border-color:#34445c !important;
+  box-shadow:0 6px 18px rgba(0,0,0,.18) !important;
+}
+body.dark .category-card:hover,body.dark .tool-card:hover{border-color:#4d7ec7 !important}
+@media(max-width:600px){
+  .category-card,.tool-card{border-radius:15px !important;border-width:1px !important}
+}

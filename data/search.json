@@ -1,356 +1,296 @@
 [
   {
-    "name": "Developer Tools - OneToolBox",
-    "category": "Onetoolbox",
-    "url": "/OneToolBox/pages/developer-tools.html",
-    "keywords": "Developer Tools - OneToolBox developer tools Onetoolbox"
+    "title": "Image to PDF Converter - OneToolBox",
+    "category": "Image Tools",
+    "url": "/pages/image-tools/image-to-pdf.html",
+    "keywords": "image to pdf converter - onetoolbox image to pdf image tools"
   },
   {
-    "name": "Utility Tools - OneToolBox",
-    "category": "Onetoolbox",
-    "url": "/OneToolBox/pages/utility-tools.html",
-    "keywords": "Utility Tools - OneToolBox utility tools Onetoolbox"
+    "title": "AI Background Remover - OneToolBox",
+    "category": "Image Tools",
+    "url": "/pages/image-tools/background-remover.html",
+    "keywords": "ai background remover - onetoolbox background remover image tools"
   },
   {
-    "name": "Audio Tools - OneToolBox",
-    "category": "Onetoolbox",
-    "url": "/OneToolBox/pages/audio-tools.html",
-    "keywords": "Audio Tools - OneToolBox audio tools Onetoolbox"
+    "title": "Flip Image Online - OneToolBox",
+    "category": "Image Tools",
+    "url": "/pages/image-tools/flip-image.html",
+    "keywords": "flip image online - onetoolbox flip image image tools"
   },
   {
-    "name": "Converter Tools - OneToolBox",
-    "category": "Onetoolbox",
-    "url": "/OneToolBox/pages/converter-tools.html",
-    "keywords": "Converter Tools - OneToolBox converter tools Onetoolbox"
+    "title": "Image to WebP Converter - OneToolBox",
+    "category": "Image Tools",
+    "url": "/pages/image-tools/webp-converter.html",
+    "keywords": "image to webp converter - onetoolbox webp converter image tools"
   },
   {
-    "name": "Calculator Tools - OneToolBox",
-    "category": "Onetoolbox",
-    "url": "/OneToolBox/pages/calculator-tools.html",
-    "keywords": "Calculator Tools - OneToolBox calculator tools Onetoolbox"
+    "title": "Image OCR - OneToolBox",
+    "category": "Image Tools",
+    "url": "/pages/image-tools/image-ocr.html",
+    "keywords": "image ocr - onetoolbox image ocr image tools"
   },
   {
-    "name": "Video Tools - OneToolBox",
-    "category": "Onetoolbox",
-    "url": "/OneToolBox/pages/video-tools.html",
-    "keywords": "Video Tools - OneToolBox video tools Onetoolbox"
+    "title": "Screenshot Editor - OneToolBox",
+    "category": "Image Tools",
+    "url": "/pages/image-tools/screenshot-editor.html",
+    "keywords": "screenshot editor - onetoolbox screenshot editor image tools"
   },
   {
-    "name": "PDF Tools - OneToolBox",
-    "category": "Onetoolbox",
-    "url": "/OneToolBox/pages/pdf-tools.html",
-    "keywords": "PDF Tools - OneToolBox pdf tools Onetoolbox"
+    "title": "PNG to JPG Converter - OneToolBox",
+    "category": "Image Tools",
+    "url": "/pages/image-tools/png-to-jpg.html",
+    "keywords": "png to jpg converter - onetoolbox png to jpg image tools"
   },
   {
-    "name": "Image Tools - OneToolBox",
-    "category": "Onetoolbox",
-    "url": "/OneToolBox/pages/image-tools.html",
-    "keywords": "Image Tools - OneToolBox image tools Onetoolbox"
+    "title": "JPG to PNG Converter - OneToolBox",
+    "category": "Image Tools",
+    "url": "/pages/image-tools/jpg-to-png.html",
+    "keywords": "jpg to png converter - onetoolbox jpg to png image tools"
   },
   {
-    "name": "AI Tools - OneToolBox",
-    "category": "Onetoolbox",
-    "url": "/OneToolBox/pages/ai-tools.html",
-    "keywords": "AI Tools - OneToolBox ai tools Onetoolbox"
+    "title": "Image Collage Maker - OneToolBox",
+    "category": "Image Tools",
+    "url": "/pages/image-tools/image-collage-maker.html",
+    "keywords": "image collage maker - onetoolbox image collage maker image tools"
   },
   {
-    "name": "Document Tools - OneToolBox",
-    "category": "Onetoolbox",
-    "url": "/OneToolBox/pages/document-tools.html",
-    "keywords": "Document Tools - OneToolBox document tools Onetoolbox"
+    "title": "Free Image Resizer Online - Resize Image | OneToolBox",
+    "category": "Image Tools",
+    "url": "/pages/image-tools/resize-image.html",
+    "keywords": "free image resizer online - resize image | onetoolbox resize image image tools"
   },
   {
-    "name": "Related Tools",
-    "category": "Onetoolbox",
-    "url": "/OneToolBox/components/related-tools.html",
-    "keywords": "Related Tools related tools Onetoolbox"
+    "title": "Image Converter - OneToolBox",
+    "category": "Image Tools",
+    "url": "/pages/image-tools/image-converter.html",
+    "keywords": "image converter - onetoolbox image converter image tools"
   },
   {
-    "name": "Image to PDF Converter - OneToolBox",
-    "category": "Onetoolbox",
-    "url": "/OneToolBox/pages/image-tools/image-to-pdf.html",
-    "keywords": "Image to PDF Converter - OneToolBox image to pdf Onetoolbox"
+    "title": "Blur Background Online - OneToolBox",
+    "category": "Image Tools",
+    "url": "/pages/image-tools/blur-background.html",
+    "keywords": "blur background online - onetoolbox blur background image tools"
   },
   {
-    "name": "AI Background Remover - OneToolBox",
-    "category": "Onetoolbox",
-    "url": "/OneToolBox/pages/image-tools/background-remover.html",
-    "keywords": "AI Background Remover - OneToolBox background remover Onetoolbox"
+    "title": "Color Picker - OneToolBox",
+    "category": "Image Tools",
+    "url": "/pages/image-tools/color-picker.html",
+    "keywords": "color picker - onetoolbox color picker image tools"
   },
   {
-    "name": "Flip Image Online - OneToolBox",
-    "category": "Onetoolbox",
-    "url": "/OneToolBox/pages/image-tools/flip-image.html",
-    "keywords": "Flip Image Online - OneToolBox flip image Onetoolbox"
+    "title": "HEIC Converter - OneToolBox",
+    "category": "Image Tools",
+    "url": "/pages/image-tools/heic-converter.html",
+    "keywords": "heic converter - onetoolbox heic converter image tools"
   },
   {
-    "name": "Image to WebP Converter - OneToolBox",
-    "category": "Onetoolbox",
-    "url": "/OneToolBox/pages/image-tools/webp-converter.html",
-    "keywords": "Image to WebP Converter - OneToolBox webp converter Onetoolbox"
+    "title": "Rotate Image Online - OneToolBox",
+    "category": "Image Tools",
+    "url": "/pages/image-tools/rotate-image.html",
+    "keywords": "rotate image online - onetoolbox rotate image image tools"
   },
   {
-    "name": "Image OCR - OneToolBox",
-    "category": "Onetoolbox",
-    "url": "/OneToolBox/pages/image-tools/image-ocr.html",
-    "keywords": "Image OCR - OneToolBox image ocr Onetoolbox"
+    "title": "Photo Enhancer - OneToolBox",
+    "category": "Image Tools",
+    "url": "/pages/image-tools/photo-enhancer.html",
+    "keywords": "photo enhancer - onetoolbox photo enhancer image tools"
   },
   {
-    "name": "Screenshot Editor - OneToolBox",
-    "category": "Onetoolbox",
-    "url": "/OneToolBox/pages/image-tools/screenshot-editor.html",
-    "keywords": "Screenshot Editor - OneToolBox screenshot editor Onetoolbox"
+    "title": "Image Cropper Online - OneToolBox",
+    "category": "Image Tools",
+    "url": "/pages/image-tools/crop-image.html",
+    "keywords": "image cropper online - onetoolbox crop image image tools"
   },
   {
-    "name": "PNG to JPG Converter - OneToolBox",
-    "category": "Onetoolbox",
-    "url": "/OneToolBox/pages/image-tools/png-to-jpg.html",
-    "keywords": "PNG to JPG Converter - OneToolBox png to jpg Onetoolbox"
+    "title": "Meme Generator - OneToolBox",
+    "category": "Image Tools",
+    "url": "/pages/image-tools/meme-generator.html",
+    "keywords": "meme generator - onetoolbox meme generator image tools"
   },
   {
-    "name": "JPG to PNG Converter - OneToolBox",
-    "category": "Onetoolbox",
-    "url": "/OneToolBox/pages/image-tools/jpg-to-png.html",
-    "keywords": "JPG to PNG Converter - OneToolBox jpg to png Onetoolbox"
+    "title": "Image Watermark - OneToolBox",
+    "category": "Image Tools",
+    "url": "/pages/image-tools/image-watermark.html",
+    "keywords": "image watermark - onetoolbox image watermark image tools"
   },
   {
-    "name": "Image Collage Maker - OneToolBox",
-    "category": "Onetoolbox",
-    "url": "/OneToolBox/pages/image-tools/image-collage-maker.html",
-    "keywords": "Image Collage Maker - OneToolBox image collage maker Onetoolbox"
+    "title": "Image Creator - OneToolBox",
+    "category": "Image Tools",
+    "url": "/pages/image-tools/image-creator.html",
+    "keywords": "image creator - onetoolbox image creator image tools"
   },
   {
-    "name": "Free Image Resizer Online - Resize Image | OneToolBox",
-    "category": "Onetoolbox",
-    "url": "/OneToolBox/pages/image-tools/resize-image.html",
-    "keywords": "Free Image Resizer Online - Resize Image | OneToolBox resize image Onetoolbox"
+    "title": "Free Image Compressor Online - Reduce Image Size | OneToolBox",
+    "category": "Image Tools",
+    "url": "/pages/image-tools/image-compressor.html",
+    "keywords": "free image compressor online - reduce image size | onetoolbox image compressor image tools"
   },
   {
-    "name": "Image Converter - OneToolBox",
-    "category": "Onetoolbox",
-    "url": "/OneToolBox/pages/image-tools/image-converter.html",
-    "keywords": "Image Converter - OneToolBox image converter Onetoolbox"
+    "title": "Metadata Remover - OneToolBox",
+    "category": "Image Tools",
+    "url": "/pages/image-tools/metadata-remover.html",
+    "keywords": "metadata remover - onetoolbox metadata remover image tools"
   },
   {
-    "name": "Blur Background Online - OneToolBox",
-    "category": "Onetoolbox",
-    "url": "/OneToolBox/pages/image-tools/blur-background.html",
-    "keywords": "Blur Background Online - OneToolBox blur background Onetoolbox"
+    "title": "Change Background - OneToolBox",
+    "category": "Image Tools",
+    "url": "/pages/image-tools/change-background.html",
+    "keywords": "change background - onetoolbox change background image tools"
   },
   {
-    "name": "Color Picker - OneToolBox",
-    "category": "Onetoolbox",
-    "url": "/OneToolBox/pages/image-tools/color-picker.html",
-    "keywords": "Color Picker - OneToolBox color picker Onetoolbox"
+    "title": "QR Scanner - OneToolBox",
+    "category": "Image Tools",
+    "url": "/pages/image-tools/qr-scanner.html",
+    "keywords": "qr scanner - onetoolbox qr scanner image tools"
   },
   {
-    "name": "HEIC Converter - OneToolBox",
-    "category": "Onetoolbox",
-    "url": "/OneToolBox/pages/image-tools/heic-converter.html",
-    "keywords": "HEIC Converter - OneToolBox heic converter Onetoolbox"
+    "title": "PowerPoint To PDF - OneToolBox",
+    "category": "Pdf Tools",
+    "url": "/pages/pdf-tools/powerpoint-to-pdf.html",
+    "keywords": "powerpoint to pdf - onetoolbox powerpoint to pdf pdf tools"
   },
   {
-    "name": "Rotate Image Online - OneToolBox",
-    "category": "Onetoolbox",
-    "url": "/OneToolBox/pages/image-tools/rotate-image.html",
-    "keywords": "Rotate Image Online - OneToolBox rotate image Onetoolbox"
+    "title": "PDF Compressor - OneToolBox",
+    "category": "Pdf Tools",
+    "url": "/pages/pdf-tools/pdf-compressor.html",
+    "keywords": "pdf compressor - onetoolbox pdf compressor pdf tools"
   },
   {
-    "name": "Photo Enhancer - OneToolBox",
-    "category": "Onetoolbox",
-    "url": "/OneToolBox/pages/image-tools/photo-enhancer.html",
-    "keywords": "Photo Enhancer - OneToolBox photo enhancer Onetoolbox"
+    "title": "Excel To PDF - OneToolBox",
+    "category": "Pdf Tools",
+    "url": "/pages/pdf-tools/excel-to-pdf.html",
+    "keywords": "excel to pdf - onetoolbox excel to pdf pdf tools"
   },
   {
-    "name": "Image Cropper Online - OneToolBox",
-    "category": "Onetoolbox",
-    "url": "/OneToolBox/pages/image-tools/crop-image.html",
-    "keywords": "Image Cropper Online - OneToolBox crop image Onetoolbox"
+    "title": "PDF To JPG - OneToolBox",
+    "category": "Pdf Tools",
+    "url": "/pages/pdf-tools/pdf-to-jpg.html",
+    "keywords": "pdf to jpg - onetoolbox pdf to jpg pdf tools"
   },
   {
-    "name": "Meme Generator - OneToolBox",
-    "category": "Onetoolbox",
-    "url": "/OneToolBox/pages/image-tools/meme-generator.html",
-    "keywords": "Meme Generator - OneToolBox meme generator Onetoolbox"
+    "title": "PDF OCR - OneToolBox",
+    "category": "Pdf Tools",
+    "url": "/pages/pdf-tools/pdf-ocr.html",
+    "keywords": "pdf ocr - onetoolbox pdf ocr pdf tools"
   },
   {
-    "name": "Image Watermark - OneToolBox",
-    "category": "Onetoolbox",
-    "url": "/OneToolBox/pages/image-tools/image-watermark.html",
-    "keywords": "Image Watermark - OneToolBox image watermark Onetoolbox"
+    "title": "Rotate PDF - OneToolBox",
+    "category": "Pdf Tools",
+    "url": "/pages/pdf-tools/rotate-pdf.html",
+    "keywords": "rotate pdf - onetoolbox rotate pdf pdf tools"
   },
   {
-    "name": "Image Creator - OneToolBox",
-    "category": "Onetoolbox",
-    "url": "/OneToolBox/pages/image-tools/image-creator.html",
-    "keywords": "Image Creator - OneToolBox image creator Onetoolbox"
+    "title": "Remove PDF Metadata - OneToolBox",
+    "category": "Pdf Tools",
+    "url": "/pages/pdf-tools/remove-pdf-metadata.html",
+    "keywords": "remove pdf metadata - onetoolbox remove pdf metadata pdf tools"
   },
   {
-    "name": "Free Image Compressor Online - Reduce Image Size | OneToolBox",
-    "category": "Onetoolbox",
-    "url": "/OneToolBox/pages/image-tools/image-compressor.html",
-    "keywords": "Free Image Compressor Online - Reduce Image Size | OneToolBox image compressor Onetoolbox"
+    "title": "PDF Scanner - OneToolBox",
+    "category": "Pdf Tools",
+    "url": "/pages/pdf-tools/pdf-scanner.html",
+    "keywords": "pdf scanner - onetoolbox pdf scanner pdf tools"
   },
   {
-    "name": "Metadata Remover - OneToolBox",
-    "category": "Onetoolbox",
-    "url": "/OneToolBox/pages/image-tools/metadata-remover.html",
-    "keywords": "Metadata Remover - OneToolBox metadata remover Onetoolbox"
+    "title": "PDF To Excel - OneToolBox",
+    "category": "Pdf Tools",
+    "url": "/pages/pdf-tools/pdf-to-excel.html",
+    "keywords": "pdf to excel - onetoolbox pdf to excel pdf tools"
   },
   {
-    "name": "Change Background - OneToolBox",
-    "category": "Onetoolbox",
-    "url": "/OneToolBox/pages/image-tools/change-background.html",
-    "keywords": "Change Background - OneToolBox change background Onetoolbox"
+    "title": "Split PDF - OneToolBox",
+    "category": "Pdf Tools",
+    "url": "/pages/pdf-tools/split-pdf.html",
+    "keywords": "split pdf - onetoolbox split pdf pdf tools"
   },
   {
-    "name": "QR Scanner - OneToolBox",
-    "category": "Onetoolbox",
-    "url": "/OneToolBox/pages/image-tools/qr-scanner.html",
-    "keywords": "QR Scanner - OneToolBox qr scanner Onetoolbox"
+    "title": "PDF Watermark - OneToolBox",
+    "category": "Pdf Tools",
+    "url": "/pages/pdf-tools/pdf-watermark.html",
+    "keywords": "pdf watermark - onetoolbox pdf watermark pdf tools"
   },
   {
-    "name": "PowerPoint To PDF - OneToolBox",
-    "category": "Onetoolbox",
-    "url": "/OneToolBox/pages/pdf-tools/powerpoint-to-pdf.html",
-    "keywords": "PowerPoint To PDF - OneToolBox powerpoint to pdf Onetoolbox"
+    "title": "Remove PDF Pages - OneToolBox",
+    "category": "Pdf Tools",
+    "url": "/pages/pdf-tools/remove-pdf-pages.html",
+    "keywords": "remove pdf pages - onetoolbox remove pdf pages pdf tools"
   },
   {
-    "name": "PDF Compressor - OneToolBox",
-    "category": "Onetoolbox",
-    "url": "/OneToolBox/pages/pdf-tools/pdf-compressor.html",
-    "keywords": "PDF Compressor - OneToolBox pdf compressor Onetoolbox"
+    "title": "HTML To PDF - OneToolBox",
+    "category": "Pdf Tools",
+    "url": "/pages/pdf-tools/html-to-pdf.html",
+    "keywords": "html to pdf - onetoolbox html to pdf pdf tools"
   },
   {
-    "name": "Excel To PDF - OneToolBox",
-    "category": "Onetoolbox",
-    "url": "/OneToolBox/pages/pdf-tools/excel-to-pdf.html",
-    "keywords": "Excel To PDF - OneToolBox excel to pdf Onetoolbox"
+    "title": "Extract PDF Pages - OneToolBox",
+    "category": "Pdf Tools",
+    "url": "/pages/pdf-tools/extract-pdf-pages.html",
+    "keywords": "extract pdf pages - onetoolbox extract pdf pages pdf tools"
   },
   {
-    "name": "PDF To JPG - OneToolBox",
-    "category": "Onetoolbox",
-    "url": "/OneToolBox/pages/pdf-tools/pdf-to-jpg.html",
-    "keywords": "PDF To JPG - OneToolBox pdf to jpg Onetoolbox"
+    "title": "PDF Signature - OneToolBox",
+    "category": "Pdf Tools",
+    "url": "/pages/pdf-tools/pdf-signature.html",
+    "keywords": "pdf signature - onetoolbox pdf signature pdf tools"
   },
   {
-    "name": "PDF OCR - OneToolBox",
-    "category": "Onetoolbox",
-    "url": "/OneToolBox/pages/pdf-tools/pdf-ocr.html",
-    "keywords": "PDF OCR - OneToolBox pdf ocr Onetoolbox"
+    "title": "PDF Converter - OneToolBox",
+    "category": "Pdf Tools",
+    "url": "/pages/pdf-tools/pdf-converter.html",
+    "keywords": "pdf converter - onetoolbox pdf converter pdf tools"
   },
   {
-    "name": "Rotate PDF - OneToolBox",
-    "category": "Onetoolbox",
-    "url": "/OneToolBox/pages/pdf-tools/rotate-pdf.html",
-    "keywords": "Rotate PDF - OneToolBox rotate pdf Onetoolbox"
+    "title": "PDF Editor - OneToolBox",
+    "category": "Pdf Tools",
+    "url": "/pages/pdf-tools/pdf-editor.html",
+    "keywords": "pdf editor - onetoolbox pdf editor pdf tools"
   },
   {
-    "name": "Remove PDF Metadata - OneToolBox",
-    "category": "Onetoolbox",
-    "url": "/OneToolBox/pages/pdf-tools/remove-pdf-metadata.html",
-    "keywords": "Remove PDF Metadata - OneToolBox remove pdf metadata Onetoolbox"
+    "title": "PDF To Word - OneToolBox",
+    "category": "Pdf Tools",
+    "url": "/pages/pdf-tools/pdf-to-word.html",
+    "keywords": "pdf to word - onetoolbox pdf to word pdf tools"
   },
   {
-    "name": "PDF Scanner - OneToolBox",
-    "category": "Onetoolbox",
-    "url": "/OneToolBox/pages/pdf-tools/pdf-scanner.html",
-    "keywords": "PDF Scanner - OneToolBox pdf scanner Onetoolbox"
+    "title": "Word To PDF - OneToolBox",
+    "category": "Pdf Tools",
+    "url": "/pages/pdf-tools/word-to-pdf.html",
+    "keywords": "word to pdf - onetoolbox word to pdf pdf tools"
   },
   {
-    "name": "PDF To Excel - OneToolBox",
-    "category": "Onetoolbox",
-    "url": "/OneToolBox/pages/pdf-tools/pdf-to-excel.html",
-    "keywords": "PDF To Excel - OneToolBox pdf to excel Onetoolbox"
+    "title": "Protect PDF - OneToolBox",
+    "category": "Pdf Tools",
+    "url": "/pages/pdf-tools/protect-pdf.html",
+    "keywords": "protect pdf - onetoolbox protect pdf pdf tools"
   },
   {
-    "name": "Split PDF - OneToolBox",
-    "category": "Onetoolbox",
-    "url": "/OneToolBox/pages/pdf-tools/split-pdf.html",
-    "keywords": "Split PDF - OneToolBox split pdf Onetoolbox"
+    "title": "JPG To PDF - OneToolBox",
+    "category": "Pdf Tools",
+    "url": "/pages/pdf-tools/jpg-to-pdf.html",
+    "keywords": "jpg to pdf - onetoolbox jpg to pdf pdf tools"
   },
   {
-    "name": "PDF Watermark - OneToolBox",
-    "category": "Onetoolbox",
-    "url": "/OneToolBox/pages/pdf-tools/pdf-watermark.html",
-    "keywords": "PDF Watermark - OneToolBox pdf watermark Onetoolbox"
+    "title": "Merge PDF - OneToolBox",
+    "category": "Pdf Tools",
+    "url": "/pages/pdf-tools/merge-pdf.html",
+    "keywords": "merge pdf - onetoolbox merge pdf pdf tools"
   },
   {
-    "name": "Remove PDF Pages - OneToolBox",
-    "category": "Onetoolbox",
-    "url": "/OneToolBox/pages/pdf-tools/remove-pdf-pages.html",
-    "keywords": "Remove PDF Pages - OneToolBox remove pdf pages Onetoolbox"
+    "title": "Unlock PDF - OneToolBox",
+    "category": "Pdf Tools",
+    "url": "/pages/pdf-tools/unlock-pdf.html",
+    "keywords": "unlock pdf - onetoolbox unlock pdf pdf tools"
   },
   {
-    "name": "HTML To PDF - OneToolBox",
-    "category": "Onetoolbox",
-    "url": "/OneToolBox/pages/pdf-tools/html-to-pdf.html",
-    "keywords": "HTML To PDF - OneToolBox html to pdf Onetoolbox"
+    "title": "PDF Size Reducer - OneToolBox",
+    "category": "Pdf Tools",
+    "url": "/pages/pdf-tools/pdf-size-reducer.html",
+    "keywords": "pdf size reducer - onetoolbox pdf size reducer pdf tools"
   },
   {
-    "name": "Extract PDF Pages - OneToolBox",
-    "category": "Onetoolbox",
-    "url": "/OneToolBox/pages/pdf-tools/extract-pdf-pages.html",
-    "keywords": "Extract PDF Pages - OneToolBox extract pdf pages Onetoolbox"
-  },
-  {
-    "name": "PDF Signature - OneToolBox",
-    "category": "Onetoolbox",
-    "url": "/OneToolBox/pages/pdf-tools/pdf-signature.html",
-    "keywords": "PDF Signature - OneToolBox pdf signature Onetoolbox"
-  },
-  {
-    "name": "PDF Converter - OneToolBox",
-    "category": "Onetoolbox",
-    "url": "/OneToolBox/pages/pdf-tools/pdf-converter.html",
-    "keywords": "PDF Converter - OneToolBox pdf converter Onetoolbox"
-  },
-  {
-    "name": "PDF Editor - OneToolBox",
-    "category": "Onetoolbox",
-    "url": "/OneToolBox/pages/pdf-tools/pdf-editor.html",
-    "keywords": "PDF Editor - OneToolBox pdf editor Onetoolbox"
-  },
-  {
-    "name": "PDF To Word - OneToolBox",
-    "category": "Onetoolbox",
-    "url": "/OneToolBox/pages/pdf-tools/pdf-to-word.html",
-    "keywords": "PDF To Word - OneToolBox pdf to word Onetoolbox"
-  },
-  {
-    "name": "Word To PDF - OneToolBox",
-    "category": "Onetoolbox",
-    "url": "/OneToolBox/pages/pdf-tools/word-to-pdf.html",
-    "keywords": "Word To PDF - OneToolBox word to pdf Onetoolbox"
-  },
-  {
-    "name": "Protect PDF - OneToolBox",
-    "category": "Onetoolbox",
-    "url": "/OneToolBox/pages/pdf-tools/protect-pdf.html",
-    "keywords": "Protect PDF - OneToolBox protect pdf Onetoolbox"
-  },
-  {
-    "name": "JPG To PDF - OneToolBox",
-    "category": "Onetoolbox",
-    "url": "/OneToolBox/pages/pdf-tools/jpg-to-pdf.html",
-    "keywords": "JPG To PDF - OneToolBox jpg to pdf Onetoolbox"
-  },
-  {
-    "name": "Merge PDF - OneToolBox",
-    "category": "Onetoolbox",
-    "url": "/OneToolBox/pages/pdf-tools/merge-pdf.html",
-    "keywords": "Merge PDF - OneToolBox merge pdf Onetoolbox"
-  },
-  {
-    "name": "Unlock PDF - OneToolBox",
-    "category": "Onetoolbox",
-    "url": "/OneToolBox/pages/pdf-tools/unlock-pdf.html",
-    "keywords": "Unlock PDF - OneToolBox unlock pdf Onetoolbox"
-  },
-  {
-    "name": "PDF Size Reducer - OneToolBox",
-    "category": "Onetoolbox",
-    "url": "/OneToolBox/pages/pdf-tools/pdf-size-reducer.html",
-    "keywords": "PDF Size Reducer - OneToolBox pdf size reducer Onetoolbox"
+    "title": "Image Compressor - OneToolBox",
+    "category": "Image",
+    "url": "/pages/image/compress/index.html",
+    "keywords": "image compressor - onetoolbox index image"
   }
 ]
