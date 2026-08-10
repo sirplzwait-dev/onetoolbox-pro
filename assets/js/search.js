@@ -4,6 +4,8 @@
 const Search = {
   data: [],
   loaded: false,
+  cacheKey: "otb-search-data-v1",
+  cacheTtl: 86400000,
 
   async init() {
     await this.loadData();
@@ -12,13 +14,22 @@ const Search = {
 
   async loadData() {
     try {
-      const response = await fetch("/data/search.json", { cache: "no-store" });
+      const cached = JSON.parse(localStorage.getItem(this.cacheKey) || "null");
+      if (cached && Array.isArray(cached.data) && Date.now() - cached.time < this.cacheTtl) {
+        this.data = cached.data;
+        this.loaded = true;
+        return;
+      }
+    } catch (_) {}
+    try {
+      const response = await fetch("/data/search.json", { cache: "force-cache" });
       if (!response.ok) throw new Error(`Search data HTTP ${response.status}`);
       const data = await response.json();
       this.data = Array.isArray(data) ? data : [];
       this.loaded = true;
+      try { localStorage.setItem(this.cacheKey, JSON.stringify({time:Date.now(),data:this.data})); } catch (_) {}
     } catch (error) {
-      console.error("Search Data Error:", error);
+      console.warn("Search data unavailable:", error);
       this.data = [];
     }
   },

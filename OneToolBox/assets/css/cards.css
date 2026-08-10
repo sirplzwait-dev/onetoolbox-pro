@@ -1,0 +1,15 @@
+
+/* Card visibility: subtle tint + clear border, responsive */
+.category-card,.tool-card,.feature-card,.latest-tool-card,.popular-tool-card{
+ background:linear-gradient(145deg,rgba(59,130,246,.055),rgba(139,92,246,.035)) !important;
+ border:1px solid #cfdbea !important;
+ box-shadow:0 5px 16px rgba(15,23,42,.055);
+ transition:transform .16s ease,box-shadow .16s ease,border-color .16s ease;
+}
+.category-card:hover,.tool-card:hover,.feature-card:hover,.latest-tool-card:hover,.popular-tool-card:hover{
+ border-color:#8eb4ea !important; box-shadow:0 10px 22px rgba(37,99,235,.10); transform:translateY(-2px);
+}
+body.dark .category-card,body.dark .tool-card,body.dark .feature-card,body.dark .latest-tool-card,body.dark .popular-tool-card{
+ background:linear-gradient(145deg,rgba(59,130,246,.12),rgba(139,92,246,.07)) !important;
+ border-color:#34465f !important;
+}

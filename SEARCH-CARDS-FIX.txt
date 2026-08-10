@@ -1,0 +1,4 @@
+Search fixed using the actual HTML files in the project.
+Indexed tools: 59
+No tool-page JS was modified.
+Card styling is scoped to common card classes.

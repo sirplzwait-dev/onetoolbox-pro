@@ -1,0 +1,1 @@
+document.addEventListener("DOMContentLoaded",function(){const s=document.getElementById("pdfSearch");const c=[...document.querySelectorAll(".pdf-tool-card")];if(s)s.addEventListener("input",()=>{const q=s.value.toLowerCase().trim();c.forEach(x=>x.style.display=x.innerText.toLowerCase().includes(q)?"":"none")});});
