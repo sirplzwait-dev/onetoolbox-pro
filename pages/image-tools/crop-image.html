@@ -1,1061 +1,319 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+<title>Free Image Cropper Online - Crop JPG PNG WEBP | OneToolBox</title>
+<meta name="description" content="Crop images online with custom aspect ratios, rotate, flip, zoom, pan and quality controls. Supports JPG, PNG and WEBP output with OneToolBox.">
 
-    <title>Image Cropper Online - OneToolBox</title>
+<link rel="stylesheet" href="../../assets/css/reset.css">
+<link rel="stylesheet" href="../../assets/css/variables.css">
+<link rel="stylesheet" href="../../assets/css/layout.css">
+<link rel="stylesheet" href="../../assets/css/components.css">
+<link rel="stylesheet" href="../../assets/css/tools/crop-image.css">
 
-    <meta name="description"
-          content="Free online image cropper. Crop, resize, rotate, flip, zoom and download images in JPG, PNG and WEBP.">
-
-    <!-- Cropper.js -->
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.css"
-    >
-
-    <!-- Font Awesome -->
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-    >
-
-    <!-- Your common CSS -->
-    <link rel="stylesheet" href="../../assets/css/reset.css">
-    <link rel="stylesheet" href="../../assets/css/variables.css">
-    <link rel="stylesheet" href="../../assets/css/layout.css">
-    <link rel="stylesheet" href="../../assets/css/components.css">
-
-    <!-- This tool CSS -->
-    <link rel="stylesheet" href="../../assets/css/tools/crop-image.css">
-<link rel="stylesheet" href="../assets/css/tool-content.css">
-<script id="otb-theme-boot">(()=>{try{if(localStorage.getItem("onetoolbox-theme")==="dark")document.documentElement.classList.add("otb-dark-preload")}catch(e){}})();</script>
-<style id="otb-theme-boot-style">html.otb-dark-preload{background:#0f172a}html.otb-dark-preload body{background:#0f172a}</style>
-<link rel="preconnect" href="https://cdnjs.cloudflare.com">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.css">
 </head>
-
 
 <body>
 
-<!-- =====================================================
-     HEADER
-===================================================== -->
-
 <div id="header-placeholder"></div>
-
 
 <main class="page page-offset">
 
+<section class="tool-hero">
+<div class="container">
+<h1>✂️ Image Cropper</h1>
+<p>Crop, rotate, flip, zoom and prepare images with custom aspect ratios and output settings.</p>
+</div>
+</section>
+
+<section class="section">
+<div class="container">
+
+<div class="crop-box">
+
+<!-- Upload -->
+<div class="crop-card">
+
+<h3>Upload Image</h3>
+
+<div class="upload-area" id="uploadArea">
+
+<i class="fa-solid fa-cloud-arrow-up" id="uploadIcon"></i>
+
+<img id="cropImage" class="crop-preview" alt="Image preview">
+
+<h4 id="uploadText">Upload Image</h4>
+
+<p id="uploadInfo">
+📁 Choose Image<br>
+📋 Paste Image<br>
+🖱 Drag & Drop
+</p>
+
+<label class="choose-btn" for="imageInput">
+<i class="fa-solid fa-image"></i>
+<span>Choose Image</span>
+<input type="file" id="imageInput" accept="image/*" aria-label="Choose image">
+</label>
+
+<button class="btn-reset" id="resetBtn" type="button">
+<i class="fa-solid fa-rotate-left"></i>
+Reset
+</button>
+
+</div>
+
+<div class="info">
+<span>File Name</span>
+<b id="fileName">-</b>
+</div>
+
+<div class="info">
+<span>Original Size</span>
+<b id="originalSize">0 KB</b>
+</div>
+
+<div class="info">
+<span>Resolution</span>
+<b id="originalResolution">0 × 0 px</b>
+</div>
+
+<div class="info">
+<span>Format</span>
+<b id="originalFormat">-</b>
+</div>
+
+</div>
+
+
+<!-- Settings -->
+<div class="crop-card">
+
+<h3>Crop Settings</h3>
+
+<label for="aspectRatioSelect">Aspect Ratio</label>
+
+<div class="select-wrap">
+<select id="aspectRatioSelect" class="aspect-select" aria-label="Choose aspect ratio">
+<option value="free">Free Crop</option>
+<option value="1">1 : 1 — Square</option>
+<option value="1.333333">4 : 3</option>
+<option value="1.5">3 : 2</option>
+<option value="1.777777">16 : 9</option>
+<option value="0.75">3 : 4</option>
+<option value="0.666667">2 : 3</option>
+<option value="1.91">1.91 : 1</option>
+<option value="1">Passport</option>
+<option value="1">Instagram</option>
+<option value="1.777777">YouTube</option>
+<option value="1.91">Facebook</option>
+</select>
+<i class="fa-solid fa-chevron-down select-arrow" aria-hidden="true"></i>
+</div>
+
+<label>Transform</label>
+
+<div class="tool-buttons">
+<button class="tool-btn" id="rotateLeft" type="button"><i class="fa-solid fa-rotate-left"></i> Left</button>
+<button class="tool-btn" id="rotateRight" type="button"><i class="fa-solid fa-rotate-right"></i> Right</button>
+<button class="tool-btn" id="flipHorizontal" type="button"><i class="fa-solid fa-left-right"></i> Flip H</button>
+<button class="tool-btn" id="flipVertical" type="button"><i class="fa-solid fa-up-down"></i> Flip V</button>
+<button class="tool-btn" id="moveMode" type="button"><i class="fa-solid fa-hand"></i> Move</button>
+<button class="tool-btn" id="cropMode" type="button"><i class="fa-solid fa-crop-simple"></i> Crop Mode</button>
+</div>
+
+<label for="rotationRange">Rotation <span id="rotationValue">0°</span></label>
+<div class="range-row">
+<input type="range" id="rotationRange" min="-180" max="180" value="0" step="1">
+<button class="small-btn" id="resetRotation" type="button">Reset</button>
+</div>
+
+<label>Zoom</label>
+<div class="zoom-buttons">
+<button class="tool-btn" id="zoomOut" type="button"><i class="fa-solid fa-magnifying-glass-minus"></i> Zoom Out</button>
+<button class="tool-btn" id="zoomIn" type="button"><i class="fa-solid fa-magnifying-glass-plus"></i> Zoom In</button>
+</div>
+
+<input type="range" id="zoomRange" min="0.1" max="3" value="1" step="0.05" class="full-range">
+
+<div class="output-grid">
+<div>
+<label for="formatSelect">Output Format</label>
+<select id="formatSelect">
+<option value="image/jpeg">JPG</option>
+<option value="image/png">PNG</option>
+<option value="image/webp">WEBP</option>
+</select>
+</div>
+
+<div>
+<label for="qualityRange">Quality <span id="qualityValue">90%</span></label>
+<input type="range" id="qualityRange" min="10" max="100" value="90" step="1" class="full-range">
+</div>
+</div>
+
+<div class="background-box">
+<label>JPG Background</label>
+<div class="background-options">
+<button class="background-btn active" data-color="#ffffff" type="button">White</button>
+<button class="background-btn" data-color="#000000" type="button">Black</button>
+<button class="background-btn" data-color="transparent" type="button">Transparent</button>
+</div>
+</div>
+
+<div class="tool-actions">
+<button class="btn-secondary" id="resetCrop" type="button"><i class="fa-solid fa-arrows-rotate"></i> Reset Crop</button>
+<button class="btn-primary" id="cropBtn" type="button"><i class="fa-solid fa-crop-simple"></i> Crop Image</button>
+</div>
+
+</div>
+
+
+<!-- Result -->
+<div class="crop-card">
+
+<h3>Cropped Image</h3>
+
+<div class="result-preview">
+<img id="resultImage" alt="Cropped Image">
+<span id="resultText">Crop result will appear here</span>
+</div>
+
+<div class="info">
+<span>New Size</span>
+<b id="newSize">0 KB</b>
+</div>
+
+<div class="info">
+<span>Resolution</span>
+<b id="newResolution">0 × 0 px</b>
+</div>
+
+<div class="info">
+<span>Format</span>
+<b id="newFormat">-</b>
+</div>
+
+<a id="downloadBtn" class="btn-success disabled" href="#" aria-disabled="true">
+<i class="fa-solid fa-download"></i>
+Download Image
+</a>
+
+</div>
+
+</div>
+</div>
+</section>
+
+
+<section class="content-section ad-section">
+<div class="container">
+<div class="ad-box" aria-label="Advertisement">Advertisement</div>
+</div>
+</section>
+
+
+<section class="content-section">
+<div class="container">
+<div class="content-heading">
+<h2>How Does the Image Cropper Work?</h2>
+<p>Upload an image, choose a ratio, adjust the crop and transform controls, then export the result.</p>
+</div>
+
+<div class="steps-grid">
+<article class="info-card">
+<div class="step-number">1</div>
+<h3>Upload an Image</h3>
+<p>Choose an image, drag it into the upload area or paste it from your clipboard.</p>
+</article>
+
+<article class="info-card">
+<div class="step-number">2</div>
+<h3>Adjust the Crop</h3>
+<p>Choose a ratio and use move, zoom, rotate and flip controls to frame the image.</p>
+</article>
+
+<article class="info-card">
+<div class="step-number">3</div>
+<h3>Crop & Download</h3>
+<p>Select the output format and quality, crop the image and download the result.</p>
+</article>
+</div>
+</div>
+</section>
+
+
+<section class="content-section compact-section">
+<div class="container">
+<div class="content-heading"><h2>Crop Features</h2></div>
+
+<div class="feature-grid">
+<div class="feature-mini"><i class="fa-solid fa-crop-simple"></i><div><h3>Free Crop</h3><p>Use a free crop box or lock it to common aspect ratios.</p></div></div>
+<div class="feature-mini"><i class="fa-solid fa-arrows-rotate"></i><div><h3>Rotate & Straighten</h3><p>Rotate from -180° to 180° and quickly rotate left or right.</p></div></div>
+<div class="feature-mini"><i class="fa-solid fa-magnifying-glass-plus"></i><div><h3>Zoom & Move</h3><p>Zoom precisely and move the image to frame the crop.</p></div></div>
+<div class="feature-mini"><i class="fa-solid fa-arrows-left-right"></i><div><h3>Flip Image</h3><p>Flip horizontally or vertically before exporting.</p></div></div>
+<div class="feature-mini"><i class="fa-solid fa-file-image"></i><div><h3>JPG, PNG & WEBP</h3><p>Choose a practical output format and control quality.</p></div></div>
+<div class="feature-mini"><i class="fa-solid fa-mobile-screen-button"></i><div><h3>Mobile Friendly</h3><p>Use the cropper on phones, tablets and desktop browsers.</p></div></div>
+</div>
+</div>
+</section>
+
+
+<section class="content-section compact-section">
+<div class="container">
+<div class="privacy-card">
+<div class="privacy-icon"><i class="fa-solid fa-shield-halved"></i></div>
+<div>
+<h2>Privacy & File Handling</h2>
+<p>The current crop workflow uses Cropper.js and browser canvas APIs to process the selected image in the browser.</p>
+<p>No server upload is required for the crop operation itself.</p>
+</div>
+</div>
+</div>
+</section>
+
+
+<section class="content-section compact-section">
+<div class="container">
+<div class="content-heading"><h2>Frequently Asked Questions</h2></div>
+<div class="faq-list">
+
+<details><summary>Can I crop an image to 1:1?</summary><p>Yes. Select the 1:1 ratio for a square crop.</p></details>
+<details><summary>Can I rotate and flip the image?</summary><p>Yes. You can rotate left or right, use the rotation slider and flip horizontally or vertically.</p></details>
+<details><summary>Can I zoom and move the image?</summary><p>Yes. Use the zoom buttons or slider and move the image inside the crop area.</p></details>
+<details><summary>Can I choose the output format?</summary><p>Yes. JPG, PNG and WEBP are available, with a quality control for the exported image.</p></details>
+<details><summary>Can I drag and drop or paste an image?</summary><p>Yes. The tool supports file selection, drag-and-drop and clipboard image paste.</p></details>
+<details><summary>Is my image uploaded to a server?</summary><p>The crop operation itself is performed in the browser with Cropper.js and canvas APIs.</p></details>
+
+</div>
+</div>
+</section>
+
+
+<section class="content-section compact-section">
+<div class="container">
+<div class="content-heading"><h2>Explore More Image Tools</h2></div>
+<div class="related-grid">
+<a href="../index.html"><i class="fa-solid fa-images"></i><span>All Image Tools</span></a>
+<a href="image-compressor.html"><i class="fa-solid fa-compress"></i><span>Image Compressor</span></a>
+<a href="image-resizer.html"><i class="fa-solid fa-expand"></i><span>Image Resizer</span></a>
+<a href="image-converter.html"><i class="fa-solid fa-arrows-rotate"></i><span>Image Converter</span></a>
+</div>
+</div>
+</section>
 
-    <!-- =================================================
-         HERO
-    ================================================= -->
-
-    <section class="tool-hero">
-
-        <div class="container">
-
-            <h1>
-                ✂️ Image Cropper
-            </h1>
-
-            <p>
-                Crop, rotate, flip, zoom and download your image
-                easily and for free.
-            </p>
-
-        </div>
-
-    </section>
-
-
-    <!-- =================================================
-         MAIN TOOL
-    ================================================= -->
-
-    <section class="section">
-
-        <div class="container">
-
-            <div class="crop-workspace">
-
-
-                <!-- =====================================
-                     LEFT
-                ====================================== -->
-
-                <div class="crop-panel left-panel">
-
-                    <div class="crop-card">
-
-                        <h3>
-                            <i class="fa-solid fa-image"></i>
-                            Upload Image
-                        </h3>
-
-
-                        <div
-                            class="upload-area"
-                            id="uploadArea"
-                        >
-
-                            <i
-                                class="fa-solid fa-cloud-arrow-up"
-                                id="uploadIcon"
-                            ></i>
-
-
-                            <img
-                                id="cropImage"
-                                class="crop-preview"
-                                alt="Image Preview"
-                            >
-
-
-                            <h4 id="uploadText">
-                                Upload Image
-                            </h4>
-
-
-                            <p id="uploadInfo">
-
-                                Choose an image,
-                                drag & drop or paste it here.
-
-                            </p>
-
-
-                            <label class="choose-btn">
-
-                                <i class="fa-solid fa-folder-open"></i>
-
-                                Choose Image
-
-                                <input
-                                    type="file"
-                                    id="imageInput"
-                                    accept="image/*"
-                                >
-
-                            </label>
-
-
-                            <button
-                                type="button"
-                                class="btn-reset"
-                                id="resetBtn"
-                            >
-
-                                <i class="fa-solid fa-rotate-left"></i>
-
-                                Reset
-
-                            </button>
-
-                        </div>
-
-
-                        <!-- FILE DETAILS -->
-
-                        <div class="info">
-
-                            <span>
-                                File Name
-                            </span>
-
-                            <b id="fileName">
-                                -
-                            </b>
-
-                        </div>
-
-
-                        <div class="info">
-
-                            <span>
-                                Original Size
-                            </span>
-
-                            <b id="originalSize">
-                                0 KB
-                            </b>
-
-                        </div>
-
-
-                        <div class="info">
-
-                            <span>
-                                Resolution
-                            </span>
-
-                            <b id="originalResolution">
-                                0 × 0 px
-                            </b>
-
-                        </div>
-
-
-                        <div class="info">
-
-                            <span>
-                                Format
-                            </span>
-
-                            <b id="originalFormat">
-                                -
-                            </b>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-
-                <!-- =====================================
-                     CENTER
-                ====================================== -->
-
-                <div class="crop-panel center-panel">
-
-                    <div
-                        class="crop-card crop-settings-card"
-                    >
-
-                        <h3>
-                            <i class="fa-solid fa-sliders"></i>
-                            Crop Settings
-                        </h3>
-
-
-                        <!-- ASPECT RATIO -->
-
-                        <label>
-                            Aspect Ratio
-                        </label>
-
-
-                        <div class="ratio-grid">
-
-                            <button
-                                type="button"
-                                class="ratio-btn active"
-                                data-ratio="free"
-                            >
-                                Free
-                            </button>
-
-
-                            <button
-                                type="button"
-                                class="ratio-btn"
-                                data-ratio="1"
-                            >
-                                1 : 1
-                            </button>
-
-
-                            <button
-                                type="button"
-                                class="ratio-btn"
-                                data-ratio="1.333333"
-                            >
-                                4 : 3
-                            </button>
-
-
-                            <button
-                                type="button"
-                                class="ratio-btn"
-                                data-ratio="1.5"
-                            >
-                                3 : 2
-                            </button>
-
-
-                            <button
-                                type="button"
-                                class="ratio-btn"
-                                data-ratio="1.777777"
-                            >
-                                16 : 9
-                            </button>
-
-
-                            <button
-                                type="button"
-                                class="ratio-btn"
-                                data-ratio="0.75"
-                            >
-                                3 : 4
-                            </button>
-
-
-                            <button
-                                type="button"
-                                class="ratio-btn"
-                                data-ratio="0.666667"
-                            >
-                                2 : 3
-                            </button>
-
-
-                            <button
-                                type="button"
-                                class="ratio-btn"
-                                data-ratio="1.91"
-                            >
-                                1.91 : 1
-                            </button>
-
-                        </div>
-
-
-                        <!-- TRANSFORM -->
-
-                        <label>
-                            Transform
-                        </label>
-
-
-                        <div class="tool-buttons">
-
-                            <button
-                                type="button"
-                                class="tool-btn"
-                                id="rotateLeft"
-                            >
-                                <i class="fa-solid fa-rotate-left"></i>
-                                Left
-                            </button>
-
-
-                            <button
-                                type="button"
-                                class="tool-btn"
-                                id="rotateRight"
-                            >
-                                <i class="fa-solid fa-rotate-right"></i>
-                                Right
-                            </button>
-
-
-                            <button
-                                type="button"
-                                class="tool-btn"
-                                id="flipHorizontal"
-                            >
-                                <i class="fa-solid fa-left-right"></i>
-                                Flip H
-                            </button>
-
-
-                            <button
-                                type="button"
-                                class="tool-btn"
-                                id="flipVertical"
-                            >
-                                <i class="fa-solid fa-up-down"></i>
-                                Flip V
-                            </button>
-
-
-                            <button
-                                type="button"
-                                class="tool-btn"
-                                id="moveMode"
-                            >
-                                <i class="fa-solid fa-hand"></i>
-                                Move
-                            </button>
-
-
-                            <button
-                                type="button"
-                                class="tool-btn active"
-                                id="cropMode"
-                            >
-                                <i class="fa-solid fa-crop-simple"></i>
-                                Crop
-                            </button>
-
-                        </div>
-
-
-                        <!-- ROTATION -->
-
-                        <label>
-
-                            Rotation
-
-                            <span id="rotationValue">
-                                0°
-                            </span>
-
-                        </label>
-
-
-                        <div class="range-row">
-
-                            <input
-                                type="range"
-                                id="rotationRange"
-                                min="-180"
-                                max="180"
-                                step="1"
-                                value="0"
-                            >
-
-
-                            <button
-                                type="button"
-                                class="small-btn"
-                                id="resetRotation"
-                            >
-                                Reset
-                            </button>
-
-                        </div>
-
-
-                        <!-- ZOOM -->
-
-                        <label>
-                            Zoom
-                        </label>
-
-
-                        <div class="zoom-buttons">
-
-                            <button
-                                type="button"
-                                class="tool-btn"
-                                id="zoomOut"
-                            >
-                                <i class="fa-solid fa-minus"></i>
-                                Zoom Out
-                            </button>
-
-
-                            <button
-                                type="button"
-                                class="tool-btn"
-                                id="zoomIn"
-                            >
-                                <i class="fa-solid fa-plus"></i>
-                                Zoom In
-                            </button>
-
-                        </div>
-
-
-                        <input
-                            type="range"
-                            id="zoomRange"
-                            class="full-range"
-                            min="0.1"
-                            max="3"
-                            step="0.05"
-                            value="1"
-                        >
-
-
-                        <!-- FORMAT -->
-
-                        <label>
-                            Output Format
-                        </label>
-
-
-                        <select id="formatSelect">
-
-                            <option value="image/jpeg">
-                                JPG
-                            </option>
-
-                            <option value="image/png">
-                                PNG
-                            </option>
-
-                            <option value="image/webp">
-                                WEBP
-                            </option>
-
-                        </select>
-
-
-                        <!-- QUALITY -->
-
-                        <label>
-
-                            Quality
-
-                            <span id="qualityValue">
-                                90%
-                            </span>
-
-                        </label>
-
-
-                        <input
-                            type="range"
-                            id="qualityRange"
-                            class="full-range"
-                            min="10"
-                            max="100"
-                            value="90"
-                            step="1"
-                        >
-
-
-                        <!-- BACKGROUND -->
-
-                        <label>
-                            JPG Background
-                        </label>
-
-
-                        <div class="background-options">
-
-                            <button
-                                type="button"
-                                class="background-btn active"
-                                data-color="#ffffff"
-                            >
-                                White
-                            </button>
-
-
-                            <button
-                                type="button"
-                                class="background-btn"
-                                data-color="#000000"
-                            >
-                                Black
-                            </button>
-
-
-                            <button
-                                type="button"
-                                class="background-btn"
-                                data-color="transparent"
-                            >
-                                Transparent
-                            </button>
-
-                        </div>
-
-
-                        <!-- RESET CROP -->
-
-                        <button
-                            type="button"
-                            class="btn-secondary"
-                            id="resetCrop"
-                        >
-
-                            <i class="fa-solid fa-arrows-rotate"></i>
-
-                            Reset Crop
-
-                        </button>
-
-
-                        <!-- CROP -->
-
-                        <button
-                            type="button"
-                            class="btn-primary"
-                            id="cropBtn"
-                        >
-
-                            <i class="fa-solid fa-crop-simple"></i>
-
-                            Crop Image
-
-                        </button>
-
-                    </div>
-
-                </div>
-
-
-
-                <!-- =====================================
-                     RIGHT
-                ====================================== -->
-
-                <div class="crop-panel right-panel">
-
-                    <div class="crop-card">
-
-                        <h3>
-                            <i class="fa-solid fa-image"></i>
-                            Cropped Image
-                        </h3>
-
-
-                        <div class="result-preview">
-
-                            <img
-                                id="resultImage"
-                                alt="Cropped Image"
-                            >
-
-
-                            <span id="resultText">
-                                Crop result will appear here.
-                            </span>
-
-                        </div>
-
-
-                        <div class="info">
-
-                            <span>
-                                New Size
-                            </span>
-
-                            <b id="newSize">
-                                0 KB
-                            </b>
-
-                        </div>
-
-
-                        <div class="info">
-
-                            <span>
-                                Resolution
-                            </span>
-
-                            <b id="newResolution">
-                                0 × 0 px
-                            </b>
-
-                        </div>
-
-
-                        <div class="info">
-
-                            <span>
-                                Format
-                            </span>
-
-                            <b id="newFormat">
-                                -
-                            </b>
-
-                        </div>
-
-
-                        <a
-                            href="#"
-                            id="downloadBtn"
-                            class="btn-success disabled"
-                            aria-disabled="true"
-                        >
-
-                            <i class="fa-solid fa-download"></i>
-
-                            Download Image
-
-                        </a>
-
-                    </div>
-
-                </div>
-
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-
-    <!-- =================================================
-         HOW TO USE
-    ================================================= -->
-
-    <section class="content-section">
-
-        <div class="container">
-
-            <div class="content-heading">
-
-                <h2>
-                    How to Crop an Image
-                </h2>
-
-                <p>
-                    Crop your image in a few simple steps.
-                </p>
-
-            </div>
-
-
-            <div class="steps-grid">
-
-
-                <div class="info-card">
-
-                    <div class="step-number">
-                        1
-                    </div>
-
-                    <h3>
-                        Upload Image
-                    </h3>
-
-                    <p>
-                        Select an image from your computer
-                        or drag and drop it into the upload box.
-                    </p>
-
-                </div>
-
-
-                <div class="info-card">
-
-                    <div class="step-number">
-                        2
-                    </div>
-
-                    <h3>
-                        Adjust Crop
-                    </h3>
-
-                    <p>
-                        Select an aspect ratio, zoom,
-                        rotate or flip your image.
-                    </p>
-
-                </div>
-
-
-                <div class="info-card">
-
-                    <div class="step-number">
-                        3
-                    </div>
-
-                    <h3>
-                        Download
-                    </h3>
-
-                    <p>
-                        Click Crop Image and download
-                        your final image.
-                    </p>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-
-    <!-- =================================================
-         FEATURES
-    ================================================= -->
-
-    <section class="content-section">
-
-        <div class="container">
-
-            <div class="content-heading">
-
-                <h2>
-                    Image Cropper Features
-                </h2>
-
-            </div>
-
-
-            <div class="feature-grid">
-
-
-                <div class="feature-mini">
-
-                    <i class="fa-solid fa-crop"></i>
-
-                    <div>
-
-                        <h3>
-                            Custom Crop
-                        </h3>
-
-                        <p>
-                            Crop images freely or use
-                            predefined aspect ratios.
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-                <div class="feature-mini">
-
-                    <i class="fa-solid fa-magnifying-glass"></i>
-
-                    <div>
-
-                        <h3>
-                            Zoom
-                        </h3>
-
-                        <p>
-                            Zoom in or out using buttons
-                            or the slider.
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-                <div class="feature-mini">
-
-                    <i class="fa-solid fa-rotate"></i>
-
-                    <div>
-
-                        <h3>
-                            Rotate
-                        </h3>
-
-                        <p>
-                            Rotate your image left,
-                            right or using the slider.
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-                <div class="feature-mini">
-
-                    <i class="fa-solid fa-left-right"></i>
-
-                    <div>
-
-                        <h3>
-                            Flip
-                        </h3>
-
-                        <p>
-                            Flip your image horizontally
-                            or vertically.
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-                <div class="feature-mini">
-
-                    <i class="fa-solid fa-file-image"></i>
-
-                    <div>
-
-                        <h3>
-                            Multiple Formats
-                        </h3>
-
-                        <p>
-                            Export images as JPG,
-                            PNG or WEBP.
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-                <div class="feature-mini">
-
-                    <i class="fa-solid fa-shield-halved"></i>
-
-                    <div>
-
-                        <h3>
-                            Browser Based
-                        </h3>
-
-                        <p>
-                            Image processing happens
-                            directly in your browser.
-                        </p>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-
-    <!-- =================================================
-         FAQ
-    ================================================= -->
-
-    <section class="content-section">
-
-        <div class="container">
-
-            <div class="content-heading">
-
-                <h2>
-                    Frequently Asked Questions
-                </h2>
-
-            </div>
-
-
-            <div class="faq-list">
-
-
-                <details>
-
-                    <summary>
-                        Can I crop an image to 1:1?
-                    </summary>
-
-                    <p>
-                        Yes. Select the 1:1 aspect ratio
-                        to create a square crop.
-                    </p>
-
-                </details>
-
-
-                <details>
-
-                    <summary>
-                        Can I rotate the image?
-                    </summary>
-
-                    <p>
-                        Yes. Use the Left and Right buttons
-                        or the rotation slider.
-                    </p>
-
-                </details>
-
-
-                <details>
-
-                    <summary>
-                        Can I zoom the image?
-                    </summary>
-
-                    <p>
-                        Yes. Use Zoom In, Zoom Out or
-                        the zoom slider.
-                    </p>
-
-                </details>
-
-
-                <details>
-
-                    <summary>
-                        Which formats are supported?
-                    </summary>
-
-                    <p>
-                        JPG, PNG and WEBP output formats
-                        are supported.
-                    </p>
-
-                </details>
-
-
-                <details>
-
-                    <summary>
-                        Can I flip an image?
-                    </summary>
-
-                    <p>
-                        Yes. You can flip the image
-                        horizontally or vertically.
-                    </p>
-
-                </details>
-
-
-                <details>
-
-                    <summary>
-                        Is my image uploaded to a server?
-                    </summary>
-
-                    <p>
-                        The image crop operation is performed
-                        directly in your browser.
-                    </p>
-
-                </details>
-
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-<section class="otb-tool-info"><div class="container"><div class="otb-tool-info-head"><h2>Features</h2><p>Free online image cropper. Crop, resize, rotate, flip, zoom and download images in JPG, PNG and WEBP.</p></div><div class="otb-tool-info-grid"><div class="otb-tool-info-card"><h3>Simple workflow</h3><ul><li>Clear controls focused on the main Image task.</li><li>Useful settings are kept close to the tool workspace.</li><li>Results can be reviewed before the final download where supported.</li></ul></div><div class="otb-tool-info-card"><h3>Browser friendly</h3><ul><li>Works directly from a modern web browser.</li><li>No desktop installation is required for normal use.</li><li>Responsive layout for computer, tablet and phone screens.</li></ul></div><div class="otb-tool-info-card"><h3>Practical output</h3><ul><li>Designed for everyday file and content tasks.</li><li>Original input is not changed by the download step.</li><li>Easy reset and repeat workflow where supported.</li></ul></div></div></div></section>
 </main>
-
-
-<!-- =====================================================
-     FOOTER
-===================================================== -->
 
 <div id="footer-placeholder"></div>
 
-
-<!-- =====================================================
-     SCRIPTS
-===================================================== -->
-
 <script src="../../assets/js/navigation.js"></script>
-
 <script src="../../assets/js/app.js"></script>
-
-
-<!-- Cropper.js -->
-
-<script
-    src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.js">
-</script>
-
-
-<!-- Tool JS -->
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.js"></script>
 <script src="../../assets/js/tools/crop-image.js"></script>
 
-
 </body>
-
 </html>

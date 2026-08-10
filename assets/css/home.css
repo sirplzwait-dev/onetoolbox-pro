@@ -1230,28 +1230,18 @@ font-size:30px !important;
     }
 }
 
-
-/* ===== HOME CARDS: clear border + subtle color, desktop/mobile ===== */
-.category-card{
-  background:linear-gradient(145deg,#ffffff,#f7faff) !important;
-  border:1px solid #cfd9e8 !important;
-  box-shadow:0 5px 16px rgba(37,99,235,.06) !important;
-}
-.tool-card{
-  background:linear-gradient(145deg,#ffffff,#f8faff) !important;
-  border:1px solid #cfd9e8 !important;
-  box-shadow:0 5px 16px rgba(37,99,235,.06) !important;
-}
-.category-card:hover,.tool-card:hover{
-  border-color:#7ea7e8 !important;
-  box-shadow:0 12px 25px rgba(37,99,235,.12) !important;
-}
-body.dark .category-card,body.dark .tool-card{
-  background:linear-gradient(145deg,#172033,#111827) !important;
-  border-color:#34445c !important;
-  box-shadow:0 6px 18px rgba(0,0,0,.18) !important;
-}
-body.dark .category-card:hover,body.dark .tool-card:hover{border-color:#4d7ec7 !important}
-@media(max-width:600px){
-  .category-card,.tool-card{border-radius:15px !important;border-width:1px !important}
-}
+/* Search/card final polish */
+.otb-global-search-results{position:absolute;left:0;right:0;top:calc(100% + 6px);z-index:999999;background:#fff;border:1px solid #cfd9e6;border-radius:12px;box-shadow:0 14px 32px rgba(15,23,42,.16);overflow:hidden;display:none}
+.otb-global-search-results.show{display:block}
+.otb-search-item{display:block;padding:10px 12px;text-decoration:none!important;color:#172033!important;border-bottom:1px solid #edf1f6}
+.otb-search-item:hover{background:#edf4ff}
+.otb-search-item strong{display:block;font-size:12px}
+.otb-search-item small{display:block;margin-top:2px;color:#64748b;font-size:10px}
+.otb-search-empty{padding:12px;text-align:center;color:#64748b;font-size:12px}
+.category-card,.tool-card,.feature-card,.latest-tool-card,.popular-tool-card{border:1px solid #cfd9e6!important;background:linear-gradient(145deg,rgba(59,130,246,.06),rgba(139,92,246,.035))!important}
+@media(max-width:700px){.category-card,.tool-card,.feature-card,.latest-tool-card,.popular-tool-card{border-width:1px!important}}
+body.dark .otb-global-search-results{background:#172033;border-color:#334155}
+body.dark .otb-search-item{color:#f1f5f9!important;border-color:#263449}
+body.dark .otb-search-item:hover{background:#111827}
+body.dark .otb-search-empty{color:#94a3b8}
+body.dark .category-card,body.dark .tool-card,body.dark .feature-card,body.dark .latest-tool-card,body.dark .popular-tool-card{background:linear-gradient(145deg,rgba(59,130,246,.12),rgba(139,92,246,.07))!important;border-color:#3b4e68!important}

@@ -1,51 +1,99 @@
-/* OneToolBox Global Search — shared on every page */
-"use strict";
-const Search = {
-  data: [],
-  ready: false,
-  async init() {
-    const inputs = [document.getElementById("globalSearch"), document.getElementById("mobileGlobalSearch")].filter(Boolean);
-    if (!inputs.length) return;
-    const box = document.getElementById("searchResult") || this.createBox(inputs[0]);
+/* OneToolBox Global Search — single source of truth */
+(() => {
+  "use strict";
+
+  const clean = (s) => String(s || "").trim().toLowerCase();
+  const normalize = (u) => {
+    if (!u) return "/";
+    u = String(u).replace(/\\/g, "/");
+    if (u.startsWith("http://") || u.startsWith("https://") || u.startsWith("/")) return u;
+    return "/" + u.replace(/^\.?\//, "");
+  };
+
+  async function loadIndex() {
     try {
-      const res = await fetch("/data/search.json", {cache:"no-store"});
-      this.data = res.ok ? await res.json() : [];
-    } catch(e) { console.warn("Search data could not be loaded", e); this.data=[]; }
-    this.ready = true;
-    inputs.forEach(input => {
-      input.addEventListener("input", () => this.search(input.value, box));
-      input.addEventListener("focus", () => { if(input.value.trim()) this.search(input.value, box); });
-      input.addEventListener("keydown", e => {
-        if(e.key === "Enter") {
-          const first = box.querySelector("a.search-item, a.global-search-item");
-          if(first){ e.preventDefault(); location.href = first.getAttribute("href"); }
+      const r = await fetch("/data/search.json?v=2", { cache: "no-store" });
+      if (!r.ok) throw new Error("search index " + r.status);
+      const data = await r.json();
+      return Array.isArray(data) ? data : [];
+    } catch (e) {
+      console.error("OneToolBox search index error:", e);
+      return [];
+    }
+  }
+
+  function mount() {
+    const input = document.getElementById("globalSearch");
+    if (!input) return;
+
+    // Remove duplicate/old result containers.
+    document.querySelectorAll("#searchResult, #searchResults, .search-results, .search-result").forEach(el => {
+      if (el.id !== "otb-global-search-results") el.remove();
+    });
+
+    let box = document.getElementById("otb-global-search-results");
+    if (!box) {
+      box = document.createElement("div");
+      box.id = "otb-global-search-results";
+      box.className = "otb-global-search-results";
+      input.parentElement.style.position = "relative";
+      input.parentElement.appendChild(box);
+    }
+
+    loadIndex().then(index => {
+      const search = () => {
+        const q = clean(input.value);
+        if (!q) {
+          box.innerHTML = "";
+          box.classList.remove("show");
+          return;
         }
-        if(e.key === "Escape") { input.value=""; this.hide(box); }
+
+        const terms = q.split(/\s+/).filter(Boolean);
+        const results = index.map(item => {
+          const hay = clean([item.name, item.title, item.category, item.keywords].join(" "));
+          const score = terms.reduce((n, term) => n + (hay.includes(term) ? 1 : 0), 0);
+          return { item, score };
+        }).filter(x => x.score === terms.length)
+          .sort((a,b) => b.score-a.score)
+          .slice(0, 12)
+          .map(x => x.item);
+
+        if (!results.length) {
+          box.innerHTML = '<div class="otb-search-empty">No tool found</div>';
+        } else {
+          box.innerHTML = results.map(item => {
+            const url = normalize(item.url);
+            const name = String(item.name || item.title || "Tool").replace(/[<>&"]/g, "");
+            const cat = String(item.category || "").replace(/[<>&"]/g, "");
+            return `<a class="otb-search-item" href="${url}" data-tool-url="${url}">
+              <strong>${name}</strong><small>${cat}</small>
+            </a>`;
+          }).join("");
+        }
+        box.classList.add("show");
+      };
+
+      input.addEventListener("input", search);
+      input.addEventListener("keydown", e => {
+        if (e.key === "Escape") {
+          input.value = "";
+          search();
+          input.blur();
+        } else if (e.key === "Enter") {
+          const first = box.querySelector(".otb-search-item");
+          if (first) {
+            e.preventDefault();
+            window.location.assign(first.dataset.toolUrl);
+          }
+        }
       });
     });
+
     document.addEventListener("click", e => {
-      if(!e.target.closest(".header-search") && !e.target.closest(".mobile-search-wrap")) this.hide(box);
+      if (!e.target.closest(".header-search")) box.classList.remove("show");
     });
-  },
-  createBox(input){
-    const box=document.createElement("div");
-    box.id="searchResult"; box.className="search-result"; box.hidden=true;
-    input.parentElement.appendChild(box); return box;
-  },
-  search(value, box){
-    const q=String(value||"").trim().toLowerCase();
-    if(!q){this.hide(box);return;}
-    const result=this.data.filter(x=>{
-      const hay=[x.title,x.name,x.category,x.keywords,x.description].filter(Boolean).join(" ").toLowerCase();
-      return q.split(/\s+/).every(word=>hay.includes(word));
-    }).slice(0,15);
-    box.innerHTML=result.length ? result.map(x=>{
-      const name=x.title||x.name||"Tool";
-      const url=String(x.url||"");
-      return `<a class="search-item" href="${url}"><strong>${this.escape(name)}</strong><small>${this.escape(x.category||"")}</small></a>`;
-    }).join("") : `<div class="search-empty">No tool found</div>`;
-    box.hidden=false; box.classList.add("show");
-  },
-  hide(box){ if(!box)return; box.hidden=true; box.classList.remove("show"); },
-  escape(s){return String(s).replace(/[&<>'"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;","\"":"&quot;"}[c]));}
-};
+  }
+
+  document.addEventListener("DOMContentLoaded", mount);
+})();

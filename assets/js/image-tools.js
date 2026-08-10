@@ -8,7 +8,6 @@ document.addEventListener("DOMContentLoaded",function(){
 
     const search = document.getElementById("toolSearch");
     const cards = Array.from(document.querySelectorAll(".image-tool-card"));
-    const count = document.getElementById("toolCount");
     const clear = document.getElementById("clearSearch");
     const noResults = document.getElementById("noResults");
 
@@ -28,7 +27,6 @@ document.addEventListener("DOMContentLoaded",function(){
             if(match) visible++;
         });
 
-        count.textContent = visible;
         if(clear) clear.hidden = !query;
         if(noResults) noResults.hidden = visible !== 0;
     }
