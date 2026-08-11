@@ -1,113 +1,180 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Screenshot Editor - OneToolBox</title>
-<meta name="description" content="Edit screenshots online with drawing, text, shapes, crop, rotate, flip, blur and download tools.">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Screenshot Text Editor - OneToolBox</title>
+<meta name="description" content="Edit text inside screenshots, keep the original look, and add text or images.">
 <link rel="stylesheet" href="../../assets/css/reset.css">
 <link rel="stylesheet" href="../../assets/css/variables.css">
 <link rel="stylesheet" href="../../assets/css/layout.css">
 <link rel="stylesheet" href="../../assets/css/components.css">
 <link rel="stylesheet" href="../../assets/css/tools/screenshot-editor.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-<link rel="stylesheet" href="../assets/css/tool-content.css">
-<script id="otb-theme-boot">(()=>{try{if(localStorage.getItem("onetoolbox-theme")==="dark")document.documentElement.classList.add("otb-dark-preload")}catch(e){}})();</script>
-<style id="otb-theme-boot-style">html.otb-dark-preload{background:#0f172a}html.otb-dark-preload body{background:#0f172a}</style>
-<link rel="preconnect" href="https://cdnjs.cloudflare.com">
 </head>
 <body>
 <div id="header-placeholder"></div>
 
 <main class="page page-offset">
-<section class="tool-hero"><div class="container">
-<h1><i class="fa-solid fa-pen-to-square"></i> Screenshot Editor</h1>
-<p>Edit screenshots online with crop, resize, rotate, flip, drawing, text, shapes, highlight and blur.</p>
-</div></section>
+<section class="hero">
+  <div class="container">
+    <span class="badge">🖼️ Screenshot Editor</span>
+    <h1>Screenshot Text Editor</h1>
+    <p>Edit screenshot text, match its style, and add new text or images.</p>
+  </div>
+</section>
 
-<section class="section"><div class="container"><div class="editor-card">
+<section class="editor-section">
+<div class="container">
+<div class="editor-shell">
 
-<div class="editor-top">
-<label class="choose-btn"><i class="fa-solid fa-image"></i> Choose Image
-<input id="imageInput" type="file" accept="image/png,image/jpeg,image/webp,.png,.jpg,.jpeg,.webp"></label>
-<button class="tool-btn" id="undoBtn" disabled><i class="fa-solid fa-rotate-left"></i> Undo</button>
-<button class="tool-btn" id="redoBtn" disabled><i class="fa-solid fa-rotate-right"></i> Redo</button>
-<button class="tool-btn danger" id="clearBtn"><i class="fa-solid fa-trash"></i> Clear</button>
-<button class="tool-btn" id="resetBtn"><i class="fa-solid fa-arrows-rotate"></i> Reset</button>
+<!-- LEFT -->
+<aside class="side-panel left-panel">
+  <div class="panel-title"><span><i class="fa-solid fa-image"></i> Screenshot</span></div>
+
+  <div class="upload-mini" id="drop">
+    <img id="thumb" alt="Screenshot preview">
+    <div id="uploadEmpty">
+      <i class="fa-solid fa-cloud-arrow-up"></i>
+      <b>Upload Screenshot</b>
+      <small>Choose • Drag & Drop • Paste</small>
+    </div>
+    <button id="chooseBtn" class="primary" type="button"><i class="fa-solid fa-folder-open"></i> Choose Image</button>
+    <input id="fileInput" class="file-input" type="file" accept="image/*">
+  </div>
+
+  <button id="recognizeBtn" class="wide-btn purple" disabled><i class="fa-solid fa-wand-magic-sparkles"></i> Recognize Text</button>
+
+  <div class="mini-tools">
+    <button id="addText" type="button"><i class="fa-solid fa-t"></i><span>Text</span></button>
+    <button id="addImage" type="button"><i class="fa-regular fa-image"></i><span>Image</span></button>
+    <input id="addImageFile" class="file-input" type="file" accept="image/*">
+  </div>
+
+  <div class="zoom-row">
+    <button id="zoomOut" type="button">−</button>
+    <span id="zoomValue">100%</span>
+    <button id="zoomIn" type="button">+</button>
+    <button id="fit" type="button">Fit</button>
+  </div>
+
+  <div class="status" id="status">Upload a screenshot to begin.</div>
+</aside>
+
+<!-- CENTER -->
+<section class="canvas-panel">
+  <div class="canvas-toolbar">
+    <div><strong id="canvasTitle">Editor</strong><span id="selectionHint">Click text to edit</span></div>
+    <div class="toolbar-right">
+      <button id="undo" type="button" title="Undo">↶</button>
+      <button id="redo" type="button" title="Redo">↷</button>
+      <button id="reset" type="button" title="Reset">↺</button>
+      <button id="download" class="download" type="button"><i class="fa-solid fa-download"></i> Download</button>
+    </div>
+  </div>
+  <div class="canvas-viewport" id="viewport">
+    <div class="canvas-stage" id="stage">
+      <canvas id="canvas"></canvas>
+      <div id="overlay"></div>
+    </div>
+    <div class="canvas-empty" id="canvasEmpty">
+      <i class="fa-regular fa-image"></i>
+      <b>Your screenshot will appear here</b>
+      <span>Upload an image from the left panel.</span>
+    </div>
+  </div>
+</section>
+
+<!-- RIGHT -->
+<aside class="side-panel right-panel">
+  <div class="panel-title"><span><i class="fa-solid fa-pen-to-square"></i> Text</span><button id="clearSelection" type="button">×</button></div>
+
+  <div class="mode-switch" id="modeSwitch">
+    <button id="editMode" class="active" type="button">✏️ Edit Text</button>
+    <button id="moveMode" type="button">↔️ Move Text</button>
+  </div>
+
+  <div id="noSelection" class="no-selection">
+    <i class="fa-regular fa-hand-pointer"></i>
+    <b>Click text in the image</b>
+    <small>Recognized text becomes editable.</small>
+  </div>
+
+  <div id="textControls" class="controls hidden">
+    <label>Text<textarea id="textValue" rows="3"></textarea></label>
+
+    <div class="control-row">
+      <label>Font<select id="fontFamily">
+        <option>Arial</option><option>Helvetica</option><option>Verdana</option>
+        <option>Tahoma</option><option>Roboto</option><option>Georgia</option>
+        <option>Times New Roman</option><option>Courier New</option>
+      </select></label>
+      <label>Size<input id="fontSize" type="number" min="6" max="180"></label>
+    </div>
+
+    <div class="font-buttons">
+      <button id="bold" type="button"><b>B</b></button>
+      <button id="italic" type="button"><i>I</i></button>
+      <button id="alignLeft" type="button">L</button>
+      <button id="alignCenter" type="button">C</button>
+      <button id="alignRight" type="button">R</button>
+    </div>
+
+    <label>Text Color<div class="color-line"><input id="textColor" type="color"><span id="colorCode">#111111</span></div></label>
+
+    <div class="control-row">
+      <label>Letter spacing<input id="letterSpacing" type="number" min="-10" max="30" step=".1"></label>
+      <label>Line height<input id="lineHeight" type="number" min=".5" max="3" step=".05"></label>
+    </div>
+
+    <div class="style-note"><i class="fa-solid fa-wand-magic-sparkles"></i> Original color and size are estimated from the screenshot.</div>
+
+    <button id="apply" class="wide-btn primary">✓ Apply Changes</button>
+    <button id="delete" class="wide-btn danger">Delete Text</button>
+  </div>
+</aside>
+
+</div>
+</div>
+</section>
+
+<section class="info-section">
+<div class="container">
+<h2>Features</h2>
+<div class="info-grid">
+<article><i class="fa-solid fa-wand-magic-sparkles"></i><h3>Text Recognition</h3><p>Detect text areas from a screenshot and make them selectable.</p></article>
+<article><i class="fa-solid fa-pen"></i><h3>Text Editing</h3><p>Click text → Edit Text mode. Use Backspace/Delete and type directly, or switch to Move Text.</p></article>
+<article><i class="fa-solid fa-palette"></i><h3>Style Matching</h3><p>Estimate the original text color and size automatically.</p></article>
+<article><i class="fa-solid fa-plus"></i><h3>Add Text</h3><p>Add new text anywhere on the screenshot.</p></article>
+<article><i class="fa-regular fa-image"></i><h3>Add Image</h3><p>Place another image over the screenshot and move it.</p></article>
+<article><i class="fa-solid fa-magnifying-glass-plus"></i><h3>Zoom</h3><p>Zoom the canvas without losing the editor controls.</p></article>
 </div>
 
-<div class="toolbar">
-<button class="edit-tool active" data-tool="select"><i class="fa-solid fa-arrow-pointer"></i><span>Select</span></button>
-<button class="edit-tool" data-tool="pen"><i class="fa-solid fa-pen"></i><span>Pen</span></button>
-<button class="edit-tool" data-tool="highlight"><i class="fa-solid fa-highlighter"></i><span>Highlight</span></button>
-<button class="edit-tool" data-tool="text"><i class="fa-solid fa-font"></i><span>Text</span></button>
-<button class="edit-tool" data-tool="rect"><i class="fa-regular fa-square"></i><span>Rectangle</span></button>
-<button class="edit-tool" data-tool="circle"><i class="fa-regular fa-circle"></i><span>Circle</span></button>
-<button class="edit-tool" data-tool="arrow"><i class="fa-solid fa-arrow-right"></i><span>Arrow</span></button>
-<button class="edit-tool" data-tool="eraser"><i class="fa-solid fa-eraser"></i><span>Eraser</span></button>
-<button class="edit-tool" data-tool="crop"><i class="fa-solid fa-crop-simple"></i><span>Crop</span></button>
-<button class="edit-tool" data-tool="blur"><i class="fa-solid fa-droplet"></i><span>Blur</span></button>
+<h2>How to Work</h2>
+<div class="steps">
+<div><b>1</b><span>Upload your screenshot.</span></div>
+<div><b>2</b><span>Click Recognize Text.</span></div>
+<div><b>3</b><span>Click any detected text.</span></div>
+<div><b>4</b><span>Edit text and style.</span></div>
+<div><b>5</b><span>Add text/images if needed.</span></div>
+<div><b>6</b><span>Download the edited PNG.</span></div>
 </div>
 
-<div class="controls">
-<label>Color <input id="colorInput" type="color" value="#ff0000"></label>
-<label>Size <input id="sizeRange" type="range" min="1" max="40" value="5"><b id="sizeValue">5</b></label>
-<label>Text <input id="textInput" type="text" placeholder="Type text"></label>
-<label>Font <select id="fontSize"><option value="16">16px</option><option value="24" selected>24px</option><option value="32">32px</option><option value="48">48px</option><option value="64">64px</option></select></label>
-<label>Zoom <input id="zoomRange" type="range" min="25" max="200" value="100"><b id="zoomValue">100%</b></label>
-</div>
-
-<div class="canvas-wrap" id="canvasWrap">
-<canvas id="editorCanvas"></canvas>
-<div class="empty-state" id="emptyState">
-<i class="fa-solid fa-image"></i>
-<h3>Choose an image to start editing</h3>
-<p>PNG, JPG and WebP supported</p>
-<label class="choose-btn small">Choose Image
-<input id="imageInput2" type="file" accept="image/png,image/jpeg,image/webp,.png,.jpg,.jpeg,.webp"></label>
+<h2>FAQ</h2>
+<div class="faq">
+<details><summary>Can I edit text directly in the screenshot?</summary><p>Yes. OCR creates editable text overlays at the detected positions.</p></details>
+<details><summary>Will the original font be exactly detected?</summary><p>Not always. A flat screenshot does not contain the font file, so the editor estimates the closest browser font while preserving the detected size and color.</p></details>
+<details><summary>Can I add my own text and images?</summary><p>Yes. Use the Text and Image buttons in the left panel.</p></details>
+<details><summary>Does the original background stay?</summary><p>The screenshot remains the base image. When a recognized text item is edited, the editor uses a local background patch behind the replacement text where practical.</p></details>
 </div>
 </div>
-
-<div class="bottom-actions">
-<button class="action-btn" id="rotateLeft"><i class="fa-solid fa-rotate-left"></i> Rotate Left</button>
-<button class="action-btn" id="rotateRight"><i class="fa-solid fa-rotate-right"></i> Rotate Right</button>
-<button class="action-btn" id="flipH"><i class="fa-solid fa-arrows-left-right"></i> Flip H</button>
-<button class="action-btn" id="flipV"><i class="fa-solid fa-arrows-up-down"></i> Flip V</button>
-<button class="download-btn" id="downloadPng"><i class="fa-solid fa-download"></i> Download PNG</button>
-<button class="download-btn jpg" id="downloadJpg"><i class="fa-solid fa-download"></i> Download JPG</button>
-</div>
-<p class="editor-note" id="editorNote">Choose an image to begin.</p>
-</div></div></section>
-
-<section class="section"><div class="container"><div class="feature-grid">
-<div class="feature-item"><div class="feature-icon blue"><i class="fa-solid fa-pen"></i></div><div><h3>Draw & Annotate</h3><p>Add pens, highlights, arrows and shapes.</p></div></div>
-<div class="feature-item"><div class="feature-icon purple"><i class="fa-solid fa-font"></i></div><div><h3>Add Text</h3><p>Add custom text directly to screenshots.</p></div></div>
-<div class="feature-item"><div class="feature-icon orange"><i class="fa-solid fa-crop"></i></div><div><h3>Crop & Transform</h3><p>Crop, rotate and flip your screenshot.</p></div></div>
-<div class="feature-item"><div class="feature-icon green"><i class="fa-solid fa-lock"></i></div><div><h3>Private Editing</h3><p>Editing happens locally in your browser.</p></div></div>
-</div></div></section>
-
-<section class="section"><div class="container"><div class="content-card">
-<h2>How to Use Screenshot Editor?</h2>
-<div class="steps-grid">
-<div class="step"><span>1</span><div><h3>Upload</h3><p>Choose a screenshot from your device.</p></div></div>
-<div class="step"><span>2</span><div><h3>Edit</h3><p>Select a tool and annotate your image.</p></div></div>
-<div class="step"><span>3</span><div><h3>Transform</h3><p>Crop, rotate or flip when needed.</p></div></div>
-<div class="step"><span>4</span><div><h3>Download</h3><p>Save the edited image as PNG or JPG.</p></div></div>
-</div></div></div></section>
-
-<section class="section"><div class="container"><div class="content-card faq-card">
-<h2>Frequently Asked Questions</h2>
-<details><summary>Does the editor upload my screenshot?</summary><p>No. The editor processes the image in your browser.</p></details>
-<details><summary>Can I add text and arrows?</summary><p>Yes. Select Text, Arrow, Rectangle, Circle or other annotation tools.</p></details>
-<details><summary>Can I crop and rotate screenshots?</summary><p>Yes. Use Crop, Rotate Left, Rotate Right, Flip H and Flip V.</p></details>
-<details><summary>Can I download JPG?</summary><p>Yes. You can download the finished image as PNG or JPG.</p></details>
-<details><summary>Is it mobile friendly?</summary><p>Yes. The layout adapts to smaller screens.</p></details>
-</div></div></section>
-<section class="otb-tool-info"><div class="container"><div class="otb-tool-info-head"><h2>Features</h2><p>Edit screenshots online with drawing, text, shapes, crop, rotate, flip, blur and download tools.</p></div><div class="otb-tool-info-grid"><div class="otb-tool-info-card"><h3>Simple workflow</h3><ul><li>Clear controls focused on the main Image task.</li><li>Useful settings are kept close to the tool workspace.</li><li>Results can be reviewed before the final download where supported.</li></ul></div><div class="otb-tool-info-card"><h3>Browser friendly</h3><ul><li>Works directly from a modern web browser.</li><li>No desktop installation is required for normal use.</li><li>Responsive layout for computer, tablet and phone screens.</li></ul></div><div class="otb-tool-info-card"><h3>Practical output</h3><ul><li>Designed for everyday file and content tasks.</li><li>Original input is not changed by the download step.</li><li>Easy reset and repeat workflow where supported.</li></ul></div></div></div></section>
+</section>
 </main>
+
 <div id="footer-placeholder"></div>
 <script src="../../assets/js/navigation.js"></script>
 <script src="../../assets/js/app.js"></script>
-<script src="../../assets/js/tools/screenshot-editor.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+<script type="module" src="../../assets/js/tools/screenshot-editor.js"></script>
 </body>
 </html>

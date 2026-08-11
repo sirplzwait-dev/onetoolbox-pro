@@ -1,209 +1,77 @@
-/* ONETOOLBOX - MEME GENERATOR */
 "use strict";
+document.addEventListener("DOMContentLoaded",()=>{
+const $=id=>document.getElementById(id);
+const canvas=$("memeCanvas"),ctx=canvas.getContext("2d");
+const input=$("imageInput"),drop=$("dropZone"),empty=$("emptyPreview"),status=$("status"),sizeInfo=$("sizeInfo");
+const top=$("topText"),bottom=$("bottomText"),fs=$("fontSize"),fsVal=$("fontSizeValue"),sw=$("strokeWidth"),swVal=$("strokeValue");
+const tc=$("textColor"),sc=$("strokeColor"),font=$("fontFamily"),pos=$("position"),moveVal=$("moveValue");
+const png=$("downloadPng"),jpg=$("downloadJpg"),holder=$("previewHolder"),zoomLabel=$("previewZoom");
+let img=null,ox=0,oy=0,zoom=1,baseW=0,baseH=0;
 
-document.addEventListener("DOMContentLoaded",function(){
-
-const canvas=document.getElementById("memeCanvas");
-const ctx=canvas.getContext("2d");
-const imageInput=document.getElementById("imageInput");
-const emptyPreview=document.getElementById("emptyPreview");
-const status=document.getElementById("status");
-const sizeInfo=document.getElementById("sizeInfo");
-const topText=document.getElementById("topText");
-const bottomText=document.getElementById("bottomText");
-const fontSize=document.getElementById("fontSize");
-const fontSizeValue=document.getElementById("fontSizeValue");
-const strokeWidth=document.getElementById("strokeWidth");
-const strokeValue=document.getElementById("strokeValue");
-const textColor=document.getElementById("textColor");
-const strokeColor=document.getElementById("strokeColor");
-const fontFamily=document.getElementById("fontFamily");
-const position=document.getElementById("position");
-const downloadPng=document.getElementById("downloadPng");
-const downloadJpg=document.getElementById("downloadJpg");
-
-let img=null;
-let offsetX=0,offsetY=0;
-
-function setStatus(text){status.textContent=text}
-
+function statusText(t){status.textContent=t}
 function draw(){
-if(!img)return;
-
-ctx.clearRect(0,0,canvas.width,canvas.height);
-ctx.fillStyle="#ffffff";
-ctx.fillRect(0,0,canvas.width,canvas.height);
-
-ctx.save();
-ctx.translate(canvas.width/2+offsetX,canvas.height/2+offsetY);
-
-const scale=Math.min(canvas.width/img.naturalWidth,canvas.height/img.naturalHeight);
-const w=img.naturalWidth*scale;
-const h=img.naturalHeight*scale;
-
-ctx.drawImage(img,-w/2,-h/2,w,h);
-ctx.restore();
-
-const size=Number(fontSize.value);
-const stroke=Number(strokeWidth.value);
-
-ctx.font=`${size}px "${fontFamily.value}"`;
-ctx.textAlign="center";
-ctx.textBaseline="middle";
-ctx.lineJoin="round";
-ctx.lineWidth=stroke;
-ctx.fillStyle=textColor.value;
-ctx.strokeStyle=strokeColor.value;
-
-const maxWidth=canvas.width-40;
-
-function drawWrapped(text,y){
-if(!text.trim())return;
-const words=text.trim().split(/\s+/);
-let line="";
-const lines=[];
-
-for(const word of words){
-const test=line?line+" "+word:word;
-if(ctx.measureText(test).width>maxWidth && line){
-lines.push(line);
-line=word;
-}else{
-line=test;
+ if(!img)return;
+ ctx.clearRect(0,0,canvas.width,canvas.height);
+ ctx.fillStyle="#fff";ctx.fillRect(0,0,canvas.width,canvas.height);
+ const scale=Math.min(canvas.width/img.naturalWidth,canvas.height/img.naturalHeight);
+ const w=img.naturalWidth*scale,h=img.naturalHeight*scale;
+ ctx.drawImage(img,canvas.width/2+ox-w/2,canvas.height/2+oy-h/2,w,h);
+ const size=+fs.value,stroke=+sw.value;
+ ctx.font=`900 ${size}px "${font.value}"`;
+ ctx.textAlign="center";ctx.textBaseline="middle";ctx.lineJoin="round";ctx.lineWidth=stroke;ctx.fillStyle=tc.value;ctx.strokeStyle=sc.value;
+ const max=canvas.width-34;
+ function wrap(text){
+   if(!text.trim())return [];
+   const words=text.trim().split(/\s+/),lines=[];let line="";
+   for(const word of words){const test=line?line+" "+word:word;if(ctx.measureText(test).width>max&&line){lines.push(line);line=word}else line=test}
+   if(line)lines.push(line);return lines;
+ }
+ function textBlock(text,y){
+   const lines=wrap(text),lh=size*1.06,start=y-(lines.length-1)*lh/2;
+   lines.forEach((t,i)=>{const yy=start+i*lh;if(stroke)ctx.strokeText(t,canvas.width/2,yy);ctx.fillText(t,canvas.width/2,yy)})
+ }
+ const margin=Math.max(size*.72,45);
+ if(pos.value==="classic"||pos.value==="top")textBlock(top.value,margin);
+ if(pos.value==="classic"||pos.value==="bottom")textBlock(bottom.value,canvas.height-margin);
+ if(pos.value==="center")textBlock(top.value||bottom.value,canvas.height/2);
+ sizeInfo.textContent=`${canvas.width} × ${canvas.height} px`;moveVal.textContent=`${Math.round(ox)}, ${Math.round(oy)}`;
 }
+function fit(){
+ if(!img)return;
+ const w=holder.clientWidth-28,h=holder.clientHeight-28;
+ zoom=Math.min(w/canvas.width,h/canvas.height);zoom=Math.max(.1,Math.min(1,zoom));
+ canvas.style.width=(canvas.width*zoom)+"px";canvas.style.height=(canvas.height*zoom)+"px";
+ zoomLabel.textContent=Math.round(zoom*100)+"%";
 }
-if(line)lines.push(line);
-
-const lineHeight=size*1.05;
-const start=y-(lines.length-1)*lineHeight/2;
-
-lines.forEach((lineText,i)=>{
-const yy=start+i*lineHeight;
-if(stroke>0)ctx.strokeText(lineText,canvas.width/2,yy);
-ctx.fillText(lineText,canvas.width/2,yy);
-});
+function render(){draw();fit()}
+function load(file){
+ if(!file||!file.type.startsWith("image/"))return;
+ const reader=new FileReader();reader.onload=e=>{
+  const im=new Image();im.onload=()=>{
+   img=im;ox=0;oy=0;canvas.width=im.naturalWidth;canvas.height=im.naturalHeight;
+   canvas.hidden=false;empty.hidden=true;png.disabled=false;jpg.disabled=false;
+   $("uploadTitle").textContent="Image Ready";$("statusDot").classList.add("active");
+   statusText("Meme ready — add your text");render();
+  };im.src=e.target.result;
+ };reader.readAsDataURL(file);
 }
-
-const p=position.value;
-
-if(p==="classic"){
-drawWrapped(topText.value,Math.max(size/1.2,55));
-drawWrapped(bottomText.value,canvas.height-Math.max(size/1.2,55));
-}
-else if(p==="top"){
-drawWrapped(topText.value,Math.max(size/1.2,55));
-}
-else if(p==="bottom"){
-drawWrapped(bottomText.value||topText.value,canvas.height-Math.max(size/1.2,55));
-}
-else if(p==="center"){
-drawWrapped(topText.value||bottomText.value,canvas.height/2);
-}
-else if(p==="top-bottom"){
-drawWrapped(topText.value,Math.max(size/1.2,55));
-drawWrapped(bottomText.value,canvas.height-Math.max(size/1.2,55));
-}
-
-setStatus("Meme ready");
-}
-
-function loadImage(file){
-if(!file)return;
-
-const reader=new FileReader();
-reader.onload=function(e){
-const image=new Image();
-image.onload=function(){
-img=image;
-offsetX=0;offsetY=0;
-
-canvas.width=image.naturalWidth;
-canvas.height=image.naturalHeight;
-
-emptyPreview.hidden=true;
-canvas.hidden=false;
-downloadPng.disabled=false;
-downloadJpg.disabled=false;
-
-sizeInfo.textContent=`${canvas.width} × ${canvas.height} px`;
-setStatus("Image loaded");
-draw();
-};
-image.src=e.target.result;
-};
-reader.readAsDataURL(file);
-}
-
-imageInput.addEventListener("change",function(){
-loadImage(this.files[0]);
-});
-
-[topText,bottomText,fontSize,strokeWidth,textColor,strokeColor,fontFamily,position].forEach(el=>{
-el.addEventListener("input",function(){
-fontSizeValue.textContent=fontSize.value+"px";
-strokeValue.textContent=strokeWidth.value+"px";
-draw();
-});
-el.addEventListener("change",draw);
-});
-
-function move(dx,dy){
-offsetX+=dx;
-offsetY+=dy;
-draw();
-}
-
-document.getElementById("moveUp").addEventListener("click",()=>move(0,-10));
-document.getElementById("moveDown").addEventListener("click",()=>move(0,10));
-document.getElementById("moveLeft").addEventListener("click",()=>move(-10,0));
-document.getElementById("moveRight").addEventListener("click",()=>move(10,0));
-
-document.getElementById("reset").addEventListener("click",function(){
-topText.value="";
-bottomText.value="";
-fontSize.value=54;
-strokeWidth.value=5;
-textColor.value="#ffffff";
-strokeColor.value="#000000";
-fontFamily.value="Impact";
-position.value="classic";
-offsetX=0;
-offsetY=0;
-fontSizeValue.textContent="54px";
-strokeValue.textContent="5px";
-draw();
-});
-
-document.getElementById("clear").addEventListener("click",function(){
-img=null;
-ctx.clearRect(0,0,canvas.width,canvas.height);
-canvas.hidden=true;
-emptyPreview.hidden=false;
-downloadPng.disabled=true;
-downloadJpg.disabled=true;
-imageInput.value="";
-sizeInfo.textContent="—";
-setStatus("Choose an image to start");
-});
-
+input.addEventListener("change",()=>load(input.files[0]));
+["dragenter","dragover"].forEach(e=>drop.addEventListener(e,ev=>{ev.preventDefault();drop.classList.add("drag")}));
+["dragleave","drop"].forEach(e=>drop.addEventListener(e,ev=>{ev.preventDefault();drop.classList.remove("drag")}));
+drop.addEventListener("drop",e=>load(e.dataTransfer.files[0]));
+[top,bottom,fs,sw,tc,sc,font,pos].forEach(el=>{el.addEventListener("input",()=>{fsVal.textContent=fs.value+"px";swVal.textContent=sw.value+"px";draw()});el.addEventListener("change",draw)});
+function move(x,y){ox+=x;oy+=y;draw()}
+$("moveUp").onclick=()=>move(0,-10);$("moveDown").onclick=()=>move(0,10);$("moveLeft").onclick=()=>move(-10,0);$("moveRight").onclick=()=>move(10,0);
+$("moveCenter").onclick=()=>{ox=0;oy=0;draw()};
+$("reset").onclick=()=>{top.value="";bottom.value="";fs.value=54;sw.value=5;tc.value="#ffffff";sc.value="#000000";font.value="Impact";pos.value="classic";ox=0;oy=0;fsVal.textContent="54px";swVal.textContent="5px";draw()};
+$("clear").onclick=()=>{img=null;input.value="";canvas.hidden=true;empty.hidden=false;png.disabled=true;jpg.disabled=true;$("uploadTitle").textContent="Upload Image";$("statusDot").classList.remove("active");statusText("Choose an image to start");sizeInfo.textContent="—";zoomLabel.textContent="Fit"};
+$("previewZoomIn").onclick=()=>{if(!img)return;zoom=Math.min(2,zoom+.1);canvas.style.width=canvas.width*zoom+"px";canvas.style.height=canvas.height*zoom+"px";zoomLabel.textContent=Math.round(zoom*100)+"%"};
+$("previewZoomOut").onclick=()=>{if(!img)return;zoom=Math.max(.1,zoom-.1);canvas.style.width=canvas.width*zoom+"px";canvas.style.height=canvas.height*zoom+"px";zoomLabel.textContent=Math.round(zoom*100)+"%"};
+$("previewFit").onclick=fit;
+window.addEventListener("resize",()=>{if(img)fit()});
 function download(type){
-if(!img)return;
-draw();
-
-const mime=type==="jpg"?"image/jpeg":"image/png";
-const ext=type==="jpg"?"jpg":"png";
-
-const link=document.createElement("a");
-link.href=canvas.toDataURL(mime,.92);
-link.download=`onetoolbox-meme.${ext}`;
-document.body.appendChild(link);
-link.click();
-link.remove();
-
-setStatus(`Downloaded ${ext.toUpperCase()}`);
+ if(!img)return;draw();const a=document.createElement("a"),mime=type==="jpg"?"image/jpeg":"image/png";
+ a.href=canvas.toDataURL(mime,.94);a.download=`${(img.name||"meme").replace(/\.[^.]+$/,"")}-OneToolBox.${type}`;a.click();statusText(`Downloaded ${type.toUpperCase()}`);
 }
-
-downloadPng.addEventListener("click",()=>download("png"));
-downloadJpg.addEventListener("click",()=>download("jpg"));
-
+png.onclick=()=>download("png");jpg.onclick=()=>download("jpg");
 });

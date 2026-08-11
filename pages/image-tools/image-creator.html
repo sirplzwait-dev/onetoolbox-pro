@@ -2,169 +2,154 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Image Creator - OneToolBox</title>
-<meta name="description" content="Create custom images online with text, shapes, uploaded images, backgrounds and editing controls.">
+<meta name="description" content="Create posters, graphics and custom images online with OneToolBox Image Creator.">
 <link rel="stylesheet" href="../../assets/css/reset.css">
 <link rel="stylesheet" href="../../assets/css/variables.css">
 <link rel="stylesheet" href="../../assets/css/layout.css">
 <link rel="stylesheet" href="../../assets/css/components.css">
 <link rel="stylesheet" href="../../assets/css/tools/image-creator.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-<link rel="stylesheet" href="../assets/css/tool-content.css">
-<script id="otb-theme-boot">(()=>{try{if(localStorage.getItem("onetoolbox-theme")==="dark")document.documentElement.classList.add("otb-dark-preload")}catch(e){}})();</script>
-<style id="otb-theme-boot-style">html.otb-dark-preload{background:#0f172a}html.otb-dark-preload body{background:#0f172a}</style>
-<link rel="preconnect" href="https://cdnjs.cloudflare.com">
 </head>
 <body>
 <div id="header-placeholder"></div>
 
 <main class="page page-offset">
-
-<section class="tool-hero">
+<section class="creator-hero">
 <div class="container">
-<h1><i class="fa-solid fa-wand-magic-sparkles"></i> Image Creator</h1>
-<p>Create posters, social posts, banners and simple graphics directly in your browser.</p>
+<span class="creator-badge"><i class="fa-solid fa-wand-magic-sparkles"></i> Free Design Tool</span>
+<h1>Image Creator</h1>
+<p>Create posters, social posts, banners and custom graphics directly in your browser.</p>
 </div>
 </section>
 
-<section class="section">
+<section class="section creator-section">
 <div class="container">
-<div class="creator-card">
-
 <div class="creator-layout">
 
 <aside class="creator-panel">
-<h2>Design Tools</h2>
+<div class="panel-title"><i class="fa-solid fa-sliders"></i><strong>Design Tools</strong><span id="readyDot"></span></div>
 
-<div class="control-section">
-<h3>Canvas</h3>
-<label class="field"><span>Preset</span>
-<select id="preset">
-<option value="800x600">800 × 600</option>
-<option value="1080x1080">1080 × 1080</option>
-<option value="1080x1350">1080 × 1350</option>
-<option value="1200x628">1200 × 628</option>
-<option value="1920x1080">1920 × 1080</option>
-<option value="custom">Custom</option>
-</select></label>
-<div id="customSize" class="custom-size">
-<input id="customW" type="number" min="100" max="3000" value="800" placeholder="Width">
-<input id="customH" type="number" min="100" max="3000" value="600" placeholder="Height">
-<button id="applyCustom">Apply</button>
-</div>
-<label class="field"><span>Background</span><input id="bgColor" type="color" value="#ffffff"></label>
-</div>
-
-<div class="control-section">
-<h3>Add</h3>
-<div class="button-grid">
-<button id="addText" class="primary-btn"><i class="fa-solid fa-font"></i> Text</button>
-<button id="addRect" class="tool-btn"><i class="fa-regular fa-square"></i> Rectangle</button>
-<button id="addCircle" class="tool-btn"><i class="fa-regular fa-circle"></i> Circle</button>
-<button id="addLine" class="tool-btn"><i class="fa-solid fa-minus"></i> Line</button>
-<button id="addImage" class="tool-btn full"><i class="fa-solid fa-image"></i> Add Image</button>
+<div class="upload-box" id="dropZone">
+<div class="upload-icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+<strong>Upload Image</strong>
+<span>JPG • PNG • WebP</span>
+<label for="imageInput" class="choose-btn"><i class="fa-solid fa-folder-open"></i> Choose Image</label>
 <input id="imageInput" type="file" accept="image/png,image/jpeg,image/webp" hidden>
-</div>
-</div>
-
-<div class="control-section">
-<h3>Selected Object</h3>
-<label class="field"><span>Text</span><input id="textValue" type="text" placeholder="Select text"></label>
-<label class="field"><span>Color</span><input id="objectColor" type="color" value="#2563eb"></label>
-<label class="field"><span>Size</span><input id="objectSize" type="range" min="10" max="180" value="48"><b id="objectSizeValue">48</b></label>
-<label class="field"><span>Opacity</span><input id="opacity" type="range" min="10" max="100" value="100"><b id="opacityValue">100%</b></label>
-<label class="field"><span>Font</span>
-<select id="fontFamily">
-<option>Arial</option><option>Verdana</option><option>Georgia</option><option>Times New Roman</option><option>Trebuchet MS</option><option>Courier New</option>
-</select></label>
-
-<div class="transform-grid">
-<button id="rotateLeft" class="tool-btn" title="Rotate Left"><i class="fa-solid fa-rotate-left"></i></button>
-<button id="rotateRight" class="tool-btn" title="Rotate Right"><i class="fa-solid fa-rotate-right"></i></button>
-<button id="flipH" class="tool-btn" title="Flip Horizontal"><i class="fa-solid fa-arrows-left-right"></i></button>
-<button id="flipV" class="tool-btn" title="Flip Vertical"><i class="fa-solid fa-arrows-up-down"></i></button>
+<small>or drag & drop</small>
 </div>
 
+<div class="tool-tabs">
+<button class="tab active" data-tab="text"><i class="fa-solid fa-font"></i> Text</button>
+<button class="tab" data-tab="shape"><i class="fa-regular fa-square"></i> Shape</button>
+<button class="tab" data-tab="image"><i class="fa-regular fa-image"></i> Image</button>
+</div>
+
+<div class="tool-pane active" id="pane-text">
+<label>Text</label>
+<textarea id="textInput" rows="3" placeholder="Type your text...">Your Text</textarea>
+<div class="grid2">
+<div><label>Font</label><select id="fontFamily">
+<option>Arial</option><option>Arial Black</option><option>Impact</option><option>Georgia</option><option>Verdana</option><option>Trebuchet MS</option>
+</select></div>
+<div><label>Size <output id="sizeVal">52px</output></label><input id="fontSize" type="range" min="12" max="180" value="52"></div>
+</div>
+<div class="grid2">
+<div><label>Text Color</label><input id="textColor" type="color" value="#ffffff"></div>
+<div><label>Outline</label><input id="strokeColor" type="color" value="#000000"></div>
+</div>
+<div class="grid2">
+<div><label>Outline <output id="strokeVal">3px</output></label><input id="strokeWidth" type="range" min="0" max="15" value="3"></div>
+<div><label>Align</label><select id="textAlign"><option>center</option><option>left</option><option>right</option></select></div>
+</div>
 <div class="button-grid">
-<button id="duplicate" class="tool-btn"><i class="fa-regular fa-copy"></i> Duplicate</button>
-<button id="deleteObject" class="danger-btn"><i class="fa-solid fa-trash"></i> Delete</button>
-<button id="bringFront" class="tool-btn"><i class="fa-solid fa-angles-up"></i> Front</button>
-<button id="sendBack" class="tool-btn"><i class="fa-solid fa-angles-down"></i> Back</button>
+<button id="addText" class="primary-small"><i class="fa-solid fa-plus"></i> Add Text</button>
+<button id="deleteSelected" class="danger-small"><i class="fa-solid fa-trash"></i> Delete</button>
 </div>
 </div>
 
-<div class="control-section">
-<h3>History</h3>
-<div class="button-grid">
-<button id="undo" class="tool-btn" disabled><i class="fa-solid fa-rotate-left"></i> Undo</button>
-<button id="redo" class="tool-btn" disabled><i class="fa-solid fa-rotate-right"></i> Redo</button>
-<button id="clear" class="danger-btn full">Clear All</button>
+<div class="tool-pane" id="pane-shape">
+<label>Shape</label>
+<div class="shape-grid">
+<button data-shape="rect">▭<small>Rectangle</small></button>
+<button data-shape="circle">○<small>Circle</small></button>
+<button data-shape="line">╱<small>Line</small></button>
+</div>
+<div class="grid2">
+<div><label>Fill</label><input id="shapeColor" type="color" value="#2563eb"></div>
+<div><label>Opacity <output id="opacityVal">100%</output></label><input id="shapeOpacity" type="range" min="10" max="100" value="100"></div>
+</div>
+<button id="addShape" class="primary-small full"><i class="fa-solid fa-plus"></i> Add Shape</button>
+</div>
+
+<div class="tool-pane" id="pane-image">
+<label>Add another image</label>
+<div class="mini-upload">
+<label for="overlayInput"><i class="fa-regular fa-image"></i> Choose Image</label>
+<input id="overlayInput" type="file" accept="image/png,image/jpeg,image/webp" hidden>
+<small>Adds the image to the canvas.</small>
 </div>
 </div>
 
-<label class="field zoom-field"><span>Zoom</span><input id="zoom" type="range" min="25" max="150" value="75"><b id="zoomValue">75%</b></label>
+<div class="background-card">
+<div class="section-label"><i class="fa-solid fa-palette"></i> Background</div>
+<div class="grid2">
+<div><label>Color</label><input id="bgColor" type="color" value="#ffffff"></div>
+<div><label>Canvas</label>
+<select id="canvasPreset"><option value="square">Square 1080×1080</option><option value="post">Post 1080×1350</option><option value="story">Story 1080×1920</option><option value="landscape">Landscape 1280×720</option><option value="custom">Custom</option></select>
+</div>
+</div>
+<div class="grid2 custom-size" id="customSize">
+<input id="customW" type="number" min="200" max="3000" value="1080" placeholder="Width">
+<input id="customH" type="number" min="200" max="3000" value="1080" placeholder="Height">
+</div>
+<button id="applyBg" class="secondary-small full"><i class="fa-solid fa-check"></i> Apply Background</button>
+</div>
+
+<div class="bottom-actions">
+<button id="undo" type="button">↶ Undo</button>
+<button id="redo" type="button">↷ Redo</button>
+<button id="reset" type="button">Reset</button>
+</div>
 </aside>
 
-<section class="workspace">
-<div class="workspace-bar">
-<span id="canvasInfo">800 × 600 px</span>
-<span id="status">Ready</span>
+<section class="canvas-panel">
+<div class="canvas-head"><div><strong>Canvas</strong><span id="canvasStatus">Start creating</span></div><div><span id="dimensions">1080 × 1080</span></div></div>
+<div class="canvas-wrap" id="canvasWrap">
+<div class="empty-state" id="emptyState"><i class="fa-regular fa-image"></i><h3>Your design appears here</h3><p>Add text, shapes or images.</p></div>
+<canvas id="creatorCanvas" width="1080" height="1080"></canvas>
 </div>
-
-<div class="canvas-holder" id="canvasHolder">
-<canvas id="canvas" width="800" height="600"></canvas>
+<div class="canvas-tools">
+<button id="zoomOut">−</button><span id="zoomLabel">Fit</span><button id="zoomIn">+</button><button id="fit">Fit</button>
 </div>
-
 <div class="download-row">
 <button id="downloadPng" class="download-btn"><i class="fa-solid fa-download"></i> Download PNG</button>
-<button id="downloadJpg" class="download-btn jpg"><i class="fa-solid fa-download"></i> Download JPG</button>
+<button id="downloadJpg" class="download-btn purple"><i class="fa-solid fa-download"></i> Download JPG</button>
+</div>
+<p class="hint"><i class="fa-solid fa-hand-pointer"></i> Click an object to select it. Drag selected objects to move them.</p>
+</section>
+</div>
 </div>
 </section>
 
-</div>
-</div>
-</section>
-
-<section class="section">
+<section class="section info-section">
 <div class="container">
+<h2>Image Creator Features</h2>
 <div class="feature-grid">
-<div class="feature-item"><div class="feature-icon blue"><i class="fa-solid fa-font"></i></div><div><h3>Editable Text</h3><p>Move, resize, rotate and style text.</p></div></div>
-<div class="feature-item"><div class="feature-icon purple"><i class="fa-solid fa-shapes"></i></div><div><h3>Shapes</h3><p>Add rectangles, circles and lines.</p></div></div>
-<div class="feature-item"><div class="feature-icon orange"><i class="fa-solid fa-image"></i></div><div><h3>Upload Images</h3><p>Add your own PNG, JPG or WebP images.</p></div></div>
-<div class="feature-item"><div class="feature-icon green"><i class="fa-solid fa-download"></i></div><div><h3>PNG & JPG</h3><p>Download your finished design easily.</p></div></div>
+<article><i class="fa-solid fa-font"></i><h3>Add Text</h3><p>Multiple text layers with font, color, size and outline controls.</p></article>
+<article><i class="fa-regular fa-square"></i><h3>Add Shapes</h3><p>Use rectangles, circles and lines to build your design.</p></article>
+<article><i class="fa-regular fa-image"></i><h3>Add Images</h3><p>Place additional images anywhere on your canvas.</p></article>
+<article><i class="fa-solid fa-download"></i><h3>Export</h3><p>Download your finished design as PNG or JPG.</p></article>
+</div>
+<h2>FAQ</h2>
+<div class="faq">
+<details><summary>Can I move text and shapes?</summary><p>Yes. Select an object and drag it anywhere on the canvas.</p></details>
+<details><summary>Can I create Instagram or WhatsApp designs?</summary><p>Yes. Use Square, Post or Story canvas presets.</p></details>
+<details><summary>Do I need an account?</summary><p>No. The basic creator works directly in your browser.</p></details>
 </div>
 </div>
 </section>
-
-<section class="section">
-<div class="container">
-<div class="content-card">
-<h2>How to Use Image Creator?</h2>
-<div class="steps-grid">
-<div class="step"><span>1</span><div><h3>Choose Canvas</h3><p>Select a preset or create a custom canvas.</p></div></div>
-<div class="step"><span>2</span><div><h3>Add Elements</h3><p>Add text, shapes or your own image.</p></div></div>
-<div class="step"><span>3</span><div><h3>Edit</h3><p>Select an object to move, resize, rotate or style it.</p></div></div>
-<div class="step"><span>4</span><div><h3>Download</h3><p>Save your final design as PNG or JPG.</p></div></div>
-</div>
-</div>
-</div>
-</section>
-
-<section class="section">
-<div class="container">
-<div class="content-card faq-card">
-<h2>Frequently Asked Questions</h2>
-<details><summary>Can I move objects?</summary><p>Yes. Click an object and drag it anywhere on the canvas.</p></details>
-<details><summary>Can I resize an object?</summary><p>Yes. Select an object and use the size control where supported. Uploaded images and shapes can also be adjusted with the resize handle.</p></details>
-<details><summary>Can I add my own image?</summary><p>Yes. PNG, JPG and WebP images can be added to the canvas.</p></details>
-<details><summary>Can I change the canvas background?</summary><p>Yes. Use the Background color picker.</p></details>
-<details><summary>Does the tool upload my files?</summary><p>No. Image editing is performed locally in your browser.</p></details>
-</div>
-</div>
-</section>
-
-<section class="otb-tool-info"><div class="container"><div class="otb-tool-info-head"><h2>Features</h2><p>Create custom images online with text, shapes, uploaded images, backgrounds and editing controls.</p></div><div class="otb-tool-info-grid"><div class="otb-tool-info-card"><h3>Simple workflow</h3><ul><li>Clear controls focused on the main Image task.</li><li>Useful settings are kept close to the tool workspace.</li><li>Results can be reviewed before the final download where supported.</li></ul></div><div class="otb-tool-info-card"><h3>Browser friendly</h3><ul><li>Works directly from a modern web browser.</li><li>No desktop installation is required for normal use.</li><li>Responsive layout for computer, tablet and phone screens.</li></ul></div><div class="otb-tool-info-card"><h3>Practical output</h3><ul><li>Designed for everyday file and content tasks.</li><li>Original input is not changed by the download step.</li><li>Easy reset and repeat workflow where supported.</li></ul></div></div></div></section>
 </main>
 
 <div id="footer-placeholder"></div>

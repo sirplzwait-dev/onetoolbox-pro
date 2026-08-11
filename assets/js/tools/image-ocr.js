@@ -71,8 +71,27 @@ function scaledImageDataURL(src,multiplier){
      const canvas=document.createElement("canvas");
      canvas.width=Math.max(1,Math.round(img.naturalWidth*multiplier));
      canvas.height=Math.max(1,Math.round(img.naturalHeight*multiplier));
-     const ctx=canvas.getContext("2d");
+     const ctx=canvas.getContext("2d",{willReadFrequently:true});
+     ctx.imageSmoothingEnabled=true;
+     ctx.imageSmoothingQuality="high";
      ctx.drawImage(img,0,0,canvas.width,canvas.height);
+
+     // Light preprocessing improves OCR on scans/screenshots without
+     // destroying coloured text. Convert only when the source is very large.
+     const maxSide=3200;
+     if(Math.max(canvas.width,canvas.height)>maxSide){
+       const ratio=maxSide/Math.max(canvas.width,canvas.height);
+       const w=Math.max(1,Math.round(canvas.width*ratio));
+       const h=Math.max(1,Math.round(canvas.height*ratio));
+       const small=document.createElement("canvas");
+       small.width=w; small.height=h;
+       const sctx=small.getContext("2d",{willReadFrequently:true});
+       sctx.imageSmoothingEnabled=true;
+       sctx.imageSmoothingQuality="high";
+       sctx.drawImage(canvas,0,0,w,h);
+       resolve(small.toDataURL("image/png"));
+       return;
+     }
      resolve(canvas.toDataURL("image/png"));
    };
    img.onerror=reject;

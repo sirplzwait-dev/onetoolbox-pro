@@ -20,11 +20,14 @@ const status=document.getElementById("status");
 const sizeInfo=document.getElementById("sizeInfo");
 const downloadPng=document.getElementById("downloadPng");
 const downloadJpg=document.getElementById("downloadJpg");
+const imageCountSlider=document.getElementById("imageCountSlider");
+const imageCountSliderValue=document.getElementById("imageCountSliderValue");
 
 let images=[];
 let ratio="1:1";
 
 const MAX=9;
+let targetCount=4;
 const SIZE=1200;
 
 function setStatus(t){status.textContent=t}
@@ -38,14 +41,15 @@ return {w,h};
 }
 
 function updateLabels(){
+imageCountSliderValue.textContent=targetCount;
 gapValue.textContent=gap.value+"px";
 radiusValue.textContent=radius.value+"px";
 imageCount.textContent=images.length;
 }
 
 function loadFiles(files){
-const selected=Array.from(files).slice(0,MAX-images.length);
-if(!selected.length)return;
+const selected=Array.from(files).slice(0,Math.max(0,targetCount-images.length));
+if(!selected.length){setStatus(`You selected ${targetCount} photos. Add ${Math.max(0,targetCount-images.length)} more image${targetCount-images.length===1?"":"s"}.`);return;}
 
 let pending=selected.length;
 selected.forEach(file=>{
@@ -169,13 +173,13 @@ drawImageCover(item,g+i*(cellW+g),y,cellW,h-y-g);
 function draw(){
 updateLabels();
 
-if(images.length<2){
+if(images.length<targetCount){
 canvas.hidden=true;
 emptyPreview.hidden=false;
 downloadPng.disabled=true;
 downloadJpg.disabled=true;
 sizeInfo.textContent="—";
-setStatus(images.length===1?"Add one more image":"Add images to start");
+setStatus(images.length===0?`Add ${targetCount} images to start`:`Add ${targetCount-images.length} more image${targetCount-images.length===1?"":"s"}`);
 return;
 }
 
@@ -198,8 +202,15 @@ emptyPreview.hidden=true;
 downloadPng.disabled=false;
 downloadJpg.disabled=false;
 sizeInfo.textContent=`${s.w} × ${s.h} px`;
-setStatus(`${images.length} images • Collage ready`);
+setStatus(`${images.length} of ${targetCount} images • Collage ready`);
 }
+
+imageCountSlider.addEventListener("input",()=>{
+targetCount=Number(imageCountSlider.value);
+if(images.length>targetCount) images=images.slice(0,targetCount);
+renderList();
+draw();
+});
 
 document.querySelectorAll(".ratio-btn").forEach(btn=>{
 btn.addEventListener("click",()=>{
@@ -217,6 +228,8 @@ el.addEventListener("change",draw);
 
 document.getElementById("reset").addEventListener("click",()=>{
 layout.value="grid";
+targetCount=4;
+imageCountSlider.value=4;
 gap.value=12;
 radius.value=12;
 background.value="#ffffff";

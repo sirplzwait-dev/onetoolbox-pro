@@ -1,6 +1,6 @@
 /* PDF COMPRESSOR - MATCHED TO ONETOOLBOX IMAGE COMPRESSOR */
-.tool-hero{padding:42px 0 30px;text-align:center}
-.tool-hero h1{margin:0 0 10px;font-size:40px;color:#0f172a;font-weight:800}
+.tool-hero{padding:18px 0 18px;text-align:center}
+.tool-hero h1{margin:0 0 6px;font-size:40px;color:#0f172a;font-weight:800}
 .tool-hero p{max-width:760px;margin:auto;color:#64748b;font-size:17px;line-height:1.6}
 .compress-box{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px}
 .compress-card{background:#fff;border:1px solid #e5e7eb;border-radius:18px;padding:20px;box-shadow:0 7px 24px rgba(15,23,42,.06)}
@@ -63,3 +63,11 @@
 .faq-list{max-width:900px;margin:auto}.faq-list details{margin-bottom:10px;background:#fff;border:1px solid #e2e8f0;border-radius:12px;overflow:hidden}.faq-list summary{padding:16px 18px;cursor:pointer;color:#0f172a;font-weight:700}.faq-list details p{margin:0;padding:0 18px 17px;color:#64748b;font-size:13px;line-height:1.7}
 @media(max-width:950px){.compress-box{grid-template-columns:1fr 1fr}.compress-card:last-child{grid-column:1/-1}.feature-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:650px){.tool-hero{padding:30px 15px 22px}.tool-hero h1{font-size:30px}.compress-box{grid-template-columns:1fr}.compress-card:last-child{grid-column:auto}.upload-area,.image-preview{min-height:290px}.info-grid,.feature-grid{grid-template-columns:1fr}.compress-card{padding:14px}}
+
+/* Compact top spacing */
+.page.page-offset{
+  padding-top:0 !important;
+}
+@media(max-width:650px){
+  .tool-hero{padding:14px 12px 14px}
+}

@@ -1,722 +1,126 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
-    <title>Color Picker - OneToolBox</title>
-
-    <meta name="description"
-          content="Pick colors online from an image or color picker. Get HEX, RGB and HSL values instantly.">
-
-    <link rel="stylesheet" href="../../assets/css/reset.css">
-    <link rel="stylesheet" href="../../assets/css/variables.css">
-    <link rel="stylesheet" href="../../assets/css/layout.css">
-    <link rel="stylesheet" href="../../assets/css/components.css">
-
-    <link rel="stylesheet"
-          href="../../assets/css/tools/color-picker.css">
-
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-<link rel="stylesheet" href="../assets/css/tool-content.css">
-<script id="otb-theme-boot">(()=>{try{if(localStorage.getItem("onetoolbox-theme")==="dark")document.documentElement.classList.add("otb-dark-preload")}catch(e){}})();</script>
-<style id="otb-theme-boot-style">html.otb-dark-preload{background:#0f172a}html.otb-dark-preload body{background:#0f172a}</style>
-<link rel="preconnect" href="https://cdnjs.cloudflare.com">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Color Picker - OneToolBox</title>
+<meta name="description" content="Pick exact colors from an image and copy HEX, RGB and HSL values.">
+<link rel="stylesheet" href="../../assets/css/reset.css">
+<link rel="stylesheet" href="../../assets/css/variables.css">
+<link rel="stylesheet" href="../../assets/css/layout.css">
+<link rel="stylesheet" href="../../assets/css/components.css">
+<link rel="stylesheet" href="../../assets/css/tools/color-picker.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
-
 <body>
-
 <div id="header-placeholder"></div>
 
 <main class="page page-offset">
-
-<!-- HERO -->
 <section class="tool-hero">
-    <div class="container">
-
-        <h1>
-            🎨 Color Picker
-        </h1>
-
-        <p>
-            Pick any color from your screen or image
-            and instantly get HEX, RGB and HSL values.
-        </p>
-
-    </div>
-</section>
-
-
-<!-- TOOL -->
-<section class="section">
-
 <div class="container">
-
-<div class="color-tool-box">
-
-
-<!-- =========================================
-     COLOR PICKER
-========================================= -->
-
-<div class="color-card">
-
-    <h3>
-        <i class="fa-solid fa-eye-dropper"></i>
-        Pick a Color
-    </h3>
-
-
-    <div class="picker-preview"
-         id="pickerPreview">
-
-        <div class="picker-circle"
-             id="pickerCircle">
-        </div>
-
-        <span id="pickerHint">
-            Choose a color
-        </span>
-
-    </div>
-
-
-    <label class="color-input-label">
-
-        <span>
-            Select Color
-        </span>
-
-        <input
-            type="color"
-            id="colorInput"
-            value="#2563eb">
-
-    </label>
-
-
-    <button
-        type="button"
-        class="btn-primary"
-        id="randomColorBtn">
-
-        <i class="fa-solid fa-shuffle"></i>
-
-        Random Color
-
-    </button>
-
-
-    <button
-        type="button"
-        class="btn-secondary"
-        id="resetBtn">
-
-        <i class="fa-solid fa-rotate-left"></i>
-
-        Reset
-
-    </button>
-
+<span class="badge">🎨 Image Tool</span>
+<h1>Color Picker</h1>
+<p>Pick exact colors from any image and copy HEX, RGB and HSL values.</p>
 </div>
-
-
-<!-- =========================================
-     COLOR VALUES
-========================================= -->
-
-<div class="color-card">
-
-    <h3>
-        <i class="fa-solid fa-code"></i>
-        Color Values
-    </h3>
-
-
-    <!-- HEX -->
-
-    <div class="value-group">
-
-        <label>
-            HEX
-        </label>
-
-        <div class="value-row">
-
-            <input
-                type="text"
-                id="hexValue"
-                value="#2563EB"
-                maxlength="7">
-
-            <button
-                type="button"
-                class="copy-btn"
-                data-copy="hex">
-
-                <i class="fa-regular fa-copy"></i>
-
-                Copy
-
-            </button>
-
-        </div>
-
-    </div>
-
-
-    <!-- RGB -->
-
-    <div class="value-group">
-
-        <label>
-            RGB
-        </label>
-
-        <div class="value-row">
-
-            <input
-                type="text"
-                id="rgbValue"
-                value="rgb(37, 99, 235)"
-                readonly>
-
-            <button
-                type="button"
-                class="copy-btn"
-                data-copy="rgb">
-
-                <i class="fa-regular fa-copy"></i>
-
-                Copy
-
-            </button>
-
-        </div>
-
-    </div>
-
-
-    <!-- HSL -->
-
-    <div class="value-group">
-
-        <label>
-            HSL
-        </label>
-
-        <div class="value-row">
-
-            <input
-                type="text"
-                id="hslValue"
-                value="hsl(221, 83%, 53%)"
-                readonly>
-
-            <button
-                type="button"
-                class="copy-btn"
-                data-copy="hsl">
-
-                <i class="fa-regular fa-copy"></i>
-
-                Copy
-
-            </button>
-
-        </div>
-
-    </div>
-
-
-    <!-- CSS -->
-
-    <div class="value-group">
-
-        <label>
-            CSS
-        </label>
-
-        <div class="value-row">
-
-            <input
-                type="text"
-                id="cssValue"
-                value="color: #2563EB;"
-                readonly>
-
-            <button
-                type="button"
-                class="copy-btn"
-                data-copy="css">
-
-                <i class="fa-regular fa-copy"></i>
-
-                Copy
-
-            </button>
-
-        </div>
-
-    </div>
-
-
-    <div
-        class="copy-status"
-        id="copyStatus">
-
-        <i class="fa-solid fa-check"></i>
-
-        Copied!
-
-    </div>
-
-</div>
-
-
-<!-- =========================================
-     COLOR INFORMATION
-========================================= -->
-
-<div class="color-card">
-
-    <h3>
-        <i class="fa-solid fa-circle-info"></i>
-        Color Information
-    </h3>
-
-
-    <div class="large-color"
-         id="largeColor">
-
-        <span id="largeHex">
-            #2563EB
-        </span>
-
-    </div>
-
-
-    <div class="info">
-
-        <span>
-            HEX
-        </span>
-
-        <b id="infoHex">
-            #2563EB
-        </b>
-
-    </div>
-
-
-    <div class="info">
-
-        <span>
-            Red
-        </span>
-
-        <b id="redValue">
-            37
-        </b>
-
-    </div>
-
-
-    <div class="info">
-
-        <span>
-            Green
-        </span>
-
-        <b id="greenValue">
-            99
-        </b>
-
-    </div>
-
-
-    <div class="info">
-
-        <span>
-            Blue
-        </span>
-
-        <b id="blueValue">
-            235
-        </b>
-
-    </div>
-
-
-    <div class="info">
-
-        <span>
-            Brightness
-        </span>
-
-        <b id="brightnessValue">
-            91
-        </b>
-
-    </div>
-
-</div>
-
-</div>
-
-</div>
-
 </section>
-
-
-<!-- =========================================
-     COLOR SHADES
-========================================= -->
 
 <section class="section">
-
 <div class="container">
+<div class="tool-stack">
 
-<div class="content-card">
-
-    <h2>
-        Color Shades & Tints
-    </h2>
-
-    <div
-        class="shade-grid"
-        id="shadeGrid">
-    </div>
-
+<article class="card tool-card">
+<h2>1. Choose Image</h2>
+<div class="upload" id="drop">
+<i id="uploadIcon" class="fa-solid fa-cloud-arrow-up"></i>
+<img id="uploadPreview" alt="Uploaded image preview">
+<h3 id="uploadTitle">Upload Image</h3>
+<p id="uploadInfo">📁 Choose Image<br>🖱 Drag &amp; Drop<br>📋 Paste Image</p>
+<button class="choose" id="chooseBtn" type="button">
+<i class="fa-solid fa-folder-open"></i> Choose Image
+</button>
+<input id="fileInput" class="file-input" type="file" accept="image/*">
 </div>
+</article>
 
+<article class="card tool-card">
+<h2>2. Image Preview</h2>
+<div class="picker-area" id="pickerArea">
+<div class="preview-toolbar">
+<button id="zoomOut" type="button">−</button>
+<span id="zoomValue">100%</span>
+<button id="zoomIn" type="button">+</button>
+<button id="zoomReset" type="button">↺</button>
 </div>
+<div class="canvas-wrap" id="canvasWrap">
+<div class="canvas-stage" id="canvasStage">
+<canvas id="canvas"></canvas>
+<div class="magnifier" id="magnifier"></div>
+</div>
+</div>
+<p class="hint" id="hint">Upload an image, then click anywhere on it to pick a color. Use + / − to zoom.</p>
+</div>
+<div class="empty-preview" id="emptyPreview">
+<i class="fa-regular fa-image"></i>
+<b>Your image preview appears here</b>
+<span>Choose an image above to start.</span>
+</div>
+</article>
 
+<article class="card tool-card">
+<h2>3. Color Picker</h2>
+<div class="picker-result">
+<div class="swatch" id="swatch"></div>
+<div class="color-values">
+<button class="value" id="hexBtn" type="button"><span>HEX</span><b id="hex">#FFFFFF</b></button>
+<button class="value" id="rgbBtn" type="button"><span>RGB</span><b id="rgb">rgb(255, 255, 255)</b></button>
+<button class="value" id="hslBtn" type="button"><span>HSL</span><b id="hsl">hsl(0, 0%, 100%)</b></button>
+</div>
+</div>
+<div class="status" id="status">Upload an image to start.</div>
+<div class="actions">
+<button class="eye-dropper" id="eyeDropperBtn" type="button"><i class="fa-solid fa-eye-dropper"></i> Pick From Screen</button>
+<button class="reset" id="resetBtn" type="button">↻ Reset</button>
+</div>
+</article>
+
+</div></div>
+</div>
 </section>
 
-
-<!-- =========================================
-     FEATURES
-========================================= -->
-
-<section class="section">
-
+<section class="content">
 <div class="container">
-
-<div class="feature-grid">
-
-
-<div class="feature-item">
-
-    <div class="feature-icon blue">
-        <i class="fa-solid fa-eye-dropper"></i>
-    </div>
-
-    <div>
-
-        <h3>
-            Easy Color Picker
-        </h3>
-
-        <p>
-            Select any color quickly
-            using the built-in picker.
-        </p>
-
-    </div>
-
+<h2>Features</h2>
+<div class="grid">
+<article><b>🎯</b><h3>Pixel Accurate</h3><p>Select the exact pixel color from your uploaded image.</p></article>
+<article><b>🔢</b><h3>HEX / RGB / HSL</h3><p>Get the three most useful color formats instantly.</p></article>
+<article><b>📋</b><h3>One Click Copy</h3><p>Click any color value to copy it to your clipboard.</p></article>
+<article><b>🖱️</b><h3>Easy Picking</h3><p>Click or tap directly on the image to sample a color.</p></article>
+<article><b>⚡</b><h3>Fast</h3><p>Color sampling happens directly in your browser.</p></article>
+<article><b>📱</b><h3>Mobile Ready</h3><p>Works on desktop, tablet and mobile screens.</p></article>
 </div>
 
-
-<div class="feature-item">
-
-    <div class="feature-icon purple">
-        <i class="fa-solid fa-code"></i>
-    </div>
-
-    <div>
-
-        <h3>
-            HEX, RGB & HSL
-        </h3>
-
-        <p>
-            Get multiple color formats
-            instantly.
-        </p>
-
-    </div>
-
+<h2>How to Work</h2>
+<div class="steps">
+<article><b>1</b><h3>Upload</h3><p>Choose, drop or paste your image.</p></article>
+<article><b>2</b><h3>Pick</h3><p>Click or tap the exact point whose color you want.</p></article>
+<article><b>3</b><h3>Copy</h3><p>Click HEX, RGB or HSL to copy the value.</p></article>
 </div>
 
-
-<div class="feature-item">
-
-    <div class="feature-icon orange">
-        <i class="fa-solid fa-copy"></i>
-    </div>
-
-    <div>
-
-        <h3>
-            One Click Copy
-        </h3>
-
-        <p>
-            Copy any color value
-            with one click.
-        </p>
-
-    </div>
-
+<h2>Frequently Asked Questions</h2>
+<div class="faq">
+<details><summary>How do I pick a color?</summary><p>Upload an image and click or tap anywhere on the image. The tool reads the exact pixel under your pointer.</p></details>
+<details><summary>Can I copy the HEX value?</summary><p>Yes. Click the HEX, RGB or HSL result card to copy that value.</p></details>
+<details><summary>Can I pick a color directly from my screen?</summary><p>On supported browsers, the Pick From Screen button uses the native EyeDropper API. If it is unavailable, use the uploaded-image picker.</p></details>
+<details><summary>Does it work on mobile?</summary><p>Yes. Tap the image to select a color.</p></details>
+<details><summary>Are my images uploaded?</summary><p>No server upload is required for image color sampling. The image is decoded and sampled in your browser.</p></details>
 </div>
-
-
-<div class="feature-item">
-
-    <div class="feature-icon green">
-        <i class="fa-solid fa-shuffle"></i>
-    </div>
-
-    <div>
-
-        <h3>
-            Random Colors
-        </h3>
-
-        <p>
-            Generate random colors
-            for your projects.
-        </p>
-
-    </div>
-
 </div>
-
-
-</div>
-
-</div>
-
 </section>
-
-
-<!-- =========================================
-     HOW TO USE
-========================================= -->
-
-<section class="section">
-
-<div class="container">
-
-<div class="content-card">
-
-    <h2>
-        How to Use Color Picker?
-    </h2>
-
-
-    <div class="steps-grid">
-
-
-        <div class="step">
-
-            <span>1</span>
-
-            <div>
-
-                <h3>
-                    Select Color
-                </h3>
-
-                <p>
-                    Click the color picker
-                    and choose any color.
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <div class="step">
-
-            <span>2</span>
-
-            <div>
-
-                <h3>
-                    View Values
-                </h3>
-
-                <p>
-                    HEX, RGB and HSL values
-                    are generated automatically.
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <div class="step">
-
-            <span>3</span>
-
-            <div>
-
-                <h3>
-                    Copy
-                </h3>
-
-                <p>
-                    Copy the required color
-                    value with one click.
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <div class="step">
-
-            <span>4</span>
-
-            <div>
-
-                <h3>
-                    Use Anywhere
-                </h3>
-
-                <p>
-                    Use the color in your
-                    website, design or project.
-                </p>
-
-            </div>
-
-        </div>
-
-
-    </div>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- =========================================
-     FAQ
-========================================= -->
-
-<section class="section">
-
-<div class="container">
-
-<div class="content-card faq-card">
-
-    <h2>
-        Frequently Asked Questions
-    </h2>
-
-
-    <details>
-
-        <summary>
-            What is a color picker?
-        </summary>
-
-        <p>
-            A color picker lets you select a color
-            and obtain its exact digital color values.
-        </p>
-
-    </details>
-
-
-    <details>
-
-        <summary>
-            What is HEX color?
-        </summary>
-
-        <p>
-            HEX is a six-digit hexadecimal color
-            representation commonly used in HTML
-            and CSS.
-        </p>
-
-    </details>
-
-
-    <details>
-
-        <summary>
-            What is RGB?
-        </summary>
-
-        <p>
-            RGB represents a color using Red,
-            Green and Blue values from 0 to 255.
-        </p>
-
-    </details>
-
-
-    <details>
-
-        <summary>
-            What is HSL?
-        </summary>
-
-        <p>
-            HSL represents color using Hue,
-            Saturation and Lightness.
-        </p>
-
-    </details>
-
-
-    <details>
-
-        <summary>
-            Can I copy the color values?
-        </summary>
-
-        <p>
-            Yes. Each HEX, RGB, HSL and CSS value
-            has its own copy button.
-        </p>
-
-    </details>
-
-
-</div>
-
-</div>
-
-</section>
-
-<section class="otb-tool-info"><div class="container"><div class="otb-tool-info-head"><h2>Features</h2><p>Pick colors online from an image or color picker. Get HEX, RGB and HSL values instantly.</p></div><div class="otb-tool-info-grid"><div class="otb-tool-info-card"><h3>Simple workflow</h3><ul><li>Clear controls focused on the main Image task.</li><li>Useful settings are kept close to the tool workspace.</li><li>Results can be reviewed before the final download where supported.</li></ul></div><div class="otb-tool-info-card"><h3>Browser friendly</h3><ul><li>Works directly from a modern web browser.</li><li>No desktop installation is required for normal use.</li><li>Responsive layout for computer, tablet and phone screens.</li></ul></div><div class="otb-tool-info-card"><h3>Practical output</h3><ul><li>Designed for everyday file and content tasks.</li><li>Original input is not changed by the download step.</li><li>Easy reset and repeat workflow where supported.</li></ul></div></div></div></section>
 </main>
 
-
 <div id="footer-placeholder"></div>
-
-
 <script src="../../assets/js/navigation.js"></script>
-
 <script src="../../assets/js/app.js"></script>
-
-<script src="../../assets/js/tools/color-picker.js"></script>
-
+<script type="module" src="../../assets/js/tools/color-picker.js"></script>
 </body>
-
 </html>
