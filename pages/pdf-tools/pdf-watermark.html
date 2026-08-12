@@ -1,115 +1,98 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
 <title>PDF Watermark - OneToolBox</title>
-<meta name="description" content="Add text or photo watermark to PDF pages with live preview.">
-<link rel="stylesheet" href="../../assets/css/reset.css">
-<link rel="stylesheet" href="../../assets/css/variables.css">
-<link rel="stylesheet" href="../../assets/css/layout.css">
-<link rel="stylesheet" href="../../assets/css/components.css">
-<link rel="stylesheet" href="../../assets/css/pdf-tools/pdf-watermark.css?v=photo1">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-<link rel="stylesheet" href="../assets/css/tool-content.css">
+<meta content="💧 PDF Watermark online free with OneToolBox. Use this pdf tools tool quickly in your browser without installing software." name="description"/>
+<link href="../../assets/css/reset.css" rel="stylesheet"/>
+<link href="../../assets/css/variables.css" rel="stylesheet"/>
+<link href="../../assets/css/layout.css" rel="stylesheet"/>
+<link href="../../assets/css/components.css" rel="stylesheet"/>
+<link href="../../assets/css/pdf-tools/pdf-watermark.css?v=photo1" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet"/>
+<link href="../assets/css/tool-content.css" rel="stylesheet"/>
 <script id="otb-theme-boot">(()=>{try{if(localStorage.getItem("onetoolbox-theme")==="dark")document.documentElement.classList.add("otb-dark-preload")}catch(e){}})();</script>
 <style id="otb-theme-boot-style">html.otb-dark-preload{background:#0f172a}html.otb-dark-preload body{background:#0f172a}</style>
-<link rel="preconnect" href="https://cdnjs.cloudflare.com">
-<link rel="preconnect" href="https://cdn.jsdelivr.net">
-</head>
+<link href="https://cdnjs.cloudflare.com" rel="preconnect"/>
+<link href="https://cdn.jsdelivr.net" rel="preconnect"/>
+<meta content="index,follow,max-image-preview:large" name="robots"/><link href="https://onetoolbox.in/pages/pdf-tools/pdf-watermark.html" rel="canonical"/><meta content="PDF Watermark - OneToolBox" property="og:title"/><meta content="💧 PDF Watermark online free with OneToolBox. Use this pdf tools tool quickly in your browser without installing software." property="og:description"/><meta content="https://onetoolbox.in/pages/pdf-tools/pdf-watermark.html" property="og:url"/><meta content="OneToolBox" property="og:site_name"/><meta content="website" property="og:type"/><script src="/assets/js/analytics-config.js"></script><script src="/assets/js/onetoolbox-analytics.js"></script><script data-onetoolbox-schema="true" type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"💧 PDF Watermark","url":"https://onetoolbox.in/pages/pdf-tools/pdf-watermark.html","description":"💧 PDF Watermark online free with OneToolBox. Use this pdf tools tool quickly in your browser without installing software.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script></head>
 <body data-tool="pdf-watermark">
-
 <div id="header-placeholder"></div>
-
-
-
 <main class="page page-offset">
 <section class="tool-hero"><div class="container">
 <div class="tool-badge"><i class="fa-solid fa-stamp"></i> Free PDF Tool</div>
 <h1>💧 PDF Watermark</h1>
 <p>Add a text or photo watermark to your PDF with live preview.</p>
 </div></section>
-
 <section class="section"><div class="container"><div class="tool-grid">
-
 <div class="tool-card">
 <h2>Choose PDF</h2>
 <div class="upload" id="pdfUpload" tabindex="0">
 <i class="fa-solid fa-file-pdf upload-icon"></i>
 <h3 id="pdfTitle">Choose PDF</h3>
-<p id="pdfHint">📁 Select a PDF<br>🖱️ Drag &amp; Drop</p>
+<p id="pdfHint">📁 Select a PDF<br/>🖱️ Drag &amp; Drop</p>
 <label class="choose"><i class="fa-solid fa-folder-open"></i> Choose PDF
-<input id="pdfInput" type="file" accept="application/pdf,.pdf"></label>
+<input accept="application/pdf,.pdf" id="pdfInput" type="file"/></label>
 </div>
 <div class="info"><span>File Size</span><b id="fileSize">0 KB</b></div>
 <div class="info"><span>Total Pages</span><b id="pageCount">0</b></div>
 </div>
-
 <div class="tool-card settings">
 <h2>Watermark Settings</h2>
-
 <div class="mode-tabs">
-<button type="button" class="mode active" data-mode="text"><i class="fa-solid fa-font"></i> Text</button>
-<button type="button" class="mode" data-mode="image"><i class="fa-regular fa-image"></i> Photo</button>
+<button class="mode active" data-mode="text" type="button"><i class="fa-solid fa-font"></i> Text</button>
+<button class="mode" data-mode="image" type="button"><i class="fa-regular fa-image"></i> Photo</button>
 </div>
-
 <div id="textSettings">
 <div class="option-box"><label for="watermarkText">Watermark Text</label>
-<input id="watermarkText" class="field" maxlength="120" placeholder="e.g. CONFIDENTIAL"></div>
+<input class="field" id="watermarkText" maxlength="120" placeholder="e.g. CONFIDENTIAL"/></div>
 </div>
-
-<div id="imageSettings" hidden>
+<div hidden="" id="imageSettings">
 <div class="photo-upload" id="photoUpload">
 <i class="fa-regular fa-image"></i>
 <span id="photoName">Choose watermark photo</span>
 <label class="photo-btn"><i class="fa-solid fa-image"></i> Choose Photo
-<input id="photoInput" type="file" accept="image/png,image/jpeg,image/webp"></label>
+<input accept="image/png,image/jpeg,image/webp" id="photoInput" type="file"/></label>
 </div>
 <div class="photo-tip">PNG with transparent background works best.</div>
 </div>
-
 <div class="two-col">
-<div class="option-box"><label for="fontSize">Text Size</label><input id="fontSize" class="field" type="number" min="8" max="120" value="48"></div>
-<div class="option-box"><label for="imageSize">Photo Size <b id="imageSizeValue">140 px</b></label><input id="imageSize" type="range" min="40" max="400" value="140"></div>
+<div class="option-box"><label for="fontSize">Text Size</label><input class="field" id="fontSize" max="120" min="8" type="number" value="48"/></div>
+<div class="option-box"><label for="imageSize">Photo Size <b id="imageSizeValue">140 px</b></label><input id="imageSize" max="400" min="40" type="range" value="140"/></div>
 </div>
-
 <div class="two-col">
 <div class="option-box"><label for="opacity">Opacity <b id="opacityValue">25%</b></label>
-<div class="range-wrap"><input id="opacity" type="range" min="5" max="100" value="25" step="1"><span id="rangeValue">25%</span></div></div>
+<div class="range-wrap"><input id="opacity" max="100" min="5" step="1" type="range" value="25"/><span id="rangeValue">25%</span></div></div>
 <div class="option-box"><label for="angle">Angle</label>
-<select id="angle" class="field"><option value="0">0°</option><option value="45" selected>45°</option><option value="90">90°</option><option value="-45">-45°</option><option value="-90">-90°</option></select></div>
+<select class="field" id="angle"><option value="0">0°</option><option selected="" value="45">45°</option><option value="90">90°</option><option value="-45">-45°</option><option value="-90">-90°</option></select></div>
 </div>
-
 <div class="two-col">
 <div class="option-box"><label for="position">Position</label>
-<select id="position" class="field"><option value="center" selected>Center</option><option value="top">Top</option><option value="bottom">Bottom</option><option value="tl">Top Left</option><option value="tr">Top Right</option><option value="bl">Bottom Left</option><option value="br">Bottom Right</option></select></div>
-<div class="option-box"><label for="color">Text Color</label><input id="color" class="color-field" type="color" value="#64748B"></div>
+<select class="field" id="position"><option selected="" value="center">Center</option><option value="top">Top</option><option value="bottom">Bottom</option><option value="tl">Top Left</option><option value="tr">Top Right</option><option value="bl">Bottom Left</option><option value="br">Bottom Right</option></select></div>
+<div class="option-box"><label for="color">Text Color</label><input class="color-field" id="color" type="color" value="#64748B"/></div>
 </div>
-
-<div class="option-box"><label for="pages">Pages</label><input id="pages" class="field" type="text" placeholder="All pages • e.g. 1,3,5-7"></div>
-
-<button id="run" class="btn primary" disabled><i class="fa-solid fa-stamp"></i> Add Watermark</button>
+<div class="option-box"><label for="pages">Pages</label><input class="field" id="pages" placeholder="All pages • e.g. 1,3,5-7" type="text"/></div>
+<button class="btn primary" disabled="" id="run"><i class="fa-solid fa-stamp"></i> Add Watermark</button>
 <div class="progress"><div class="track"><div id="bar"></div></div><strong id="pct">0%</strong></div>
-<p id="status" class="status">Choose a PDF and watermark type.</p>
+<p class="status" id="status">Choose a PDF and watermark type.</p>
 </div>
-
 <div class="tool-card result-card">
 <h2>Live Preview</h2>
 <div class="preview-shell">
 <div class="preview-toolbar"><span><i class="fa-regular fa-eye"></i> First Page Preview</span><b id="previewStatus">Waiting for PDF</b></div>
 <div class="preview" id="preview">
 <canvas id="previewCanvas"></canvas>
-<div id="previewEmpty" class="result-empty"><i class="fa-solid fa-file-pdf"></i><span>Upload a PDF to preview the watermark.</span></div>
+<div class="result-empty" id="previewEmpty"><i class="fa-solid fa-file-pdf"></i><span>Upload a PDF to preview the watermark.</span></div>
 </div>
 </div>
 <div class="preview-note">Text or photo watermark updates live when you change the settings.</div>
 <div class="info"><span>Result Size</span><b id="resultInfo">—</b></div>
-<button id="download" class="btn success" disabled><i class="fa-solid fa-download"></i> Download PDF</button>
-<button id="reset" class="btn danger"><i class="fa-solid fa-rotate-left"></i> Reset</button>
+<button class="btn success" disabled="" id="download"><i class="fa-solid fa-download"></i> Download PDF</button>
+<button class="btn danger" id="reset"><i class="fa-solid fa-rotate-left"></i> Reset</button>
 </div>
-
 </div></div></section>
-
 <section class="section feature-section"><div class="container">
 <div class="section-heading"><span>Simple &amp; Useful</span><h2>PDF Watermark Features</h2><p>Add either text or a photo watermark to your PDF.</p></div>
 <div class="feature-grid">
@@ -118,7 +101,6 @@
 <article class="feature"><div class="feature-icon"><i class="fa-solid fa-sliders"></i></div><h3>Customize</h3><p>Control size, opacity, angle and position.</p></article>
 <article class="feature"><div class="feature-icon"><i class="fa-solid fa-layer-group"></i></div><h3>Page Selection</h3><p>Apply the watermark to all pages or selected pages.</p></article>
 </div></div></section>
-
 <section class="section faq-section"><div class="container faq">
 <div class="section-heading"><span>FAQ</span><h2>Frequently Asked Questions</h2></div>
 <div class="faq-list">
@@ -128,11 +110,9 @@
 <details><summary>Can I watermark selected pages?<i class="fa-solid fa-chevron-down"></i></summary><p>Yes. Use values such as 1, 3, 5-7.</p></details>
 </div></div></section>
 <section class="otb-tool-info"><div class="container"><div class="otb-tool-info-head"><h2>Features</h2><p>Add text or photo watermark to PDF pages with live preview.</p></div><div class="otb-tool-info-grid"><div class="otb-tool-info-card"><h3>Simple workflow</h3><ul><li>Clear controls focused on the main PDF task.</li><li>Useful settings are kept close to the tool workspace.</li><li>Results can be reviewed before the final download where supported.</li></ul></div><div class="otb-tool-info-card"><h3>Browser friendly</h3><ul><li>Works directly from a modern web browser.</li><li>No desktop installation is required for normal use.</li><li>Responsive layout for computer, tablet and phone screens.</li></ul></div><div class="otb-tool-info-card"><h3>Practical output</h3><ul><li>Designed for everyday file and content tasks.</li><li>Original input is not changed by the download step.</li><li>Easy reset and repeat workflow where supported.</li></ul></div></div></div></section>
-<section class="otb-tool-info"><div class="container"><div class="otb-tool-info-head"><h2>How It Works</h2><p>Use 💧 PDF Watermark in a few simple steps.</p></div><div class="otb-tool-info-grid"><div class="otb-tool-info-card"><h3>1. Open the tool</h3><p>Open this page and review the available options before starting.</p></div><div class="otb-tool-info-card"><h3>2. Add your input</h3><p>Select, enter or drop the content required by the tool, then choose the settings you need.</p></div><div class="otb-tool-info-card"><h3>3. Process & download</h3><p>Run the tool, check the result, make adjustments if available, and download the finished file or result.</p></div></div></div></section>
+<section class="otb-tool-info"><div class="container"><div class="otb-tool-info-head"><h2>How It Works</h2><p>Use 💧 PDF Watermark in a few simple steps.</p></div><div class="otb-tool-info-grid"><div class="otb-tool-info-card"><h3>1. Open the tool</h3><p>Open this page and review the available options before starting.</p></div><div class="otb-tool-info-card"><h3>2. Add your input</h3><p>Select, enter or drop the content required by the tool, then choose the settings you need.</p></div><div class="otb-tool-info-card"><h3>3. Process &amp; download</h3><p>Run the tool, check the result, make adjustments if available, and download the finished file or result.</p></div></div></div></section>
 </main>
-
 <div id="footer-placeholder"></div>
-
 <script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script src="../../assets/js/pdf-tools/pdf-watermark.js?v=photo1"></script>

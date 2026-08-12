@@ -1,20 +1,20 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
 <title>Image Creator - OneToolBox</title>
-<meta name="description" content="Create posters, graphics and custom images online with OneToolBox Image Creator.">
-<link rel="stylesheet" href="../../assets/css/reset.css">
-<link rel="stylesheet" href="../../assets/css/variables.css">
-<link rel="stylesheet" href="../../assets/css/layout.css">
-<link rel="stylesheet" href="../../assets/css/components.css">
-<link rel="stylesheet" href="../../assets/css/tools/image-creator.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-</head>
+<meta content="Image Creator online free with OneToolBox. Use this image tools tool quickly in your browser without installing software." name="description"/>
+<link href="../../assets/css/reset.css" rel="stylesheet"/>
+<link href="../../assets/css/variables.css" rel="stylesheet"/>
+<link href="../../assets/css/layout.css" rel="stylesheet"/>
+<link href="../../assets/css/components.css" rel="stylesheet"/>
+<link href="../../assets/css/tools/image-creator.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet"/>
+<meta content="index,follow,max-image-preview:large" name="robots"/><link href="https://onetoolbox.in/pages/image-tools/image-creator.html" rel="canonical"/><meta content="Image Creator - OneToolBox" property="og:title"/><meta content="Image Creator online free with OneToolBox. Use this image tools tool quickly in your browser without installing software." property="og:description"/><meta content="https://onetoolbox.in/pages/image-tools/image-creator.html" property="og:url"/><meta content="OneToolBox" property="og:site_name"/><meta content="website" property="og:type"/><script src="/assets/js/analytics-config.js"></script><script src="/assets/js/onetoolbox-analytics.js"></script><script data-onetoolbox-schema="true" type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Image Creator","url":"https://onetoolbox.in/pages/image-tools/image-creator.html","description":"Image Creator online free with OneToolBox. Use this image tools tool quickly in your browser without installing software.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script></head>
 <body>
 <div id="header-placeholder"></div>
-
 <main class="page page-offset">
 <section class="creator-hero">
 <div class="container">
@@ -23,52 +23,46 @@
 <p>Create posters, social posts, banners and custom graphics directly in your browser.</p>
 </div>
 </section>
-
 <section class="section creator-section">
 <div class="container">
 <div class="creator-layout">
-
 <aside class="creator-panel">
 <div class="panel-title"><i class="fa-solid fa-sliders"></i><strong>Design Tools</strong><span id="readyDot"></span></div>
-
 <div class="upload-box" id="dropZone">
 <div class="upload-icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
 <strong>Upload Image</strong>
 <span>JPG • PNG • WebP</span>
-<label for="imageInput" class="choose-btn"><i class="fa-solid fa-folder-open"></i> Choose Image</label>
-<input id="imageInput" type="file" accept="image/png,image/jpeg,image/webp" hidden>
-<small>or drag & drop</small>
+<label class="choose-btn" for="imageInput"><i class="fa-solid fa-folder-open"></i> Choose Image</label>
+<input accept="image/png,image/jpeg,image/webp" hidden="" id="imageInput" type="file"/>
+<small>or drag &amp; drop</small>
 </div>
-
 <div class="tool-tabs">
 <button class="tab active" data-tab="text"><i class="fa-solid fa-font"></i> Text</button>
 <button class="tab" data-tab="shape"><i class="fa-regular fa-square"></i> Shape</button>
 <button class="tab" data-tab="image"><i class="fa-regular fa-image"></i> Image</button>
 </div>
-
 <div class="tool-pane active" id="pane-text">
 <label>Text</label>
-<textarea id="textInput" rows="3" placeholder="Type your text...">Your Text</textarea>
+<textarea id="textInput" placeholder="Type your text..." rows="3">Your Text</textarea>
 <div class="grid2">
 <div><label>Font</label><select id="fontFamily">
 <option>Arial</option><option>Arial Black</option><option>Impact</option><option>Georgia</option><option>Verdana</option><option>Trebuchet MS</option>
 </select></div>
-<div><label>Size <output id="sizeVal">52px</output></label><input id="fontSize" type="range" min="12" max="180" value="52"></div>
+<div><label>Size <output id="sizeVal">52px</output></label><input id="fontSize" max="180" min="12" type="range" value="52"/></div>
 </div>
 <div class="grid2">
-<div><label>Text Color</label><input id="textColor" type="color" value="#ffffff"></div>
-<div><label>Outline</label><input id="strokeColor" type="color" value="#000000"></div>
+<div><label>Text Color</label><input id="textColor" type="color" value="#ffffff"/></div>
+<div><label>Outline</label><input id="strokeColor" type="color" value="#000000"/></div>
 </div>
 <div class="grid2">
-<div><label>Outline <output id="strokeVal">3px</output></label><input id="strokeWidth" type="range" min="0" max="15" value="3"></div>
+<div><label>Outline <output id="strokeVal">3px</output></label><input id="strokeWidth" max="15" min="0" type="range" value="3"/></div>
 <div><label>Align</label><select id="textAlign"><option>center</option><option>left</option><option>right</option></select></div>
 </div>
 <div class="button-grid">
-<button id="addText" class="primary-small"><i class="fa-solid fa-plus"></i> Add Text</button>
-<button id="deleteSelected" class="danger-small"><i class="fa-solid fa-trash"></i> Delete</button>
+<button class="primary-small" id="addText"><i class="fa-solid fa-plus"></i> Add Text</button>
+<button class="danger-small" id="deleteSelected"><i class="fa-solid fa-trash"></i> Delete</button>
 </div>
 </div>
-
 <div class="tool-pane" id="pane-shape">
 <label>Shape</label>
 <div class="shape-grid">
@@ -77,62 +71,57 @@
 <button data-shape="line">╱<small>Line</small></button>
 </div>
 <div class="grid2">
-<div><label>Fill</label><input id="shapeColor" type="color" value="#2563eb"></div>
-<div><label>Opacity <output id="opacityVal">100%</output></label><input id="shapeOpacity" type="range" min="10" max="100" value="100"></div>
+<div><label>Fill</label><input id="shapeColor" type="color" value="#2563eb"/></div>
+<div><label>Opacity <output id="opacityVal">100%</output></label><input id="shapeOpacity" max="100" min="10" type="range" value="100"/></div>
 </div>
-<button id="addShape" class="primary-small full"><i class="fa-solid fa-plus"></i> Add Shape</button>
+<button class="primary-small full" id="addShape"><i class="fa-solid fa-plus"></i> Add Shape</button>
 </div>
-
 <div class="tool-pane" id="pane-image">
 <label>Add another image</label>
 <div class="mini-upload">
 <label for="overlayInput"><i class="fa-regular fa-image"></i> Choose Image</label>
-<input id="overlayInput" type="file" accept="image/png,image/jpeg,image/webp" hidden>
+<input accept="image/png,image/jpeg,image/webp" hidden="" id="overlayInput" type="file"/>
 <small>Adds the image to the canvas.</small>
 </div>
 </div>
-
 <div class="background-card">
 <div class="section-label"><i class="fa-solid fa-palette"></i> Background</div>
 <div class="grid2">
-<div><label>Color</label><input id="bgColor" type="color" value="#ffffff"></div>
+<div><label>Color</label><input id="bgColor" type="color" value="#ffffff"/></div>
 <div><label>Canvas</label>
 <select id="canvasPreset"><option value="square">Square 1080×1080</option><option value="post">Post 1080×1350</option><option value="story">Story 1080×1920</option><option value="landscape">Landscape 1280×720</option><option value="custom">Custom</option></select>
 </div>
 </div>
 <div class="grid2 custom-size" id="customSize">
-<input id="customW" type="number" min="200" max="3000" value="1080" placeholder="Width">
-<input id="customH" type="number" min="200" max="3000" value="1080" placeholder="Height">
+<input id="customW" max="3000" min="200" placeholder="Width" type="number" value="1080"/>
+<input id="customH" max="3000" min="200" placeholder="Height" type="number" value="1080"/>
 </div>
-<button id="applyBg" class="secondary-small full"><i class="fa-solid fa-check"></i> Apply Background</button>
+<button class="secondary-small full" id="applyBg"><i class="fa-solid fa-check"></i> Apply Background</button>
 </div>
-
 <div class="bottom-actions">
 <button id="undo" type="button">↶ Undo</button>
 <button id="redo" type="button">↷ Redo</button>
 <button id="reset" type="button">Reset</button>
 </div>
 </aside>
-
 <section class="canvas-panel">
 <div class="canvas-head"><div><strong>Canvas</strong><span id="canvasStatus">Start creating</span></div><div><span id="dimensions">1080 × 1080</span></div></div>
 <div class="canvas-wrap" id="canvasWrap">
 <div class="empty-state" id="emptyState"><i class="fa-regular fa-image"></i><h3>Your design appears here</h3><p>Add text, shapes or images.</p></div>
-<canvas id="creatorCanvas" width="1080" height="1080"></canvas>
+<canvas height="1080" id="creatorCanvas" width="1080"></canvas>
 </div>
 <div class="canvas-tools">
 <button id="zoomOut">−</button><span id="zoomLabel">Fit</span><button id="zoomIn">+</button><button id="fit">Fit</button>
 </div>
 <div class="download-row">
-<button id="downloadPng" class="download-btn"><i class="fa-solid fa-download"></i> Download PNG</button>
-<button id="downloadJpg" class="download-btn purple"><i class="fa-solid fa-download"></i> Download JPG</button>
+<button class="download-btn" id="downloadPng"><i class="fa-solid fa-download"></i> Download PNG</button>
+<button class="download-btn purple" id="downloadJpg"><i class="fa-solid fa-download"></i> Download JPG</button>
 </div>
 <p class="hint"><i class="fa-solid fa-hand-pointer"></i> Click an object to select it. Drag selected objects to move them.</p>
 </section>
 </div>
 </div>
 </section>
-
 <section class="section info-section">
 <div class="container">
 <h2>Image Creator Features</h2>
@@ -151,7 +140,6 @@
 </div>
 </section>
 </main>
-
 <div id="footer-placeholder"></div>
 <script src="../../assets/js/navigation.js"></script>
 <script src="../../assets/js/app.js"></script>

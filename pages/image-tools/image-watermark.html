@@ -1,27 +1,25 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Image Watermark - OneToolBox</title>
-<meta name="description" content="Add text or logo watermarks to images online for free.">
-<link rel="stylesheet" href="../../assets/css/reset.css">
-<link rel="stylesheet" href="../../assets/css/variables.css">
-<link rel="stylesheet" href="../../assets/css/layout.css">
-<link rel="stylesheet" href="../../assets/css/components.css">
-<link rel="stylesheet" href="../../assets/css/tools/image-watermark.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-<link rel="stylesheet" href="../assets/css/tool-content.css">
+<meta content="Image Watermark online free with OneToolBox. Use this image tools tool quickly in your browser without installing software." name="description"/>
+<link href="../../assets/css/reset.css" rel="stylesheet"/>
+<link href="../../assets/css/variables.css" rel="stylesheet"/>
+<link href="../../assets/css/layout.css" rel="stylesheet"/>
+<link href="../../assets/css/components.css" rel="stylesheet"/>
+<link href="../../assets/css/tools/image-watermark.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet"/>
+<link href="../assets/css/tool-content.css" rel="stylesheet"/>
 <script id="otb-theme-boot">(()=>{try{if(localStorage.getItem("onetoolbox-theme")==="dark")document.documentElement.classList.add("otb-dark-preload")}catch(e){}})();</script>
 <style id="otb-theme-boot-style">html.otb-dark-preload{background:#0f172a}html.otb-dark-preload body{background:#0f172a}</style>
-<link rel="preconnect" href="https://cdnjs.cloudflare.com">
-</head>
+<link href="https://cdnjs.cloudflare.com" rel="preconnect"/>
+<meta content="index,follow,max-image-preview:large" name="robots"/><link href="https://onetoolbox.in/pages/image-tools/image-watermark.html" rel="canonical"/><meta content="Image Watermark - OneToolBox" property="og:title"/><meta content="Image Watermark online free with OneToolBox. Use this image tools tool quickly in your browser without installing software." property="og:description"/><meta content="https://onetoolbox.in/pages/image-tools/image-watermark.html" property="og:url"/><meta content="OneToolBox" property="og:site_name"/><meta content="website" property="og:type"/><script src="/assets/js/analytics-config.js"></script><script src="/assets/js/onetoolbox-analytics.js"></script><script data-onetoolbox-schema="true" type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Image Watermark","url":"https://onetoolbox.in/pages/image-tools/image-watermark.html","description":"Image Watermark online free with OneToolBox. Use this image tools tool quickly in your browser without installing software.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script></head>
 <body>
-
 <div id="header-placeholder"></div>
-
 <main class="page page-offset">
-
 <section class="watermark-hero">
 <div class="container">
 <div class="tool-badge"><i class="fa-solid fa-stamp"></i> Free Image Tool</div>
@@ -29,39 +27,32 @@
 <p>Add text or logo watermarks to your images. Position, resize, rotate and adjust opacity directly in your browser.</p>
 </div>
 </section>
-
 <section class="section">
 <div class="container">
 <div class="watermark-workspace">
-
 <aside class="watermark-controls">
-
 <div class="panel-title">
 <h2><i class="fa-solid fa-sliders"></i> Watermark Settings</h2>
 </div>
-
 <div class="control-group">
 <label class="upload-btn" for="imageInput">
 <i class="fa-solid fa-cloud-arrow-up"></i> Choose Image
 </label>
-<input id="imageInput" type="file" accept="image/png,image/jpeg,image/webp" hidden>
+<input accept="image/png,image/jpeg,image/webp" hidden="" id="imageInput" type="file"/>
 <p class="hint">JPG, PNG or WebP</p>
 </div>
-
 <div class="control-group">
 <label>Watermark Type</label>
 <div class="type-switch">
-<button id="textType" class="type-btn active" type="button"><i class="fa-solid fa-font"></i> Text</button>
-<button id="logoType" class="type-btn" type="button"><i class="fa-solid fa-image"></i> Logo</button>
+<button class="type-btn active" id="textType" type="button"><i class="fa-solid fa-font"></i> Text</button>
+<button class="type-btn" id="logoType" type="button"><i class="fa-solid fa-image"></i> Logo</button>
 </div>
 </div>
-
 <div id="textControls">
 <div class="control-group">
 <label for="watermarkText">Watermark Text</label>
-<input id="watermarkText" type="text" maxlength="100" value="OneToolBox" placeholder="Your watermark">
+<input id="watermarkText" maxlength="100" placeholder="Your watermark" type="text" value="OneToolBox"/>
 </div>
-
 <div class="control-group">
 <label for="fontFamily">Font</label>
 <select id="fontFamily">
@@ -74,49 +65,44 @@
 <option value="Impact">Impact</option>
 </select>
 </div>
-
 <div class="control-row">
 <div>
 <label for="fontSize">Size</label>
-<input id="fontSize" type="range" min="12" max="180" value="52">
+<input id="fontSize" max="180" min="12" type="range" value="52"/>
 <span class="value" id="fontSizeValue">52px</span>
 </div>
 <div>
 <label for="textColor">Color</label>
-<input id="textColor" type="color" value="#ffffff">
+<input id="textColor" type="color" value="#ffffff"/>
 </div>
 </div>
 </div>
-
-<div id="logoControls" hidden>
+<div hidden="" id="logoControls">
 <div class="control-group">
 <label class="logo-upload" for="logoInput">
 <i class="fa-solid fa-upload"></i> Choose Logo
 </label>
-<input id="logoInput" type="file" accept="image/png,image/jpeg,image/webp" hidden>
+<input accept="image/png,image/jpeg,image/webp" hidden="" id="logoInput" type="file"/>
 <p class="hint">Transparent PNG recommended</p>
 </div>
 </div>
-
 <div class="control-row">
 <div>
 <label for="opacity">Opacity</label>
-<input id="opacity" type="range" min="5" max="100" value="70">
+<input id="opacity" max="100" min="5" type="range" value="70"/>
 <span class="value" id="opacityValue">70%</span>
 </div>
 <div>
 <label for="rotation">Rotation</label>
-<input id="rotation" type="range" min="-180" max="180" value="0">
+<input id="rotation" max="180" min="-180" type="range" value="0"/>
 <span class="value" id="rotationValue">0°</span>
 </div>
 </div>
-
 <div class="control-group">
 <label for="scale">Scale</label>
-<input id="scale" type="range" min="10" max="300" value="100">
+<input id="scale" max="300" min="10" type="range" value="100"/>
 <span class="value" id="scaleValue">100%</span>
 </div>
-
 <div class="control-group">
 <label>Quick Position</label>
 <div class="position-grid">
@@ -131,42 +117,33 @@
 <button data-pos="br" type="button">↘</button>
 </div>
 </div>
-
 <div class="button-grid">
-<button id="reset" class="tool-btn" type="button"><i class="fa-solid fa-arrows-rotate"></i> Reset</button>
-<button id="clear" class="danger-btn" type="button"><i class="fa-solid fa-trash"></i> Clear</button>
+<button class="tool-btn" id="reset" type="button"><i class="fa-solid fa-arrows-rotate"></i> Reset</button>
+<button class="danger-btn" id="clear" type="button"><i class="fa-solid fa-trash"></i> Clear</button>
 </div>
-
 <p class="drag-hint"><i class="fa-solid fa-hand-pointer"></i> You can drag the watermark directly on the image.</p>
-
 </aside>
-
 <section class="watermark-preview-area">
-
 <div class="preview-bar">
 <span id="status">Choose an image to start</span>
 <span id="sizeInfo">—</span>
 </div>
-
 <div class="preview-holder" id="previewHolder">
 <div class="empty-preview" id="emptyPreview">
 <i class="fa-regular fa-image"></i>
 <h3>No image selected</h3>
 <p>Choose an image to add a watermark.</p>
 </div>
-<canvas id="watermarkCanvas" hidden></canvas>
+<canvas hidden="" id="watermarkCanvas"></canvas>
 </div>
-
 <div class="download-row">
-<button id="downloadPng" class="download-btn" disabled><i class="fa-solid fa-download"></i> Download PNG</button>
-<button id="downloadJpg" class="download-btn jpg" disabled><i class="fa-solid fa-download"></i> Download JPG</button>
-</div>
-
-</section>
-</div>
+<button class="download-btn" disabled="" id="downloadPng"><i class="fa-solid fa-download"></i> Download PNG</button>
+<button class="download-btn jpg" disabled="" id="downloadJpg"><i class="fa-solid fa-download"></i> Download JPG</button>
 </div>
 </section>
-
+</div>
+</div>
+</section>
 <section class="section">
 <div class="container">
 <div class="feature-grid">
@@ -177,7 +154,6 @@
 </div>
 </div>
 </section>
-
 <section class="section">
 <div class="container">
 <div class="content-card">
@@ -191,7 +167,6 @@
 </div>
 </div>
 </section>
-
 <section class="section">
 <div class="container">
 <div class="content-card faq">
@@ -204,12 +179,9 @@
 </div>
 </div>
 </section>
-
-
 <div id="footer-placeholder"></div>
-
 <script src="../../assets/js/navigation.js"></script>
 <script src="../../assets/js/app.js"></script>
 <script src="../../assets/js/tools/image-watermark.js"></script>
-</body>
+</main></body>
 </html>

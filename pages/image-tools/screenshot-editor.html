@@ -1,143 +1,123 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
 <title>Screenshot Text Editor - OneToolBox</title>
-<meta name="description" content="Edit text inside screenshots, keep the original look, and add text or images.">
-<link rel="stylesheet" href="../../assets/css/reset.css">
-<link rel="stylesheet" href="../../assets/css/variables.css">
-<link rel="stylesheet" href="../../assets/css/layout.css">
-<link rel="stylesheet" href="../../assets/css/components.css">
-<link rel="stylesheet" href="../../assets/css/tools/screenshot-editor.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-</head>
+<meta content="Screenshot Text Editor online free with OneToolBox. Use this image tools tool quickly in your browser without installing software." name="description"/>
+<link href="../../assets/css/reset.css" rel="stylesheet"/>
+<link href="../../assets/css/variables.css" rel="stylesheet"/>
+<link href="../../assets/css/layout.css" rel="stylesheet"/>
+<link href="../../assets/css/components.css" rel="stylesheet"/>
+<link href="../../assets/css/tools/screenshot-editor.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet"/>
+<meta content="index,follow,max-image-preview:large" name="robots"/><link href="https://onetoolbox.in/pages/image-tools/screenshot-editor.html" rel="canonical"/><meta content="Screenshot Text Editor - OneToolBox" property="og:title"/><meta content="Screenshot Text Editor online free with OneToolBox. Use this image tools tool quickly in your browser without installing software." property="og:description"/><meta content="https://onetoolbox.in/pages/image-tools/screenshot-editor.html" property="og:url"/><meta content="OneToolBox" property="og:site_name"/><meta content="website" property="og:type"/><script src="/assets/js/analytics-config.js"></script><script src="/assets/js/onetoolbox-analytics.js"></script><script data-onetoolbox-schema="true" type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Screenshot Text Editor","url":"https://onetoolbox.in/pages/image-tools/screenshot-editor.html","description":"Screenshot Text Editor online free with OneToolBox. Use this image tools tool quickly in your browser without installing software.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script></head>
 <body>
 <div id="header-placeholder"></div>
-
 <main class="page page-offset">
 <section class="hero">
-  <div class="container">
-    <span class="badge">🖼️ Screenshot Editor</span>
-    <h1>Screenshot Text Editor</h1>
-    <p>Edit screenshot text, match its style, and add new text or images.</p>
-  </div>
+<div class="container">
+<span class="badge">🖼️ Screenshot Editor</span>
+<h1>Screenshot Text Editor</h1>
+<p>Edit screenshot text, match its style, and add new text or images.</p>
+</div>
 </section>
-
 <section class="editor-section">
 <div class="container">
 <div class="editor-shell">
-
 <!-- LEFT -->
 <aside class="side-panel left-panel">
-  <div class="panel-title"><span><i class="fa-solid fa-image"></i> Screenshot</span></div>
-
-  <div class="upload-mini" id="drop">
-    <img id="thumb" alt="Screenshot preview">
-    <div id="uploadEmpty">
-      <i class="fa-solid fa-cloud-arrow-up"></i>
-      <b>Upload Screenshot</b>
-      <small>Choose • Drag & Drop • Paste</small>
-    </div>
-    <button id="chooseBtn" class="primary" type="button"><i class="fa-solid fa-folder-open"></i> Choose Image</button>
-    <input id="fileInput" class="file-input" type="file" accept="image/*">
-  </div>
-
-  <button id="recognizeBtn" class="wide-btn purple" disabled><i class="fa-solid fa-wand-magic-sparkles"></i> Recognize Text</button>
-
-  <div class="mini-tools">
-    <button id="addText" type="button"><i class="fa-solid fa-t"></i><span>Text</span></button>
-    <button id="addImage" type="button"><i class="fa-regular fa-image"></i><span>Image</span></button>
-    <input id="addImageFile" class="file-input" type="file" accept="image/*">
-  </div>
-
-  <div class="zoom-row">
-    <button id="zoomOut" type="button">−</button>
-    <span id="zoomValue">100%</span>
-    <button id="zoomIn" type="button">+</button>
-    <button id="fit" type="button">Fit</button>
-  </div>
-
-  <div class="status" id="status">Upload a screenshot to begin.</div>
+<div class="panel-title"><span><i class="fa-solid fa-image"></i> Screenshot</span></div>
+<div class="upload-mini" id="drop">
+<img alt="Screenshot preview" id="thumb"/>
+<div id="uploadEmpty">
+<i class="fa-solid fa-cloud-arrow-up"></i>
+<b>Upload Screenshot</b>
+<small>Choose • Drag &amp; Drop • Paste</small>
+</div>
+<button class="primary" id="chooseBtn" type="button"><i class="fa-solid fa-folder-open"></i> Choose Image</button>
+<input accept="image/*" class="file-input" id="fileInput" type="file"/>
+</div>
+<button class="wide-btn purple" disabled="" id="recognizeBtn"><i class="fa-solid fa-wand-magic-sparkles"></i> Recognize Text</button>
+<div class="mini-tools">
+<button id="addText" type="button"><i class="fa-solid fa-t"></i><span>Text</span></button>
+<button id="addImage" type="button"><i class="fa-regular fa-image"></i><span>Image</span></button>
+<input accept="image/*" class="file-input" id="addImageFile" type="file"/>
+</div>
+<div class="zoom-row">
+<button id="zoomOut" type="button">−</button>
+<span id="zoomValue">100%</span>
+<button id="zoomIn" type="button">+</button>
+<button id="fit" type="button">Fit</button>
+</div>
+<div class="status" id="status">Upload a screenshot to begin.</div>
 </aside>
-
 <!-- CENTER -->
 <section class="canvas-panel">
-  <div class="canvas-toolbar">
-    <div><strong id="canvasTitle">Editor</strong><span id="selectionHint">Click text to edit</span></div>
-    <div class="toolbar-right">
-      <button id="undo" type="button" title="Undo">↶</button>
-      <button id="redo" type="button" title="Redo">↷</button>
-      <button id="reset" type="button" title="Reset">↺</button>
-      <button id="download" class="download" type="button"><i class="fa-solid fa-download"></i> Download</button>
-    </div>
-  </div>
-  <div class="canvas-viewport" id="viewport">
-    <div class="canvas-stage" id="stage">
-      <canvas id="canvas"></canvas>
-      <div id="overlay"></div>
-    </div>
-    <div class="canvas-empty" id="canvasEmpty">
-      <i class="fa-regular fa-image"></i>
-      <b>Your screenshot will appear here</b>
-      <span>Upload an image from the left panel.</span>
-    </div>
-  </div>
+<div class="canvas-toolbar">
+<div><strong id="canvasTitle">Editor</strong><span id="selectionHint">Click text to edit</span></div>
+<div class="toolbar-right">
+<button id="undo" title="Undo" type="button">↶</button>
+<button id="redo" title="Redo" type="button">↷</button>
+<button id="reset" title="Reset" type="button">↺</button>
+<button class="download" id="download" type="button"><i class="fa-solid fa-download"></i> Download</button>
+</div>
+</div>
+<div class="canvas-viewport" id="viewport">
+<div class="canvas-stage" id="stage">
+<canvas id="canvas"></canvas>
+<div id="overlay"></div>
+</div>
+<div class="canvas-empty" id="canvasEmpty">
+<i class="fa-regular fa-image"></i>
+<b>Your screenshot will appear here</b>
+<span>Upload an image from the left panel.</span>
+</div>
+</div>
 </section>
-
 <!-- RIGHT -->
 <aside class="side-panel right-panel">
-  <div class="panel-title"><span><i class="fa-solid fa-pen-to-square"></i> Text</span><button id="clearSelection" type="button">×</button></div>
-
-  <div class="mode-switch" id="modeSwitch">
-    <button id="editMode" class="active" type="button">✏️ Edit Text</button>
-    <button id="moveMode" type="button">↔️ Move Text</button>
-  </div>
-
-  <div id="noSelection" class="no-selection">
-    <i class="fa-regular fa-hand-pointer"></i>
-    <b>Click text in the image</b>
-    <small>Recognized text becomes editable.</small>
-  </div>
-
-  <div id="textControls" class="controls hidden">
-    <label>Text<textarea id="textValue" rows="3"></textarea></label>
-
-    <div class="control-row">
-      <label>Font<select id="fontFamily">
-        <option>Arial</option><option>Helvetica</option><option>Verdana</option>
-        <option>Tahoma</option><option>Roboto</option><option>Georgia</option>
-        <option>Times New Roman</option><option>Courier New</option>
-      </select></label>
-      <label>Size<input id="fontSize" type="number" min="6" max="180"></label>
-    </div>
-
-    <div class="font-buttons">
-      <button id="bold" type="button"><b>B</b></button>
-      <button id="italic" type="button"><i>I</i></button>
-      <button id="alignLeft" type="button">L</button>
-      <button id="alignCenter" type="button">C</button>
-      <button id="alignRight" type="button">R</button>
-    </div>
-
-    <label>Text Color<div class="color-line"><input id="textColor" type="color"><span id="colorCode">#111111</span></div></label>
-
-    <div class="control-row">
-      <label>Letter spacing<input id="letterSpacing" type="number" min="-10" max="30" step=".1"></label>
-      <label>Line height<input id="lineHeight" type="number" min=".5" max="3" step=".05"></label>
-    </div>
-
-    <div class="style-note"><i class="fa-solid fa-wand-magic-sparkles"></i> Original color and size are estimated from the screenshot.</div>
-
-    <button id="apply" class="wide-btn primary">✓ Apply Changes</button>
-    <button id="delete" class="wide-btn danger">Delete Text</button>
-  </div>
+<div class="panel-title"><span><i class="fa-solid fa-pen-to-square"></i> Text</span><button id="clearSelection" type="button">×</button></div>
+<div class="mode-switch" id="modeSwitch">
+<button class="active" id="editMode" type="button">✏️ Edit Text</button>
+<button id="moveMode" type="button">↔️ Move Text</button>
+</div>
+<div class="no-selection" id="noSelection">
+<i class="fa-regular fa-hand-pointer"></i>
+<b>Click text in the image</b>
+<small>Recognized text becomes editable.</small>
+</div>
+<div class="controls hidden" id="textControls">
+<label>Text<textarea id="textValue" rows="3"></textarea></label>
+<div class="control-row">
+<label>Font<select id="fontFamily">
+<option>Arial</option><option>Helvetica</option><option>Verdana</option>
+<option>Tahoma</option><option>Roboto</option><option>Georgia</option>
+<option>Times New Roman</option><option>Courier New</option>
+</select></label>
+<label>Size<input id="fontSize" max="180" min="6" type="number"/></label>
+</div>
+<div class="font-buttons">
+<button id="bold" type="button"><b>B</b></button>
+<button id="italic" type="button"><i>I</i></button>
+<button id="alignLeft" type="button">L</button>
+<button id="alignCenter" type="button">C</button>
+<button id="alignRight" type="button">R</button>
+</div>
+<label>Text Color<div class="color-line"><input id="textColor" type="color"/><span id="colorCode">#111111</span></div></label>
+<div class="control-row">
+<label>Letter spacing<input id="letterSpacing" max="30" min="-10" step=".1" type="number"/></label>
+<label>Line height<input id="lineHeight" max="3" min=".5" step=".05" type="number"/></label>
+</div>
+<div class="style-note"><i class="fa-solid fa-wand-magic-sparkles"></i> Original color and size are estimated from the screenshot.</div>
+<button class="wide-btn primary" id="apply">✓ Apply Changes</button>
+<button class="wide-btn danger" id="delete">Delete Text</button>
+</div>
 </aside>
-
 </div>
 </div>
 </section>
-
 <section class="info-section">
 <div class="container">
 <h2>Features</h2>
@@ -149,7 +129,6 @@
 <article><i class="fa-regular fa-image"></i><h3>Add Image</h3><p>Place another image over the screenshot and move it.</p></article>
 <article><i class="fa-solid fa-magnifying-glass-plus"></i><h3>Zoom</h3><p>Zoom the canvas without losing the editor controls.</p></article>
 </div>
-
 <h2>How to Work</h2>
 <div class="steps">
 <div><b>1</b><span>Upload your screenshot.</span></div>
@@ -159,7 +138,6 @@
 <div><b>5</b><span>Add text/images if needed.</span></div>
 <div><b>6</b><span>Download the edited PNG.</span></div>
 </div>
-
 <h2>FAQ</h2>
 <div class="faq">
 <details><summary>Can I edit text directly in the screenshot?</summary><p>Yes. OCR creates editable text overlays at the detected positions.</p></details>
@@ -170,11 +148,10 @@
 </div>
 </section>
 </main>
-
 <div id="footer-placeholder"></div>
 <script src="../../assets/js/navigation.js"></script>
 <script src="../../assets/js/app.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
-<script type="module" src="../../assets/js/tools/screenshot-editor.js"></script>
+<script src="../../assets/js/tools/screenshot-editor.js" type="module"></script>
 </body>
 </html>

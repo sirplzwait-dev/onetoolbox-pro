@@ -1,27 +1,25 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Image Collage Maker - OneToolBox</title>
-<meta name="description" content="Create beautiful photo collages online for free. Combine multiple images with layouts, spacing, borders and backgrounds.">
-<link rel="stylesheet" href="../../assets/css/reset.css">
-<link rel="stylesheet" href="../../assets/css/variables.css">
-<link rel="stylesheet" href="../../assets/css/layout.css">
-<link rel="stylesheet" href="../../assets/css/components.css">
-<link rel="stylesheet" href="../../assets/css/tools/image-collage-maker.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-<link rel="stylesheet" href="../assets/css/tool-content.css">
+<meta content="Image Collage Maker online free with OneToolBox. Use this image tools tool quickly in your browser without installing software." name="description"/>
+<link href="../../assets/css/reset.css" rel="stylesheet"/>
+<link href="../../assets/css/variables.css" rel="stylesheet"/>
+<link href="../../assets/css/layout.css" rel="stylesheet"/>
+<link href="../../assets/css/components.css" rel="stylesheet"/>
+<link href="../../assets/css/tools/image-collage-maker.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet"/>
+<link href="../assets/css/tool-content.css" rel="stylesheet"/>
 <script id="otb-theme-boot">(()=>{try{if(localStorage.getItem("onetoolbox-theme")==="dark")document.documentElement.classList.add("otb-dark-preload")}catch(e){}})();</script>
 <style id="otb-theme-boot-style">html.otb-dark-preload{background:#0f172a}html.otb-dark-preload body{background:#0f172a}</style>
-<link rel="preconnect" href="https://cdnjs.cloudflare.com">
-</head>
+<link href="https://cdnjs.cloudflare.com" rel="preconnect"/>
+<meta content="index,follow,max-image-preview:large" name="robots"/><link href="https://onetoolbox.in/pages/image-tools/image-collage-maker.html" rel="canonical"/><meta content="Image Collage Maker - OneToolBox" property="og:title"/><meta content="Image Collage Maker online free with OneToolBox. Use this image tools tool quickly in your browser without installing software." property="og:description"/><meta content="https://onetoolbox.in/pages/image-tools/image-collage-maker.html" property="og:url"/><meta content="OneToolBox" property="og:site_name"/><meta content="website" property="og:type"/><script src="/assets/js/analytics-config.js"></script><script src="/assets/js/onetoolbox-analytics.js"></script><script data-onetoolbox-schema="true" type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Image Collage Maker","url":"https://onetoolbox.in/pages/image-tools/image-collage-maker.html","description":"Image Collage Maker online free with OneToolBox. Use this image tools tool quickly in your browser without installing software.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script></head>
 <body>
-
 <div id="header-placeholder"></div>
-
 <main class="page page-offset">
-
 <section class="collage-hero">
 <div class="container">
 <div class="tool-badge"><i class="fa-solid fa-layer-group"></i> Free Image Tool</div>
@@ -29,28 +27,23 @@
 <p>Combine multiple photos into a beautiful collage. Choose a layout, adjust spacing and download your collage.</p>
 </div>
 </section>
-
 <section class="section">
 <div class="container">
 <div class="collage-workspace">
-
 <aside class="collage-controls">
 <div class="panel-title">
 <h2><i class="fa-solid fa-sliders"></i> Collage Settings</h2>
 </div>
-
 <label class="upload-btn" for="imageInput">
 <i class="fa-solid fa-images"></i> Add Images
 </label>
-<input id="imageInput" type="file" accept="image/png,image/jpeg,image/webp" multiple hidden>
+<input accept="image/png,image/jpeg,image/webp" hidden="" id="imageInput" multiple="" type="file"/>
 <p class="hint">Select the number of photos you want, then add them</p>
-
 <div class="control-group count-control">
 <label for="imageCountSlider">How Many Photos? <output id="imageCountSliderValue">4</output></label>
-<input id="imageCountSlider" class="collage-slider" type="range" min="2" max="9" value="4" step="1">
+<input class="collage-slider" id="imageCountSlider" max="9" min="2" step="1" type="range" value="4"/>
 <div class="slider-labels"><span>2</span><span>9</span></div>
 </div>
-
 <div class="control-group">
 <label for="layout">Layout</label>
 <select id="layout">
@@ -60,7 +53,6 @@
 <option value="featured">Featured</option>
 </select>
 </div>
-
 <div class="control-group">
 <label>Canvas Ratio</label>
 <div class="ratio-grid">
@@ -70,24 +62,20 @@
 <button class="ratio-btn" data-ratio="9:16" type="button">9:16</button>
 </div>
 </div>
-
 <div class="control-group">
 <label for="gap">Spacing</label>
-<input id="gap" type="range" min="0" max="60" value="12">
+<input id="gap" max="60" min="0" type="range" value="12"/>
 <span class="value" id="gapValue">12px</span>
 </div>
-
 <div class="control-group">
 <label for="radius">Corner Radius</label>
-<input id="radius" type="range" min="0" max="60" value="12">
+<input id="radius" max="60" min="0" type="range" value="12"/>
 <span class="value" id="radiusValue">12px</span>
 </div>
-
 <div class="control-group">
 <label for="background">Background</label>
-<input id="background" type="color" value="#ffffff">
+<input id="background" type="color" value="#ffffff"/>
 </div>
-
 <div class="control-group">
 <label for="fit">Image Fit</label>
 <select id="fit">
@@ -95,43 +83,36 @@
 <option value="contain">Contain</option>
 </select>
 </div>
-
 <div class="image-list-wrap">
 <div class="list-title"><span>Images</span><strong id="imageCount">0</strong></div>
-<div id="imageList" class="image-list"></div>
+<div class="image-list" id="imageList"></div>
 </div>
-
 <div class="button-grid">
-<button id="reset" class="tool-btn" type="button"><i class="fa-solid fa-arrows-rotate"></i> Reset</button>
-<button id="clear" class="danger-btn" type="button"><i class="fa-solid fa-trash"></i> Clear</button>
+<button class="tool-btn" id="reset" type="button"><i class="fa-solid fa-arrows-rotate"></i> Reset</button>
+<button class="danger-btn" id="clear" type="button"><i class="fa-solid fa-trash"></i> Clear</button>
 </div>
 </aside>
-
 <section class="collage-preview-area">
 <div class="preview-bar">
 <span id="status">Add images to start</span>
 <span id="sizeInfo">—</span>
 </div>
-
 <div class="preview-holder">
-<div id="emptyPreview" class="empty-preview">
+<div class="empty-preview" id="emptyPreview">
 <i class="fa-solid fa-layer-group"></i>
 <h3>Your collage will appear here</h3>
 <p>Add at least 2 images to create a collage.</p>
 </div>
-<canvas id="collageCanvas" hidden></canvas>
+<canvas hidden="" id="collageCanvas"></canvas>
 </div>
-
 <div class="download-row">
-<button id="downloadPng" class="download-btn" disabled><i class="fa-solid fa-download"></i> Download PNG</button>
-<button id="downloadJpg" class="download-btn jpg" disabled><i class="fa-solid fa-download"></i> Download JPG</button>
+<button class="download-btn" disabled="" id="downloadPng"><i class="fa-solid fa-download"></i> Download PNG</button>
+<button class="download-btn jpg" disabled="" id="downloadJpg"><i class="fa-solid fa-download"></i> Download JPG</button>
 </div>
 </section>
-
 </div>
 </div>
 </section>
-
 <section class="section">
 <div class="container">
 <div class="feature-grid">
@@ -142,7 +123,6 @@
 </div>
 </div>
 </section>
-
 <section class="section">
 <div class="container">
 <div class="content-card">
@@ -156,7 +136,6 @@
 </div>
 </div>
 </section>
-
 <section class="section">
 <div class="container">
 <div class="content-card faq">
@@ -169,13 +148,9 @@
 </div>
 </div>
 </section>
-
-
-
 <div id="footer-placeholder"></div>
-
 <script src="../../assets/js/navigation.js"></script>
 <script src="../../assets/js/app.js"></script>
 <script src="../../assets/js/tools/image-collage-maker.js"></script>
-</body>
+</main></body>
 </html>

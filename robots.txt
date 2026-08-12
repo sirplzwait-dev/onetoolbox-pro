@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
-
+Disallow: /docs/
+Disallow: /templates/
 Sitemap: https://onetoolbox.in/sitemap.xml

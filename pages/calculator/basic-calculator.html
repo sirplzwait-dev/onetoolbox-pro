@@ -1,111 +1,98 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Basic Calculator - OneToolBox</title>
-<link rel="stylesheet" href="../../assets/css/reset.css">
-<link rel="stylesheet" href="../../assets/css/variables.css">
-<link rel="stylesheet" href="../../assets/css/layout.css">
-<link rel="stylesheet" href="../../assets/css/components.css">
-<link rel="stylesheet" href="../../assets/css/calculator-tools.css">
-<link rel="stylesheet" href="../../assets/css/tools/basic-calculator.css">
-<link rel="stylesheet" href="../../assets/css/tool-ui.css">
-<link rel="stylesheet" href="../../assets/css/real-tool-ui.css">
-<link rel="stylesheet" href="../../assets/css/basic-calculator-final.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-</head>
+<link href="../../assets/css/reset.css" rel="stylesheet"/>
+<link href="../../assets/css/variables.css" rel="stylesheet"/>
+<link href="../../assets/css/layout.css" rel="stylesheet"/>
+<link href="../../assets/css/components.css" rel="stylesheet"/>
+<link href="../../assets/css/calculator-tools.css" rel="stylesheet"/>
+<link href="../../assets/css/tools/basic-calculator.css" rel="stylesheet"/>
+<link href="../../assets/css/tool-ui.css" rel="stylesheet"/>
+<link href="../../assets/css/real-tool-ui.css" rel="stylesheet"/>
+<link href="../../assets/css/basic-calculator-final.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet"/>
+<meta content="index,follow,max-image-preview:large" name="robots"/><meta content="Basic Calculator online free with OneToolBox. Use this calculator tools tool quickly in your browser without installing software." name="description"/><link href="https://onetoolbox.in/pages/calculator/basic-calculator.html" rel="canonical"/><meta content="Basic Calculator - OneToolBox" property="og:title"/><meta content="Basic Calculator online free with OneToolBox. Use this calculator tools tool quickly in your browser without installing software." property="og:description"/><meta content="https://onetoolbox.in/pages/calculator/basic-calculator.html" property="og:url"/><meta content="OneToolBox" property="og:site_name"/><meta content="website" property="og:type"/><script src="/assets/js/analytics-config.js"></script><script src="/assets/js/onetoolbox-analytics.js"></script><script data-onetoolbox-schema="true" type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Basic Calculator","url":"https://onetoolbox.in/pages/calculator/basic-calculator.html","description":"Basic Calculator online free with OneToolBox. Use this calculator tools tool quickly in your browser without installing software.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script></head>
 <body>
 <div id="header-placeholder"></div>
-
 <main class="page page-offset">
-  <section class="calculator-page">
-    <div class="container calculator-wrap">
-      <div class="calculator-heading">
-        <h1>Basic Calculator</h1>
-        <p>Fast and easy calculations — directly in your browser.</p>
-      </div>
-
-      <section class="calculator-shell" aria-label="Basic calculator">
-        <div class="calc-topbar">
-          <div>
-            <span class="calc-badge"><i class="fa-solid fa-calculator"></i> Calculator</span>
-          </div>
-          <button id="historyBtn" class="icon-btn" type="button" title="Show history" aria-label="Show history">
-            <i class="fa-solid fa-clock-rotate-left"></i>
-          </button>
-        </div>
-
-        <div class="calc-display">
-          <div class="calc-expression" id="expressionDisplay">0</div>
-          <div class="calc-answer" id="answerDisplay">0</div>
-        </div>
-
-        <div class="calc-mode-row">
-          <button class="mode-btn active" data-mode="DEG" type="button">Deg</button>
-          <button class="mode-btn" data-mode="RAD" type="button">Rad</button>
-          <span class="mode-spacer"></span>
-          <button class="mini-btn" data-action="copy" type="button" title="Copy result"><i class="fa-regular fa-copy"></i></button>
-          <button class="mini-btn" data-action="backspace" type="button" title="Backspace"><i class="fa-solid fa-delete-left"></i></button>
-        </div>
-
-        <div class="calc-grid">
-          <button class="calc-key function" data-action="toggle-inv" type="button">Inv</button>
-          <button class="calc-key function" data-insert="sin(" type="button">sin</button>
-          <button class="calc-key function" data-insert="ln(" type="button">ln</button>
-          <button class="calc-key number" data-insert="7" type="button">7</button>
-          <button class="calc-key number" data-insert="8" type="button">8</button>
-          <button class="calc-key number" data-insert="9" type="button">9</button>
-          <button class="calc-key operator" data-insert="/" type="button">÷</button>
-
-          <button class="calc-key function" data-insert="π" type="button">π</button>
-          <button class="calc-key function" data-insert="cos(" type="button">cos</button>
-          <button class="calc-key function" data-insert="log(" type="button">log</button>
-          <button class="calc-key number" data-insert="4" type="button">4</button>
-          <button class="calc-key number" data-insert="5" type="button">5</button>
-          <button class="calc-key number" data-insert="6" type="button">6</button>
-          <button class="calc-key operator" data-insert="*" type="button">×</button>
-
-          <button class="calc-key function" data-insert="e" type="button">e</button>
-          <button class="calc-key function" data-insert="tan(" type="button">tan</button>
-          <button class="calc-key function" data-insert="√(" type="button">√</button>
-          <button class="calc-key number" data-insert="1" type="button">1</button>
-          <button class="calc-key number" data-insert="2" type="button">2</button>
-          <button class="calc-key number" data-insert="3" type="button">3</button>
-          <button class="calc-key operator" data-insert="-" type="button">−</button>
-
-          <button class="calc-key function" data-insert="Ans" type="button">Ans</button>
-          <button class="calc-key function" data-insert="exp(" type="button">EXP</button>
-          <button class="calc-key function" data-insert="^" type="button">xʸ</button>
-          <button class="calc-key number wide-zero" data-insert="0" type="button">0</button>
-          <button class="calc-key number" data-insert="." type="button">.</button>
-          <button class="calc-key equals" data-action="equals" type="button">=</button>
-          <button class="calc-key operator" data-insert="+" type="button">+</button>
-
-          <button class="calc-key utility" data-insert="(" type="button">(</button>
-          <button class="calc-key utility" data-insert=")" type="button">)</button>
-          <button class="calc-key utility" data-insert="%" type="button">%</button>
-          <button class="calc-key clear" data-action="clear" type="button">AC</button>
-        </div>
-
-        <div class="calc-footer">
-          <span><i class="fa-solid fa-shield-halved"></i> Calculations stay in your browser</span>
-          <span id="statusText">Ready</span>
-        </div>
-      </section>
-
-      <aside class="calculator-note">
-        <strong>Tip:</strong> You can type directly from your keyboard too. Press <kbd>Enter</kbd> for <b>=</b> and <kbd>Esc</kbd> for <b>AC</b>.
+<section class="calculator-page">
+<div class="container calculator-wrap">
+<div class="calculator-heading">
+<h1>Basic Calculator</h1>
+<p>Fast and easy calculations — directly in your browser.</p>
+</div>
+<section aria-label="Basic calculator" class="calculator-shell">
+<div class="calc-topbar">
+<div>
+<span class="calc-badge"><i class="fa-solid fa-calculator"></i> Calculator</span>
+</div>
+<button aria-label="Show history" class="icon-btn" id="historyBtn" title="Show history" type="button">
+<i class="fa-solid fa-clock-rotate-left"></i>
+</button>
+</div>
+<div class="calc-display">
+<div class="calc-expression" id="expressionDisplay">0</div>
+<div class="calc-answer" id="answerDisplay">0</div>
+</div>
+<div class="calc-mode-row">
+<button class="mode-btn active" data-mode="DEG" type="button">Deg</button>
+<button class="mode-btn" data-mode="RAD" type="button">Rad</button>
+<span class="mode-spacer"></span>
+<button class="mini-btn" data-action="copy" title="Copy result" type="button"><i class="fa-regular fa-copy"></i></button>
+<button class="mini-btn" data-action="backspace" title="Backspace" type="button"><i class="fa-solid fa-delete-left"></i></button>
+</div>
+<div class="calc-grid">
+<button class="calc-key function" data-action="toggle-inv" type="button">Inv</button>
+<button class="calc-key function" data-insert="sin(" type="button">sin</button>
+<button class="calc-key function" data-insert="ln(" type="button">ln</button>
+<button class="calc-key number" data-insert="7" type="button">7</button>
+<button class="calc-key number" data-insert="8" type="button">8</button>
+<button class="calc-key number" data-insert="9" type="button">9</button>
+<button class="calc-key operator" data-insert="/" type="button">÷</button>
+<button class="calc-key function" data-insert="π" type="button">π</button>
+<button class="calc-key function" data-insert="cos(" type="button">cos</button>
+<button class="calc-key function" data-insert="log(" type="button">log</button>
+<button class="calc-key number" data-insert="4" type="button">4</button>
+<button class="calc-key number" data-insert="5" type="button">5</button>
+<button class="calc-key number" data-insert="6" type="button">6</button>
+<button class="calc-key operator" data-insert="*" type="button">×</button>
+<button class="calc-key function" data-insert="e" type="button">e</button>
+<button class="calc-key function" data-insert="tan(" type="button">tan</button>
+<button class="calc-key function" data-insert="√(" type="button">√</button>
+<button class="calc-key number" data-insert="1" type="button">1</button>
+<button class="calc-key number" data-insert="2" type="button">2</button>
+<button class="calc-key number" data-insert="3" type="button">3</button>
+<button class="calc-key operator" data-insert="-" type="button">−</button>
+<button class="calc-key function" data-insert="Ans" type="button">Ans</button>
+<button class="calc-key function" data-insert="exp(" type="button">EXP</button>
+<button class="calc-key function" data-insert="^" type="button">xʸ</button>
+<button class="calc-key number wide-zero" data-insert="0" type="button">0</button>
+<button class="calc-key number" data-insert="." type="button">.</button>
+<button class="calc-key equals" data-action="equals" type="button">=</button>
+<button class="calc-key operator" data-insert="+" type="button">+</button>
+<button class="calc-key utility" data-insert="(" type="button">(</button>
+<button class="calc-key utility" data-insert=")" type="button">)</button>
+<button class="calc-key utility" data-insert="%" type="button">%</button>
+<button class="calc-key clear" data-action="clear" type="button">AC</button>
+</div>
+<div class="calc-footer">
+<span><i class="fa-solid fa-shield-halved"></i> Calculations stay in your browser</span>
+<span id="statusText">Ready</span>
+</div>
+</section>
+<aside class="calculator-note">
+<strong>Tip:</strong> You can type directly from your keyboard too. Press <kbd>Enter</kbd> for <b>=</b> and <kbd>Esc</kbd> for <b>AC</b>.
       </aside>
-    </div>
-  </section>
+</div>
+</section>
 </main>
-
-
-<section class="calc-info-section"><div class="calc-info-title"><span class="calc-section-kicker">OneToolBox</span><h2>Basic Calculator Features</h2><p>Everything you need for quick everyday calculations.</p></div><div class="calc-feature-grid"><article class="calc-feature-card"><div class="calc-feature-icon">⚡</div><div><h3>Fast & Simple</h3><p>Calculate instantly in your browser.</p></div></article><article class="calc-feature-card"><div class="calc-feature-icon">ƒx</div><div><h3>Scientific Functions</h3><p>Trigonometry, logarithms, powers and roots.</p></div></article><article class="calc-feature-card"><div class="calc-feature-icon">⌨</div><div><h3>Keyboard Support</h3><p>Type expressions and press Enter.</p></div></article><article class="calc-feature-card"><div class="calc-feature-icon">🔒</div><div><h3>Browser Based</h3><p>Calculations run locally in your browser.</p></div></article></div></section>
+<section class="calc-info-section"><div class="calc-info-title"><span class="calc-section-kicker">OneToolBox</span><h2>Basic Calculator Features</h2><p>Everything you need for quick everyday calculations.</p></div><div class="calc-feature-grid"><article class="calc-feature-card"><div class="calc-feature-icon">⚡</div><div><h3>Fast &amp; Simple</h3><p>Calculate instantly in your browser.</p></div></article><article class="calc-feature-card"><div class="calc-feature-icon">ƒx</div><div><h3>Scientific Functions</h3><p>Trigonometry, logarithms, powers and roots.</p></div></article><article class="calc-feature-card"><div class="calc-feature-icon">⌨</div><div><h3>Keyboard Support</h3><p>Type expressions and press Enter.</p></div></article><article class="calc-feature-card"><div class="calc-feature-icon">🔒</div><div><h3>Browser Based</h3><p>Calculations run locally in your browser.</p></div></article></div></section>
 <section class="calc-faq-section"><div class="calc-info-title"><span class="calc-section-kicker">FAQ</span><h2>Frequently Asked Questions</h2><p>Quick answers about the calculator.</p></div><div class="calc-faq"><details><summary>Is the Basic Calculator free?</summary><p>Yes. It is designed to work directly in your browser.</p></details><details><summary>Does it need a file upload?</summary><p>No. Enter numbers or an expression directly into the calculator.</p></details><details><summary>Does it support scientific calculations?</summary><p>Yes. It includes sin, cos, tan, log, ln, square root, powers, π and e.</p></details><details><summary>Can I use my keyboard?</summary><p>Yes. Enter calculates, Backspace deletes and Esc clears.</p></details></div></section>
 <div id="footer-placeholder"></div>
-
 <script src="../../assets/js/app.js"></script>
 <script src="../../assets/js/navigation.js"></script>
 <script src="../../assets/js/tools/basic-calculator.js"></script>

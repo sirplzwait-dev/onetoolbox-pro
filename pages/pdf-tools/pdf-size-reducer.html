@@ -1,113 +1,96 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>PDF Size Reducer - OneToolBox</title>
-<meta name="description" content="Reduce PDF file size with OneToolBox PDF Size Reducer.">
-<link rel="stylesheet" href="../../assets/css/reset.css">
-<link rel="stylesheet" href="../../assets/css/variables.css">
-<link rel="stylesheet" href="../../assets/css/layout.css">
-<link rel="stylesheet" href="../../assets/css/components.css">
-<link rel="stylesheet" href="../../assets/css/pdf-tools/pdf-size-reducer.css?v=final-clean">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<meta content="📉 PDF Size Reducer online free with OneToolBox. Use this pdf tools tool quickly in your browser without installing software." name="description"/>
+<link href="../../assets/css/reset.css" rel="stylesheet"/>
+<link href="../../assets/css/variables.css" rel="stylesheet"/>
+<link href="../../assets/css/layout.css" rel="stylesheet"/>
+<link href="../../assets/css/components.css" rel="stylesheet"/>
+<link href="../../assets/css/pdf-tools/pdf-size-reducer.css?v=final-clean" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<link rel="stylesheet" href="../assets/css/tool-content.css">
+<link href="../assets/css/tool-content.css" rel="stylesheet"/>
 <script id="otb-theme-boot">(()=>{try{if(localStorage.getItem("onetoolbox-theme")==="dark")document.documentElement.classList.add("otb-dark-preload")}catch(e){}})();</script>
 <style id="otb-theme-boot-style">html.otb-dark-preload{background:#0f172a}html.otb-dark-preload body{background:#0f172a}</style>
-<link rel="preconnect" href="https://cdnjs.cloudflare.com">
-</head>
+<link href="https://cdnjs.cloudflare.com" rel="preconnect"/>
+<meta content="index,follow,max-image-preview:large" name="robots"/><link href="https://onetoolbox.in/pages/pdf-tools/pdf-size-reducer.html" rel="canonical"/><meta content="PDF Size Reducer - OneToolBox" property="og:title"/><meta content="📉 PDF Size Reducer online free with OneToolBox. Use this pdf tools tool quickly in your browser without installing software." property="og:description"/><meta content="https://onetoolbox.in/pages/pdf-tools/pdf-size-reducer.html" property="og:url"/><meta content="OneToolBox" property="og:site_name"/><meta content="website" property="og:type"/><script src="/assets/js/analytics-config.js"></script><script src="/assets/js/onetoolbox-analytics.js"></script><script data-onetoolbox-schema="true" type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"📉 PDF Size Reducer","url":"https://onetoolbox.in/pages/pdf-tools/pdf-size-reducer.html","description":"📉 PDF Size Reducer online free with OneToolBox. Use this pdf tools tool quickly in your browser without installing software.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script></head>
 <body>
-
 <div id="header-placeholder"></div>
-
 <main class="page page-offset">
-
 <section class="tool-hero">
 <div class="container">
-  <h1>📉 PDF Size Reducer</h1>
-  <p>Reduce PDF file size while keeping the best practical quality.</p>
+<h1>📉 PDF Size Reducer</h1>
+<p>Reduce PDF file size while keeping the best practical quality.</p>
 </div>
 </section>
-
 <section class="section">
 <div class="container">
 <div class="psr-workspace">
-
 <div class="psr-card">
-  <h3>Upload PDF</h3>
-  <div class="psr-drop" id="dropZone">
-    <i class="fa-solid fa-cloud-arrow-up psr-upload-icon"></i>
-    <h4 id="fileName">Upload PDF</h4>
-    <p>📁 Choose PDF<br>🖱️ Drag &amp; Drop</p>
-    <label class="choose-btn psr-choose">
-      <i class="fa-solid fa-file-pdf"></i> Choose PDF
-      <input type="file" id="fileInput" accept="application/pdf,.pdf" hidden>
-    </label>
-    <button class="btn-reset" id="resetBtn" type="button"><i class="fa-solid fa-rotate-left"></i> Reset</button>
-  </div>
-  <div class="psr-info-row"><span>Original Size:</span><b id="originalSize">0 KB</b></div>
-  <div class="psr-info-row"><span>Pages:</span><b id="pages">0</b></div>
+<h3>Upload PDF</h3>
+<div class="psr-drop" id="dropZone">
+<i class="fa-solid fa-cloud-arrow-up psr-upload-icon"></i>
+<h4 id="fileName">Upload PDF</h4>
+<p>📁 Choose PDF<br/>🖱️ Drag &amp; Drop</p>
+<label class="choose-btn psr-choose">
+<i class="fa-solid fa-file-pdf"></i> Choose PDF
+      <input accept="application/pdf,.pdf" hidden="" id="fileInput" type="file"/>
+</label>
+<button class="btn-reset" id="resetBtn" type="button"><i class="fa-solid fa-rotate-left"></i> Reset</button>
 </div>
-
+<div class="psr-info-row"><span>Original Size:</span><b id="originalSize">0 KB</b></div>
+<div class="psr-info-row"><span>Pages:</span><b id="pages">0</b></div>
+</div>
 <div class="psr-card">
-  <h3>Compression</h3>
-
-  <label class="psr-label">Compression Level</label>
-  <div class="psr-levels">
-    <button type="button" data-level="low"><i class="fa-solid fa-feather"></i><b>Low</b><small>Best quality</small></button>
-    <button type="button" data-level="medium" class="active"><i class="fa-solid fa-scale-balanced"></i><b>Medium</b><small>Recommended</small></button>
-    <button type="button" data-level="high"><i class="fa-solid fa-compress"></i><b>High</b><small>Smallest</small></button>
-  </div>
-
-  <div class="psr-setting">
-    <div><label for="quality">Image Quality</label><strong id="qualityValue">70%</strong></div>
-    <input id="quality" class="psr-range" type="range" min="30" max="90" value="70">
-    <small><span>Smaller file</span><span>Better quality</span></small>
-  </div>
-
-  <div class="psr-setting">
-    <div><label for="dpi">Resolution</label><strong id="dpiValue">120 DPI</strong></div>
-    <input id="dpi" class="psr-range" type="range" min="72" max="180" step="6" value="120">
-    <small><span>72 DPI</span><span>180 DPI</span></small>
-  </div>
-
-  <div class="psr-tip"><i class="fa-solid fa-lightbulb"></i><span><b>Recommended:</b> Medium compression gives a good balance between size and readability.</span></div>
-
-  <button class="btn btn-primary psr-compress" id="compressBtn" type="button" disabled>
-    <i class="fa-solid fa-compress"></i> Reduce PDF Size
+<h3>Compression</h3>
+<label class="psr-label">Compression Level</label>
+<div class="psr-levels">
+<button data-level="low" type="button"><i class="fa-solid fa-feather"></i><b>Low</b><small>Best quality</small></button>
+<button class="active" data-level="medium" type="button"><i class="fa-solid fa-scale-balanced"></i><b>Medium</b><small>Recommended</small></button>
+<button data-level="high" type="button"><i class="fa-solid fa-compress"></i><b>High</b><small>Smallest</small></button>
+</div>
+<div class="psr-setting">
+<div><label for="quality">Image Quality</label><strong id="qualityValue">70%</strong></div>
+<input class="psr-range" id="quality" max="90" min="30" type="range" value="70"/>
+<small><span>Smaller file</span><span>Better quality</span></small>
+</div>
+<div class="psr-setting">
+<div><label for="dpi">Resolution</label><strong id="dpiValue">120 DPI</strong></div>
+<input class="psr-range" id="dpi" max="180" min="72" step="6" type="range" value="120"/>
+<small><span>72 DPI</span><span>180 DPI</span></small>
+</div>
+<div class="psr-tip"><i class="fa-solid fa-lightbulb"></i><span><b>Recommended:</b> Medium compression gives a good balance between size and readability.</span></div>
+<button class="btn btn-primary psr-compress" disabled="" id="compressBtn" type="button">
+<i class="fa-solid fa-compress"></i> Reduce PDF Size
   </button>
-
-  <div class="psr-progress"><div id="progressBar"></div></div>
-  <div class="psr-progress-text"><span id="status">Choose a PDF to begin.</span><b id="percent">0%</b></div>
+<div class="psr-progress"><div id="progressBar"></div></div>
+<div class="psr-progress-text"><span id="status">Choose a PDF to begin.</span><b id="percent">0%</b></div>
 </div>
-
 <div class="psr-card">
-  <h3>Reduced PDF</h3>
-  <div class="psr-result">
-    <i class="fa-solid fa-file-circle-check"></i>
-    <h4>Ready when you are</h4>
-    <p>Upload a PDF and reduce its size.</p>
-  </div>
-
-  <div class="psr-result-stats">
-    <div><span>Original</span><b id="resultOriginal">—</b></div>
-    <div><i class="fa-solid fa-arrow-right"></i></div>
-    <div><span>Reduced</span><b id="resultSize">—</b></div>
-  </div>
-
-  <div class="psr-saved" id="saved">Size reduction: —</div>
-
-  <button class="btn btn-success psr-download" id="downloadBtn" type="button" disabled>
-    <i class="fa-solid fa-download"></i> Download PDF
+<h3>Reduced PDF</h3>
+<div class="psr-result">
+<i class="fa-solid fa-file-circle-check"></i>
+<h4>Ready when you are</h4>
+<p>Upload a PDF and reduce its size.</p>
+</div>
+<div class="psr-result-stats">
+<div><span>Original</span><b id="resultOriginal">—</b></div>
+<div><i class="fa-solid fa-arrow-right"></i></div>
+<div><span>Reduced</span><b id="resultSize">—</b></div>
+</div>
+<div class="psr-saved" id="saved">Size reduction: —</div>
+<button class="btn btn-success psr-download" disabled="" id="downloadBtn" type="button">
+<i class="fa-solid fa-download"></i> Download PDF
   </button>
 </div>
-
 </div>
 </div>
 </section>
-
 <section class="section psr-section">
 <div class="container">
 <h2 class="psr-section-title">How to Reduce PDF Size</h2>
@@ -118,7 +101,6 @@
 </div>
 </div>
 </section>
-
 <section class="section psr-section">
 <div class="container">
 <h2 class="psr-section-title">What Can You Use It For?</h2>
@@ -130,13 +112,11 @@
 </div>
 </div>
 </section>
-
 <section class="section psr-section psr-privacy-section">
 <div class="container">
 <div class="psr-privacy"><div class="psr-privacy-icon"><i class="fa-solid fa-shield-halved"></i></div><div><h2>Privacy &amp; File Handling</h2><p>This PDF reducer performs its main processing in the browser. It does not upload the selected PDF to a OneToolBox server.</p></div></div>
 </div>
 </section>
-
 <section class="section psr-section psr-faq-section">
 <div class="container">
 <h2 class="psr-section-title">Frequently Asked Questions</h2>
@@ -149,12 +129,9 @@
 </div>
 </div>
 </section>
-
-<section class="otb-tool-info"><div class="container"><div class="otb-tool-info-head"><h2>How It Works</h2><p>Use 📉 PDF Size Reducer in a few simple steps.</p></div><div class="otb-tool-info-grid"><div class="otb-tool-info-card"><h3>1. Open the tool</h3><p>Open this page and review the available options before starting.</p></div><div class="otb-tool-info-card"><h3>2. Add your input</h3><p>Select, enter or drop the content required by the tool, then choose the settings you need.</p></div><div class="otb-tool-info-card"><h3>3. Process & download</h3><p>Run the tool, check the result, make adjustments if available, and download the finished file or result.</p></div></div></div></section>
+<section class="otb-tool-info"><div class="container"><div class="otb-tool-info-head"><h2>How It Works</h2><p>Use 📉 PDF Size Reducer in a few simple steps.</p></div><div class="otb-tool-info-grid"><div class="otb-tool-info-card"><h3>1. Open the tool</h3><p>Open this page and review the available options before starting.</p></div><div class="otb-tool-info-card"><h3>2. Add your input</h3><p>Select, enter or drop the content required by the tool, then choose the settings you need.</p></div><div class="otb-tool-info-card"><h3>3. Process &amp; download</h3><p>Run the tool, check the result, make adjustments if available, and download the finished file or result.</p></div></div></div></section>
 </main>
-
 <div id="footer-placeholder"></div>
-
 <script src="../../assets/js/navigation.js"></script>
 <script src="../../assets/js/app.js"></script>
 <script src="../../assets/js/pdf-tools/pdf-size-reducer.js"></script>

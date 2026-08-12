@@ -1,976 +1,528 @@
 <!DOCTYPE html>
+
 <html lang="en">
-
 <head>
-
-    <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
-    <title>Flip Image Online - OneToolBox</title>
-
-    <meta name="description"
-          content="Flip images online for free. Flip JPG, PNG and WEBP images horizontally or vertically and download them instantly.">
-
-    <meta name="keywords"
-          content="flip image, flip photo, mirror image, flip jpg, flip png, flip image online">
-
-
-    <!-- COMMON CSS -->
-
-    <link rel="stylesheet"
-          href="../../assets/css/reset.css">
-
-    <link rel="stylesheet"
-          href="../../assets/css/variables.css">
-
-    <link rel="stylesheet"
-          href="../../assets/css/layout.css">
-
-    <link rel="stylesheet"
-          href="../../assets/css/components.css">
-
-
-    <!-- FLIP IMAGE CSS -->
-
-    <link rel="stylesheet"
-          href="../../assets/css/tools/flip-image.css">
-
-
-    <!-- FONT AWESOME -->
-
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-
-<link rel="stylesheet" href="../assets/css/tool-content.css">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Flip Image Online - OneToolBox</title>
+<meta content="↔️ Flip Image online free with OneToolBox. Use this image tools tool quickly in your browser without installing software." name="description"/>
+<meta content="flip image, flip photo, mirror image, flip jpg, flip png, flip image online" name="keywords"/>
+<!-- COMMON CSS -->
+<link href="../../assets/css/reset.css" rel="stylesheet"/>
+<link href="../../assets/css/variables.css" rel="stylesheet"/>
+<link href="../../assets/css/layout.css" rel="stylesheet"/>
+<link href="../../assets/css/components.css" rel="stylesheet"/>
+<!-- FLIP IMAGE CSS -->
+<link href="../../assets/css/tools/flip-image.css" rel="stylesheet"/>
+<!-- FONT AWESOME -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet"/>
+<link href="../assets/css/tool-content.css" rel="stylesheet"/>
 <script id="otb-theme-boot">(()=>{try{if(localStorage.getItem("onetoolbox-theme")==="dark")document.documentElement.classList.add("otb-dark-preload")}catch(e){}})();</script>
 <style id="otb-theme-boot-style">html.otb-dark-preload{background:#0f172a}html.otb-dark-preload body{background:#0f172a}</style>
-<link rel="preconnect" href="https://cdnjs.cloudflare.com">
-</head>
-
-
+<link href="https://cdnjs.cloudflare.com" rel="preconnect"/>
+<meta content="index,follow,max-image-preview:large" name="robots"/><link href="https://onetoolbox.in/pages/image-tools/flip-image.html" rel="canonical"/><meta content="Flip Image Online - OneToolBox" property="og:title"/><meta content="↔️ Flip Image online free with OneToolBox. Use this image tools tool quickly in your browser without installing software." property="og:description"/><meta content="https://onetoolbox.in/pages/image-tools/flip-image.html" property="og:url"/><meta content="OneToolBox" property="og:site_name"/><meta content="website" property="og:type"/><script src="/assets/js/analytics-config.js"></script><script src="/assets/js/onetoolbox-analytics.js"></script><script data-onetoolbox-schema="true" type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"↔️ Flip Image","url":"https://onetoolbox.in/pages/image-tools/flip-image.html","description":"↔️ Flip Image online free with OneToolBox. Use this image tools tool quickly in your browser without installing software.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script></head>
 <body>
-
-
 <!-- =====================================================
      HEADER
 ===================================================== -->
-
 <div id="header-placeholder"></div>
-
-
-
 <main class="page page-offset">
-
-
 <!-- =====================================================
      HERO
 ===================================================== -->
-
 <section class="tool-hero">
-
-    <div class="container">
-
-        <h1>
+<div class="container">
+<h1>
             ↔️ Flip Image
         </h1>
-
-        <p>
+<p>
             Flip JPG, PNG and WEBP images horizontally or
             vertically. Preview and download your flipped image
             instantly.
         </p>
-
-    </div>
-
+</div>
 </section>
-
-
-
 <!-- =====================================================
      MAIN TOOL
 ===================================================== -->
-
 <section class="section">
-
 <div class="container">
-
-
 <div class="flip-box">
-
-
 <!-- =====================================================
      UPLOAD CARD
 ===================================================== -->
-
 <div class="flip-card">
-
-
-    <h3>
+<h3>
         Upload Image
     </h3>
-
-
-    <div class="upload-area"
-         id="uploadArea">
-
-
-        <!-- ICON -->
-
-        <i class="fa-solid fa-cloud-arrow-up"
-           id="uploadIcon"></i>
-
-
-        <!-- PREVIEW -->
-
-        <img
-            id="originalPreview"
-            class="original-preview"
-            src=""
-            alt="Original Image Preview">
-
-
-        <!-- TITLE -->
-
-        <h4 id="uploadText">
+<div class="upload-area" id="uploadArea">
+<!-- ICON -->
+<i class="fa-solid fa-cloud-arrow-up" id="uploadIcon"></i>
+<!-- PREVIEW -->
+<img alt="Original Image Preview" class="original-preview" id="originalPreview" src=""/>
+<!-- TITLE -->
+<h4 id="uploadText">
             Upload Image
         </h4>
-
-
-        <!-- INFO -->
-
-        <p id="uploadInfo">
+<!-- INFO -->
+<p id="uploadInfo">
 
             📁 Choose Image
 
-            <br>
+            <br/>
 
             🖱 Drag &amp; Drop
 
-            <br>
+            <br/>
 
             📋 Paste Image
 
         </p>
-
-
-        <!-- CHOOSE -->
-
-        <label class="choose-btn">
-
-            <i class="fa-solid fa-image"></i>
+<!-- CHOOSE -->
+<label class="choose-btn">
+<i class="fa-solid fa-image"></i>
 
             Choose Image
 
-            <input
-                type="file"
-                id="imageInput"
-                accept="image/*">
-
-        </label>
-
-
-        <!-- RESET -->
-
-        <button
-            type="button"
-            class="btn-reset"
-            id="resetBtn">
-
-            <i class="fa-solid fa-rotate-left"></i>
+            <input accept="image/*" id="imageInput" type="file"/>
+</label>
+<!-- RESET -->
+<button class="btn-reset" id="resetBtn" type="button">
+<i class="fa-solid fa-rotate-left"></i>
 
             Reset
 
         </button>
-
-
-    </div>
-
-
-    <!-- ORIGINAL SIZE -->
-
-    <div class="info">
-
-        <span>
+</div>
+<!-- ORIGINAL SIZE -->
+<div class="info">
+<span>
             Original Size:
         </span>
-
-        <b id="originalSize">
+<b id="originalSize">
             0 KB
         </b>
-
-    </div>
-
-
-    <!-- ORIGINAL DIMENSION -->
-
-    <div class="info">
-
-        <span>
+</div>
+<!-- ORIGINAL DIMENSION -->
+<div class="info">
+<span>
             Original Dimension:
         </span>
-
-        <b id="originalDimension">
+<b id="originalDimension">
             0 × 0 px
         </b>
-
-    </div>
-
-
-    <!-- ORIGINAL FORMAT -->
-
-    <div class="info">
-
-        <span>
+</div>
+<!-- ORIGINAL FORMAT -->
+<div class="info">
+<span>
             Format:
         </span>
-
-        <b id="originalFormat">
+<b id="originalFormat">
             -
         </b>
-
-    </div>
-
-
 </div>
-
-
-
+</div>
 <!-- =====================================================
      FLIP SETTINGS CARD
 ===================================================== -->
-
 <div class="flip-card">
-
-
-    <h3>
+<h3>
         Flip Settings
     </h3>
-
-
-    <!-- HORIZONTAL -->
-
-    <div class="setting-group">
-
-        <label>
+<!-- HORIZONTAL -->
+<div class="setting-group">
+<label>
             Horizontal Flip
         </label>
-
-
-        <button
-            type="button"
-            class="flip-control"
-            id="flipHorizontal">
-
-            <i class="fa-solid fa-arrows-left-right"></i>
+<button class="flip-control" id="flipHorizontal" type="button">
+<i class="fa-solid fa-arrows-left-right"></i>
 
             Flip Horizontal
 
         </button>
-
-    </div>
-
-
-
-    <!-- VERTICAL -->
-
-    <div class="setting-group">
-
-        <label>
+</div>
+<!-- VERTICAL -->
+<div class="setting-group">
+<label>
             Vertical Flip
         </label>
-
-
-        <button
-            type="button"
-            class="flip-control"
-            id="flipVertical">
-
-            <i class="fa-solid fa-arrows-up-down"></i>
+<button class="flip-control" id="flipVertical" type="button">
+<i class="fa-solid fa-arrows-up-down"></i>
 
             Flip Vertical
 
         </button>
-
-    </div>
-
-
-
-    <!-- BOTH -->
-
-    <div class="setting-group">
-
-        <label>
+</div>
+<!-- BOTH -->
+<div class="setting-group">
+<label>
             Quick Flip
         </label>
-
-
-        <div class="quick-flip-grid">
-
-
-            <button
-                type="button"
-                class="quick-flip-btn"
-                id="flipBoth">
-
-                <i class="fa-solid fa-arrows-up-down-left-right"></i>
+<div class="quick-flip-grid">
+<button class="quick-flip-btn" id="flipBoth" type="button">
+<i class="fa-solid fa-arrows-up-down-left-right"></i>
 
                 Flip Both
 
             </button>
-
-
-            <button
-                type="button"
-                class="quick-flip-btn"
-                id="resetFlip">
-
-                <i class="fa-solid fa-arrow-rotate-left"></i>
+<button class="quick-flip-btn" id="resetFlip" type="button">
+<i class="fa-solid fa-arrow-rotate-left"></i>
 
                 Original
 
             </button>
-
-
-        </div>
-
-    </div>
-
-
-
-    <!-- LIVE STATUS -->
-
-    <div class="flip-status">
-
-        <span>
+</div>
+</div>
+<!-- LIVE STATUS -->
+<div class="flip-status">
+<span>
             Current Flip:
         </span>
-
-        <strong id="flipStatus">
+<strong id="flipStatus">
             Original
         </strong>
-
-    </div>
-
-
-
-    <!-- OUTPUT FORMAT -->
-
-    <div class="setting-group">
-
-        <label>
+</div>
+<!-- OUTPUT FORMAT -->
+<div class="setting-group">
+<label>
             Output Format
         </label>
-
-
-        <select id="formatSelect">
-
-            <option value="image/jpeg">
+<select id="formatSelect">
+<option value="image/jpeg">
                 JPG
             </option>
-
-            <option value="image/png">
+<option value="image/png">
                 PNG
             </option>
-
-            <option value="image/webp">
+<option value="image/webp">
                 WEBP
             </option>
-
-        </select>
-
-    </div>
-
-
-
-    <!-- QUALITY -->
-
-    <div class="setting-group">
-
-
-        <div class="setting-heading">
-
-            <label>
+</select>
+</div>
+<!-- QUALITY -->
+<div class="setting-group">
+<div class="setting-heading">
+<label>
                 Quality
             </label>
-
-            <strong id="qualityValue">
+<strong id="qualityValue">
                 90%
             </strong>
-
-        </div>
-
-
-        <input
-            type="range"
-            id="qualityRange"
-            min="10"
-            max="100"
-            value="90"
-            step="1">
-
-    </div>
-
-
-
-    <!-- APPLY -->
-
-    <button
-        type="button"
-        class="btn-primary"
-        id="applyBtn">
-
-        <i class="fa-solid fa-arrows-left-right"></i>
+</div>
+<input id="qualityRange" max="100" min="10" step="1" type="range" value="90"/>
+</div>
+<!-- APPLY -->
+<button class="btn-primary" id="applyBtn" type="button">
+<i class="fa-solid fa-arrows-left-right"></i>
 
         Flip Image
 
     </button>
-
-
-
-    <!-- RESET SETTINGS -->
-
-    <button
-        type="button"
-        class="btn-secondary"
-        id="resetSettings">
-
-        <i class="fa-solid fa-arrow-rotate-left"></i>
+<!-- RESET SETTINGS -->
+<button class="btn-secondary" id="resetSettings" type="button">
+<i class="fa-solid fa-arrow-rotate-left"></i>
 
         Reset Settings
 
     </button>
-
-
 </div>
-
-
-
 <!-- =====================================================
      RESULT CARD
 ===================================================== -->
-
 <div class="flip-card">
-
-
-    <h3>
+<h3>
         Result
     </h3>
-
-
-    <!-- RESULT PREVIEW -->
-
-    <div class="image-preview">
-
-
-        <img
-            id="resultImage"
-            src=""
-            alt="Flipped Image">
-
-
-        <span id="resultText">
+<!-- RESULT PREVIEW -->
+<div class="image-preview">
+<img alt="Flipped Image" id="resultImage" src=""/>
+<span id="resultText">
             Flipped image will appear here
         </span>
-
-
-    </div>
-
-
-    <!-- DIMENSION -->
-
-    <div class="info">
-
-        <span>
+</div>
+<!-- DIMENSION -->
+<div class="info">
+<span>
             New Dimension:
         </span>
-
-        <b id="newDimension">
+<b id="newDimension">
             0 × 0 px
         </b>
-
-    </div>
-
-
-    <!-- SIZE -->
-
-    <div class="info">
-
-        <span>
+</div>
+<!-- SIZE -->
+<div class="info">
+<span>
             New Size:
         </span>
-
-        <b id="newSize">
+<b id="newSize">
             0 KB
         </b>
-
-    </div>
-
-
-    <!-- FORMAT -->
-
-    <div class="info">
-
-        <span>
+</div>
+<!-- FORMAT -->
+<div class="info">
+<span>
             Format:
         </span>
-
-        <b id="newFormat">
+<b id="newFormat">
             -
         </b>
-
-    </div>
-
-
-    <!-- STATUS -->
-
-    <div class="info">
-
-        <span>
+</div>
+<!-- STATUS -->
+<div class="info">
+<span>
             Flip:
         </span>
-
-        <b id="newFlip">
+<b id="newFlip">
             Original
         </b>
-
-    </div>
-
-
-    <!-- DOWNLOAD -->
-
-    <a
-        href="#"
-        class="btn-success disabled"
-        id="downloadBtn">
-
-        <i class="fa-solid fa-download"></i>
+</div>
+<!-- DOWNLOAD -->
+<a class="btn-success disabled" href="#" id="downloadBtn">
+<i class="fa-solid fa-download"></i>
 
         Download Image
 
     </a>
-
-
 </div>
-
-
 </div>
-
 </div>
-
 </section>
-
-
-
 <!-- =====================================================
      FEATURES
 ===================================================== -->
-
 <section class="section">
-
 <div class="container">
-
-
 <div class="content-card">
-
-
 <h2>
     🚀 Flip Image Features
 </h2>
-
-
 <div class="feature-grid">
-
-
-    <!-- FEATURE 1 -->
-
-    <div class="feature-item">
-
-        <i class="fa-solid fa-arrows-left-right"></i>
-
-        <h3>
+<!-- FEATURE 1 -->
+<div class="feature-item">
+<i class="fa-solid fa-arrows-left-right"></i>
+<h3>
             Horizontal Flip
         </h3>
-
-        <p>
+<p>
             Mirror your image from left to right
             with one click.
         </p>
-
-    </div>
-
-
-    <!-- FEATURE 2 -->
-
-    <div class="feature-item">
-
-        <i class="fa-solid fa-arrows-up-down"></i>
-
-        <h3>
+</div>
+<!-- FEATURE 2 -->
+<div class="feature-item">
+<i class="fa-solid fa-arrows-up-down"></i>
+<h3>
             Vertical Flip
         </h3>
-
-        <p>
+<p>
             Flip your image from top to bottom
             instantly.
         </p>
-
-    </div>
-
-
-    <!-- FEATURE 3 -->
-
-    <div class="feature-item">
-
-        <i class="fa-solid fa-arrows-up-down-left-right"></i>
-
-        <h3>
+</div>
+<!-- FEATURE 3 -->
+<div class="feature-item">
+<i class="fa-solid fa-arrows-up-down-left-right"></i>
+<h3>
             Flip Both
         </h3>
-
-        <p>
+<p>
             Flip the image horizontally and
             vertically together.
         </p>
-
-    </div>
-
-
-    <!-- FEATURE 4 -->
-
-    <div class="feature-item">
-
-        <i class="fa-solid fa-file-image"></i>
-
-        <h3>
+</div>
+<!-- FEATURE 4 -->
+<div class="feature-item">
+<i class="fa-solid fa-file-image"></i>
+<h3>
             JPG, PNG &amp; WEBP
         </h3>
-
-        <p>
+<p>
             Export your flipped image in
             popular image formats.
         </p>
-
-    </div>
-
-
-    <!-- FEATURE 5 -->
-
-    <div class="feature-item">
-
-        <i class="fa-solid fa-gauge-high"></i>
-
-        <h3>
+</div>
+<!-- FEATURE 5 -->
+<div class="feature-item">
+<i class="fa-solid fa-gauge-high"></i>
+<h3>
             Quality Control
         </h3>
-
-        <p>
+<p>
             Adjust output quality before
             downloading your image.
         </p>
-
-    </div>
-
-
-    <!-- FEATURE 6 -->
-
-    <div class="feature-item">
-
-        <i class="fa-solid fa-shield-halved"></i>
-
-        <h3>
+</div>
+<!-- FEATURE 6 -->
+<div class="feature-item">
+<i class="fa-solid fa-shield-halved"></i>
+<h3>
             Private Processing
         </h3>
-
-        <p>
+<p>
             Your image is processed directly
             in your browser.
         </p>
-
-    </div>
-
-
 </div>
-
-
 </div>
-
 </div>
-
+</div>
 </section>
-
-
-
 <!-- =====================================================
      HOW TO USE
 ===================================================== -->
-
 <section class="section">
-
 <div class="container">
-
-
 <div class="content-card">
-
-
 <h2>
     📖 How to Flip an Image
 </h2>
-
-
 <div class="steps-grid">
-
-
-    <div class="step">
-
-        <span>
+<div class="step">
+<span>
             1
         </span>
-
-        <h3>
+<h3>
             Upload Image
         </h3>
-
-        <p>
+<p>
             Choose an image, drag and drop it,
             or paste an image.
         </p>
-
-    </div>
-
-
-    <div class="step">
-
-        <span>
+</div>
+<div class="step">
+<span>
             2
         </span>
-
-        <h3>
+<h3>
             Choose Flip
         </h3>
-
-        <p>
+<p>
             Select horizontal, vertical or
             both flip options.
         </p>
-
-    </div>
-
-
-    <div class="step">
-
-        <span>
+</div>
+<div class="step">
+<span>
             3
         </span>
-
-        <h3>
+<h3>
             Apply Flip
         </h3>
-
-        <p>
+<p>
             Click Flip Image to process
             your image.
         </p>
-
-    </div>
-
-
-    <div class="step">
-
-        <span>
+</div>
+<div class="step">
+<span>
             4
         </span>
-
-        <h3>
+<h3>
             Download
         </h3>
-
-        <p>
+<p>
             Preview your flipped image and
             download it.
         </p>
-
-    </div>
-
-
 </div>
-
-
 </div>
-
 </div>
-
+</div>
 </section>
-
-
-
 <!-- =====================================================
      FAQ
 ===================================================== -->
-
 <section class="section">
-
 <div class="container">
-
-
 <div class="content-card faq-card">
-
-
 <h2>
     ❓ Frequently Asked Questions
 </h2>
-
-
 <details>
-
-    <summary>
+<summary>
         How do I flip an image online?
     </summary>
-
-    <p>
+<p>
         Upload your image, select Horizontal or Vertical
         Flip and click Flip Image. Your result will appear
         in the result section.
     </p>
-
 </details>
-
-
 <details>
-
-    <summary>
+<summary>
         What is horizontal image flipping?
     </summary>
-
-    <p>
+<p>
         Horizontal flipping creates a mirror effect by
         reversing the image from left to right.
     </p>
-
 </details>
-
-
 <details>
-
-    <summary>
+<summary>
         What is vertical image flipping?
     </summary>
-
-    <p>
+<p>
         Vertical flipping reverses the image from top
         to bottom.
     </p>
-
 </details>
-
-
 <details>
-
-    <summary>
+<summary>
         Can I flip an image both horizontally and vertically?
     </summary>
-
-    <p>
+<p>
         Yes. Use the Flip Both option to apply both
         directions together.
     </p>
-
 </details>
-
-
 <details>
-
-    <summary>
+<summary>
         Which formats are supported?
     </summary>
-
-    <p>
+<p>
         You can export your flipped image as JPG,
         PNG or WEBP.
     </p>
-
 </details>
-
-
 <details>
-
-    <summary>
+<summary>
         Can I control the image quality?
     </summary>
-
-    <p>
+<p>
         Yes. Use the Quality slider before applying
         the flip.
     </p>
-
 </details>
-
-
 <details>
-
-    <summary>
+<summary>
         Are my images uploaded to a server?
     </summary>
-
-    <p>
+<p>
         No. The image is processed directly in your
         browser using JavaScript.
     </p>
-
 </details>
-
-
 <details>
-
-    <summary>
+<summary>
         Is the Flip Image tool free?
     </summary>
-
-    <p>
+<p>
         Yes. You can flip images online without
         installing additional software.
     </p>
-
 </details>
-
-
 </div>
-
 </div>
-
 </section>
-
-
-<section class="
-</main>
-
-
-
-<!-- =====================================================
-     FOOTER
-===================================================== -->
-
-<div id="footer-placeholder"></div>
-
-
-
+<section class="&lt;/main&gt; &lt;!-- ===================================================== FOOTER ===================================================== --&gt; &lt;div id=" footer-placeholder"="">
 <!-- =====================================================
      COMMON JS
 ===================================================== -->
-
 <script src="../../assets/js/navigation.js"></script>
-
 <script src="../../assets/js/app.js"></script>
-
-
 <!-- =====================================================
      FLIP IMAGE JS
 ===================================================== -->
-
 <script src="../../assets/js/tools/flip-image.js"></script>
-
-
-</body>
-
+</section></main></body>
 </html>

@@ -1,21 +1,22 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
 <title>Protect PDF - OneToolBox</title>
-<meta name="description" content="Protect a PDF with a password and permissions.">
-<link rel="stylesheet" href="../../assets/css/reset.css">
-<link rel="stylesheet" href="../../assets/css/variables.css">
-<link rel="stylesheet" href="../../assets/css/layout.css">
-<link rel="stylesheet" href="../../assets/css/components.css">
-<link rel="stylesheet" href="../../assets/css/pdf-tools/protect-pdf.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-<link rel="stylesheet" href="../assets/css/tool-content.css">
+<meta content="🔐 Protect PDF online free with OneToolBox. Use this pdf tools tool quickly in your browser without installing software." name="description"/>
+<link href="../../assets/css/reset.css" rel="stylesheet"/>
+<link href="../../assets/css/variables.css" rel="stylesheet"/>
+<link href="../../assets/css/layout.css" rel="stylesheet"/>
+<link href="../../assets/css/components.css" rel="stylesheet"/>
+<link href="../../assets/css/pdf-tools/protect-pdf.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet"/>
+<link href="../assets/css/tool-content.css" rel="stylesheet"/>
 <script id="otb-theme-boot">(()=>{try{if(localStorage.getItem("onetoolbox-theme")==="dark")document.documentElement.classList.add("otb-dark-preload")}catch(e){}})();</script>
 <style id="otb-theme-boot-style">html.otb-dark-preload{background:#0f172a}html.otb-dark-preload body{background:#0f172a}</style>
-<link rel="preconnect" href="https://cdnjs.cloudflare.com">
-</head>
+<link href="https://cdnjs.cloudflare.com" rel="preconnect"/>
+<meta content="index,follow,max-image-preview:large" name="robots"/><link href="https://onetoolbox.in/pages/pdf-tools/protect-pdf.html" rel="canonical"/><meta content="Protect PDF - OneToolBox" property="og:title"/><meta content="🔐 Protect PDF online free with OneToolBox. Use this pdf tools tool quickly in your browser without installing software." property="og:description"/><meta content="https://onetoolbox.in/pages/pdf-tools/protect-pdf.html" property="og:url"/><meta content="OneToolBox" property="og:site_name"/><meta content="website" property="og:type"/><script src="/assets/js/analytics-config.js"></script><script src="/assets/js/onetoolbox-analytics.js"></script><script data-onetoolbox-schema="true" type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"🔐 Protect PDF","url":"https://onetoolbox.in/pages/pdf-tools/protect-pdf.html","description":"🔐 Protect PDF online free with OneToolBox. Use this pdf tools tool quickly in your browser without installing software.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script></head>
 <body data-tool="protect-pdf">
 <div id="header-placeholder"></div>
 <main class="page page-offset">
@@ -24,58 +25,48 @@
 <h1>🔐 Protect PDF</h1>
 <p>Add a password to your PDF and control what users can do with it.</p>
 </div></section>
-
 <section class="section"><div class="container"><div class="tool-grid">
-
 <div class="tool-card">
 <h2>Choose PDF</h2>
-<div class="upload" id="upload" tabindex="0" role="button">
+<div class="upload" id="upload" role="button" tabindex="0">
 <i class="fa-solid fa-file-pdf upload-icon"></i>
 <h3 id="uploadTitle">Choose File</h3>
-<p id="uploadHint">📁 Select a PDF<br>🖱️ Drag &amp; Drop</p>
+<p id="uploadHint">📁 Select a PDF<br/>🖱️ Drag &amp; Drop</p>
 <label class="choose"><i class="fa-solid fa-folder-open"></i> Choose PDF
-<input id="fileInput" type="file" accept="application/pdf,.pdf"></label>
+<input accept="application/pdf,.pdf" id="fileInput" type="file"/></label>
 </div>
 <div class="info"><span>File Size</span><b id="fileSize">0 KB</b></div>
 <div class="info"><span>Total Pages</span><b id="pageCount">0</b></div>
 </div>
-
 <div class="tool-card settings">
 <h2>Protection</h2>
 <div class="option-box"><label for="password">Password</label>
-<div class="password-wrap"><input id="password" type="password" placeholder="Enter password" autocomplete="new-password">
-<button type="button" id="showPassword" aria-label="Show password"><i class="fa-solid fa-eye"></i></button></div></div>
-
+<div class="password-wrap"><input autocomplete="new-password" id="password" placeholder="Enter password" type="password"/>
+<button aria-label="Show password" id="showPassword" type="button"><i class="fa-solid fa-eye"></i></button></div></div>
 <div class="option-box"><label for="confirmPassword">Confirm Password</label>
-<div class="password-wrap"><input id="confirmPassword" type="password" placeholder="Confirm password" autocomplete="new-password"></div></div>
-
+<div class="password-wrap"><input autocomplete="new-password" id="confirmPassword" placeholder="Confirm password" type="password"/></div></div>
 <div class="strength"><div class="strength-head"><span>Password strength</span><b id="strengthText">—</b></div><div class="strength-track"><div id="strengthBar"></div></div></div>
-
 <div class="permissions">
-<label><input id="allowPrint" type="checkbox" checked> <span>Allow printing</span></label>
-<label><input id="allowCopy" type="checkbox"> <span>Allow copying text/content</span></label>
-<label><input id="allowModify" type="checkbox"> <span>Allow modifying the document</span></label>
+<label><input checked="" id="allowPrint" type="checkbox"/> <span>Allow printing</span></label>
+<label><input id="allowCopy" type="checkbox"/> <span>Allow copying text/content</span></label>
+<label><input id="allowModify" type="checkbox"/> <span>Allow modifying the document</span></label>
 </div>
-
-<button id="run" class="btn primary" disabled><i class="fa-solid fa-lock"></i> Protect PDF</button>
+<button class="btn primary" disabled="" id="run"><i class="fa-solid fa-lock"></i> Protect PDF</button>
 <div class="progress"><div class="track"><div id="bar"></div></div><strong id="pct">0%</strong></div>
-<p id="status" class="status">Choose a PDF file to begin.</p>
+<p class="status" id="status">Choose a PDF file to begin.</p>
 </div>
-
 <div class="tool-card">
 <h2>Result</h2>
-<div class="preview"><div id="resultEmpty" class="result-empty">
+<div class="preview"><div class="result-empty" id="resultEmpty">
 <i class="fa-solid fa-shield-halved"></i><span>Your protected PDF will appear here.</span>
-</div><div id="resultSummary" class="result-summary" hidden>
+</div><div class="result-summary" hidden="" id="resultSummary">
 <i class="fa-solid fa-circle-check"></i><strong>PDF protected</strong><small id="resultText"></small>
 </div></div>
 <div class="info"><span>PDF Size</span><b id="resultInfo">—</b></div>
-<button id="download" class="btn success" disabled><i class="fa-solid fa-download"></i> Download PDF</button>
-<button id="reset" class="btn danger"><i class="fa-solid fa-rotate-left"></i> Reset</button>
+<button class="btn success" disabled="" id="download"><i class="fa-solid fa-download"></i> Download PDF</button>
+<button class="btn danger" id="reset"><i class="fa-solid fa-rotate-left"></i> Reset</button>
 </div>
-
 </div></div></section>
-
 <section class="section feature-section"><div class="container">
 <div class="section-heading"><span>Simple &amp; Useful</span><h2>Protect PDF Features</h2><p>Add password protection and document permissions.</p></div>
 <div class="feature-grid">
@@ -84,14 +75,12 @@
 <article class="feature"><div class="feature-icon"><i class="fa-solid fa-copy"></i></div><h3>Copy Control</h3><p>Control copying of text and content.</p></article>
 <article class="feature"><div class="feature-icon"><i class="fa-solid fa-shield-halved"></i></div><h3>Original Safe</h3><p>Your original PDF stays unchanged.</p></article>
 </div></div></section>
-
 <section class="section how-section"><div class="container">
 <div class="section-heading"><span>How It Works</span><h2>Protect PDF in 3 Steps</h2></div>
 <div class="steps-grid"><div class="step"><div class="step-number">1</div><h3>Upload PDF</h3><p>Select your PDF document.</p></div>
 <div class="step"><div class="step-number">2</div><h3>Set Password</h3><p>Enter and confirm a password.</p></div>
 <div class="step"><div class="step-number">3</div><h3>Download</h3><p>Download your protected PDF.</p></div></div>
 </div></section>
-
 <section class="section faq-section"><div class="container faq">
 <div class="section-heading"><span>FAQ</span><h2>Frequently Asked Questions</h2></div>
 <div class="faq-list">
@@ -103,7 +92,6 @@
 <section class="otb-tool-info"><div class="container"><div class="otb-tool-info-head"><h2>Features</h2><p>Protect a PDF with a password and permissions.</p></div><div class="otb-tool-info-grid"><div class="otb-tool-info-card"><h3>Simple workflow</h3><ul><li>Clear controls focused on the main PDF task.</li><li>Useful settings are kept close to the tool workspace.</li><li>Results can be reviewed before the final download where supported.</li></ul></div><div class="otb-tool-info-card"><h3>Browser friendly</h3><ul><li>Works directly from a modern web browser.</li><li>No desktop installation is required for normal use.</li><li>Responsive layout for computer, tablet and phone screens.</li></ul></div><div class="otb-tool-info-card"><h3>Practical output</h3><ul><li>Designed for everyday file and content tasks.</li><li>Original input is not changed by the download step.</li><li>Easy reset and repeat workflow where supported.</li></ul></div></div></div></section>
 </main>
 <div id="footer-placeholder"></div>
-
 <script src="https://unpkg.com/@neslinesli93/qpdf-wasm@0.3.0/dist/qpdf.js"></script>
 <script src="../../assets/js/navigation.js"></script>
 <script src="../../assets/js/app.js"></script>

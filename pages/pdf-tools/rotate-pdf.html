@@ -1,122 +1,111 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
 <title>Rotate PDF - OneToolBox</title>
-<meta name="description" content="Rotate PDF pages and download the rotated PDF online.">
-<link rel="stylesheet" href="../../assets/css/reset.css">
-<link rel="stylesheet" href="../../assets/css/variables.css">
-<link rel="stylesheet" href="../../assets/css/layout.css">
-<link rel="stylesheet" href="../../assets/css/components.css">
-<link rel="stylesheet" href="../../assets/css/pdf-tools/rotate-pdf.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-<link rel="stylesheet" href="../assets/css/tool-content.css">
+<meta content="🔄 Rotate PDF online free with OneToolBox. Use this pdf tools tool quickly in your browser without installing software." name="description"/>
+<link href="../../assets/css/reset.css" rel="stylesheet"/>
+<link href="../../assets/css/variables.css" rel="stylesheet"/>
+<link href="../../assets/css/layout.css" rel="stylesheet"/>
+<link href="../../assets/css/components.css" rel="stylesheet"/>
+<link href="../../assets/css/pdf-tools/rotate-pdf.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet"/>
+<link href="../assets/css/tool-content.css" rel="stylesheet"/>
 <script id="otb-theme-boot">(()=>{try{if(localStorage.getItem("onetoolbox-theme")==="dark")document.documentElement.classList.add("otb-dark-preload")}catch(e){}})();</script>
 <style id="otb-theme-boot-style">html.otb-dark-preload{background:#0f172a}html.otb-dark-preload body{background:#0f172a}</style>
-<link rel="preconnect" href="https://cdnjs.cloudflare.com">
-<link rel="preconnect" href="https://cdn.jsdelivr.net">
-</head>
+<link href="https://cdnjs.cloudflare.com" rel="preconnect"/>
+<link href="https://cdn.jsdelivr.net" rel="preconnect"/>
+<meta content="index,follow,max-image-preview:large" name="robots"/><link href="https://onetoolbox.in/pages/pdf-tools/rotate-pdf.html" rel="canonical"/><meta content="Rotate PDF - OneToolBox" property="og:title"/><meta content="🔄 Rotate PDF online free with OneToolBox. Use this pdf tools tool quickly in your browser without installing software." property="og:description"/><meta content="https://onetoolbox.in/pages/pdf-tools/rotate-pdf.html" property="og:url"/><meta content="OneToolBox" property="og:site_name"/><meta content="website" property="og:type"/><script src="/assets/js/analytics-config.js"></script><script src="/assets/js/onetoolbox-analytics.js"></script><script data-onetoolbox-schema="true" type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"🔄 Rotate PDF","url":"https://onetoolbox.in/pages/pdf-tools/rotate-pdf.html","description":"🔄 Rotate PDF online free with OneToolBox. Use this pdf tools tool quickly in your browser without installing software.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script></head>
 <body data-tool="rotate-pdf">
 <div id="header-placeholder"></div>
-
 <main class="page page-offset">
 <section class="tool-hero">
-  <div class="container">
-    <div class="tool-badge"><i class="fa-solid fa-rotate"></i> Free PDF Tool</div>
-    <h1>🔄 Rotate PDF</h1>
-    <p>Rotate all PDF pages or choose a different rotation for individual pages.</p>
-  </div>
+<div class="container">
+<div class="tool-badge"><i class="fa-solid fa-rotate"></i> Free PDF Tool</div>
+<h1>🔄 Rotate PDF</h1>
+<p>Rotate all PDF pages or choose a different rotation for individual pages.</p>
+</div>
 </section>
-
 <section class="section">
 <div class="container">
 <div class="tool-grid">
-
 <div class="tool-card">
-  <h2>Choose PDF</h2>
-  <div class="upload" id="upload" tabindex="0" role="button">
-    <i class="fa-solid fa-file-pdf upload-icon"></i>
-    <h3 id="uploadTitle">Choose File</h3>
-    <p id="uploadHint">📁 Select a PDF<br>🖱️ Drag &amp; Drop</p>
-    <label class="choose">
-      <i class="fa-solid fa-folder-open"></i>
+<h2>Choose PDF</h2>
+<div class="upload" id="upload" role="button" tabindex="0">
+<i class="fa-solid fa-file-pdf upload-icon"></i>
+<h3 id="uploadTitle">Choose File</h3>
+<p id="uploadHint">📁 Select a PDF<br/>🖱️ Drag &amp; Drop</p>
+<label class="choose">
+<i class="fa-solid fa-folder-open"></i>
       Choose PDF
-      <input id="fileInput" type="file" accept="application/pdf,.pdf">
-    </label>
-  </div>
-  <div class="info"><span>File Size</span><b id="fileSize">0 KB</b></div>
-  <div class="info"><span>Total Pages</span><b id="pageCount">0</b></div>
+      <input accept="application/pdf,.pdf" id="fileInput" type="file"/>
+</label>
 </div>
-
+<div class="info"><span>File Size</span><b id="fileSize">0 KB</b></div>
+<div class="info"><span>Total Pages</span><b id="pageCount">0</b></div>
+</div>
 <div class="tool-card settings">
-  <h2>Rotation</h2>
-
-  <div class="option-box">
-    <label for="rotateMode">Apply To</label>
-    <select id="rotateMode">
-      <option value="all" selected>All Pages</option>
-      <option value="odd">Odd Pages</option>
-      <option value="even">Even Pages</option>
-      <option value="custom">Custom Pages</option>
-    </select>
-  </div>
-
-  <div class="option-box" id="customBox" hidden>
-    <label for="customPages">Page Numbers</label>
-    <input id="customPages" type="text" placeholder="Example: 1, 3, 5-7">
-    <small>Only these pages will be rotated.</small>
-  </div>
-
-  <div class="rotation-buttons">
-    <button class="rotate-choice active" data-deg="90" type="button">
-      <i class="fa-solid fa-rotate-right"></i><span>90°</span>
-    </button>
-    <button class="rotate-choice" data-deg="180" type="button">
-      <i class="fa-solid fa-arrows-rotate"></i><span>180°</span>
-    </button>
-    <button class="rotate-choice" data-deg="270" type="button">
-      <i class="fa-solid fa-rotate-left"></i><span>270°</span>
-    </button>
-  </div>
-
-  <button id="run" class="btn primary" disabled>
-    <i class="fa-solid fa-rotate"></i> Rotate PDF
-  </button>
-
-  <div class="progress">
-    <div class="track"><div id="bar"></div></div>
-    <strong id="pct">0%</strong>
-  </div>
-  <p id="status" class="status">Choose a PDF file to begin.</p>
+<h2>Rotation</h2>
+<div class="option-box">
+<label for="rotateMode">Apply To</label>
+<select id="rotateMode">
+<option selected="" value="all">All Pages</option>
+<option value="odd">Odd Pages</option>
+<option value="even">Even Pages</option>
+<option value="custom">Custom Pages</option>
+</select>
 </div>
-
+<div class="option-box" hidden="" id="customBox">
+<label for="customPages">Page Numbers</label>
+<input id="customPages" placeholder="Example: 1, 3, 5-7" type="text"/>
+<small>Only these pages will be rotated.</small>
+</div>
+<div class="rotation-buttons">
+<button class="rotate-choice active" data-deg="90" type="button">
+<i class="fa-solid fa-rotate-right"></i><span>90°</span>
+</button>
+<button class="rotate-choice" data-deg="180" type="button">
+<i class="fa-solid fa-arrows-rotate"></i><span>180°</span>
+</button>
+<button class="rotate-choice" data-deg="270" type="button">
+<i class="fa-solid fa-rotate-left"></i><span>270°</span>
+</button>
+</div>
+<button class="btn primary" disabled="" id="run">
+<i class="fa-solid fa-rotate"></i> Rotate PDF
+  </button>
+<div class="progress">
+<div class="track"><div id="bar"></div></div>
+<strong id="pct">0%</strong>
+</div>
+<p class="status" id="status">Choose a PDF file to begin.</p>
+</div>
 <div class="tool-card">
-  <h2>Result</h2>
-  <div class="preview">
-    <div id="resultEmpty" class="result-empty">
-      <i class="fa-regular fa-file-pdf"></i>
-      <span>Your rotated PDF will appear here.</span>
-    </div>
-    <div id="resultSummary" class="result-summary" hidden>
-      <i class="fa-solid fa-circle-check"></i>
-      <strong>PDF ready</strong>
-      <small id="resultText"></small>
-    </div>
-  </div>
-  <div class="info"><span>PDF Size</span><b id="resultInfo">—</b></div>
-  <button id="download" class="btn success" disabled>
-    <i class="fa-solid fa-download"></i> Download PDF
+<h2>Result</h2>
+<div class="preview">
+<div class="result-empty" id="resultEmpty">
+<i class="fa-regular fa-file-pdf"></i>
+<span>Your rotated PDF will appear here.</span>
+</div>
+<div class="result-summary" hidden="" id="resultSummary">
+<i class="fa-solid fa-circle-check"></i>
+<strong>PDF ready</strong>
+<small id="resultText"></small>
+</div>
+</div>
+<div class="info"><span>PDF Size</span><b id="resultInfo">—</b></div>
+<button class="btn success" disabled="" id="download">
+<i class="fa-solid fa-download"></i> Download PDF
   </button>
-  <button id="reset" class="btn danger">
-    <i class="fa-solid fa-rotate-left"></i> Reset
+<button class="btn danger" id="reset">
+<i class="fa-solid fa-rotate-left"></i> Reset
   </button>
 </div>
-
 </div>
 </div>
 </section>
-
 <section class="section feature-section">
 <div class="container">
 <div class="section-heading">
@@ -132,7 +121,6 @@
 </div>
 </div>
 </section>
-
 <section class="section how-section">
 <div class="container">
 <div class="section-heading"><span>How It Works</span><h2>Rotate PDF in 3 Steps</h2></div>
@@ -143,7 +131,6 @@
 </div>
 </div>
 </section>
-
 <section class="section faq-section">
 <div class="container faq">
 <div class="section-heading"><span>FAQ</span><h2>Frequently Asked Questions</h2></div>
@@ -157,7 +144,6 @@
 </section>
 <section class="otb-tool-info"><div class="container"><div class="otb-tool-info-head"><h2>Features</h2><p>Rotate PDF pages and download the rotated PDF online.</p></div><div class="otb-tool-info-grid"><div class="otb-tool-info-card"><h3>Simple workflow</h3><ul><li>Clear controls focused on the main PDF task.</li><li>Useful settings are kept close to the tool workspace.</li><li>Results can be reviewed before the final download where supported.</li></ul></div><div class="otb-tool-info-card"><h3>Browser friendly</h3><ul><li>Works directly from a modern web browser.</li><li>No desktop installation is required for normal use.</li><li>Responsive layout for computer, tablet and phone screens.</li></ul></div><div class="otb-tool-info-card"><h3>Practical output</h3><ul><li>Designed for everyday file and content tasks.</li><li>Original input is not changed by the download step.</li><li>Easy reset and repeat workflow where supported.</li></ul></div></div></div></section>
 </main>
-
 <div id="footer-placeholder"></div>
 <script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
 <script src="../../assets/js/navigation.js"></script>

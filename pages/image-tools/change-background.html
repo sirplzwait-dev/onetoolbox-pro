@@ -1,63 +1,57 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
 <title>Change Image Background - OneToolBox</title>
-<meta name="description" content="Remove an image background first, then replace it with a color or another image.">
-<link rel="stylesheet" href="../../assets/css/reset.css">
-<link rel="stylesheet" href="../../assets/css/variables.css">
-<link rel="stylesheet" href="../../assets/css/layout.css">
-<link rel="stylesheet" href="../../assets/css/components.css">
-<link rel="stylesheet" href="../../assets/css/tools/change-background.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-</head>
+<meta content="Change Image Background online free with OneToolBox. Use this image tools tool quickly in your browser without installing software." name="description"/>
+<link href="../../assets/css/reset.css" rel="stylesheet"/>
+<link href="../../assets/css/variables.css" rel="stylesheet"/>
+<link href="../../assets/css/layout.css" rel="stylesheet"/>
+<link href="../../assets/css/components.css" rel="stylesheet"/>
+<link href="../../assets/css/tools/change-background.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet"/>
+<meta content="index,follow,max-image-preview:large" name="robots"/><link href="https://onetoolbox.in/pages/image-tools/change-background.html" rel="canonical"/><meta content="Change Image Background - OneToolBox" property="og:title"/><meta content="Change Image Background online free with OneToolBox. Use this image tools tool quickly in your browser without installing software." property="og:description"/><meta content="https://onetoolbox.in/pages/image-tools/change-background.html" property="og:url"/><meta content="OneToolBox" property="og:site_name"/><meta content="website" property="og:type"/><script src="/assets/js/analytics-config.js"></script><script src="/assets/js/onetoolbox-analytics.js"></script><script data-onetoolbox-schema="true" type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Change Image Background","url":"https://onetoolbox.in/pages/image-tools/change-background.html","description":"Change Image Background online free with OneToolBox. Use this image tools tool quickly in your browser without installing software.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script></head>
 <body>
 <div id="header-placeholder"></div>
-
 <main class="page page-offset">
 <section class="tool-hero"><div class="container">
 <span class="badge">🎨 AI Image Tool</span>
 <h1>Change Image Background</h1>
 <p>Remove the original background first, then add a new color or image.</p>
 </div></section>
-
 <section class="section"><div class="container"><div class="box">
-
 <article class="card">
 <h2>1. Upload Image</h2>
 <div class="upload" id="drop">
-<i id="ico" class="fa-solid fa-cloud-arrow-up"></i>
-<img id="orig" alt="Original image">
+<i class="fa-solid fa-cloud-arrow-up" id="ico"></i>
+<img alt="Original image" id="orig"/>
 <h3 id="ut">Upload Image</h3>
-<p id="ui">📁 Choose Image<br>🖱 Drag &amp; Drop<br>📋 Paste Image</p>
+<p id="ui">📁 Choose Image<br/>🖱 Drag &amp; Drop<br/>📋 Paste Image</p>
 <button class="choose" id="chooseImageBtn" type="button"><i class="fa-solid fa-folder-open"></i> Choose Image</button>
-<input id="file" class="file-input" type="file" accept="image/*">
+<input accept="image/*" class="file-input" id="file" type="file"/>
 </div>
 <div class="info"><span>File Name</span><b id="name">-</b></div>
 <div class="info"><span>File Size</span><b id="size">0 KB</b></div>
 <div class="info"><span>Dimensions</span><b id="dim">0 × 0 px</b></div>
 <button id="reset" type="button">↻ Reset</button>
 </article>
-
 <article class="card">
 <h2>2. Background</h2>
-
-<button id="removeBtn" class="remove-btn" type="button" disabled>
+<button class="remove-btn" disabled="" id="removeBtn" type="button">
 <i class="fa-solid fa-wand-magic-sparkles"></i> Remove Background
 </button>
-<div id="status" class="status">Upload an image first.</div>
-
-<div id="bgControls" class="disabled-controls">
+<div class="status" id="status">Upload an image first.</div>
+<div class="disabled-controls" id="bgControls">
 <label>Background Type</label>
 <div class="options">
 <button class="active" data-type="color" type="button">Color</button>
 <button data-type="image" type="button">Image</button>
 </div>
-
 <div id="colorPanel">
 <label>Background Color</label>
-<div class="color-row"><input id="bgColor" type="color" value="#ffffff"><input id="hex" value="#ffffff" maxlength="7"></div>
+<div class="color-row"><input id="bgColor" type="color" value="#ffffff"/><input id="hex" maxlength="7" value="#ffffff"/></div>
 <div class="preset-grid">
 <button data-color="#ffffff" type="button">White</button>
 <button data-color="#000000" type="button">Black</button>
@@ -65,18 +59,15 @@
 <button data-color="#16a34a" type="button">Green</button>
 </div>
 </div>
-
-<div id="imagePanel" class="hidden">
+<div class="hidden" id="imagePanel">
 <label>Background Image</label>
 <button class="choose secondary" id="chooseBgBtn" type="button"><i class="fa-solid fa-image"></i> Choose Background</button>
-<input id="bgFile" class="file-input" type="file" accept="image/*">
+<input accept="image/*" class="file-input" id="bgFile" type="file"/>
 <p class="hint">JPG, PNG and WEBP supported.</p>
 </div>
-
-<button id="applyBtn" class="apply" type="button" disabled>🎨 Apply New Background</button>
+<button class="apply" disabled="" id="applyBtn" type="button">🎨 Apply New Background</button>
 </div>
 </article>
-
 <article class="card">
 <h2>3. Result</h2>
 <div class="preview">
@@ -85,11 +76,9 @@
 </div>
 <div class="info"><span>Output Size</span><b id="outSize">0 KB</b></div>
 <div class="info"><span>Dimensions</span><b id="outDim">0 × 0 px</b></div>
-<a id="download" class="download disabled">⬇ Download JPG</a>
+<a class="download disabled" id="download">⬇ Download JPG</a>
 </article>
-
 </div></div></section>
-
 <section class="content"><div class="container">
 <h2>Change Background Features</h2>
 <div class="grid">
@@ -100,14 +89,12 @@
 <article>🖱️<h3>Drag &amp; Drop</h3><p>Drop images directly into the upload area.</p></article>
 <article>📱<h3>Responsive</h3><p>Works across desktop and mobile screens.</p></article>
 </div>
-
 <h2>How to Change Background</h2>
 <div class="steps">
 <article><b>1</b><h3>Upload</h3><p>Select or drop your image.</p></article>
 <article><b>2</b><h3>Remove</h3><p>Click Remove Background and wait for AI processing.</p></article>
 <article><b>3</b><h3>Replace</h3><p>Choose a color or background image and apply it.</p></article>
 </div>
-
 <h2>Frequently Asked Questions</h2>
 <div class="faq">
 <details><summary>Does the background really get removed first?</summary><p>Yes. The tool first creates a transparent foreground cutout. The new background is added only after that step.</p></details>
@@ -119,10 +106,9 @@
 </div>
 </div></section>
 </main>
-
 <div id="footer-placeholder"></div>
 <script src="../../assets/js/navigation.js"></script>
 <script src="../../assets/js/app.js"></script>
-<script type="module" src="../../assets/js/tools/change-background.js"></script>
+<script src="../../assets/js/tools/change-background.js" type="module"></script>
 </body>
 </html>

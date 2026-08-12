@@ -1,872 +1,472 @@
 <!DOCTYPE html>
+
 <html lang="en">
-
 <head>
-
-    <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
-    <title>HEIC Converter - OneToolBox</title>
-
-    <meta name="description"
-          content="Convert HEIC and HEIF images to JPG online for free.">
-
-    <link rel="stylesheet"
-          href="../../assets/css/reset.css">
-
-    <link rel="stylesheet"
-          href="../../assets/css/variables.css">
-
-    <link rel="stylesheet"
-          href="../../assets/css/layout.css">
-
-    <link rel="stylesheet"
-          href="../../assets/css/components.css">
-
-    <link rel="stylesheet"
-          href="../../assets/css/tools/heic-converter.css">
-
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-
-<link rel="stylesheet" href="../assets/css/tool-content.css">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>HEIC Converter - OneToolBox</title>
+<meta content="📱 HEIC Converter online free with OneToolBox. Use this image tools tool quickly in your browser without installing software." name="description"/>
+<link href="../../assets/css/reset.css" rel="stylesheet"/>
+<link href="../../assets/css/variables.css" rel="stylesheet"/>
+<link href="../../assets/css/layout.css" rel="stylesheet"/>
+<link href="../../assets/css/components.css" rel="stylesheet"/>
+<link href="../../assets/css/tools/heic-converter.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet"/>
+<link href="../assets/css/tool-content.css" rel="stylesheet"/>
 <script id="otb-theme-boot">(()=>{try{if(localStorage.getItem("onetoolbox-theme")==="dark")document.documentElement.classList.add("otb-dark-preload")}catch(e){}})();</script>
 <style id="otb-theme-boot-style">html.otb-dark-preload{background:#0f172a}html.otb-dark-preload body{background:#0f172a}</style>
-<link rel="preconnect" href="https://cdnjs.cloudflare.com">
-<link rel="preconnect" href="https://cdn.jsdelivr.net">
-</head>
-
-
+<link href="https://cdnjs.cloudflare.com" rel="preconnect"/>
+<link href="https://cdn.jsdelivr.net" rel="preconnect"/>
+<meta content="index,follow,max-image-preview:large" name="robots"/><link href="https://onetoolbox.in/pages/image-tools/heic-converter.html" rel="canonical"/><meta content="HEIC Converter - OneToolBox" property="og:title"/><meta content="📱 HEIC Converter online free with OneToolBox. Use this image tools tool quickly in your browser without installing software." property="og:description"/><meta content="https://onetoolbox.in/pages/image-tools/heic-converter.html" property="og:url"/><meta content="OneToolBox" property="og:site_name"/><meta content="website" property="og:type"/><script src="/assets/js/analytics-config.js"></script><script src="/assets/js/onetoolbox-analytics.js"></script><script data-onetoolbox-schema="true" type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"📱 HEIC Converter","url":"https://onetoolbox.in/pages/image-tools/heic-converter.html","description":"📱 HEIC Converter online free with OneToolBox. Use this image tools tool quickly in your browser without installing software.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script></head>
 <body>
-
-
 <!-- HEADER -->
-
 <div id="header-placeholder"></div>
-
-
 <main class="page page-offset">
-
-
 <!-- HERO -->
-
 <section class="tool-hero">
-
-    <div class="container">
-
-        <h1>
+<div class="container">
+<h1>
             📱 HEIC Converter
         </h1>
-
-        <p>
+<p>
             Convert HEIC and HEIF images to JPG
             directly in your browser.
         </p>
-
-    </div>
-
+</div>
 </section>
-
-
-
 <!-- MAIN TOOL -->
-
 <section class="section">
-
 <div class="container">
-
 <div class="converter-box">
-
-
 <!-- =========================================
      UPLOAD
 ========================================= -->
-
 <div class="converter-card">
-
-    <h3>
+<h3>
         Upload HEIC Image
     </h3>
-
-
-    <div
-        class="upload-area"
-        id="uploadArea">
-
-
-        <i
-            class="fa-solid fa-cloud-arrow-up"
-            id="uploadIcon">
-        </i>
-
-
-        <img
-            id="originalPreview"
-            class="original-preview"
-            src=""
-            alt="HEIC Preview">
-
-
-        <h4 id="uploadText">
+<div class="upload-area" id="uploadArea">
+<i class="fa-solid fa-cloud-arrow-up" id="uploadIcon">
+</i>
+<img alt="HEIC Preview" class="original-preview" id="originalPreview" src=""/>
+<h4 id="uploadText">
             Upload HEIC Image
         </h4>
-
-
-        <p id="uploadInfo">
+<p id="uploadInfo">
 
             📱 HEIC / HEIF
 
-            <br>
+            <br/>
 
             🖱 Drag &amp; Drop
 
-            <br>
+            <br/>
 
             📋 Paste Image
 
         </p>
-
-
-        <label class="choose-btn">
-
-            <i class="fa-solid fa-image"></i>
+<label class="choose-btn">
+<i class="fa-solid fa-image"></i>
 
             Choose Image
 
-            <input
-                type="file"
-                id="imageInput"
-                accept=".heic,.heif,image/heic,image/heif">
-
-        </label>
-
-
-        <button
-            type="button"
-            class="btn-reset"
-            id="resetBtn">
-
-            <i class="fa-solid fa-rotate-left"></i>
+            <input accept=".heic,.heif,image/heic,image/heif" id="imageInput" type="file"/>
+</label>
+<button class="btn-reset" id="resetBtn" type="button">
+<i class="fa-solid fa-rotate-left"></i>
 
             Reset
 
         </button>
-
-
-    </div>
-
-
-    <div class="info">
-
-        <span>
+</div>
+<div class="info">
+<span>
             Original Size:
         </span>
-
-        <b id="originalSize">
+<b id="originalSize">
             0 KB
         </b>
-
-    </div>
-
-
-    <div class="info">
-
-        <span>
+</div>
+<div class="info">
+<span>
             Dimension:
         </span>
-
-        <b id="originalDimension">
+<b id="originalDimension">
             0 × 0 px
         </b>
-
-    </div>
-
-
-    <div class="info">
-
-        <span>
+</div>
+<div class="info">
+<span>
             Format:
         </span>
-
-        <b id="originalFormat">
+<b id="originalFormat">
             -
         </b>
-
-    </div>
-
 </div>
-
-
-
+</div>
 <!-- =========================================
      SETTINGS
 ========================================= -->
-
 <div class="converter-card">
-
-    <h3>
+<h3>
         JPG Settings
     </h3>
-
-
-    <div class="setting-group">
-
-        <label>
+<div class="setting-group">
+<label>
             Output Format
         </label>
-
-
-        <div class="format-display">
-
-            <i class="fa-solid fa-file-image"></i>
-
-            <span>
+<div class="format-display">
+<i class="fa-solid fa-file-image"></i>
+<span>
                 JPG
             </span>
-
-            <strong>
+<strong>
                 .jpg
             </strong>
-
-        </div>
-
-    </div>
-
-
-
-    <!-- QUALITY -->
-
-    <div class="setting-group">
-
-        <div class="setting-heading">
-
-            <label>
+</div>
+</div>
+<!-- QUALITY -->
+<div class="setting-group">
+<div class="setting-heading">
+<label>
                 JPG Quality
             </label>
-
-            <strong id="qualityValue">
+<strong id="qualityValue">
                 90%
             </strong>
-
-        </div>
-
-
-        <input
-            type="range"
-            id="qualityRange"
-            min="10"
-            max="100"
-            value="90"
-            step="1">
-
-    </div>
-
-
-
-    <!-- QUICK QUALITY -->
-
-    <div class="setting-group">
-
-        <label>
+</div>
+<input id="qualityRange" max="100" min="10" step="1" type="range" value="90"/>
+</div>
+<!-- QUICK QUALITY -->
+<div class="setting-group">
+<label>
             Quick Quality
         </label>
-
-
-        <div class="quality-grid">
-
-
-            <button
-                type="button"
-                class="quality-btn"
-                data-quality="100">
+<div class="quality-grid">
+<button class="quality-btn" data-quality="100" type="button">
 
                 Best
 
             </button>
-
-
-            <button
-                type="button"
-                class="quality-btn active"
-                data-quality="90">
+<button class="quality-btn active" data-quality="90" type="button">
 
                 High
 
             </button>
-
-
-            <button
-                type="button"
-                class="quality-btn"
-                data-quality="70">
+<button class="quality-btn" data-quality="70" type="button">
 
                 Medium
 
             </button>
-
-
-            <button
-                type="button"
-                class="quality-btn"
-                data-quality="50">
+<button class="quality-btn" data-quality="50" type="button">
 
                 Small
 
             </button>
-
-
-        </div>
-
-    </div>
-
-
-
-    <!-- BACKGROUND -->
-
-    <div class="setting-group">
-
-        <label>
+</div>
+</div>
+<!-- BACKGROUND -->
+<div class="setting-group">
+<label>
             JPG Background
         </label>
-
-
-        <label
-            class="background-option"
-            for="whiteBackground">
-
-
-            <input
-                type="checkbox"
-                id="whiteBackground"
-                checked>
-
-
-            <span class="background-option-text">
-
-                <strong>
+<label class="background-option" for="whiteBackground">
+<input checked="" id="whiteBackground" type="checkbox"/>
+<span class="background-option-text">
+<strong>
                     White Background
                 </strong>
-
-                <small>
+<small>
                     Use white background for JPG.
                 </small>
-
-            </span>
-
-
-        </label>
-
-
-        <small class="background-note">
+</span>
+</label>
+<small class="background-note">
 
             JPG does not support transparency.
 
         </small>
-
-    </div>
-
-
-
-    <!-- CONVERT -->
-
-    <button
-        type="button"
-        class="btn-primary"
-        id="convertBtn">
-
-        <i class="fa-solid fa-arrows-rotate"></i>
+</div>
+<!-- CONVERT -->
+<button class="btn-primary" id="convertBtn" type="button">
+<i class="fa-solid fa-arrows-rotate"></i>
 
         Convert to JPG
 
     </button>
-
-
-    <!-- RESET SETTINGS -->
-
-    <button
-        type="button"
-        class="btn-secondary"
-        id="resetSettings">
-
-        <i class="fa-solid fa-arrow-rotate-left"></i>
+<!-- RESET SETTINGS -->
+<button class="btn-secondary" id="resetSettings" type="button">
+<i class="fa-solid fa-arrow-rotate-left"></i>
 
         Reset Settings
 
     </button>
-
 </div>
-
-
-
 <!-- =========================================
      RESULT
 ========================================= -->
-
 <div class="converter-card">
-
-    <h3>
+<h3>
         JPG Result
     </h3>
-
-
-    <div class="image-preview">
-
-
-        <img
-            id="resultImage"
-            src=""
-            alt="JPG Result">
-
-
-        <span id="resultText">
+<div class="image-preview">
+<img alt="JPG Result" id="resultImage" src=""/>
+<span id="resultText">
 
             Converted JPG will appear here
 
         </span>
-
-
-    </div>
-
-
-    <div class="info">
-
-        <span>
+</div>
+<div class="info">
+<span>
             JPG Size:
         </span>
-
-        <b id="newSize">
+<b id="newSize">
             0 KB
         </b>
-
-    </div>
-
-
-    <div class="info">
-
-        <span>
+</div>
+<div class="info">
+<span>
             Dimension:
         </span>
-
-        <b id="newDimension">
+<b id="newDimension">
             0 × 0 px
         </b>
-
-    </div>
-
-
-    <div class="info">
-
-        <span>
+</div>
+<div class="info">
+<span>
             Format:
         </span>
-
-        <b id="newFormat">
+<b id="newFormat">
             JPG
         </b>
-
-    </div>
-
-
-    <div class="info">
-
-        <span>
+</div>
+<div class="info">
+<span>
             Quality:
         </span>
-
-        <b id="newQuality">
+<b id="newQuality">
             90%
         </b>
-
-    </div>
-
-
-    <a
-        href="#"
-        class="btn-success disabled"
-        id="downloadBtn">
-
-        <i class="fa-solid fa-download"></i>
+</div>
+<a class="btn-success disabled" href="#" id="downloadBtn">
+<i class="fa-solid fa-download"></i>
 
         Download JPG
 
     </a>
-
 </div>
-
-
 </div>
-
 </div>
-
 </section>
-
-
-
 <!-- =========================================
      FEATURES
 ========================================= -->
-
 <section class="section">
-
 <div class="container">
-
 <div class="content-card">
-
 <h2>
     🚀 HEIC Converter Features
 </h2>
-
-
 <div class="feature-grid">
-
-
 <div class="feature-item">
-
-    <i class="fa-solid fa-mobile-screen"></i>
-
-    <h3>
+<i class="fa-solid fa-mobile-screen"></i>
+<h3>
         HEIC Support
     </h3>
-
-    <p>
+<p>
         Convert HEIC and HEIF images.
     </p>
-
 </div>
-
-
 <div class="feature-item">
-
-    <i class="fa-solid fa-sliders"></i>
-
-    <h3>
+<i class="fa-solid fa-sliders"></i>
+<h3>
         Quality Control
     </h3>
-
-    <p>
+<p>
         Adjust JPG quality from 10% to 100%.
     </p>
-
 </div>
-
-
 <div class="feature-item">
-
-    <i class="fa-solid fa-eye"></i>
-
-    <h3>
+<i class="fa-solid fa-eye"></i>
+<h3>
         Preview
     </h3>
-
-    <p>
+<p>
         Preview the converted JPG.
     </p>
-
 </div>
-
-
 <div class="feature-item">
-
-    <i class="fa-solid fa-square"></i>
-
-    <h3>
+<i class="fa-solid fa-square"></i>
+<h3>
         White Background
     </h3>
-
-    <p>
+<p>
         Use a white background for JPG output.
     </p>
-
 </div>
-
-
 <div class="feature-item">
-
-    <i class="fa-solid fa-download"></i>
-
-    <h3>
+<i class="fa-solid fa-download"></i>
+<h3>
         Easy Download
     </h3>
-
-    <p>
+<p>
         Download your JPG with one click.
     </p>
-
 </div>
-
-
 <div class="feature-item">
-
-    <i class="fa-solid fa-shield-halved"></i>
-
-    <h3>
+<i class="fa-solid fa-shield-halved"></i>
+<h3>
         Browser Processing
     </h3>
-
-    <p>
+<p>
         Process images directly in your browser.
     </p>
-
 </div>
-
-
 </div>
-
 </div>
-
 </div>
-
 </section>
-
-
-
 <!-- =========================================
      HOW TO USE
 ========================================= -->
-
 <section class="section">
-
 <div class="container">
-
 <div class="content-card">
-
 <h2>
     📖 How to Convert HEIC to JPG
 </h2>
-
-
 <div class="steps-grid">
-
-
 <div class="step">
-
-    <span>1</span>
-
-    <h3>
+<span>1</span>
+<h3>
         Upload HEIC
     </h3>
-
-    <p>
+<p>
         Choose your HEIC or HEIF image.
     </p>
-
 </div>
-
-
 <div class="step">
-
-    <span>2</span>
-
-    <h3>
+<span>2</span>
+<h3>
         Choose Quality
     </h3>
-
-    <p>
+<p>
         Select your desired JPG quality.
     </p>
-
 </div>
-
-
 <div class="step">
-
-    <span>3</span>
-
-    <h3>
+<span>3</span>
+<h3>
         Convert
     </h3>
-
-    <p>
+<p>
         Click Convert to JPG.
     </p>
-
 </div>
-
-
 <div class="step">
-
-    <span>4</span>
-
-    <h3>
+<span>4</span>
+<h3>
         Download
     </h3>
-
-    <p>
+<p>
         Preview and download your JPG.
     </p>
-
 </div>
-
-
 </div>
-
 </div>
-
 </div>
-
 </section>
-
-
-
 <!-- =========================================
      FAQ
 ========================================= -->
-
 <section class="section">
-
 <div class="container">
-
 <div class="content-card faq-card">
-
 <h2>
     ❓ Frequently Asked Questions
 </h2>
-
-
 <details>
-
-    <summary>
+<summary>
         What is a HEIC image?
     </summary>
-
-    <p>
+<p>
         HEIC is an image format commonly used
         by modern Apple devices such as iPhones
         and iPads.
     </p>
-
 </details>
-
-
 <details>
-
-    <summary>
+<summary>
         Can I convert HEIC to JPG?
     </summary>
-
-    <p>
+<p>
         Yes. Upload your HEIC image and click
         Convert to JPG.
     </p>
-
 </details>
-
-
 <details>
-
-    <summary>
+<summary>
         Can I control JPG quality?
     </summary>
-
-    <p>
+<p>
         Yes. You can use the quality slider
         or quick quality buttons.
     </p>
-
 </details>
-
-
 <details>
-
-    <summary>
+<summary>
         Will image dimensions change?
     </summary>
-
-    <p>
+<p>
         No. The converter keeps the original
         image dimensions.
     </p>
-
 </details>
-
-
 <details>
-
-    <summary>
+<summary>
         Is HEIF also supported?
     </summary>
-
-    <p>
+<p>
         Yes. HEIF files are supported by the
         converter.
     </p>
-
 </details>
-
-
 <details>
-
-    <summary>
+<summary>
         Are my images uploaded?
     </summary>
-
-    <p>
+<p>
         The conversion is performed in your
         browser using the HEIC decoder library.
     </p>
-
 </details>
-
-
 <details>
-
-    <summary>
+<summary>
         Is the converter free?
     </summary>
-
-    <p>
+<p>
         Yes.
     </p>
-
 </details>
-
-
 </div>
-
 </div>
-
 </section>
-
-
 </main>
-
-
-
 <!-- FOOTER -->
-
 <div id="footer-placeholder"></div>
-
-
-
 <!-- =========================================
      HEIC DECODER LIBRARY
 ========================================= -->
-
-<script
-    src="https://cdn.jsdelivr.net/npm/heic2any@0.0.4/dist/heic2any.min.js">
+<script src="https://cdn.jsdelivr.net/npm/heic2any@0.0.4/dist/heic2any.min.js">
 </script>
-
-
 <!-- COMMON JS -->
-
-<script
-    src="../../assets/js/navigation.js">
+<script src="../../assets/js/navigation.js">
 </script>
-
-<script
-    src="../../assets/js/app.js">
+<script src="../../assets/js/app.js">
 </script>
-
-
 <!-- TOOL JS -->
-
-<script
-    src="../../assets/js/tools/heic-converter.js">
+<script src="../../assets/js/tools/heic-converter.js">
 </script>
-
-
 </body>
-
 </html>

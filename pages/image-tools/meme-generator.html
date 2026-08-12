@@ -1,22 +1,22 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
 <title>Meme Generator - OneToolBox</title>
-<meta name="description" content="Create memes online for free with custom text, colors, fonts and positioning.">
-<link rel="stylesheet" href="../../assets/css/reset.css">
-<link rel="stylesheet" href="../../assets/css/variables.css">
-<link rel="stylesheet" href="../../assets/css/layout.css">
-<link rel="stylesheet" href="../../assets/css/components.css">
-<link rel="stylesheet" href="../../assets/css/tools/meme-generator.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<meta content="Meme Generator online free with OneToolBox. Use this image tools tool quickly in your browser without installing software." name="description"/>
+<link href="../../assets/css/reset.css" rel="stylesheet"/>
+<link href="../../assets/css/variables.css" rel="stylesheet"/>
+<link href="../../assets/css/layout.css" rel="stylesheet"/>
+<link href="../../assets/css/components.css" rel="stylesheet"/>
+<link href="../../assets/css/tools/meme-generator.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet"/>
 <script id="otb-theme-boot">(()=>{try{if(localStorage.getItem("onetoolbox-theme")==="dark")document.documentElement.classList.add("otb-dark-preload")}catch(e){}})();</script>
 <style>html.otb-dark-preload{background:#0f172a}html.otb-dark-preload body{background:#0f172a}</style>
-</head>
+<meta content="index,follow,max-image-preview:large" name="robots"/><link href="https://onetoolbox.in/pages/image-tools/meme-generator.html" rel="canonical"/><meta content="Meme Generator - OneToolBox" property="og:title"/><meta content="Meme Generator online free with OneToolBox. Use this image tools tool quickly in your browser without installing software." property="og:description"/><meta content="https://onetoolbox.in/pages/image-tools/meme-generator.html" property="og:url"/><meta content="OneToolBox" property="og:site_name"/><meta content="website" property="og:type"/><script src="/assets/js/analytics-config.js"></script><script src="/assets/js/onetoolbox-analytics.js"></script><script data-onetoolbox-schema="true" type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Meme Generator","url":"https://onetoolbox.in/pages/image-tools/meme-generator.html","description":"Meme Generator online free with OneToolBox. Use this image tools tool quickly in your browser without installing software.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script></head>
 <body>
 <div id="header-placeholder"></div>
-
 <main class="page page-offset">
 <section class="meme-hero">
 <div class="container">
@@ -25,54 +25,47 @@
 <p>Create a meme in seconds. Upload an image, add text, customize it and download.</p>
 </div>
 </section>
-
 <section class="section meme-section">
 <div class="container">
 <div class="meme-workspace">
-
 <aside class="meme-controls">
 <div class="panel-head"><div><i class="fa-solid fa-sliders"></i><h2>Meme Settings</h2></div><span id="statusDot"></span></div>
-
 <div class="upload-card" id="dropZone">
 <div class="upload-icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
 <h3 id="uploadTitle">Upload Image</h3>
 <p>JPG • PNG • WebP</p>
 <label class="upload-btn" for="imageInput"><i class="fa-solid fa-folder-open"></i> Choose Image</label>
-<input id="imageInput" type="file" accept="image/png,image/jpeg,image/webp" hidden>
-<small>or drag & drop here</small>
+<input accept="image/png,image/jpeg,image/webp" hidden="" id="imageInput" type="file"/>
+<small>or drag &amp; drop here</small>
 </div>
-
 <div class="control-group">
 <label for="topText">Top Text</label>
-<input id="topText" type="text" maxlength="120" placeholder="TOP TEXT" autocomplete="off">
+<input autocomplete="off" id="topText" maxlength="120" placeholder="TOP TEXT" type="text"/>
 </div>
 <div class="control-group">
 <label for="bottomText">Bottom Text</label>
-<input id="bottomText" type="text" maxlength="120" placeholder="BOTTOM TEXT" autocomplete="off">
+<input autocomplete="off" id="bottomText" maxlength="120" placeholder="BOTTOM TEXT" type="text"/>
 </div>
-
 <div class="two-col">
 <div class="control-group compact">
 <label for="fontSize">Text Size <output id="fontSizeValue">54px</output></label>
-<input id="fontSize" type="range" min="18" max="140" value="54">
+<input id="fontSize" max="140" min="18" type="range" value="54"/>
 </div>
 <div class="control-group compact">
 <label for="strokeWidth">Outline <output id="strokeValue">5px</output></label>
-<input id="strokeWidth" type="range" min="0" max="16" value="5">
+<input id="strokeWidth" max="16" min="0" type="range" value="5"/>
 </div>
 </div>
-
 <div class="two-col">
 <div class="control-group compact">
 <label for="textColor">Text Color</label>
-<input id="textColor" class="color-input" type="color" value="#ffffff">
+<input class="color-input" id="textColor" type="color" value="#ffffff"/>
 </div>
 <div class="control-group compact">
 <label for="strokeColor">Outline Color</label>
-<input id="strokeColor" class="color-input" type="color" value="#000000">
+<input class="color-input" id="strokeColor" type="color" value="#000000"/>
 </div>
 </div>
-
 <div class="two-col">
 <div class="control-group">
 <label for="fontFamily">Font</label>
@@ -95,7 +88,6 @@
 </select>
 </div>
 </div>
-
 <div class="move-box">
 <div class="move-title"><span>Image Position</span><small id="moveValue">0, 0</small></div>
 <div class="move-grid">
@@ -106,13 +98,11 @@
 <button id="moveDown" type="button">↓</button>
 </div>
 </div>
-
 <div class="action-row">
-<button id="reset" class="secondary-btn" type="button"><i class="fa-solid fa-rotate-left"></i> Reset</button>
-<button id="clear" class="danger-btn" type="button"><i class="fa-solid fa-trash"></i> Clear</button>
+<button class="secondary-btn" id="reset" type="button"><i class="fa-solid fa-rotate-left"></i> Reset</button>
+<button class="danger-btn" id="clear" type="button"><i class="fa-solid fa-trash"></i> Clear</button>
 </div>
 </aside>
-
 <section class="meme-preview-area">
 <div class="preview-bar">
 <div><strong>Meme Preview</strong><span id="status">Choose an image to start</span></div>
@@ -124,7 +114,7 @@
 <h3>No image selected</h3>
 <p>Upload an image to start creating your meme.</p>
 </div>
-<canvas id="memeCanvas" hidden></canvas>
+<canvas hidden="" id="memeCanvas"></canvas>
 </div>
 <div class="preview-tools">
 <button id="previewZoomOut" type="button">−</button>
@@ -133,24 +123,21 @@
 <button id="previewFit" type="button">Fit</button>
 </div>
 <div class="download-row">
-<button id="downloadPng" class="download-btn" disabled><i class="fa-solid fa-download"></i> Download PNG</button>
-<button id="downloadJpg" class="download-btn jpg" disabled><i class="fa-solid fa-download"></i> Download JPG</button>
+<button class="download-btn" disabled="" id="downloadPng"><i class="fa-solid fa-download"></i> Download PNG</button>
+<button class="download-btn jpg" disabled="" id="downloadJpg"><i class="fa-solid fa-download"></i> Download JPG</button>
 </div>
 </section>
-
 </div>
 </div>
 </section>
-
 <section class="section info-section"><div class="container">
 <h2>Features</h2>
 <div class="feature-grid">
 <article><i class="fa-solid fa-font"></i><h3>Custom Text</h3><p>Add top and bottom text with live preview.</p></article>
 <article><i class="fa-solid fa-palette"></i><h3>Text Styling</h3><p>Change font, color, size and outline.</p></article>
 <article><i class="fa-solid fa-arrows-up-down-left-right"></i><h3>Position Control</h3><p>Move the image and choose text placement.</p></article>
-<article><i class="fa-solid fa-download"></i><h3>PNG & JPG</h3><p>Download your finished meme instantly.</p></article>
+<article><i class="fa-solid fa-download"></i><h3>PNG &amp; JPG</h3><p>Download your finished meme instantly.</p></article>
 </div>
-
 <h2>How to Make a Meme</h2>
 <div class="steps-grid">
 <div><b>1</b><span>Upload image</span></div>
@@ -158,7 +145,6 @@
 <div><b>3</b><span>Customize style</span></div>
 <div><b>4</b><span>Download</span></div>
 </div>
-
 <h2>FAQ</h2>
 <div class="faq">
 <details><summary>Is Meme Generator free?</summary><p>Yes. The meme is created in your browser.</p></details>
@@ -168,7 +154,6 @@
 </div>
 </div></section>
 </main>
-
 <div id="footer-placeholder"></div>
 <script src="../../assets/js/navigation.js"></script>
 <script src="../../assets/js/app.js"></script>

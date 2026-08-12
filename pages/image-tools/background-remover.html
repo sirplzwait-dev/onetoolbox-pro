@@ -1,537 +1,300 @@
 <!DOCTYPE html>
+
 <html lang="en">
-
 <head>
-
-    <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
-    <title>AI Background Remover - OneToolBox</title>
-
-    <meta name="description"
-          content="Remove image backgrounds online for free using AI directly in your browser.">
-
-    <!-- Common CSS -->
-
-    <link rel="stylesheet"
-          href="../../assets/css/reset.css">
-
-    <link rel="stylesheet"
-          href="../../assets/css/variables.css">
-
-    <link rel="stylesheet"
-          href="../../assets/css/layout.css">
-
-    <link rel="stylesheet"
-          href="../../assets/css/components.css">
-
-    <!-- Tool CSS -->
-
-    <link rel="stylesheet"
-          href="../../assets/css/tools/remove-background.css">
-
-    <!-- Font Awesome -->
-
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AI Background Remover - OneToolBox</title>
+<meta content="AI Background Remover online free with OneToolBox. Use this image tools tool quickly in your browser without installing software." name="description"/>
+<!-- Common CSS -->
+<link href="../../assets/css/reset.css" rel="stylesheet"/>
+<link href="../../assets/css/variables.css" rel="stylesheet"/>
+<link href="../../assets/css/layout.css" rel="stylesheet"/>
+<link href="../../assets/css/components.css" rel="stylesheet"/>
+<!-- Tool CSS -->
+<link href="../../assets/css/tools/remove-background.css" rel="stylesheet"/>
+<!-- Font Awesome -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet"/>
 <script id="otb-theme-boot">(()=>{try{if(localStorage.getItem("onetoolbox-theme")==="dark")document.documentElement.classList.add("otb-dark-preload")}catch(e){}})();</script>
 <style id="otb-theme-boot-style">html.otb-dark-preload{background:#0f172a}html.otb-dark-preload body{background:#0f172a}</style>
-<link rel="preconnect" href="https://cdnjs.cloudflare.com">
-</head>
-
-
+<link href="https://cdnjs.cloudflare.com" rel="preconnect"/>
+<meta content="index,follow,max-image-preview:large" name="robots"/><link href="https://onetoolbox.in/pages/image-tools/background-remover.html" rel="canonical"/><meta content="AI Background Remover - OneToolBox" property="og:title"/><meta content="AI Background Remover online free with OneToolBox. Use this image tools tool quickly in your browser without installing software." property="og:description"/><meta content="https://onetoolbox.in/pages/image-tools/background-remover.html" property="og:url"/><meta content="OneToolBox" property="og:site_name"/><meta content="website" property="og:type"/><script src="/assets/js/analytics-config.js"></script><script src="/assets/js/onetoolbox-analytics.js"></script><script data-onetoolbox-schema="true" type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"AI Background Remover","url":"https://onetoolbox.in/pages/image-tools/background-remover.html","description":"AI Background Remover online free with OneToolBox. Use this image tools tool quickly in your browser without installing software.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script></head>
 <body>
-
-
 <!-- ==========================================
      Header
 ========================================== -->
-
 <div id="header-placeholder"></div>
-
-
 <!-- ==========================================
      Main
 ========================================== -->
-
 <main class="page page-offset">
-
-
-    <!-- ======================================
+<!-- ======================================
          Hero
     ======================================= -->
-
-    <section class="tool-hero">
-
-        <div class="container">
-
-            <h1>
-
-                <i class="fa-solid fa-scissors"></i>
+<section class="tool-hero">
+<div class="container">
+<h1>
+<i class="fa-solid fa-scissors"></i>
 
                 AI Background Remover
 
             </h1>
-
-            <p>
+<p>
 
                 Remove image background instantly using AI.
 
             </p>
-
-        </div>
-
-    </section>
-
-
-    <!-- ======================================
+</div>
+</section>
+<!-- ======================================
          Tool Section
     ======================================= -->
-
-    <section class="section">
-
-        <div class="container">
-
-
-            <div class="tool-grid">
-
-
-                <!-- ==================================
+<section class="section">
+<div class="container">
+<div class="tool-grid">
+<!-- ==================================
                      Upload Card
                 =================================== -->
-
-                <div class="tool-card">
-
-                    <h2>
-
-                        <i class="fa-solid fa-upload"></i>
+<div class="tool-card">
+<h2>
+<i class="fa-solid fa-upload"></i>
 
                         Upload Image
 
                     </h2>
+<div class="upload-area" id="uploadArea">
+<input accept="image/png,image/jpeg,image/webp" hidden="" id="imageInput" type="file"/>
+<i class="fa-solid fa-cloud-arrow-up upload-icon"></i>
+<h3>
 
-
-                    <div
-                        class="upload-area"
-                        id="uploadArea">
-
-
-                        <input
-                            type="file"
-                            id="imageInput"
-                            accept="image/png,image/jpeg,image/webp"
-                            hidden>
-
-
-                        <i class="fa-solid fa-cloud-arrow-up upload-icon"></i>
-
-
-                        <h3>
-
-                            Drag & Drop Image
+                            Drag &amp; Drop Image
 
                         </h3>
-
-
-                        <p>
+<p>
 
                             or click below
 
                         </p>
-
-
-                        <button
-                            id="selectBtn"
-                            class="primary-btn"
-                            type="button">
-
-                            <i class="fa-solid fa-image"></i>
+<button class="primary-btn" id="selectBtn" type="button">
+<i class="fa-solid fa-image"></i>
 
                             Choose Image
 
                         </button>
-
-
-                        <small>
+<small>
 
                             JPG • PNG • WEBP
 
                         </small>
-
-
-                    </div>
-
-
-                    <!-- File Information -->
-
-                    <div id="uploadPreview" class="upload-preview" aria-label="Selected image preview">
-                            <img id="originalPreview" alt="Selected original image">
-                            <div class="upload-preview-meta">
-                                <strong>Selected Image</strong>
-                                <span>Ready to remove background</span>
-                            </div>
-                        </div>
-
-                        <div class="file-info">
-
-
-                        <div>
-
-                            <span>
+</div>
+<!-- File Information -->
+<div aria-label="Selected image preview" class="upload-preview" id="uploadPreview">
+<img alt="Selected original image" id="originalPreview"/>
+<div class="upload-preview-meta">
+<strong>Selected Image</strong>
+<span>Ready to remove background</span>
+</div>
+</div>
+<div class="file-info">
+<div>
+<span>
 
                                 File Size
 
                             </span>
-
-
-                            <strong id="fileSize">
+<strong id="fileSize">
 
                                 0 KB
 
                             </strong>
-
-                        </div>
-
-
-                        <div>
-
-                            <span>
+</div>
+<div>
+<span>
 
                                 Resolution
 
                             </span>
-
-
-                            <strong id="resolution">
+<strong id="resolution">
 
                                 0 × 0
 
                             </strong>
-
-                        </div>
-
-
-                    </div>
-
-
-                </div>
-
-
-                <!-- ==================================
+</div>
+</div>
+</div>
+<!-- ==================================
                      AI Controls
                 =================================== -->
-
-                <div class="tool-card">
-
-
-                    <h2>
-
-                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+<div class="tool-card">
+<h2>
+<i class="fa-solid fa-wand-magic-sparkles"></i>
 
                         AI Controls
 
                     </h2>
-
-
-                    <button
-                        id="removeBgBtn"
-                        class="primary-btn full-btn"
-                        type="button">
-
-
-                        <i class="fa-solid fa-scissors"></i>
+<button class="primary-btn full-btn" id="removeBgBtn" type="button">
+<i class="fa-solid fa-scissors"></i>
 
                         Remove Background
 
 
                     </button>
-
-
-                    <button
-                        id="resetBtn"
-                        class="secondary-btn full-btn"
-                        type="button">
-
-
-                        <i class="fa-solid fa-rotate-left"></i>
+<button class="secondary-btn full-btn" id="resetBtn" type="button">
+<i class="fa-solid fa-rotate-left"></i>
 
                         Reset
 
 
                     </button>
-
-
-                    <!-- Processing -->
-
-                    <div
-                        id="processingText"
-                        class="processing-box"
-                        style="display:none;">
-
-
-                        <div
-                            class="loader"
-                            id="loader">
-                        </div>
-
-
-                        <p id="processingMessage">
+<!-- Processing -->
+<div class="processing-box" id="processingText" style="display:none;">
+<div class="loader" id="loader">
+</div>
+<p id="processingMessage">
 
                             Preparing AI...
 
 
                         </p>
-
-
-                        <div class="progress-wrapper">
-
-                            <div
-                                class="progress-bar"
-                                id="progressBar">
-                            </div>
-
-                        </div>
-
-
-                        <small id="progressText">
+<div class="progress-wrapper">
+<div class="progress-bar" id="progressBar">
+</div>
+</div>
+<small id="progressText">
 
                             Please wait...
 
                         </small>
-
-
-                    </div>
-
-
-                    <!-- Tips -->
-
-                    <div class="tool-note">
-
-
-                        <h4>
+</div>
+<!-- Tips -->
+<div class="tool-note">
+<h4>
 
                             Tips
 
                         </h4>
-
-
-                        <ul>
-
-                            <li>
+<ul>
+<li>
 
                                 Use clear images.
 
                             </li>
-
-
-                            <li>
+<li>
 
                                 Single object gives best results.
 
                             </li>
-
-
-                            <li>
+<li>
 
                                 PNG output supports transparency.
 
                             </li>
-
-
-                            <li>
+<li>
 
                                 First use may take longer while the AI model loads.
-                        <br>
+                        <br/>
                         Fine hair and edges are processed with the high-quality model.
 
                             </li>
-
-                        </ul>
-
-
-                    </div>
-
-
-                </div>
-
-
-                <!-- ==================================
+</ul>
+</div>
+</div>
+<!-- ==================================
                      Result Card
                 =================================== -->
-
-                <div class="tool-card">
-
-
-                    <h2>
-
-                        <i class="fa-solid fa-image"></i>
+<div class="tool-card">
+<h2>
+<i class="fa-solid fa-image"></i>
 
                         Result
 
                     </h2>
-
-
-                    <div class="result-area">
-
-
-                        <img
-                            id="beforeImg"
-                            class="preview-image result-before-image"
-                            alt="Original Image">
-
-
-                        <img
-                            id="afterImg"
-                            class="preview-image"
-                            alt="Background Removed Image">
-
-
-                        <div
-                            id="resultPlaceholder"
-                            class="placeholder">
-
-
-                            <i class="fa-solid fa-image"></i>
-
-
-                            <p>
+<div class="result-area">
+<img alt="Original Image" class="preview-image result-before-image" id="beforeImg"/>
+<img alt="Background Removed Image" class="preview-image" id="afterImg"/>
+<div class="placeholder" id="resultPlaceholder">
+<i class="fa-solid fa-image"></i>
+<p>
 
                                 Result will appear here
 
                             </p>
-
-
-                        </div>
-
-
-                    </div>
-
-
-                    <!-- Status -->
-
-                    <div class="result-info">
-
-
-                        <div>
-
-                            <span>
+</div>
+</div>
+<!-- Status -->
+<div class="result-info">
+<div>
+<span>
 
                                 Status
 
                             </span>
-
-
-                            <strong id="statusText">
+<strong id="statusText">
 
                                 Waiting...
 
                             </strong>
-
-                        </div>
-
-
-                    </div>
-
-
-                    <!-- Download -->
-
-                    <a
-                        id="downloadBtn"
-                        class="primary-btn full-btn"
-                        style="display:none;"
-                        download="removed-background.png">
-
-
-                        <i class="fa-solid fa-download"></i>
+</div>
+</div>
+<!-- Download -->
+<a class="primary-btn full-btn" download="removed-background.png" id="downloadBtn" style="display:none;">
+<i class="fa-solid fa-download"></i>
 
                         Download PNG
 
 
                     </a>
-
-
-                </div>
-
-
-            </div>
-
-
-        </div>
-
-    </section>
-
-
+</div>
+</div>
+</div>
+</section>
 <section class="otb-tool-info"><div class="container"><div class="otb-tool-info-head"><h2>Features</h2><p>Remove image backgrounds online for free using AI directly in your browser.</p></div><div class="otb-tool-info-grid"><div class="otb-tool-info-card"><h3>Simple workflow</h3><ul><li>Clear controls focused on the main Image task.</li><li>Useful settings are kept close to the tool workspace.</li><li>Results can be reviewed before the final download where supported.</li></ul></div><div class="otb-tool-info-card"><h3>Browser friendly</h3><ul><li>Works directly from a modern web browser.</li><li>No desktop installation is required for normal use.</li><li>Responsive layout for computer, tablet and phone screens.</li></ul></div><div class="otb-tool-info-card"><h3>Practical output</h3><ul><li>Designed for everyday file and content tasks.</li><li>Original input is not changed by the download step.</li><li>Easy reset and repeat workflow where supported.</li></ul></div></div></div></section>
-<section class="otb-tool-info"><div class="container"><div class="otb-tool-info-head"><h2>How It Works</h2><p>Use AI Background Remover in a few simple steps.</p></div><div class="otb-tool-info-grid"><div class="otb-tool-info-card"><h3>1. Open the tool</h3><p>Open this page and review the available options before starting.</p></div><div class="otb-tool-info-card"><h3>2. Add your input</h3><p>Select, enter or drop the content required by the tool, then choose the settings you need.</p></div><div class="otb-tool-info-card"><h3>3. Process & download</h3><p>Run the tool, check the result, make adjustments if available, and download the finished file or result.</p></div></div></div></section>
+<section class="otb-tool-info"><div class="container"><div class="otb-tool-info-head"><h2>How It Works</h2><p>Use AI Background Remover in a few simple steps.</p></div><div class="otb-tool-info-grid"><div class="otb-tool-info-card"><h3>1. Open the tool</h3><p>Open this page and review the available options before starting.</p></div><div class="otb-tool-info-card"><h3>2. Add your input</h3><p>Select, enter or drop the content required by the tool, then choose the settings you need.</p></div><div class="otb-tool-info-card"><h3>3. Process &amp; download</h3><p>Run the tool, check the result, make adjustments if available, and download the finished file or result.</p></div></div></div></section>
 <section class="otb-tool-info otb-tool-faq"><div class="container"><div class="otb-tool-info-head"><h2>Frequently Asked Questions</h2><p>Common questions about AI Background Remover.</p></div><div class="otb-tool-info-card"><details><summary>Is AI Background Remover free to use?</summary><p>The page is provided as an online OneToolBox utility. Any limits or options shown in the tool itself take priority.</p></details><details><summary>How do I use AI Background Remover?</summary><p>Add the required input, choose the available settings, run the operation and review the result before downloading it.</p></details><details><summary>Do I need to install software?</summary><p>No separate desktop installation is required for normal browser use.</p></details><details><summary>Will the original file be changed?</summary><p>The downloaded result is created separately; your original local file is not overwritten by the browser download.</p></details></div></div></section>
 </main>
-
-
 <!-- ==========================================
      Footer
 ========================================== -->
-
 <div id="footer-placeholder"></div>
-
-
 <!-- ==========================================
      Common JS
 ========================================== -->
-
 <script src="../../assets/js/navigation.js"></script>
-
 <script src="../../assets/js/app.js"></script>
-
-
 <!-- ==========================================
      AI Background Removal JS
 
      IMPORTANT:
      type="module" is required.
 ========================================== -->
-
 <script src="../../assets/js/tools/remove-background.js"></script>
-
-
-
 <!-- OneToolBox Processing Modal -->
-<div id="aiProcessingModal" class="ai-modal" aria-hidden="true">
-  <div class="ai-modal-backdrop"></div>
-  <div class="ai-modal-card" role="dialog" aria-modal="true" aria-labelledby="aiModalTitle">
-    <div class="ai-modal-icon-wrap">
-      <div class="ai-modal-spinner"></div>
-      <i class="fa-solid fa-wand-magic-sparkles ai-modal-icon"></i>
-    </div>
-
-    <h3 id="aiModalTitle">Removing Background</h3>
-    <p id="aiModalMessage">Preparing your image...</p>
-
-    <div class="ai-modal-progress">
-      <div id="aiModalProgressBar"></div>
-    </div>
-
-    <div class="ai-modal-progress-row">
-      <span id="aiModalStage">Preparing image</span>
-      <strong id="aiModalProgress">0%</strong>
-    </div>
-
-    <div id="aiModalDone" class="ai-modal-done">
-      <i class="fa-solid fa-circle-check"></i>
+<div aria-hidden="true" class="ai-modal" id="aiProcessingModal">
+<div class="ai-modal-backdrop"></div>
+<div aria-labelledby="aiModalTitle" aria-modal="true" class="ai-modal-card" role="dialog">
+<div class="ai-modal-icon-wrap">
+<div class="ai-modal-spinner"></div>
+<i class="fa-solid fa-wand-magic-sparkles ai-modal-icon"></i>
+</div>
+<h3 id="aiModalTitle">Removing Background</h3>
+<p id="aiModalMessage">Preparing your image...</p>
+<div class="ai-modal-progress">
+<div id="aiModalProgressBar"></div>
+</div>
+<div class="ai-modal-progress-row">
+<span id="aiModalStage">Preparing image</span>
+<strong id="aiModalProgress">0%</strong>
+</div>
+<div class="ai-modal-done" id="aiModalDone">
+<i class="fa-solid fa-circle-check"></i>
       Background removed successfully
     </div>
-
-    <div id="aiModalError" class="ai-modal-error">
-      <i class="fa-solid fa-circle-exclamation"></i>
-      <span id="aiModalErrorText">Something went wrong.</span>
-    </div>
-
-    <button id="aiModalClose" type="button" class="ai-modal-close">Cancel</button>
-  </div>
+<div class="ai-modal-error" id="aiModalError">
+<i class="fa-solid fa-circle-exclamation"></i>
+<span id="aiModalErrorText">Something went wrong.</span>
 </div>
-
+<button class="ai-modal-close" id="aiModalClose" type="button">Cancel</button>
+</div>
+</div>
 </body>
-
 </html>
