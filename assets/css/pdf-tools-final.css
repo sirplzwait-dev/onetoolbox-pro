@@ -1,0 +1,659 @@
+
+/* ==========================================================
+   OneToolBox — PDF TOOLS FINAL UI SYSTEM
+   Applies only to PDF tools. Functionality/JS untouched.
+   ========================================================== */
+
+:root{
+  --pdf-blue:#2563eb;
+  --pdf-blue-soft:#eff6ff;
+  --pdf-purple:#7c3aed;
+  --pdf-purple-soft:#f5f3ff;
+  --pdf-green:#16a34a;
+  --pdf-green-soft:#f0fdf4;
+  --pdf-orange:#ea580c;
+  --pdf-orange-soft:#fff7ed;
+  --pdf-red:#dc2626;
+  --pdf-red-soft:#fef2f2;
+  --pdf-text:#0f172a;
+  --pdf-muted:#64748b;
+  --pdf-border:#dbe4ef;
+  --pdf-bg:#f7f9fc;
+  --pdf-shadow:0 7px 24px rgba(15,23,42,.07);
+  --pdf-shadow-hover:0 14px 34px rgba(37,99,235,.13);
+}
+
+/* ==========================================================
+   STANDARD PDF TOOL PAGES
+   ========================================================== */
+
+main.page.page-offset{
+  padding-top:72px !important;
+  background:
+    radial-gradient(circle at 12% 0%,rgba(37,99,235,.045),transparent 28%),
+    radial-gradient(circle at 88% 5%,rgba(124,58,237,.035),transparent 28%),
+    var(--pdf-bg);
+}
+
+/* Keep heading visible and compact */
+main.page.page-offset .tool-hero{
+  display:block !important;
+  visibility:visible !important;
+  opacity:1 !important;
+  padding:14px 0 15px !important;
+  margin:0 !important;
+  position:relative;
+  z-index:2;
+  text-align:center;
+}
+
+main.page.page-offset .tool-hero h1{
+  display:block !important;
+  visibility:visible !important;
+  opacity:1 !important;
+  margin:0 0 6px !important;
+  color:var(--pdf-text) !important;
+  font-size:32px !important;
+  line-height:1.18 !important;
+  font-weight:800 !important;
+  letter-spacing:-.35px;
+}
+
+main.page.page-offset .tool-hero p{
+  display:block !important;
+  visibility:visible !important;
+  opacity:1 !important;
+  margin:0 auto !important;
+  max-width:760px;
+  color:var(--pdf-muted) !important;
+  font-size:14px !important;
+  line-height:1.5 !important;
+}
+
+main.page.page-offset .tool-badge{
+  display:inline-flex !important;
+  visibility:visible !important;
+  opacity:1 !important;
+  margin:0 0 7px !important;
+  padding:6px 11px !important;
+  border-radius:999px !important;
+  background:var(--pdf-blue-soft) !important;
+  color:var(--pdf-blue) !important;
+  font-size:11px !important;
+  font-weight:800 !important;
+}
+
+/* Reduce the huge generic 80px section spacing */
+main.page.page-offset > .section{
+  padding:16px 0 30px !important;
+}
+
+main.page.page-offset > .section:first-of-type{
+  padding-top:6px !important;
+}
+
+/* ==========================================================
+   COMMON 3-COLUMN WORKSPACE
+   ========================================================== */
+
+main.page.page-offset .tool-grid,
+main.page.page-offset .compress-box{
+  display:grid !important;
+  grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+  gap:16px !important;
+  align-items:stretch !important;
+}
+
+/* Every common tool card */
+main.page.page-offset .tool-card,
+main.page.page-offset .compress-card,
+main.page.page-offset .psr-card{
+  position:relative !important;
+  min-width:0 !important;
+  border:1px solid var(--pdf-border) !important;
+  border-radius:18px !important;
+  background:linear-gradient(180deg,#fff 0%,#f9fbff 100%) !important;
+  box-shadow:var(--pdf-shadow) !important;
+  overflow:hidden !important;
+  transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease !important;
+}
+
+/* Colored top edge */
+main.page.page-offset .tool-card::before,
+main.page.page-offset .compress-card::before,
+main.page.page-offset .psr-card::before{
+  content:"" !important;
+  position:absolute !important;
+  top:0 !important;
+  left:0 !important;
+  right:0 !important;
+  height:4px !important;
+  background:linear-gradient(90deg,#2563eb,#60a5fa) !important;
+  z-index:1 !important;
+}
+
+main.page.page-offset .tool-card:nth-child(2),
+main.page.page-offset .compress-card:nth-child(2),
+main.page.page-offset .psr-card:nth-child(2){
+  background:linear-gradient(180deg,#fff 0%,#fbf9ff 100%) !important;
+}
+
+main.page.page-offset .tool-card:nth-child(2)::before,
+main.page.page-offset .compress-card:nth-child(2)::before,
+main.page.page-offset .psr-card:nth-child(2)::before{
+  background:linear-gradient(90deg,#7c3aed,#a78bfa) !important;
+}
+
+main.page.page-offset .tool-card:nth-child(3),
+main.page.page-offset .compress-card:nth-child(3),
+main.page.page-offset .psr-card:nth-child(3){
+  background:linear-gradient(180deg,#fff 0%,#f7fff9 100%) !important;
+}
+
+main.page.page-offset .tool-card:nth-child(3)::before,
+main.page.page-offset .compress-card:nth-child(3)::before,
+main.page.page-offset .psr-card:nth-child(3)::before{
+  background:linear-gradient(90deg,#16a34a,#4ade80) !important;
+}
+
+main.page.page-offset .tool-card:hover,
+main.page.page-offset .compress-card:hover,
+main.page.page-offset .psr-card:hover{
+  transform:translateY(-3px) !important;
+  border-color:#c2d2e7 !important;
+  box-shadow:var(--pdf-shadow-hover) !important;
+}
+
+main.page.page-offset .tool-card h2,
+main.page.page-offset .compress-card h3,
+main.page.page-offset .psr-card h3{
+  color:var(--pdf-text) !important;
+}
+
+/* ==========================================================
+   UPLOAD / DROP ZONES
+   ========================================================== */
+
+main.page.page-offset .upload,
+main.page.page-offset .upload-area,
+main.page.page-offset .psr-drop{
+  border-radius:15px !important;
+  background:linear-gradient(180deg,#fbfdff 0%,#f1f7ff 100%) !important;
+  border-color:#b9cbe1 !important;
+  transition:background .2s ease,border-color .2s ease,box-shadow .2s ease !important;
+}
+
+main.page.page-offset .upload:hover,
+main.page.page-offset .upload.drag,
+main.page.page-offset .upload-area:hover,
+main.page.page-offset .upload-area.dragover,
+main.page.page-offset .psr-drop:hover{
+  background:linear-gradient(180deg,#eff6ff 0%,#e8f1ff 100%) !important;
+  border-color:var(--pdf-blue) !important;
+  box-shadow:inset 0 0 0 1px rgba(37,99,235,.08) !important;
+}
+
+main.page.page-offset .upload-icon,
+main.page.page-offset .upload>i{
+  border-radius:14px !important;
+}
+
+/* ==========================================================
+   INFO / STATS
+   ========================================================== */
+
+main.page.page-offset .info,
+main.page.page-offset .stats,
+main.page.page-offset .psr-info-row,
+main.page.page-offset .merge-total{
+  border:1px solid #e5edf6 !important;
+  border-radius:10px !important;
+  background:#f4f8fd !important;
+  color:var(--pdf-muted) !important;
+}
+
+main.page.page-offset .info b,
+main.page.page-offset .stats b,
+main.page.page-offset .psr-info-row b,
+main.page.page-offset .merge-total b{
+  color:var(--pdf-text) !important;
+}
+
+/* ==========================================================
+   CONTROLS
+   ========================================================== */
+
+main.page.page-offset .choose,
+main.page.page-offset .choose-btn,
+main.page.page-offset .btn,
+main.page.page-offset button.blue,
+main.page.page-offset button.primary{
+  border-radius:10px !important;
+}
+
+main.page.page-offset .choose,
+main.page.page-offset .choose-btn,
+main.page.page-offset .btn.primary,
+main.page.page-offset .btn-primary,
+main.page.page-offset button.blue{
+  background:linear-gradient(135deg,#2563eb,#3b82f6) !important;
+  color:#fff !important;
+}
+
+main.page.page-offset .btn.success,
+main.page.page-offset .btn-success{
+  background:linear-gradient(135deg,#16a34a,#22c55e) !important;
+  color:#fff !important;
+}
+
+main.page.page-offset .btn.danger,
+main.page.page-offset .btn-danger{
+  background:#fff1f2 !important;
+  color:#dc2626 !important;
+  border:1px solid #fecdd3 !important;
+}
+
+main.page.page-offset input[type="text"],
+main.page.page-offset input[type="number"],
+main.page.page-offset input[type="password"],
+main.page.page-offset select,
+main.page.page-offset textarea{
+  border-radius:10px !important;
+  border-color:#cbd7e5 !important;
+  background:#fff !important;
+}
+
+main.page.page-offset input:focus,
+main.page.page-offset select:focus,
+main.page.page-offset textarea:focus{
+  border-color:#60a5fa !important;
+  box-shadow:0 0 0 3px rgba(37,99,235,.10) !important;
+  outline:none !important;
+}
+
+/* ==========================================================
+   PREVIEW / RESULT
+   ========================================================== */
+
+main.page.page-offset .preview,
+main.page.page-offset .image-preview,
+main.page.page-offset .pdf-preview,
+main.page.page-offset .result-preview{
+  border:1px solid #dce6f1 !important;
+  border-radius:15px !important;
+  background:linear-gradient(145deg,#edf4fc,#f8fbff) !important;
+}
+
+main.page.page-offset .result-empty{
+  color:#94a3b8 !important;
+}
+
+main.page.page-offset .result-summary{
+  border-radius:12px !important;
+  background:#f0fdf4 !important;
+  border:1px solid #bbf7d0 !important;
+}
+
+/* ==========================================================
+   PROGRESS
+   ========================================================== */
+
+main.page.page-offset .progress .track,
+main.page.page-offset .progress{
+  border-radius:999px !important;
+}
+
+main.page.page-offset .track{
+  background:#e2e8f0 !important;
+}
+
+main.page.page-offset .track>div{
+  background:linear-gradient(90deg,#2563eb,#60a5fa) !important;
+}
+
+/* ==========================================================
+   LOWER FEATURES
+   ========================================================== */
+
+main.page.page-offset .feature-section,
+main.page.page-offset .how-section,
+main.page.page-offset .faq-section,
+main.page.page-offset .content-section{
+  padding-top:28px !important;
+  padding-bottom:28px !important;
+}
+
+main.page.page-offset .section-heading,
+main.page.page-offset .content-heading{
+  margin-bottom:16px !important;
+}
+
+main.page.page-offset .section-heading h2,
+main.page.page-offset .content-heading h2,
+main.page.page-offset .section-title{
+  color:var(--pdf-text) !important;
+  font-size:25px !important;
+}
+
+main.page.page-offset .feature-grid{
+  gap:13px !important;
+}
+
+main.page.page-offset .feature,
+main.page.page-offset .feature-mini,
+main.page.page-offset .info-card,
+main.page.page-offset .privacy-card,
+main.page.page-offset .otb-tool-info-card{
+  border:1px solid #dfe7f1 !important;
+  border-radius:15px !important;
+  background:linear-gradient(180deg,#fff,#f8fbff) !important;
+  box-shadow:0 5px 18px rgba(15,23,42,.055) !important;
+}
+
+main.page.page-offset .feature:hover,
+main.page.page-offset .feature-mini:hover,
+main.page.page-offset .info-card:hover{
+  transform:translateY(-2px);
+  box-shadow:0 11px 26px rgba(37,99,235,.10) !important;
+}
+
+main.page.page-offset .faq details{
+  border:1px solid #dfe7f1 !important;
+  border-radius:12px !important;
+  background:#fff !important;
+  overflow:hidden;
+}
+
+main.page.page-offset .otb-tool-info{
+  padding:24px 0 30px !important;
+}
+
+main.page.page-offset .otb-tool-info-grid{
+  gap:13px !important;
+}
+
+/* ==========================================================
+   SPECIAL: OCR / SCANNER PAGES
+   ========================================================== */
+
+body:has(.intro) main,
+body:has(.intro){
+  background:var(--pdf-bg);
+}
+
+body:has(.intro) .intro{
+  padding:22px 20px 16px !important;
+  text-align:center !important;
+}
+
+body:has(.intro) .intro h1{
+  display:block !important;
+  margin:0 0 6px !important;
+  color:var(--pdf-text) !important;
+  font-size:32px !important;
+  line-height:1.2 !important;
+}
+
+body:has(.intro) .intro p{
+  margin:0 auto !important;
+  color:var(--pdf-muted) !important;
+  font-size:14px !important;
+}
+
+body:has(.intro) .card{
+  border:1px solid var(--pdf-border) !important;
+  border-radius:18px !important;
+  box-shadow:var(--pdf-shadow) !important;
+}
+
+body:has(.intro) .drop{
+  border-radius:15px !important;
+  background:linear-gradient(180deg,#fbfdff,#f1f7ff) !important;
+  border-color:#b9cbe1 !important;
+}
+
+/* ==========================================================
+   SPECIAL: PDF EDITOR
+   ========================================================== */
+
+body:has(.editor-page) .editor-page{
+  background:
+    radial-gradient(circle at 15% 0%,rgba(37,99,235,.045),transparent 30%),
+    var(--pdf-bg) !important;
+  min-height:100vh;
+  padding-top:72px !important;
+}
+
+body:has(.editor-page) .editor-page > .hero{
+  padding:16px 20px 14px !important;
+}
+
+body:has(.editor-page) .editor-page > .hero h1{
+  display:block !important;
+  color:var(--pdf-text) !important;
+  font-size:32px !important;
+  margin:0 0 6px !important;
+}
+
+body:has(.editor-page) .editor-page > .hero p{
+  color:var(--pdf-muted) !important;
+  font-size:14px !important;
+  margin:0 !important;
+}
+
+body:has(.editor-page) .upload-panel{
+  max-width:920px !important;
+  margin:0 auto 18px !important;
+  padding:26px !important;
+  border:1px solid var(--pdf-border) !important;
+  border-radius:18px !important;
+  background:linear-gradient(180deg,#fff,#f8fbff) !important;
+  box-shadow:var(--pdf-shadow) !important;
+}
+
+body:has(.editor-page) .editor-shell{
+  border:1px solid var(--pdf-border) !important;
+  border-radius:18px !important;
+  box-shadow:var(--pdf-shadow) !important;
+  overflow:hidden;
+}
+
+body:has(.editor-page) .toolbar,
+body:has(.editor-page) .pagebar{
+  background:#fff !important;
+  border-color:#e2e8f0 !important;
+}
+
+body:has(.editor-page) .toolbar .tool,
+body:has(.editor-page) .pagebar button{
+  border-radius:9px !important;
+}
+
+body:has(.editor-page) .result-panel{
+  border:1px solid #bbf7d0 !important;
+  border-radius:16px !important;
+  background:linear-gradient(180deg,#f0fdf4,#f8fff9) !important;
+}
+
+/* ==========================================================
+   PDF TOOLS CATEGORY PAGE
+   ========================================================== */
+
+main.pdf-category,
+main.page.page-offset:has(.pdf-tools-grid){
+  background:
+    radial-gradient(circle at 12% 0%,rgba(37,99,235,.045),transparent 30%),
+    radial-gradient(circle at 88% 5%,rgba(124,58,237,.035),transparent 30%),
+    var(--pdf-bg) !important;
+}
+
+main.page.page-offset:has(.pdf-tools-grid) .pdf-tools-hero{
+  padding:14px 0 14px !important;
+}
+
+main.page.page-offset:has(.pdf-tools-grid) .pdf-tools-hero h1{
+  margin:0 0 5px !important;
+  font-size:34px !important;
+  line-height:1.2 !important;
+  color:var(--pdf-text) !important;
+}
+
+main.page.page-offset:has(.pdf-tools-grid) .pdf-tools-hero p{
+  margin:0 !important;
+  color:var(--pdf-muted) !important;
+  font-size:14px !important;
+}
+
+main.page.page-offset:has(.pdf-tools-grid) > .section{
+  padding-top:5px !important;
+}
+
+main.page.page-offset:has(.pdf-tools-grid) .pdf-tools-grid{
+  display:grid !important;
+  grid-template-columns:repeat(4,minmax(0,1fr)) !important;
+  gap:14px !important;
+}
+
+main.page.page-offset:has(.pdf-tools-grid) .pdf-tool-card{
+  position:relative !important;
+  min-height:160px !important;
+  padding:17px !important;
+  border:1px solid var(--pdf-border) !important;
+  border-radius:17px !important;
+  background:linear-gradient(180deg,#fff,#f8fbff) !important;
+  box-shadow:var(--pdf-shadow) !important;
+  overflow:hidden !important;
+  transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease !important;
+}
+
+main.page.page-offset:has(.pdf-tools-grid) .pdf-tool-card::before{
+  content:"" !important;
+  position:absolute !important;
+  top:0 !important;
+  left:0 !important;
+  right:0 !important;
+  height:4px !important;
+  background:linear-gradient(90deg,#2563eb,#60a5fa) !important;
+}
+
+main.page.page-offset:has(.pdf-tools-grid) .pdf-tool-card:nth-child(4n+2)::before{
+  background:linear-gradient(90deg,#16a34a,#4ade80) !important;
+}
+
+main.page.page-offset:has(.pdf-tools-grid) .pdf-tool-card:nth-child(4n+3)::before{
+  background:linear-gradient(90deg,#7c3aed,#a78bfa) !important;
+}
+
+main.page.page-offset:has(.pdf-tools-grid) .pdf-tool-card:nth-child(4n)::before{
+  background:linear-gradient(90deg,#ea580c,#fb923c) !important;
+}
+
+main.page.page-offset:has(.pdf-tools-grid) .pdf-tool-card:hover{
+  transform:translateY(-4px) !important;
+  border-color:#bfd0e8 !important;
+  box-shadow:var(--pdf-shadow-hover) !important;
+}
+
+main.page.page-offset:has(.pdf-tools-grid) .pdf-tool-icon{
+  width:44px !important;
+  height:44px !important;
+  margin-bottom:9px !important;
+  border-radius:12px !important;
+}
+
+main.page.page-offset:has(.pdf-tools-grid) .pdf-tool-card h3{
+  margin:0 0 5px !important;
+  font-size:15px !important;
+  color:var(--pdf-text) !important;
+}
+
+main.page.page-offset:has(.pdf-tools-grid) .pdf-tool-card p{
+  min-height:32px !important;
+  margin:0 0 10px !important;
+  font-size:12px !important;
+  line-height:1.4 !important;
+  color:var(--pdf-muted) !important;
+}
+
+main.page.page-offset:has(.pdf-tools-grid) .pdf-tool-card a{
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  min-height:32px !important;
+  padding:0 11px !important;
+  border-radius:9px !important;
+  font-size:11px !important;
+  font-weight:800 !important;
+}
+
+/* ==========================================================
+   RESPONSIVE
+   ========================================================== */
+
+@media(max-width:1050px){
+  main.page.page-offset .tool-grid,
+  main.page.page-offset .compress-box{
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+  }
+
+  main.page.page-offset:has(.pdf-tools-grid) .pdf-tools-grid{
+    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+  }
+}
+
+@media(max-width:700px){
+  main.page.page-offset{
+    padding-top:62px !important;
+  }
+
+  main.page.page-offset .tool-hero{
+    padding:12px 12px 13px !important;
+  }
+
+  main.page.page-offset .tool-hero h1,
+  body:has(.intro) .intro h1{
+    font-size:27px !important;
+  }
+
+  main.page.page-offset > .section{
+    padding:8px 0 22px !important;
+  }
+
+  main.page.page-offset .tool-grid,
+  main.page.page-offset .compress-box{
+    grid-template-columns:1fr !important;
+    gap:13px !important;
+  }
+
+  main.page.page-offset .tool-card,
+  main.page.page-offset .compress-card,
+  main.page.page-offset .psr-card{
+    min-height:0 !important;
+  }
+
+  main.page.page-offset:has(.pdf-tools-grid) .pdf-tools-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+    gap:11px !important;
+  }
+
+  main.page.page-offset:has(.pdf-tools-grid) .pdf-tool-card{
+    min-height:145px !important;
+    padding:14px !important;
+  }
+
+  body:has(.editor-page) .editor-page{
+    padding-top:60px !important;
+  }
+}
+
+@media(max-width:480px){
+  main.page.page-offset:has(.pdf-tools-grid) .pdf-tools-grid{
+    grid-template-columns:1fr !important;
+  }
+
+  main.page.page-offset .tool-card,
+  main.page.page-offset .compress-card,
+  main.page.page-offset .psr-card{
+    border-radius:15px !important;
+  }
+}

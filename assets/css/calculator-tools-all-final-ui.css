@@ -1,0 +1,41 @@
+
+/* OneToolBox Calculator Tools — individual tool UI */
+main.page.page-offset.otb-tool-page{
+  padding-top:72px!important;min-height:100vh!important;
+  background:radial-gradient(circle at 10% 0%,rgba(37,99,235,.045),transparent 28%),
+             radial-gradient(circle at 90% 5%,rgba(124,58,237,.035),transparent 30%),#f7f9fc!important;
+}
+main.page.page-offset.otb-tool-page .tool-hero{padding:14px 0 16px!important;text-align:center!important}
+main.page.page-offset.otb-tool-page .tool-hero h1{display:block!important;margin:0 0 6px!important;color:#0f172a!important;font-size:32px!important;line-height:1.2!important;font-weight:800!important}
+main.page.page-offset.otb-tool-page .tool-hero p{margin:0!important;color:#64748b!important;font-size:14px!important}
+main.page.page-offset.otb-tool-page .otb-tool-layout{display:grid!important;grid-template-columns:minmax(0,2fr) minmax(280px,1fr)!important;gap:16px!important;align-items:start!important}
+main.page.page-offset.otb-tool-page .otb-tool-card,main.page.page-offset.otb-tool-page .otb-info-card{
+  position:relative!important;min-width:0!important;padding:20px!important;border:1px solid #dbe4ef!important;border-radius:18px!important;
+  background:linear-gradient(180deg,#fff,#f8fbff)!important;box-shadow:0 7px 24px rgba(15,23,42,.07)!important;overflow:hidden!important;
+}
+main.page.page-offset.otb-tool-page .otb-tool-card::before,main.page.page-offset.otb-tool-page .otb-info-card::before{
+  content:""!important;position:absolute!important;top:0!important;left:0!important;right:0!important;height:4px!important;background:linear-gradient(90deg,#2563eb,#60a5fa)!important;
+}
+main.page.page-offset.otb-tool-page .otb-info-card{background:linear-gradient(180deg,#fff,#faf7ff)!important}
+main.page.page-offset.otb-tool-page .otb-info-card::before{background:linear-gradient(90deg,#7c3aed,#a78bfa)!important}
+main.page.page-offset.otb-tool-page .otb-tool-card h2{margin:0 0 7px!important;color:#0f172a!important;font-size:21px!important}
+main.page.page-offset.otb-tool-page .otb-help{color:#64748b!important;font-size:13px!important;margin-bottom:16px!important}
+main.page.page-offset.otb-tool-page .otb-fields{display:grid!important;gap:8px!important}
+main.page.page-offset.otb-tool-page .otb-fields label{color:#334155!important;font-size:13px!important;font-weight:700!important}
+main.page.page-offset.otb-tool-page input,main.page.page-offset.otb-tool-page select,main.page.page-offset.otb-tool-page textarea{
+  width:100%!important;min-height:42px!important;border:1px solid #cbd7e5!important;border-radius:10px!important;background:#fff!important;padding:9px 11px!important
+}
+main.page.page-offset.otb-tool-page input:focus,main.page.page-offset.otb-tool-page select:focus,main.page.page-offset.otb-tool-page textarea:focus{
+  outline:none!important;border-color:#60a5fa!important;box-shadow:0 0 0 3px rgba(37,99,235,.10)!important
+}
+main.page.page-offset.otb-tool-page .otb-actions{display:flex!important;flex-wrap:wrap!important;gap:9px!important;margin-top:15px!important}
+main.page.page-offset.otb-tool-page .otb-btn{min-height:42px!important;padding:0 15px!important;border-radius:10px!important;font-weight:800!important}
+main.page.page-offset.otb-tool-page .otb-primary{background:linear-gradient(135deg,#2563eb,#3b82f6)!important;color:#fff!important}
+main.page.page-offset.otb-tool-page .otb-secondary{background:#f1f5f9!important;color:#334155!important}
+main.page.page-offset.otb-tool-page .otb-download{background:linear-gradient(135deg,#16a34a,#22c55e)!important;color:#fff!important}
+main.page.page-offset.otb-tool-page .otb-result{margin-top:15px!important;padding:15px!important;border:1px solid #bbf7d0!important;border-radius:14px!important;background:linear-gradient(180deg,#f0fdf4,#f8fff9)!important}
+main.page.page-offset.otb-tool-page .otb-info-card h3{margin:0 0 9px!important;color:#0f172a!important;font-size:18px!important}
+main.page.page-offset.otb-tool-page .otb-info-card p,main.page.page-offset.otb-tool-page .otb-info-card li{color:#64748b!important;font-size:13px!important;line-height:1.5!important}
+main.page.page-offset.otb-tool-page .otb-info-card ul{padding-left:18px!important}
+@media(max-width:800px){main.page.page-offset.otb-tool-page{padding-top:62px!important}main.page.page-offset.otb-tool-page .otb-tool-layout{grid-template-columns:1fr!important}}
+@media(max-width:480px){main.page.page-offset.otb-tool-page .tool-hero h1{font-size:26px!important}main.page.page-offset.otb-tool-page .otb-tool-card,main.page.page-offset.otb-tool-page .otb-info-card{padding:16px!important;border-radius:15px!important}}

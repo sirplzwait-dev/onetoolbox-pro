@@ -1,0 +1,355 @@
+
+/* ==========================================================
+   OneToolBox — ALL CALCULATORS / BASIC-CALCULATOR STYLE
+   Applied to every calculator except Basic Calculator.
+   Functionality/JS untouched.
+   ========================================================== */
+
+main.page.page-offset.otb-tool-page{
+  padding-top:72px!important;
+  min-height:100vh!important;
+  background:#f6f8fc!important;
+}
+
+main.page.page-offset.otb-tool-page .tool-hero{
+  padding:16px 0 10px!important;
+  margin:0!important;
+  text-align:center!important;
+}
+
+main.page.page-offset.otb-tool-page .tool-hero h1{
+  display:block!important;
+  margin:0 0 7px!important;
+  color:#172033!important;
+  font-size:30px!important;
+  line-height:1.15!important;
+  font-weight:800!important;
+}
+
+main.page.page-offset.otb-tool-page .tool-hero p{
+  margin:0!important;
+  color:#64748b!important;
+  font-size:13px!important;
+}
+
+main.page.page-offset.otb-tool-page .section{
+  padding:8px 0 22px!important;
+}
+
+main.page.page-offset.otb-tool-page .otb-tool-layout{
+  width:min(760px,100%)!important;
+  margin:0 auto!important;
+  display:flex!important;
+  flex-direction:column!important;
+  gap:10px!important;
+  align-items:stretch!important;
+}
+
+/* Main calculator shell */
+main.page.page-offset.otb-tool-page .otb-tool-card{
+  width:100%!important;
+  margin:0 auto!important;
+  padding:18px!important;
+  position:relative!important;
+  border:1px solid #e1e7f0!important;
+  border-radius:22px!important;
+  background:#fff!important;
+  box-shadow:0 16px 45px rgba(15,23,42,.10)!important;
+  overflow:hidden!important;
+}
+
+main.page.page-offset.otb-tool-page .otb-tool-card::before{
+  content:""!important;
+  position:absolute!important;
+  top:0!important;
+  left:0!important;
+  right:0!important;
+  height:4px!important;
+  background:linear-gradient(90deg,#2563eb,#60a5fa)!important;
+}
+
+main.page.page-offset.otb-tool-page .otb-tool-card h2{
+  margin:0 0 7px!important;
+  color:#172033!important;
+  font-size:20px!important;
+  line-height:1.2!important;
+}
+
+main.page.page-offset.otb-tool-page .otb-tool-card h2 i{
+  color:#2563eb!important;
+}
+
+main.page.page-offset.otb-tool-page .otb-help{
+  margin:0 0 14px!important;
+  color:#64748b!important;
+  font-size:12px!important;
+  line-height:1.45!important;
+}
+
+/* Form area */
+main.page.page-offset.otb-tool-page .otb-fields{
+  display:grid!important;
+  grid-template-columns:1fr 1fr!important;
+  gap:9px 11px!important;
+  margin:0!important;
+}
+
+main.page.page-offset.otb-tool-page .otb-fields label{
+  display:block!important;
+  margin:0!important;
+  color:#475569!important;
+  font-size:12px!important;
+  font-weight:700!important;
+}
+
+main.page.page-offset.otb-tool-page .otb-fields input,
+main.page.page-offset.otb-tool-page .otb-fields select,
+main.page.page-offset.otb-tool-page .otb-fields textarea{
+  width:100%!important;
+  min-height:40px!important;
+  margin:0!important;
+  padding:8px 11px!important;
+  border:1px solid #e0e6ef!important;
+  border-radius:10px!important;
+  background:#f8fafc!important;
+  color:#172033!important;
+  font-size:13px!important;
+  box-sizing:border-box!important;
+}
+
+main.page.page-offset.otb-tool-page .otb-fields input:focus,
+main.page.page-offset.otb-tool-page .otb-fields select:focus,
+main.page.page-offset.otb-tool-page .otb-fields textarea:focus{
+  outline:none!important;
+  border-color:#93b4ef!important;
+  background:#fff!important;
+  box-shadow:0 0 0 3px rgba(37,99,235,.08)!important;
+}
+
+/* If a field spans the full row */
+main.page.page-offset.otb-tool-page .otb-fields textarea,
+main.page.page-offset.otb-tool-page .otb-fields .full,
+main.page.page-offset.otb-tool-page .otb-fields input[type="text"]:only-of-type{
+  grid-column:1/-1;
+}
+
+/* Action buttons */
+main.page.page-offset.otb-tool-page .otb-actions{
+  display:flex!important;
+  gap:8px!important;
+  flex-wrap:wrap!important;
+  margin-top:12px!important;
+}
+
+main.page.page-offset.otb-tool-page .otb-btn{
+  min-height:39px!important;
+  padding:0 14px!important;
+  border-radius:9px!important;
+  border:1px solid transparent!important;
+  font-size:12px!important;
+  font-weight:800!important;
+  cursor:pointer!important;
+}
+
+main.page.page-offset.otb-tool-page .otb-primary{
+  background:#2563eb!important;
+  color:#fff!important;
+  box-shadow:0 5px 12px rgba(37,99,235,.16)!important;
+}
+
+main.page.page-offset.otb-tool-page .otb-secondary{
+  background:#f1f5f9!important;
+  color:#475569!important;
+  border-color:#dbe3ee!important;
+}
+
+main.page.page-offset.otb-tool-page .otb-download{
+  background:#16a34a!important;
+  color:#fff!important;
+}
+
+/* Result = calculator display language */
+main.page.page-offset.otb-tool-page .otb-result{
+  margin-top:12px!important;
+  padding:13px!important;
+  border:1px solid #e2e8f0!important;
+  border-radius:16px!important;
+  background:#f8fafc!important;
+}
+
+main.page.page-offset.otb-tool-page .otb-result h3{
+  margin:0 0 7px!important;
+  font-size:14px!important;
+  color:#172033!important;
+}
+
+main.page.page-offset.otb-tool-page .otb-result pre{
+  min-height:52px!important;
+  margin:0 0 9px!important;
+  padding:10px!important;
+  border:1px solid #e2e8f0!important;
+  border-radius:10px!important;
+  background:#fff!important;
+  color:#172033!important;
+  font-size:14px!important;
+  line-height:1.5!important;
+  white-space:pre-wrap!important;
+}
+
+/* About card becomes Basic Calculator's secondary information area */
+main.page.page-offset.otb-tool-page .otb-info-card{
+  width:100%!important;
+  margin:0 auto!important;
+  padding:14px 17px!important;
+  border:1px solid #e1e7f0!important;
+  border-radius:16px!important;
+  background:#fff!important;
+  box-shadow:0 7px 22px rgba(15,23,42,.06)!important;
+}
+
+main.page.page-offset.otb-tool-page .otb-info-card::before{
+  content:""!important;
+  display:block!important;
+  width:100%!important;
+  height:3px!important;
+  margin:-14px -17px 12px!important;
+  width:calc(100% + 34px)!important;
+  background:linear-gradient(90deg,#7c3aed,#a78bfa)!important;
+}
+
+main.page.page-offset.otb-tool-page .otb-info-card h3{
+  margin:0 0 5px!important;
+  color:#172033!important;
+  font-size:15px!important;
+}
+
+main.page.page-offset.otb-tool-page .otb-info-card p{
+  margin:0 0 6px!important;
+  color:#64748b!important;
+  font-size:12px!important;
+}
+
+main.page.page-offset.otb-tool-page .otb-info-card ul{
+  margin:0!important;
+  padding-left:18px!important;
+}
+
+main.page.page-offset.otb-tool-page .otb-info-card li{
+  margin:2px 0!important;
+  color:#64748b!important;
+  font-size:11px!important;
+  line-height:1.4!important;
+}
+
+/* Shared Basic Calculator style for the added sections */
+.calc-info-section,
+.calc-faq-section{
+  width:min(980px,calc(100% - 24px))!important;
+  margin:30px auto 0!important;
+}
+
+.calc-faq-section{margin-top:34px!important;margin-bottom:34px!important}
+
+.calc-info-title{
+  text-align:center!important;
+  margin-bottom:14px!important;
+}
+
+.calc-section-kicker{
+  display:inline-block!important;
+  font-size:10px!important;
+  font-weight:800!important;
+  letter-spacing:.08em!important;
+  color:#2563eb!important;
+  background:#eff6ff!important;
+  padding:4px 8px!important;
+  border-radius:999px!important;
+}
+
+.calc-info-title h2{
+  font-size:24px!important;
+  margin:7px 0 4px!important;
+  color:#172033!important;
+}
+
+.calc-info-title p{
+  font-size:12px!important;
+  color:#64748b!important;
+  margin:0!important;
+}
+
+.calc-feature-grid{
+  display:grid!important;
+  grid-template-columns:repeat(4,1fr)!important;
+  gap:10px!important;
+}
+
+.calc-feature-card{
+  display:flex!important;
+  gap:9px!important;
+  min-height:66px!important;
+  background:#fff!important;
+  border:1px solid #e5eaf2!important;
+  border-radius:13px!important;
+  padding:12px!important;
+  box-shadow:0 5px 15px rgba(15,23,42,.05)!important;
+}
+
+.calc-feature-icon{
+  flex:0 0 32px!important;
+  width:32px!important;
+  height:32px!important;
+  display:grid!important;
+  place-items:center!important;
+  border-radius:9px!important;
+  background:#eff6ff!important;
+  color:#2563eb!important;
+  font-weight:800!important;
+}
+
+.calc-feature-card h3{font-size:13px!important;margin:0 0 3px!important;color:#172033!important}
+.calc-feature-card p{font-size:11px!important;line-height:1.4!important;margin:0!important;color:#64748b!important}
+
+.calc-faq{
+  width:min(820px,100%)!important;
+  margin:auto!important;
+}
+
+.calc-faq details{
+  background:#fff!important;
+  border:1px solid #e3e8f0!important;
+  border-radius:11px!important;
+  margin-bottom:7px!important;
+  overflow:hidden!important;
+}
+
+.calc-faq summary{
+  list-style:none!important;
+  cursor:pointer!important;
+  padding:12px 15px!important;
+  font-size:13px!important;
+  font-weight:700!important;
+  color:#172033!important;
+}
+
+.calc-faq summary::-webkit-details-marker{display:none!important}
+.calc-faq details[open] summary{background:#f8fbff!important;color:#2563eb!important}
+.calc-faq details p{margin:0!important;padding:0 15px 12px!important;font-size:12px!important;line-height:1.5!important;color:#64748b!important}
+
+@media(max-width:700px){
+  main.page.page-offset.otb-tool-page{padding-top:62px!important}
+  main.page.page-offset.otb-tool-page .tool-hero h1{font-size:27px!important}
+  main.page.page-offset.otb-tool-page .otb-tool-card{padding:13px!important;border-radius:17px!important}
+  main.page.page-offset.otb-tool-page .otb-fields{grid-template-columns:1fr!important}
+  main.page.page-offset.otb-tool-page .otb-fields textarea{grid-column:auto!important}
+  .calc-feature-grid{grid-template-columns:repeat(2,1fr)!important}
+}
+
+@media(max-width:480px){
+  main.page.page-offset.otb-tool-page .tool-hero{padding:12px 8px 8px!important}
+  main.page.page-offset.otb-tool-page .tool-hero h1{font-size:24px!important}
+  main.page.page-offset.otb-tool-page .otb-tool-layout{width:calc(100% - 14px)!important}
+  main.page.page-offset.otb-tool-page .otb-info-card{padding:12px 14px!important}
+  .calc-feature-grid{grid-template-columns:1fr!important}
+  .calc-info-section,.calc-faq-section{width:calc(100% - 14px)!important}
+}

@@ -198,3 +198,82 @@
     padding:17px;
   }
 }
+
+
+/* =========================================================
+   OneToolBox PDF CATEGORY — FINAL CARD POLISH
+   ========================================================= */
+.pdf-tools-hero{
+  padding:16px 0 14px !important;
+}
+.pdf-tools-hero h1{
+  font-size:34px !important;
+  margin-bottom:5px !important;
+  letter-spacing:-.45px;
+}
+.pdf-tools-hero p{
+  font-size:14px !important;
+  margin-bottom:12px !important;
+  line-height:1.5 !important;
+}
+.pdf-tools-grid{
+  gap:14px !important;
+}
+.pdf-tool-card{
+  min-height:168px !important;
+  padding:17px !important;
+  position:relative;
+  overflow:hidden;
+  border:1px solid #e5eaf2 !important;
+  border-radius:18px !important;
+  background:linear-gradient(180deg,#fff 0%,#fbfcff 100%) !important;
+  box-shadow:0 8px 26px rgba(15,23,42,.07) !important;
+}
+.pdf-tool-card::before{
+  content:"";
+  position:absolute;
+  left:0;right:0;top:0;height:4px;
+  background:linear-gradient(90deg,#2563eb,#60a5fa);
+}
+.pdf-tool-card:nth-child(3n+2)::before{
+  background:linear-gradient(90deg,#16a34a,#4ade80);
+}
+.pdf-tool-card:nth-child(3n)::before{
+  background:linear-gradient(90deg,#7c3aed,#a78bfa);
+}
+.pdf-tool-card:hover{
+  transform:translateY(-4px);
+  border-color:#cbd8f0 !important;
+  box-shadow:0 16px 38px rgba(37,99,235,.13) !important;
+}
+.pdf-tool-icon{
+  width:44px !important;height:44px !important;
+  margin-bottom:10px !important;border-radius:13px !important;
+  font-size:18px !important;
+  box-shadow:0 5px 12px rgba(15,23,42,.06);
+}
+.pdf-tool-card h3{
+  font-size:16px !important;
+  margin-bottom:5px !important;
+}
+.pdf-tool-card p{
+  min-height:34px !important;
+  margin-bottom:11px !important;
+  font-size:12px !important;
+  line-height:1.45 !important;
+}
+.pdf-tool-card a{
+  min-height:34px !important;
+  padding:0 12px !important;
+  border-radius:9px !important;
+  font-size:11px !important;
+  box-shadow:0 5px 12px rgba(37,99,235,.14);
+}
+@media(max-width:850px){
+  .pdf-tools-grid{gap:13px !important}
+}
+@media(max-width:540px){
+  .pdf-tools-hero{padding:13px 14px 12px !important}
+  .pdf-tools-hero h1{font-size:27px !important}
+  .pdf-tool-card{min-height:150px !important;padding:15px !important;border-radius:16px !important}
+}

@@ -1,0 +1,375 @@
+
+/* ==========================================================
+   OneToolBox — FINAL 6 PDF TOOLS UI OVERRIDES
+   Visual CSS only. Existing JS/functionality untouched.
+   ========================================================== */
+
+:root{
+  --pdf-bg:#f7f9fc;
+  --pdf-text:#0f172a;
+  --pdf-muted:#64748b;
+  --pdf-border:#dbe4ef;
+  --pdf-blue:#2563eb;
+  --pdf-purple:#7c3aed;
+  --pdf-green:#16a34a;
+  --pdf-orange:#ea580c;
+  --pdf-shadow:0 7px 24px rgba(15,23,42,.07);
+  --pdf-shadow-hover:0 14px 34px rgba(37,99,235,.13);
+}
+
+/* Common page background + safe header offset */
+main.page.page-offset{
+  padding-top:72px !important;
+  min-height:100vh;
+  background:
+    radial-gradient(circle at 10% 0%,rgba(37,99,235,.045),transparent 28%),
+    radial-gradient(circle at 90% 5%,rgba(124,58,237,.035),transparent 28%),
+    var(--pdf-bg) !important;
+}
+
+/* Make the page title visible */
+main.page.page-offset .tool-hero,
+main.page.page-offset .hero,
+main.page.page-offset .intro{
+  display:block !important;
+  visibility:visible !important;
+  opacity:1 !important;
+  padding:14px 0 15px !important;
+  margin:0 !important;
+  position:relative;
+  z-index:2;
+}
+
+main.page.page-offset .tool-hero h1,
+main.page.page-offset .hero h1,
+main.page.page-offset .intro h1{
+  display:block !important;
+  visibility:visible !important;
+  opacity:1 !important;
+  margin:0 0 6px !important;
+  color:var(--pdf-text) !important;
+  font-size:32px !important;
+  line-height:1.2 !important;
+  font-weight:800 !important;
+}
+
+main.page.page-offset .tool-hero p,
+main.page.page-offset .hero p,
+main.page.page-offset .intro p{
+  display:block !important;
+  visibility:visible !important;
+  opacity:1 !important;
+  margin:0 auto !important;
+  max-width:780px;
+  color:var(--pdf-muted) !important;
+  font-size:14px !important;
+  line-height:1.5 !important;
+}
+
+/* Universal card treatment */
+main.page.page-offset .tool-card,
+main.page.page-offset .card,
+main.page.page-offset .panel,
+main.page.page-offset .workspace,
+main.page.page-offset .editor-shell,
+main.page.page-offset .upload-panel{
+  border:1px solid var(--pdf-border) !important;
+  border-radius:18px !important;
+  background:linear-gradient(180deg,#fff 0%,#f8fbff 100%) !important;
+  box-shadow:var(--pdf-shadow) !important;
+}
+
+/* Prevent old fixed heights from making lower content disappear */
+main.page.page-offset .tool-card,
+main.page.page-offset .card,
+main.page.page-offset .panel{
+  height:auto !important;
+  min-height:0 !important;
+}
+
+/* Generic section spacing */
+main.page.page-offset > .section,
+main.page.page-offset .section{
+  padding-top:10px !important;
+  padding-bottom:28px !important;
+}
+
+/* Upload/drop zones */
+main.page.page-offset .upload,
+main.page.page-offset .upload-area,
+main.page.page-offset .drop,
+main.page.page-offset .drop-zone,
+main.page.page-offset .dropzone{
+  min-height:180px;
+  border:2px dashed #b9cbe1 !important;
+  border-radius:15px !important;
+  background:linear-gradient(180deg,#fbfdff,#f1f7ff) !important;
+}
+
+main.page.page-offset .upload:hover,
+main.page.page-offset .upload-area:hover,
+main.page.page-offset .drop:hover,
+main.page.page-offset .drop-zone:hover,
+main.page.page-offset .dropzone:hover,
+main.page.page-offset .dragover{
+  border-color:var(--pdf-blue) !important;
+  background:linear-gradient(180deg,#eff6ff,#e8f1ff) !important;
+}
+
+/* Buttons */
+main.page.page-offset button,
+main.page.page-offset .btn,
+main.page.page-offset .choose,
+main.page.page-offset .choose-btn{
+  border-radius:10px !important;
+}
+
+main.page.page-offset .primary,
+main.page.page-offset .btn-primary,
+main.page.page-offset .choose,
+main.page.page-offset .choose-btn{
+  background:linear-gradient(135deg,#2563eb,#3b82f6) !important;
+  color:#fff !important;
+}
+
+/* Form controls */
+main.page.page-offset input,
+main.page.page-offset select,
+main.page.page-offset textarea{
+  border-radius:10px !important;
+  border-color:#cbd7e5 !important;
+  background:#fff !important;
+}
+
+main.page.page-offset input:focus,
+main.page.page-offset select:focus,
+main.page.page-offset textarea:focus{
+  outline:none !important;
+  border-color:#60a5fa !important;
+  box-shadow:0 0 0 3px rgba(37,99,235,.10) !important;
+}
+
+/* Preview / result areas */
+main.page.page-offset .preview,
+main.page.page-offset .preview-box,
+main.page.page-offset .result,
+main.page.page-offset .result-box,
+main.page.page-offset .output,
+main.page.page-offset .output-box{
+  border:1px solid #dce6f1 !important;
+  border-radius:15px !important;
+  background:linear-gradient(145deg,#edf4fc,#f8fbff) !important;
+}
+
+/* Information rows */
+main.page.page-offset .info,
+main.page.page-offset .stats,
+main.page.page-offset .stat,
+main.page.page-offset .file-info,
+main.page.page-offset .info-row{
+  border-radius:10px !important;
+  border:1px solid #e4ebf4 !important;
+  background:#f4f8fd !important;
+}
+
+/* ==========================================================
+   COLOR CODING FOR COMMON MULTI-CARD WORKSPACES
+   ========================================================== */
+
+main.page.page-offset .tool-grid,
+main.page.page-offset .workspace-grid,
+main.page.page-offset .cards-grid,
+main.page.page-offset .panels{
+  gap:16px !important;
+}
+
+main.page.page-offset .tool-grid > :nth-child(1),
+main.page.page-offset .workspace-grid > :nth-child(1),
+main.page.page-offset .cards-grid > :nth-child(1){
+  background:linear-gradient(180deg,#fff,#f5f9ff) !important;
+}
+
+main.page.page-offset .tool-grid > :nth-child(2),
+main.page.page-offset .workspace-grid > :nth-child(2),
+main.page.page-offset .cards-grid > :nth-child(2){
+  background:linear-gradient(180deg,#fff,#faf7ff) !important;
+}
+
+main.page.page-offset .tool-grid > :nth-child(3),
+main.page.page-offset .workspace-grid > :nth-child(3),
+main.page.page-offset .cards-grid > :nth-child(3){
+  background:linear-gradient(180deg,#fff,#f5fff8) !important;
+}
+
+/* Colored top accents without relying on exact card class */
+main.page.page-offset .tool-grid > *,
+main.page.page-offset .workspace-grid > *,
+main.page.page-offset .cards-grid > *{
+  position:relative !important;
+  overflow:hidden !important;
+}
+
+main.page.page-offset .tool-grid > *::before,
+main.page.page-offset .workspace-grid > *::before,
+main.page.page-offset .cards-grid > *::before{
+  content:"" !important;
+  position:absolute !important;
+  top:0 !important;
+  left:0 !important;
+  right:0 !important;
+  height:4px !important;
+  background:linear-gradient(90deg,#2563eb,#60a5fa) !important;
+}
+
+main.page.page-offset .tool-grid > :nth-child(2)::before,
+main.page.page-offset .workspace-grid > :nth-child(2)::before,
+main.page.page-offset .cards-grid > :nth-child(2)::before{
+  background:linear-gradient(90deg,#7c3aed,#a78bfa) !important;
+}
+
+main.page.page-offset .tool-grid > :nth-child(3)::before,
+main.page.page-offset .workspace-grid > :nth-child(3)::before,
+main.page.page-offset .cards-grid > :nth-child(3)::before{
+  background:linear-gradient(90deg,#16a34a,#4ade80) !important;
+}
+
+/* ==========================================================
+   LAST-6 PAGE TYPES: LIST / TABLE / EDITOR / SCANNER SAFETY
+   ========================================================== */
+
+/* Tables should stay inside their card */
+main.page.page-offset table{
+  width:100% !important;
+  border-collapse:separate !important;
+  border-spacing:0 !important;
+  overflow:hidden !important;
+  border:1px solid #e1e8f1 !important;
+  border-radius:12px !important;
+  background:#fff !important;
+}
+
+main.page.page-offset th{
+  background:#f1f5f9 !important;
+  color:#334155 !important;
+  font-weight:800 !important;
+}
+
+main.page.page-offset td,
+main.page.page-offset th{
+  padding:10px 12px !important;
+  border-bottom:1px solid #edf1f6 !important;
+}
+
+/* Toolbars */
+main.page.page-offset .toolbar,
+main.page.page-offset .controls,
+main.page.page-offset .actions,
+main.page.page-offset .action-bar{
+  border-radius:12px !important;
+  background:#fff !important;
+  border:1px solid #e1e8f1 !important;
+  box-shadow:0 4px 15px rgba(15,23,42,.05) !important;
+}
+
+/* Make icon/action buttons compact */
+main.page.page-offset .toolbar button,
+main.page.page-offset .actions button{
+  min-height:38px !important;
+  border-radius:9px !important;
+}
+
+/* Canvas / page workspace */
+main.page.page-offset canvas,
+main.page.page-offset .canvas-wrap,
+main.page.page-offset .page-canvas{
+  border-radius:12px !important;
+  box-shadow:0 6px 20px rgba(15,23,42,.09) !important;
+}
+
+/* Empty state */
+main.page.page-offset .empty,
+main.page.page-offset .empty-state,
+main.page.page-offset .placeholder{
+  border-radius:14px !important;
+  background:#f3f7fc !important;
+  color:#94a3b8 !important;
+}
+
+/* Lower content cards */
+main.page.page-offset .feature,
+main.page.page-offset .feature-card,
+main.page.page-offset .info-card,
+main.page.page-offset .faq-item{
+  border:1px solid #dfe7f1 !important;
+  border-radius:15px !important;
+  background:linear-gradient(180deg,#fff,#f8fbff) !important;
+  box-shadow:0 5px 18px rgba(15,23,42,.055) !important;
+}
+
+/* ==========================================================
+   RESPONSIVE
+   ========================================================== */
+
+@media(max-width:1000px){
+  main.page.page-offset .tool-grid,
+  main.page.page-offset .workspace-grid,
+  main.page.page-offset .cards-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+  }
+}
+
+@media(max-width:700px){
+  main.page.page-offset{
+    padding-top:62px !important;
+  }
+
+  main.page.page-offset .tool-hero,
+  main.page.page-offset .hero,
+  main.page.page-offset .intro{
+    padding:12px 12px 14px !important;
+  }
+
+  main.page.page-offset .tool-hero h1,
+  main.page.page-offset .hero h1,
+  main.page.page-offset .intro h1{
+    font-size:27px !important;
+  }
+
+  main.page.page-offset .tool-grid,
+  main.page.page-offset .workspace-grid,
+  main.page.page-offset .cards-grid{
+    grid-template-columns:1fr !important;
+    gap:13px !important;
+  }
+
+  main.page.page-offset .upload,
+  main.page.page-offset .upload-area,
+  main.page.page-offset .drop,
+  main.page.page-offset .drop-zone,
+  main.page.page-offset .dropzone{
+    min-height:160px;
+  }
+
+  main.page.page-offset .tool-card,
+  main.page.page-offset .card,
+  main.page.page-offset .panel{
+    border-radius:15px !important;
+  }
+
+  main.page.page-offset table{
+    display:block !important;
+    overflow-x:auto !important;
+  }
+}
+
+@media(max-width:480px){
+  main.page.page-offset{
+    padding-top:58px !important;
+  }
+
+  main.page.page-offset .tool-hero h1,
+  main.page.page-offset .hero h1,
+  main.page.page-offset .intro h1{
+    font-size:24px !important;
+  }
+}

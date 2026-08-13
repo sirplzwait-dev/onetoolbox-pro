@@ -1,0 +1,49 @@
+
+/* Basic calculator — visual upgrade */
+.calculator-page{padding:18px 0 0!important}
+.calculator-wrap{max-width:1180px!important}
+.calculator-heading{margin:0 0 14px!important}
+.calculator-heading h1{font-size:clamp(28px,3vw,38px)!important;letter-spacing:-.035em!important}
+.calculator-heading p{color:#64748b!important;margin-top:7px!important}
+.calculator-shell{
+  max-width:560px!important;
+  margin:0 auto!important;
+  border:1px solid #e2e8f0!important;
+  border-radius:24px!important;
+  box-shadow:0 18px 50px rgba(15,23,42,.10)!important;
+  background:#fff!important;
+  overflow:hidden!important;
+}
+.calc-topbar{
+  padding:13px 16px!important;
+  background:linear-gradient(135deg,#f8fbff,#f7f5ff)!important;
+  border-bottom:1px solid #e2e8f0!important;
+}
+.calc-badge{
+  background:#eff6ff!important;color:#2563eb!important;
+  border:1px solid #dbeafe!important;
+}
+.calc-display{
+  margin:15px!important;
+  border-radius:17px!important;
+  border:1px solid #dbe4ef!important;
+  background:#0f172a!important;
+  color:#fff!important;
+  padding:18px!important;
+}
+.calc-expression{color:#94a3b8!important}
+.calc-answer{font-size:36px!important;color:#fff!important}
+.calc-grid{padding:0 15px 15px!important;gap:8px!important}
+.calc-key{
+  min-height:50px!important;
+  border-radius:12px!important;
+  border:1px solid #e2e8f0!important;
+  box-shadow:0 2px 5px rgba(15,23,42,.04)!important;
+}
+.calc-key.number{background:#fff!important}
+.calc-key.function,.calc-key.utility{background:#f8fafc!important;color:#334155!important}
+.calc-key.operator{background:#eff6ff!important;color:#1d4ed8!important}
+.calc-key.equals{background:linear-gradient(135deg,#2563eb,#4f46e5)!important;color:#fff!important}
+.calc-key.clear{background:#fff1f2!important;color:#be123c!important}
+.calc-footer{padding:10px 15px!important;background:#f8fafc!important}
+.calculator-note{max-width:560px!important;margin:10px auto 0!important;border:1px solid #e2e8f0!important;border-radius:13px!important;background:#fff!important;padding:11px 14px!important;color:#64748b!important}

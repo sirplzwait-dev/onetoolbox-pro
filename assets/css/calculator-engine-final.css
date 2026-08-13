@@ -1,0 +1,39 @@
+
+/* Final calculator controls polish */
+.otb-tool-page .otb-fields{
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  gap:10px 12px!important;
+}
+.otb-tool-page .otb-fields label{
+  display:block!important;
+  margin:0!important;
+  align-self:end!important;
+  font-size:12px!important;
+  font-weight:700!important;
+  color:#475569!important;
+}
+.otb-tool-page .otb-fields input,
+.otb-tool-page .otb-fields select,
+.otb-tool-page .otb-fields textarea{
+  width:100%!important;
+  box-sizing:border-box!important;
+}
+.otb-tool-page .otb-fields label + input,
+.otb-tool-page .otb-fields label + select,
+.otb-tool-page .otb-fields label + textarea{
+  grid-column:auto!important;
+}
+.otb-tool-page .otb-fields > div{
+  min-width:0!important;
+}
+.otb-tool-page .otb-actions{
+  margin-top:14px!important;
+}
+.otb-tool-page .otb-result pre{
+  white-space:pre-wrap!important;
+  word-break:break-word!important;
+}
+@media(max-width:650px){
+ .otb-tool-page .otb-fields{grid-template-columns:1fr!important}
+}
