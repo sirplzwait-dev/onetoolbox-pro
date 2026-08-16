@@ -1,0 +1,4 @@
+Replace only this file:
+assets/css/onetoolbox-common-layout.css
+
+This update makes the category heading/hero thinner and colorful while keeping the existing layout, cards, header, footer, language toggle, dark mode and functionality unchanged.

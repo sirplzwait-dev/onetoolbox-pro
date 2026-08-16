@@ -1,0 +1,405 @@
+/*
+ * OneToolBox PDF Tools — shared workspace UI
+ * Loaded before tool-specific CSS so individual tools can refine the base.
+ */
+.pdf-tool-page{
+  --pdf-primary:#2563eb;
+  --pdf-primary-dark:#1d4ed8;
+  --pdf-success:#16a34a;
+  --pdf-success-dark:#15803d;
+  --pdf-danger:#dc2626;
+  --pdf-border:#e2e8f0;
+  --pdf-muted:#64748b;
+  --pdf-soft:#f8fafc;
+  --pdf-card:#ffffff;
+  --pdf-shadow:0 8px 26px rgba(15,23,42,.07);
+  background:#f8fafc;
+  color:#0f172a;
+}
+.pdf-tool-page .tool-hero{
+  padding:34px 0 24px;
+}
+.pdf-tool-page .tool-hero .container{
+  text-align:left;
+}
+.pdf-tool-page .tool-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:7px 12px;
+  border-radius:999px;
+  background:#eff6ff;
+  color:var(--pdf-primary);
+  font-size:12px;
+  font-weight:800;
+}
+.pdf-tool-page .tool-hero h1{
+  margin:10px 0 7px;
+  color:#0f172a;
+  font-size:38px;
+  line-height:1.15;
+  font-weight:800;
+}
+.pdf-tool-page .tool-hero p{
+  margin:0;
+  max-width:760px;
+  color:var(--pdf-muted);
+  font-size:15px;
+  line-height:1.6;
+}
+.pdf-tool-page .tool-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:18px;
+  align-items:stretch;
+}
+.pdf-tool-page .tool-card{
+  min-width:0;
+  min-height:430px;
+  padding:20px;
+  display:flex;
+  flex-direction:column;
+  box-sizing:border-box;
+  background:var(--pdf-card);
+  border:1px solid var(--pdf-border);
+  border-radius:18px;
+  box-shadow:var(--pdf-shadow);
+}
+.pdf-tool-page .tool-card h2{
+  margin:0 0 17px;
+  color:#0f172a;
+  font-size:20px;
+  line-height:1.25;
+  font-weight:800;
+}
+.pdf-tool-page .tool-card.settings{
+  justify-content:flex-start;
+}
+.pdf-tool-page .upload{
+  position:relative;
+  flex:1;
+  min-height:250px;
+  padding:22px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  box-sizing:border-box;
+  text-align:center;
+  border:2px dashed #93c5fd;
+  border-radius:16px;
+  background:#f8fbff;
+  cursor:pointer;
+  transition:border-color .18s ease,background-color .18s ease,box-shadow .18s ease;
+}
+.pdf-tool-page .upload:hover,
+.pdf-tool-page .upload.drag{
+  border-color:var(--pdf-primary);
+  background:#eff6ff;
+  box-shadow:0 0 0 4px rgba(37,99,235,.07);
+}
+.pdf-tool-page .upload>i{
+  width:58px;
+  height:58px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-bottom:12px;
+  border-radius:15px;
+  background:#dbeafe;
+  color:var(--pdf-primary);
+  font-size:25px;
+}
+.pdf-tool-page .upload h3{
+  margin:0 0 7px;
+  color:#0f172a;
+  font-size:18px;
+  font-weight:800;
+}
+.pdf-tool-page .upload p{
+  margin:0 0 15px;
+  color:var(--pdf-muted);
+  font-size:13px;
+  line-height:1.65;
+}
+.pdf-tool-page .choose{
+  position:relative;
+  z-index:2;
+  display:inline-flex !important;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
+  min-height:43px;
+  padding:0 18px;
+  border:0 !important;
+  border-radius:10px;
+  background:var(--pdf-primary) !important;
+  color:#fff !important;
+  font-size:13px;
+  font-weight:800;
+  cursor:pointer;
+  box-sizing:border-box;
+}
+.pdf-tool-page .choose:hover{
+  background:var(--pdf-primary-dark) !important;
+}
+.pdf-tool-page .choose input{
+  position:absolute !important;
+  width:1px !important;
+  height:1px !important;
+  padding:0 !important;
+  margin:-1px !important;
+  overflow:hidden !important;
+  clip:rect(0,0,0,0) !important;
+  white-space:nowrap !important;
+  border:0 !important;
+  opacity:0 !important;
+  pointer-events:none !important;
+}
+.pdf-tool-page .info{
+  min-height:43px;
+  margin-top:10px;
+  padding:0 13px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  box-sizing:border-box;
+  border:1px solid #e2e8f0;
+  border-radius:10px;
+  background:#f8fafc;
+  color:var(--pdf-muted);
+  font-size:12px;
+}
+.pdf-tool-page .info b{
+  color:#0f172a;
+  font-weight:800;
+}
+.pdf-tool-page .status{
+  margin:12px 0;
+  color:var(--pdf-muted);
+  font-size:13px;
+  line-height:1.55;
+  text-align:center;
+}
+.pdf-tool-page .btn{
+  width:100%;
+  min-height:47px;
+  margin-top:12px;
+  padding:0 15px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  border:0;
+  border-radius:11px;
+  font-size:13px;
+  font-weight:800;
+  cursor:pointer;
+  box-sizing:border-box;
+}
+.pdf-tool-page .btn:disabled{
+  opacity:.48;
+  cursor:not-allowed;
+  transform:none;
+}
+.pdf-tool-page .btn.primary{
+  background:var(--pdf-primary);
+  color:#fff;
+}
+.pdf-tool-page .btn.primary:hover:not(:disabled){
+  background:var(--pdf-primary-dark);
+}
+.pdf-tool-page .btn.success{
+  background:var(--pdf-success);
+  color:#fff;
+}
+.pdf-tool-page .btn.success:hover:not(:disabled){
+  background:var(--pdf-success-dark);
+}
+.pdf-tool-page .btn.danger{
+  background:#fee2e2;
+  color:var(--pdf-danger);
+}
+.pdf-tool-page .btn.danger:hover:not(:disabled){
+  background:#fecaca;
+}
+.pdf-tool-page .progress{
+  width:100%;
+  margin-top:14px;
+  display:flex;
+  align-items:center;
+  gap:9px;
+}
+.pdf-tool-page .progress .track{
+  flex:1;
+  height:9px;
+  overflow:hidden;
+  border-radius:999px;
+  background:#e2e8f0;
+}
+.pdf-tool-page .progress .track>div{
+  width:0;
+  height:100%;
+  border-radius:999px;
+  background:var(--pdf-primary);
+  transition:width .2s ease;
+}
+.pdf-tool-page .progress strong{
+  min-width:35px;
+  color:var(--pdf-primary);
+  font-size:11px;
+  text-align:right;
+}
+.pdf-tool-page .preview{
+  flex:1;
+  min-height:250px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:auto;
+  padding:14px;
+  box-sizing:border-box;
+  border-radius:15px;
+  background:#f1f5f9;
+  color:#94a3b8;
+  text-align:center;
+}
+.pdf-tool-page .preview img{
+  max-width:100%;
+  max-height:100%;
+  object-fit:contain;
+}
+.pdf-tool-page .preview pre{
+  width:100%;
+  max-height:100%;
+  overflow:auto;
+  margin:0;
+  text-align:left;
+  white-space:pre-wrap;
+}
+.pdf-tool-page .feature-grid{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:15px;
+}
+.pdf-tool-page .feature{
+  min-height:155px;
+  padding:20px;
+  box-sizing:border-box;
+  border:1px solid var(--pdf-border);
+  border-radius:16px;
+  background:#fff;
+  box-shadow:0 5px 18px rgba(15,23,42,.05);
+}
+.pdf-tool-page .feature>i{
+  width:44px;
+  height:44px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-bottom:12px;
+  border-radius:12px;
+  background:#eff6ff;
+  color:var(--pdf-primary);
+}
+.pdf-tool-page .feature h3{
+  margin:0 0 7px;
+  color:#0f172a;
+  font-size:16px;
+}
+.pdf-tool-page .feature p{
+  margin:0;
+  color:var(--pdf-muted);
+  font-size:13px;
+  line-height:1.55;
+}
+.pdf-tool-page .faq{
+  max-width:920px;
+  margin-inline:auto;
+}
+.pdf-tool-page .faq details{
+  transition:border-color .18s ease,box-shadow .18s ease;
+}
+.pdf-tool-page .faq details[open]{
+  border-color:#bfdbfe;
+  box-shadow:0 4px 16px rgba(15,23,42,.04);
+}
+.pdf-tool-page .otb-tool-info{
+  padding:30px 0;
+}
+.pdf-tool-page .otb-tool-info-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:16px;
+}
+.pdf-tool-page .otb-tool-info-card{
+  padding:20px;
+  border:1px solid var(--pdf-border);
+  border-radius:16px;
+  background:#fff;
+}
+.pdf-tool-page .otb-tool-info-card h3{
+  margin:0 0 8px;
+  font-size:16px;
+  color:#0f172a;
+}
+.pdf-tool-page .otb-tool-info-card p,
+.pdf-tool-page .otb-tool-info-card li{
+  color:var(--pdf-muted);
+  font-size:13px;
+  line-height:1.6;
+}
+@media(max-width:900px){
+  .pdf-tool-page .tool-grid{grid-template-columns:1fr 1fr}
+  .pdf-tool-page .feature-grid{grid-template-columns:1fr 1fr}
+  .pdf-tool-page .otb-tool-info-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:620px){
+  .pdf-tool-page .tool-hero{padding:26px 0 18px}
+  .pdf-tool-page .tool-hero h1{font-size:30px}
+  .pdf-tool-page .tool-grid,
+  .pdf-tool-page .feature-grid,
+  .pdf-tool-page .otb-tool-info-grid{grid-template-columns:1fr}
+  .pdf-tool-page .tool-card{min-height:auto;padding:16px}
+  .pdf-tool-page .upload{min-height:225px}
+  .pdf-tool-page .section{padding-top:22px;padding-bottom:22px}
+}
+@media(prefers-reduced-motion:reduce){
+  .pdf-tool-page *{transition:none!important}
+}
+html.otb-dark-preload .pdf-tool-page{
+  background:#0f172a;
+  color:#e5e7eb;
+}
+html.otb-dark-preload .pdf-tool-page .tool-hero h1,
+html.otb-dark-preload .pdf-tool-page .tool-card h2,
+html.otb-dark-preload .pdf-tool-page .upload h3,
+html.otb-dark-preload .pdf-tool-page .info b,
+html.otb-dark-preload .pdf-tool-page .feature h3,
+html.otb-dark-preload .pdf-tool-page .otb-tool-info-card h3{
+  color:#f8fafc;
+}
+html.otb-dark-preload .pdf-tool-page .tool-card,
+html.otb-dark-preload .pdf-tool-page .feature,
+html.otb-dark-preload .pdf-tool-page .otb-tool-info-card,
+html.otb-dark-preload .pdf-tool-page .faq details{
+  background:#111827;
+  border-color:#334155;
+}
+html.otb-dark-preload .pdf-tool-page .upload{
+  background:#0b1220;
+  border-color:#365b8f;
+}
+html.otb-dark-preload .pdf-tool-page .upload:hover,
+html.otb-dark-preload .pdf-tool-page .upload.drag{
+  background:#0d1b31;
+  border-color:#60a5fa;
+}
+html.otb-dark-preload .pdf-tool-page .info{
+  background:#0b1220;
+  border-color:#334155;
+}
+html.otb-dark-preload .pdf-tool-page .preview{
+  background:#0b1220;
+}

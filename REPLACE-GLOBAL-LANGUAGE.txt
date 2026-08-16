@@ -1,0 +1,13 @@
+OneToolBox Global Hindi / English Toggle
+
+Replace these exact files:
+
+OneToolBox/components/header.html
+OneToolBox/components/footer.html
+OneToolBox/assets/js/app.js
+OneToolBox/assets/js/header-compact.js
+OneToolBox/assets/js/language.js
+OneToolBox/assets/css/language.css
+
+The language toggle is loaded globally by app.js and appears in the header.
+Selected language is saved in localStorage as onetoolbox-language.

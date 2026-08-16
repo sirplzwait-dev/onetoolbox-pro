@@ -1,0 +1,9 @@
+Clean global Hindi/English language system.
+
+This version intentionally does NOT perform word-by-word or partial phrase
+replacement. It only translates complete known UI/content phrases.
+
+English is stored per text node, so switching back to EN restores the original
+English text. Technical terms are not forcibly translated.
+
+Unknown text is left unchanged rather than producing bad/mixed Hindi.

@@ -1,0 +1,12 @@
+Global Search Live Suggestions Fix
+
+Fixed the actual issue:
+- header.html is injected dynamically, so the search.js script tag inside
+  header.html was not executed reliably.
+- app.js now fires onetoolbox:header-ready immediately after header injection.
+- search.js binds to the real #globalSearch input at that moment.
+- suggestions render on every keystroke.
+- if the search index finishes loading after typing starts, suggestions render
+  automatically without requiring another click.
+- MutationObserver fallback handles header replacement.
+- Search dropdown remains above page content.

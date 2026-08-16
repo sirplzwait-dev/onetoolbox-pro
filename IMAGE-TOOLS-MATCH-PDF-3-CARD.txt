@@ -1,0 +1,10 @@
+Image Tools layout corrected to match PDF Tools.
+
+- Desktop: exactly 3 cards per row.
+- Same 1280px content width as the global .container.
+- Same 20px desktop side padding as PDF Tools.
+- 18px card gap.
+- Card sizing/spacing matched more closely to PDF tool cards.
+- Tablet: 2 columns.
+- Mobile: 1 column.
+- Existing Image Tools HTML and JavaScript remain unchanged.

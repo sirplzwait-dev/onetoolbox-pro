@@ -1,0 +1,7 @@
+Only Image Resizer night mode was changed.
+
+Replace:
+OneToolBox/pages/image-tools/image-resizer.html
+OneToolBox/assets/css/tools/resize-image.css
+
+No JavaScript or other tool files were changed.

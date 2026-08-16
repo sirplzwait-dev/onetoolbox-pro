@@ -1,0 +1,14 @@
+GLOBAL HINDI/ENGLISH FINAL FIX
+
+The global language toggle is now initialized both:
+1. immediately when language.js loads after DOMContentLoaded, and
+2. explicitly by app.js after header/footer/shared assets are loaded.
+
+Hindi mode translates the complete current document and newly injected tool
+content. English mode restores original English text.
+
+The observer watches only childList, not characterData, to avoid the previous
+translation/freeze loop.
+
+Replace the complete project from this ZIP, restart Live Server, then press
+Ctrl+Shift+R.

@@ -1,0 +1,44 @@
+/* OneToolBox PDF Workspace v2 — clean, consistent and responsive */
+.pdf-tool-page{background:#f6f8fc;color:#0f172a}
+.pdf-tool-page .pdf-workspace{padding:28px 0 52px}
+.pdf-tool-page .pdf-workspace .container{width:min(1180px,calc(100% - 32px));margin:auto}
+.pdf-tool-page .tool-hero{padding:22px 0 20px}
+.pdf-tool-page .tool-hero .container{text-align:left}
+.pdf-tool-page .tool-badge{display:inline-flex;align-items:center;gap:8px;font-weight:700;color:#334155;margin-bottom:8px}
+.pdf-tool-page .tool-hero h1{font-size:36px;line-height:1.15;margin:0 0 8px;color:#0f172a;font-weight:850;letter-spacing:-.02em}
+.pdf-tool-page .tool-hero p{margin:0;color:#64748b;font-size:16px;line-height:1.6}
+.pdf-tool-page .pdf-workspace-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;align-items:stretch}
+.pdf-tool-page .pdf-panel{background:#fff;border:1px solid #e2e8f0;border-radius:18px;box-shadow:0 8px 28px rgba(15,23,42,.07);padding:22px;min-width:0;display:flex;flex-direction:column}
+.pdf-tool-page .pdf-panel h2{font-size:22px;margin:0 0 18px;font-weight:800;color:#0f172a}
+.pdf-tool-page .pdf-panel label.field-label{display:block;font-size:14px;font-weight:750;margin:0 0 8px;color:#334155}
+.pdf-tool-page .pdf-input,.pdf-tool-page .pdf-textarea{width:100%;box-sizing:border-box;border:1px solid #d7dee9;border-radius:12px;background:#fff;color:#0f172a;padding:12px 14px;font-size:14px;outline:none;transition:.18s;border-radius:12px}
+.pdf-tool-page .pdf-textarea{min-height:190px;resize:vertical;line-height:1.55}
+.pdf-tool-page .pdf-input:focus,.pdf-tool-page .pdf-textarea:focus{border-color:#2563eb;box-shadow:0 0 0 4px rgba(37,99,235,.10)}
+.pdf-tool-page .pdf-upload{border:2px dashed #cbd5e1;border-radius:16px;padding:24px 16px;text-align:center;background:#f8fafc;cursor:pointer;transition:.18s}
+.pdf-tool-page .pdf-upload:hover,.pdf-tool-page .pdf-upload.drag{border-color:#2563eb;background:#eff6ff}
+.pdf-tool-page .pdf-upload-icon{width:52px;height:52px;margin:0 auto 12px;border-radius:14px;display:grid;place-items:center;background:#dbeafe;color:#2563eb;font-size:21px}
+.pdf-tool-page .pdf-upload h3{margin:0 0 5px;font-size:17px}
+.pdf-tool-page .pdf-upload p{margin:0 0 14px;color:#64748b;font-size:13px}
+.pdf-tool-page .pdf-file-input{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+.pdf-tool-page .pdf-choose{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:42px;padding:0 17px;border-radius:10px;background:#2563eb;color:#fff;font-weight:800;font-size:14px;cursor:pointer;box-shadow:0 5px 14px rgba(37,99,235,.2)}
+.pdf-tool-page .pdf-file-name{margin-top:11px;font-size:13px;color:#475569;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pdf-tool-page .pdf-meta{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.pdf-tool-page .pdf-meta-box{background:#f8fafc;border:1px solid #e2e8f0;border-radius:11px;padding:10px 12px}
+.pdf-tool-page .pdf-meta-box span{display:block;color:#64748b;font-size:11px;margin-bottom:3px}.pdf-tool-page .pdf-meta-box strong{font-size:14px}
+.pdf-tool-page .pdf-settings-list{display:grid;gap:10px;margin-bottom:16px}.pdf-tool-page .pdf-setting{display:flex;justify-content:space-between;gap:12px;padding:11px 12px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:11px;font-size:13px}.pdf-tool-page .pdf-setting span{color:#64748b}.pdf-tool-page .pdf-setting strong{color:#0f172a}
+.pdf-tool-page .pdf-action{width:100%;border:0;border-radius:11px;min-height:46px;padding:0 16px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:9px;font-size:14px;transition:.18s}.pdf-tool-page .pdf-action.primary{background:#2563eb;color:#fff}.pdf-tool-page .pdf-action.primary:hover:not(:disabled){background:#1d4ed8;transform:translateY(-1px)}.pdf-tool-page .pdf-action.success{background:#16a34a;color:#fff}.pdf-tool-page .pdf-action.danger{background:#fff;color:#dc2626;border:1px solid #fecaca;margin-top:10px}.pdf-tool-page .pdf-action:disabled{opacity:.45;cursor:not-allowed}
+.pdf-tool-page .pdf-progress{margin-top:16px}.pdf-tool-page .pdf-progress[hidden]{display:none}.pdf-tool-page .pdf-progress-head{display:flex;justify-content:space-between;font-size:12px;font-weight:750;color:#475569;margin-bottom:7px}.pdf-tool-page .pdf-track{height:8px;background:#e2e8f0;border-radius:999px;overflow:hidden}.pdf-tool-page .pdf-bar{height:100%;width:0;background:linear-gradient(90deg,#2563eb,#60a5fa);border-radius:999px;transition:width .2s ease}
+.pdf-tool-page .pdf-status{margin:12px 0 0;color:#64748b;font-size:13px;line-height:1.5;min-height:20px}
+.pdf-tool-page .pdf-result{min-height:245px;border:1px dashed #cbd5e1;border-radius:14px;background:#f8fafc;display:flex;align-items:center;justify-content:center;text-align:center;padding:16px;color:#64748b;font-size:14px;overflow:auto}.pdf-tool-page .pdf-result.ready{border-style:solid;border-color:#bbf7d0;background:#f0fdf4;color:#166534}
+.pdf-tool-page .pdf-result pre{max-height:230px;max-width:100%;white-space:pre-wrap;text-align:left;margin:0;font:12px/1.5 ui-monospace,SFMono-Regular,Consolas,monospace;color:#334155}
+.pdf-tool-page .pdf-result img{max-width:100%;max-height:230px;object-fit:contain;border-radius:8px}
+.pdf-tool-page .pdf-result-info{margin:14px 0}.pdf-tool-page .pdf-result-info span{display:block;font-size:12px;color:#64748b}.pdf-tool-page .pdf-result-info strong{font-size:16px}
+.pdf-tool-page .pdf-help{margin-top:30px}.pdf-tool-page .pdf-help h2{font-size:25px;margin:0 0 16px}.pdf-tool-page .pdf-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.pdf-tool-page .pdf-step{background:#fff;border:1px solid #e2e8f0;border-radius:14px;padding:18px}.pdf-tool-page .pdf-step i{color:#2563eb;font-size:18px}.pdf-tool-page .pdf-step h3{font-size:15px;margin:10px 0 5px}.pdf-tool-page .pdf-step p{margin:0;color:#64748b;font-size:13px;line-height:1.5}
+.pdf-tool-page .pdf-faq{margin-top:30px}.pdf-tool-page .pdf-faq details{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:13px 15px;margin:9px 0}.pdf-tool-page .pdf-faq summary{font-weight:800;cursor:pointer}.pdf-tool-page .pdf-faq p{color:#64748b;font-size:13px;line-height:1.55}
+@media(max-width:900px){.pdf-tool-page .pdf-workspace-grid{grid-template-columns:1fr 1fr}.pdf-tool-page .pdf-workspace-grid .pdf-panel:last-child{grid-column:1/-1}.pdf-tool-page .pdf-steps{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.pdf-tool-page .pdf-workspace .container{width:calc(100% - 22px)}.pdf-tool-page .tool-hero h1{font-size:29px}.pdf-tool-page .pdf-workspace-grid{grid-template-columns:1fr}.pdf-tool-page .pdf-workspace-grid .pdf-panel:last-child{grid-column:auto}.pdf-tool-page .pdf-panel{padding:17px}.pdf-tool-page .pdf-steps{grid-template-columns:1fr}.pdf-tool-page .pdf-result{min-height:180px}}
+html.otb-dark-preload .pdf-tool-page,html.dark .pdf-tool-page{background:#0f172a;color:#e5e7eb}
+html.otb-dark-preload .pdf-tool-page .pdf-panel,html.dark .pdf-tool-page .pdf-panel,html.otb-dark-preload .pdf-tool-page .pdf-step,html.dark .pdf-tool-page .pdf-step,html.otb-dark-preload .pdf-tool-page .pdf-faq details,html.dark .pdf-tool-page .pdf-faq details{background:#111827;border-color:#334155;color:#e5e7eb}
+html.otb-dark-preload .pdf-tool-page .pdf-upload,html.dark .pdf-tool-page .pdf-upload,html.otb-dark-preload .pdf-tool-page .pdf-result,html.dark .pdf-tool-page .pdf-result,html.otb-dark-preload .pdf-tool-page .pdf-setting,html.dark .pdf-tool-page .pdf-setting,html.otb-dark-preload .pdf-tool-page .pdf-meta-box,html.dark .pdf-tool-page .pdf-meta-box{background:#0f172a;border-color:#334155}
+html.otb-dark-preload .pdf-tool-page .tool-hero h1,html.dark .pdf-tool-page .tool-hero h1,html.otb-dark-preload .pdf-tool-page .pdf-panel h2,html.dark .pdf-tool-page .pdf-panel h2,html.otb-dark-preload .pdf-tool-page .pdf-setting strong,html.dark .pdf-tool-page .pdf-setting strong{color:#f8fafc}
+html.otb-dark-preload .pdf-tool-page .pdf-input,html.dark .pdf-tool-page .pdf-input,html.otb-dark-preload .pdf-tool-page .pdf-textarea,html.dark .pdf-tool-page .pdf-textarea{background:#0f172a;color:#f8fafc;border-color:#475569}

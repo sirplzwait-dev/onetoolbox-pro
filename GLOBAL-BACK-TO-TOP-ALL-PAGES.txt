@@ -1,0 +1,16 @@
+Global Back-to-Top / Scroll Toggle added.
+
+The existing Home-page scroll toggle is now automatically created on every
+page by app.js if the page does not already contain it.
+
+Behavior remains the same:
+- At top: down arrow (go to bottom)
+- While scrolled: up arrow (go to top)
+- Smooth scrolling
+- Same fixed circular button style
+- Mobile responsive
+- Existing home-page button is not duplicated
+
+Files changed:
+assets/js/app.js
+assets/css/components.css

@@ -1,0 +1,8 @@
+Unified OneToolBox category style applied to all tool-category pages.
+- Headings centered on every category page.
+- Each category has its own heading/accent color.
+- Cards use the same compact rounded/shadow style inspired by the supplied PDF Tools screenshot.
+- Desktop category grids: 4 columns; Image Tools remains 3 columns as requested.
+- Responsive tablet: 2 columns; mobile: 1 column.
+- Dark-mode heading colors included.
+- Existing page JS/functionality was not changed.

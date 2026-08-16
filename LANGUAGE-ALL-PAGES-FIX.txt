@@ -1,0 +1,13 @@
+Global Hindi/English toggle fixed for all pages.
+
+The previous language system mostly translated header/navigation because it
+only matched exact known text. This version:
+- translates ordinary page text nodes across all pages;
+- supports phrases embedded inside longer text;
+- preserves each node's original English text so EN restores it;
+- keeps header/footer/navigation translations;
+- avoids MutationObserver loops;
+- keeps the existing project layout and tool code.
+
+Replace the complete project with this ZIP, then restart Live Server and hard
+refresh (Ctrl+Shift+R).

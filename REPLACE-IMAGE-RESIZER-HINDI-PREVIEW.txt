@@ -1,0 +1,13 @@
+FINAL Image Resizer patch
+
+1. Full visible Image Resizer page text now has Hindi dictionary coverage.
+2. Global Hindi/English toggle remains site-wide.
+3. Image Resizer JS supports the existing PX/CM/INCH button UI, aspect ratio, DPI, resize, preview and download.
+4. Result preview is redesigned with a clean framed/checkerboard preview area and no broken-image icon before processing.
+5. Dynamic result text/button updates follow the selected language.
+
+Replace these files:
+OneToolBox/pages/image-tools/image-resizer.html
+OneToolBox/assets/js/tools/resize-image.js
+OneToolBox/assets/css/tools/resize-image.css
+OneToolBox/assets/js/language.js

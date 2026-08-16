@@ -1,0 +1,15 @@
+FINAL Image Resizer patch
+
+- Hindi/English global toggle now covers the full visible Image Resizer page, including headings, controls, instructions, features, privacy and FAQ text.
+- Dynamic Resize JS follows the selected language for result/loading text.
+- Existing PX/CM/INCH button UI is supported correctly.
+- Aspect ratio and DPI logic remains in the rewritten JS.
+- Preview area is redesigned with a polished framed/checkerboard background, preview badge, rounded result image and no broken-image icon before processing.
+- Desktop remains a 3-card layout using the actual resize-box/resize-card classes.
+- Hero top spacing is compact.
+
+Replace:
+OneToolBox/pages/image-tools/image-resizer.html
+OneToolBox/assets/js/tools/resize-image.js
+OneToolBox/assets/css/tools/resize-image.css
+OneToolBox/assets/js/language.js

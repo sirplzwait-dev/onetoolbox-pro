@@ -1,0 +1,48 @@
+
+/* ==========================================================
+   OneToolBox Global Language Toggle
+========================================================== */
+.otb-language-switch{
+  display:inline-flex;
+  align-items:center;
+  gap:3px;
+  padding:3px;
+  margin-right:6px;
+  border:1px solid rgba(148,163,184,.35);
+  border-radius:999px;
+  background:rgba(255,255,255,.8);
+}
+.otb-lang-btn{
+  border:0;
+  background:transparent;
+  color:#475569;
+  min-width:42px;
+  height:28px;
+  padding:0 9px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:800;
+  cursor:pointer;
+  transition:.2s ease;
+}
+.otb-lang-btn:hover{color:#2563eb;}
+.otb-lang-btn.active{
+  color:#fff;
+  background:#2563eb;
+  box-shadow:0 3px 10px rgba(37,99,235,.25);
+}
+body.dark .otb-language-switch{
+  background:#111827;
+  border-color:#334155;
+}
+body.dark .otb-lang-btn{color:#cbd5e1;}
+body.dark .otb-lang-btn.active{color:#fff;background:#2563eb;}
+
+@media(max-width:850px){
+  .otb-language-switch{margin-right:2px;}
+  .otb-lang-btn{min-width:38px;padding:0 7px;}
+}
+@media(max-width:560px){
+  .otb-language-switch{order:1;}
+  .otb-lang-btn{height:27px;font-size:11px;}
+}

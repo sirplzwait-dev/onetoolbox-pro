@@ -1,0 +1,21 @@
+IMAGE TOOLS 3-CARD DESIGN UPDATE
+
+Desktop:
+- 3 cards per row instead of 4
+- Equal-height cards
+- Cleaner spacing
+- Modern gradient background
+- Better icon boxes
+- Hover lift + shadow
+- Top accent line on hover
+- Better Open Tool button
+- Dark mode styling
+
+Tablet:
+- 2 cards per row
+
+Mobile:
+- 1 card per row
+
+Only image-tools.css was changed for the card layout/design.
+The image tools HTML and JavaScript were not changed.

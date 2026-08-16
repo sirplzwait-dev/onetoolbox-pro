@@ -1,0 +1,19 @@
+/* OneToolBox PDF tools — shared visual layer. Loaded after individual tool CSS. */
+.pdf-tool-page{min-height:100vh;background:var(--page-bg,#f8fafc);color:var(--text,#0f172a)}
+.pdf-tool-page .container{width:min(1180px,calc(100% - 32px));margin-inline:auto}
+.pdf-tool-page button,.pdf-tool-page input,.pdf-tool-page select,.pdf-tool-page textarea{font:inherit}
+.pdf-tool-page button{transition:transform .16s ease,box-shadow .16s ease,background-color .16s ease,border-color .16s ease}
+.pdf-tool-page button:not(:disabled):hover{transform:translateY(-1px)}
+.pdf-tool-page button:focus-visible,.pdf-tool-page input:focus-visible,.pdf-tool-page select:focus-visible,.pdf-tool-page textarea:focus-visible{outline:3px solid rgba(37,99,235,.18);outline-offset:2px}
+.pdf-tool-page .tool-card,.pdf-tool-page .card,.pdf-tool-page .psr-card{overflow:hidden}
+.pdf-tool-page .upload,.pdf-tool-page .psr-drop,.pdf-tool-page .drop{transition:border-color .18s ease,background-color .18s ease,box-shadow .18s ease}
+.pdf-tool-page .upload.drag,.pdf-tool-page .psr-drop.over,.pdf-tool-page .drop.over{border-color:#2563eb!important;background:#eff6ff!important;box-shadow:0 0 0 4px rgba(37,99,235,.08)}
+.pdf-tool-page .section{padding-top:28px;padding-bottom:28px}
+.pdf-tool-page .section-title{margin-bottom:18px}
+.pdf-tool-page .faq details{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:12px 15px;margin:9px 0}
+.pdf-tool-page .faq summary{cursor:pointer;font-weight:800}
+@media(max-width:700px){.pdf-tool-page .container{width:min(100% - 24px,1180px)}.pdf-tool-page .section{padding-top:20px;padding-bottom:20px}}
+@media(prefers-reduced-motion:reduce){.pdf-tool-page *{scroll-behavior:auto!important;transition:none!important}}
+html.otb-dark-preload .pdf-tool-page{background:#0f172a;color:#e5e7eb}
+html.otb-dark-preload .pdf-tool-page .tool-card,html.otb-dark-preload .pdf-tool-page .card,html.otb-dark-preload .pdf-tool-page .psr-card,html.otb-dark-preload .pdf-tool-page .info-card,html.otb-dark-preload .pdf-tool-page .faq details{background:#111827;border-color:#334155;color:#e5e7eb}
+html.otb-dark-preload .pdf-tool-page p,html.otb-dark-preload .pdf-tool-page small,html.otb-dark-preload .pdf-tool-page .status{color:#94a3b8}

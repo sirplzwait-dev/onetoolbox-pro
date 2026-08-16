@@ -1,0 +1,16 @@
+GLOBAL SEARCH FIX
+
+The old search index contained only 58 entries, so the header search could
+not search the whole OneToolBox site.
+
+Fixed:
+- Search index regenerated from all public HTML pages.
+- Global search now indexes tool names, titles, categories, headings and
+  filenames.
+- Partial and multi-word searches work.
+- Exact matches rank first.
+- Search works from every page using the shared header.
+- Enter opens the first result.
+- Arrow Down focuses the first result.
+- Escape closes/clears search.
+- Dark mode dropdown styling included.
