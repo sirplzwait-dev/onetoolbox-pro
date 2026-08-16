@@ -1,68 +1,187 @@
 <!DOCTYPE html>
-
 <html lang="en">
+
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Resize Image - OneToolBox</title>
-<link href="../../assets/css/reset.css" rel="stylesheet"/>
-<link href="../../assets/css/variables.css" rel="stylesheet"/>
-<link href="../../assets/css/layout.css" rel="stylesheet"/>
-<link href="../../assets/css/components.css" rel="stylesheet"/>
-<link href="../../assets/css/tools/resize-image.css" rel="stylesheet"/>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet"/>
-<meta content="index,follow,max-image-preview:large" name="robots"/><meta content="🖼️ Resize Image online free with OneToolBox. Use this image tools tool quickly in your browser without installing software." name="description"/><link href="https://onetoolbox.in/pages/image-tools/image-resizer.html" rel="canonical"/><meta content="Resize Image - OneToolBox" property="og:title"/><meta content="🖼️ Resize Image online free with OneToolBox. Use this image tools tool quickly in your browser without installing software." property="og:description"/><meta content="https://onetoolbox.in/pages/image-tools/image-resizer.html" property="og:url"/><meta content="OneToolBox" property="og:site_name"/><meta content="website" property="og:type"/><script src="/assets/js/analytics-config.js"></script><script src="/assets/js/onetoolbox-analytics.js"></script><script data-onetoolbox-schema="true" type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"🖼️ Resize Image","url":"https://onetoolbox.in/pages/image-tools/image-resizer.html","description":"🖼️ Resize Image online free with OneToolBox. Use this image tools tool quickly in your browser without installing software.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script></head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Free Image Resizer Online - Resize Image | OneToolBox</title>
+
+<meta name="description"
+      content="Resize images online in pixels, centimeters and inches. Maintain aspect ratio, set DPI and download your resized image for free with OneToolBox.">
+
+<link rel="stylesheet" href="../../assets/css/reset.css">
+<link rel="stylesheet" href="../../assets/css/variables.css">
+<link rel="stylesheet" href="../../assets/css/layout.css">
+<link rel="stylesheet" href="../../assets/css/components.css">
+<link rel="stylesheet" href="../../assets/css/onetoolbox-common-layout.css">
+<link rel="stylesheet" href="../../assets/css/tools/image-resizer.css">
+
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"FAQPage",
+  "mainEntity":[
+    {
+      "@type":"Question",
+      "name":"Is the image resizer free?",
+      "acceptedAnswer":{
+        "@type":"Answer",
+        "text":"OneToolBox provides this image resizer as a free online utility."
+      }
+    },
+    {
+      "@type":"Question",
+      "name":"Which resize units are available?",
+      "acceptedAnswer":{
+        "@type":"Answer",
+        "text":"The current tool supports pixels (PX), centimeters (CM) and inches (INCH)."
+      }
+    },
+    {
+      "@type":"Question",
+      "name":"Can I maintain the image aspect ratio?",
+      "acceptedAnswer":{
+        "@type":"Answer",
+        "text":"Yes. Maintain Aspect Ratio can be enabled while changing the width or height."
+      }
+    },
+    {
+      "@type":"Question",
+      "name":"Can I set DPI?",
+      "acceptedAnswer":{
+        "@type":"Answer",
+        "text":"Yes. The tool provides a DPI field for centimeter and inch based dimensions."
+      }
+    },
+    {
+      "@type":"Question",
+      "name":"Can I drag and drop an image?",
+      "acceptedAnswer":{
+        "@type":"Answer",
+        "text":"Yes. The current tool supports choosing an image and drag-and-drop."
+      }
+    }
+  ]
+}
+</script>
+
+</head>
+
+
 <body>
+
+
+<!-- HEADER -->
 <div id="header-placeholder"></div>
+
+
 <main class="page page-offset">
-<section class="tool-hero">
-<div class="container">
-<h1>
-🖼️ Resize Image
-</h1>
-<p>
-Resize image in PX, CM and INCH with aspect ratio control.
-</p>
-</div>
-</section>
+
+
+<!-- =========================================================
+     HERO
+========================================================= -->
+
+<section id="tool-heading-placeholder" class="tool-hero" data-tool-title="🖼️ Image Resizer" data-tool-description="Resize images in PX, CM and INCH while maintaining the best practical aspect ratio."></section>
+
+
+
+<!-- =========================================================
+     MAIN TOOL
+========================================================= -->
+
 <section class="section">
+
 <div class="container">
-<div class="resize-box">
-<!-- UPLOAD CARD -->
-<div class="resize-card">
-<h3>
+
+
+<div class="compress-box">
+
+
+<!-- =========================================================
+     ORIGINAL / UPLOAD
+========================================================= -->
+
+<div class="compress-card">
+
+
+<h3 id="originalTitle">
 Upload Image
 </h3>
-<div class="upload-area" id="uploadArea">
-<i class="fa-solid fa-cloud-arrow-up" id="uploadIcon"></i>
-<img class="original-preview" id="originalPreview"/>
+
+
+<div class="upload-area"
+     id="uploadArea">
+
+
+<i class="fa-solid fa-cloud-arrow-up"
+   id="uploadIcon"></i>
+
+
+<img
+id="originalPreview"
+class="original-preview"
+src=""
+alt="Original Image">
+
+
 <h4 id="uploadText">
 Upload Image
 </h4>
+
+
 <p id="uploadInfo">
 
 📁 Choose Image
 
-<br/>
+<br>
 
-🖱 Drag &amp; Drop
+📋 Paste Image
+
+<br>
+
+🖱️ Drag & Drop
 
 </p>
+
+
 <label class="choose-btn">
+
 <i class="fa-solid fa-image"></i>
 
 Choose Image
 
+<input
+type="file"
+id="imageInput"
+accept="image/*">
 
-<input accept="image/*" id="imageInput" type="file"/>
 </label>
-<button class="btn-reset" id="resetBtn">
+
+
+</div>
+
+
+
+<button
+class="btn-reset"
+id="resetBtn"
+type="button">
+
 <i class="fa-solid fa-rotate-left"></i>
 
 Reset
 
 </button>
-</div>
+
+
+
 <div class="info">
 
 Original Size:
@@ -70,7 +189,10 @@ Original Size:
 <b id="originalSize">
 0 KB
 </b>
+
 </div>
+
+
 <div class="info">
 
 Original Dimension:
@@ -78,86 +200,225 @@ Original Dimension:
 <b id="originalDimension">
 0 × 0 px
 </b>
+
 </div>
+
+
 </div>
-<!-- SETTINGS CARD -->
-<div class="resize-card">
+
+
+
+<!-- =========================================================
+     RESIZE SETTINGS
+========================================================= -->
+
+<div class="compress-card settings">
+
+
 <h3>
 Resize Settings
 </h3>
-<div class="resize-mode">
+
+
 <label>
 Unit
 </label>
-<div class="mode-buttons">
-<button class="mode active" data-unit="px">
+
+
+<div class="size-options">
+
+
+<label class="size-btn">
+
+<input
+type="radio"
+name="unit"
+value="px"
+checked>
+
+<span>
 PX
-</button>
-<button class="mode" data-unit="cm">
+</span>
+
+</label>
+
+
+<label class="size-btn">
+
+<input
+type="radio"
+name="unit"
+value="cm">
+
+<span>
 CM
-</button>
-<button class="mode" data-unit="inch">
+</span>
+
+</label>
+
+
+<label class="size-btn">
+
+<input
+type="radio"
+name="unit"
+value="inch">
+
+<span>
 INCH
-</button>
+</span>
+
+</label>
+
+
 </div>
-</div>
-<div class="dimension-input">
-<label>
+
+
+
+<div class="dimension-row">
+
+<div class="dimension-field">
+
+<label for="widthInput">
 Width
 </label>
-<input id="widthInput" type="number"/>
+
+<div class="input-unit">
+
+<input
+type="number"
+id="widthInput"
+min="1"
+step="any"
+placeholder="Width">
+
 <span id="widthUnit">
 px
 </span>
+
 </div>
-<div class="dimension-input">
-<label>
+
+</div>
+
+
+<div class="dimension-field">
+
+<label for="heightInput">
 Height
 </label>
-<input id="heightInput" type="number"/>
+
+<div class="input-unit">
+
+<input
+type="number"
+id="heightInput"
+min="1"
+step="any"
+placeholder="Height">
+
 <span id="heightUnit">
 px
 </span>
+
 </div>
-<div class="dimension-input">
-<label>
+
+</div>
+
+</div>
+
+
+
+<div class="dpi-field">
+
+<label for="dpiInput">
 DPI
 </label>
-<input id="dpiInput" type="number" value="300"/>
+
+<div class="input-unit">
+
+<input
+type="number"
+id="dpiInput"
+value="300"
+min="1">
+
 <span>
 dpi
 </span>
+
 </div>
-<!-- CHECKBOX FIX -->
+
+</div>
+
+
+
 <div class="ratio-box">
-<input checked="" id="ratioLock" type="checkbox"/>
+
+<input
+type="checkbox"
+id="ratioLock"
+checked>
+
 <label for="ratioLock">
-
 Maintain Aspect Ratio
-
 </label>
+
 </div>
-<button class="btn-primary" id="resizeBtn">
+
+
+
+<button
+class="btn btn-primary"
+id="resizeBtn"
+type="button">
+
 <i class="fa-solid fa-expand"></i>
 
 Resize Image
 
-
 </button>
+
+
 </div>
-<!-- RESULT CARD -->
-<div class="resize-card">
+
+
+
+<!-- =========================================================
+     RESULT
+========================================================= -->
+
+<div class="compress-card result-card">
+
+<div class="result-card-head">
 <h3>
 Resized Image
 </h3>
-<div class="image-preview">
-<img id="resizedPreview"/>
-<span id="resultText">
 
-Resize result will appear here
-
-</span>
+<button
+class="reset-settings-btn"
+id="resetSettingsBtn"
+type="button">
+<i class="fa-solid fa-sliders"></i>
+Reset Settings
+</button>
 </div>
+
+
+<div class="image-preview">
+
+
+<img id="resizedPreview" alt="Resized Image">
+
+
+<span id="resultText">
+Resize result will appear here
+</span>
+
+
+</div>
+
+
+
 <div class="info">
 
 New Dimension:
@@ -165,7 +426,11 @@ New Dimension:
 <b id="newDimension">
 0 × 0 px
 </b>
+
 </div>
+
+
+
 <div class="info">
 
 New Size:
@@ -173,206 +438,529 @@ New Size:
 <b id="newSize">
 0 KB
 </b>
+
 </div>
-<a class="btn-success" id="downloadBtn">
+
+
+
+<a
+class="btn btn-success disabled"
+id="downloadBtn"
+href="#"
+aria-disabled="true">
+
 <i class="fa-solid fa-download"></i>
 
 Download Image
 
 </a>
+
+
 </div>
+
+
 </div>
+
+
 </div>
+
 </section>
+
+
+
 <!-- =========================================================
-     HOW TO USE
+     ADVERTISEMENT SPACE
 ========================================================= -->
-<section class="content-section resize-info-section">
+
+<section class="content-section ad-section">
+
 <div class="container">
-<div class="content-heading">
-<span class="section-kicker">Simple &amp; Fast</span>
-<h2>How to Resize an Image?</h2>
-<p>Resize your image in a few simple steps without uploading it to a server.</p>
+
+<div class="ad-box"
+     aria-label="Advertisement">
+
+<span>
+Advertisement
+</span>
+
 </div>
+
+</div>
+
+</section>
+
+
+
+<!-- =========================================================
+     HOW IT WORKS
+========================================================= -->
+
+<section class="content-section">
+
+<div class="container">
+
+
+<div class="content-heading">
+
+<h2>
+How Does the Image Resizer Work?
+</h2>
+
+<p>
+Resize your image in a few simple steps.
+Choose the required unit and dimensions,
+then download the resized image directly in your browser.
+</p>
+
+</div>
+
+
 <div class="steps-grid">
-<article class="step-card">
-<div class="step-number">1</div>
-<div class="step-icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
-<h3>Upload Your Image</h3>
-<p>Click <strong>Choose Image</strong> and select the image you want to resize.</p>
-</article>
-<article class="step-card">
-<div class="step-number">2</div>
-<div class="step-icon"><i class="fa-solid fa-sliders"></i></div>
-<h3>Set Dimensions</h3>
-<p>Choose <strong>PX, CM or INCH</strong>, then enter your required width and height.</p>
-</article>
-<article class="step-card">
-<div class="step-number">3</div>
-<div class="step-icon"><i class="fa-solid fa-lock"></i></div>
-<h3>Keep Proportions</h3>
-<p>Keep <strong>Maintain Aspect Ratio</strong> enabled to preserve the original image proportions.</p>
-</article>
-<article class="step-card">
-<div class="step-number">4</div>
-<div class="step-icon"><i class="fa-solid fa-download"></i></div>
-<h3>Resize &amp; Download</h3>
-<p>Click <strong>Resize Image</strong>, check the result and download the resized image.</p>
-</article>
+
+
+<article class="info-card">
+
+<div class="step-number">
+1
 </div>
+
+<h3>
+Upload an Image
+</h3>
+
+<p>
+Choose an image from your device or drag it into
+the upload area.
+</p>
+
+</article>
+
+
+
+<article class="info-card">
+
+<div class="step-number">
+2
 </div>
+
+<h3>
+Set Dimensions
+</h3>
+
+<p>
+Select PX, CM or INCH and enter the required
+width and height. You can also set DPI.
+</p>
+
+</article>
+
+
+
+<article class="info-card">
+
+<div class="step-number">
+3
+</div>
+
+<h3>
+Resize & Download
+</h3>
+
+<p>
+Click Resize Image, review the new dimensions
+and size, then download the resized image.
+</p>
+
+</article>
+
+
+</div>
+
+
+</div>
+
 </section>
+
+
+
 <!-- =========================================================
-     FEATURES
+     FEATURES / USE CASES
 ========================================================= -->
+
 <section class="content-section compact-section">
+
 <div class="container">
+
+
 <div class="content-heading">
-<span class="section-kicker">Why Use It?</span>
-<h2>Image Resizer Features</h2>
-<p>Useful controls for common image-size and print-dimension requirements.</p>
+
+<h2>
+What Can You Use It For?
+</h2>
+
 </div>
+
+
 <div class="feature-grid">
-<article class="feature-card">
-<div class="feature-icon"><i class="fa-solid fa-expand"></i></div>
+
+
+<div class="feature-mini">
+
+<i class="fa-solid fa-ruler-combined"></i>
+
 <div>
-<h3>PX, CM &amp; INCH</h3>
-<p>Resize using pixels or physical dimensions in centimetres and inches.</p>
+
+<h3>
+Exact Dimensions
+</h3>
+
+<p>
+Resize images to the required width and height.
+</p>
+
 </div>
-</article>
-<article class="feature-card">
-<div class="feature-icon"><i class="fa-solid fa-link"></i></div>
+
+</div>
+
+
+
+<div class="feature-mini">
+
+<i class="fa-solid fa-lock"></i>
+
 <div>
-<h3>Aspect Ratio Lock</h3>
-<p>Automatically calculate the other dimension when the ratio lock is enabled.</p>
+
+<h3>
+Aspect Ratio Control
+</h3>
+
+<p>
+Keep the original image proportions while resizing.
+</p>
+
 </div>
-</article>
-<article class="feature-card">
-<div class="feature-icon"><i class="fa-solid fa-print"></i></div>
+
+</div>
+
+
+
+<div class="feature-mini">
+
+<i class="fa-solid fa-print"></i>
+
 <div>
-<h3>DPI Control</h3>
-<p>Set DPI when working with CM or INCH measurements for print-oriented sizing.</p>
+
+<h3>
+Print Dimensions
+</h3>
+
+<p>
+Use CM or INCH with DPI for print-oriented sizing.
+</p>
+
 </div>
-</article>
-<article class="feature-card">
-<div class="feature-icon"><i class="fa-solid fa-eye"></i></div>
+
+</div>
+
+
+
+<div class="feature-mini">
+
+<i class="fa-solid fa-mobile-screen-button"></i>
+
 <div>
-<h3>Live Preview</h3>
-<p>View the original image and the resized result before downloading.</p>
+
+<h3>
+Mobile Friendly
+</h3>
+
+<p>
+Resize images from a phone, tablet or computer.
+</p>
+
 </div>
-</article>
-<article class="feature-card">
-<div class="feature-icon"><i class="fa-solid fa-gauge-high"></i></div>
-<div>
-<h3>Quick Processing</h3>
-<p>The image is resized directly in your browser using the browser canvas API.</p>
+
 </div>
-</article>
-<article class="feature-card">
-<div class="feature-icon"><i class="fa-solid fa-mobile-screen-button"></i></div>
-<div>
-<h3>Responsive Design</h3>
-<p>Use the tool on desktop, tablet or mobile screens.</p>
+
+
 </div>
-</article>
+
+
 </div>
-</div>
+
 </section>
+
+
+
 <!-- =========================================================
      PRIVACY
 ========================================================= -->
+
 <section class="content-section compact-section">
+
 <div class="container">
+
+
 <div class="privacy-card">
+
+
 <div class="privacy-icon">
+
 <i class="fa-solid fa-shield-halved"></i>
+
 </div>
+
+
 <div>
-<span class="section-kicker">Privacy First</span>
-<h2>Private Browser-Based Processing</h2>
+
+<h2>
+Privacy & File Handling
+</h2>
+
 <p>
-                    The current image resizing logic works in your browser using
-                    JavaScript and the Canvas API. The selected image is not sent
-                    to a OneToolBox upload endpoint by this tool.
-                </p>
-<p class="privacy-note">
-                    For highly sensitive files, always review your browser and
-                    device environment before processing.
-                </p>
+This image resizer performs image processing directly
+in the browser using JavaScript and browser image APIs.
+The selected image is processed locally by the current tool.
+</p>
+
+<p>
+For highly sensitive files, always review the tool's
+behavior and your browser environment before processing.
+</p>
+
 </div>
+
+
 </div>
+
+
 </div>
+
 </section>
+
+
+
 <!-- =========================================================
      FAQ
 ========================================================= -->
-<section class="content-section compact-section faq-section">
+
+<section class="content-section compact-section">
+
 <div class="container">
+
+
 <div class="content-heading">
-<span class="section-kicker">Need Help?</span>
-<h2>Frequently Asked Questions</h2>
-<p>Quick answers about the OneToolBox Image Resizer.</p>
+
+<h2>
+Frequently Asked Questions
+</h2>
+
 </div>
+
+
 <div class="faq-list">
+
+
 <details>
-<summary>Is the Image Resizer free?</summary>
-<p>Yes. The OneToolBox Image Resizer is provided as a free online utility.</p>
-</details>
-<details>
-<summary>Which units can I use?</summary>
-<p>You can resize using PX, CM or INCH. DPI is used for CM and INCH conversion.</p>
-</details>
-<details>
-<summary>What does Maintain Aspect Ratio do?</summary>
+
+<summary>
+Is the image resizer free?
+</summary>
+
 <p>
-                    When enabled, changing width automatically calculates the height,
-                    or changing height calculates the width, according to the original image ratio.
-                </p>
+Yes. OneToolBox provides this image resizer
+as a free online utility.
+</p>
+
 </details>
+
+
+
 <details>
-<summary>What DPI should I use?</summary>
+
+<summary>
+Which resize units are available?
+</summary>
+
 <p>
-                    DPI depends on your intended use. The tool starts with 300 DPI,
-                    and you can change it when working with CM or INCH measurements.
-                </p>
+The current tool supports pixels (PX),
+centimeters (CM) and inches (INCH).
+</p>
+
 </details>
+
+
+
 <details>
-<summary>Will resizing stretch my image?</summary>
+
+<summary>
+Can I maintain the image aspect ratio?
+</summary>
+
 <p>
-                    If Maintain Aspect Ratio is enabled, the tool preserves the original
-                    width-to-height proportion. Turn it off only when you intentionally
-                    need a custom width and height.
-                </p>
+Yes. Enable Maintain Aspect Ratio and changing
+the width or height will automatically calculate
+the other dimension.
+</p>
+
 </details>
+
+
+
 <details>
-<summary>Can I see the result before downloading?</summary>
+
+<summary>
+Can I set DPI?
+</summary>
+
 <p>
-                    Yes. After resizing, the result preview, new dimensions and new file size
-                    are shown before you download the image.
-                </p>
+Yes. The tool provides a DPI field. DPI is used
+when working with centimeter and inch dimensions.
+</p>
+
 </details>
+
+
+
 <details>
-<summary>Is my image uploaded to OneToolBox?</summary>
+
+<summary>
+Can I drag and drop an image?
+</summary>
+
 <p>
-                    The current resize code processes the selected image locally in the browser
-                    with JavaScript and Canvas; it does not contain an upload request for the
-                    selected image to a OneToolBox server.
-                </p>
+Yes. The current tool supports choosing an image
+and dragging it into the upload area.
+</p>
+
 </details>
+
+
+
 <details>
-<summary>Which image formats are supported?</summary>
+
+<summary>
+Is my image uploaded to a server?
+</summary>
+
 <p>
-                    The file picker accepts browser-supported image files. Actual format support
-                    can depend on the browser's image decoding and Canvas capabilities.
-                </p>
+The current resize workflow uses browser image APIs
+and canvas processing. It does not require a server
+upload for the selected image.
+</p>
+
 </details>
+
+
 </div>
+
+
 </div>
+
 </section>
+
+
+
+<!-- =========================================================
+     RELATED TOOLS
+========================================================= -->
+
+<section class="content-section compact-section">
+
+<div class="container">
+
+
+<div class="content-heading">
+
+<h2>
+Explore More Image Tools
+</h2>
+
+</div>
+
+
+<div class="related-grid">
+
+
+<a href="../index.html">
+
+<i class="fa-solid fa-images"></i>
+
+<span>
+All Image Tools
+</span>
+
+</a>
+
+
+
+<a href="image-compressor.html">
+
+<i class="fa-solid fa-compress"></i>
+
+<span>
+Image Compressor
+</span>
+
+</a>
+
+
+
+<a href="../../pdf/">
+
+<i class="fa-solid fa-file-pdf"></i>
+
+<span>
+PDF Tools
+</span>
+
+</a>
+
+
+
+<a href="../../video/">
+
+<i class="fa-solid fa-video"></i>
+
+<span>
+Video Tools
+</span>
+
+</a>
+
+
+
+</div>
+
+
+</div>
+
+</section>
+
+
 </main>
+
+
+
+<!-- FOOTER -->
+
 <div id="footer-placeholder"></div>
+
+
+
+<!-- COMMON JS -->
+
 <script src="../../assets/js/navigation.js"></script>
+
 <script src="../../assets/js/app.js"></script>
+
+
+<!-- RESIZE JS -->
+
 <script src="../../assets/js/tools/resize-image.js"></script>
+<script src="../../assets/js/onetoolbox-common-layout.js"></script>
+
+
 </body>
+
 </html>

@@ -636,20 +636,6 @@ SIZE SELECT
 
 
 
-/* RESPONSIVE */
-
-
-@media(max-width:1100px){
-
-
-.compress-box{
-
-    grid-template-columns:1fr;
-
-}
-
-
-}
 .tool-link{
     display:block;
     text-decoration:none;
@@ -932,9 +918,27 @@ SIZE SELECT
 }
 
 /* Tablet */
-@media(max-width:1100px){
+@media(max-width:1100px) and (min-width:701px){
     .compress-box{
-        grid-template-columns:repeat(3,1fr);
+        grid-template-columns:repeat(3,minmax(0,1fr));
+        gap:14px;
+    }
+
+    .compress-card{
+        padding:14px;
+    }
+
+    .compress-card h3{
+        font-size:18px;
+        margin-bottom:14px;
+    }
+
+    .upload-area{
+        min-height:205px;
+    }
+
+    .image-preview{
+        height:175px;
     }
 
     .feature-grid{
@@ -1087,4 +1091,353 @@ SIZE SELECT
     background:#dbeafe !important;
     border-color:#1d4ed8 !important;
     transform:scale(1.01);
+}
+
+/* =========================================================
+   FINAL LAYOUT SAFETY
+   Same Image Compressor look — clean responsive behavior
+   ========================================================= */
+
+.compress-box{
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:16px;
+    align-items:stretch;
+}
+
+.compress-card{
+    min-width:0;
+    overflow:hidden;
+}
+
+@media(max-width:700px){
+    .compress-box{
+        grid-template-columns:1fr;
+        gap:12px;
+    }
+}
+
+/* Keep controls from overflowing narrow cards */
+.size-options{
+    min-width:0;
+}
+
+.size-btn,
+.btn-primary,
+.btn-success,
+.choose-btn,
+.btn-reset{
+    box-sizing:border-box;
+}
+
+/* Slider stays visible and easy to use */
+.quality-slider{
+    display:block;
+    width:100%;
+    min-width:0;
+    box-sizing:border-box;
+}
+
+
+/* =========================================================
+   OneToolBox IMAGE COMPRESSOR — DARK MODE
+   Keeps all existing content/SEO/FAQ layouts intact.
+   ========================================================= */
+
+/* Page */
+html[data-theme="dark"] body,
+body[data-theme="dark"],
+body.dark {
+    background:#0b1220;
+    color:#e5e7eb;
+}
+
+/* Hero */
+html[data-theme="dark"] .tool-hero h1,
+body[data-theme="dark"] .tool-hero h1,
+body.dark .tool-hero h1 {
+    color:#f8fafc;
+}
+
+html[data-theme="dark"] .tool-hero p,
+body[data-theme="dark"] .tool-hero p,
+body.dark .tool-hero p {
+    color:#94a3b8;
+}
+
+/* Main compressor cards */
+html[data-theme="dark"] .compress-card,
+body[data-theme="dark"] .compress-card,
+body.dark .compress-card {
+    background:#111827;
+    border-color:#263449;
+    box-shadow:0 12px 35px rgba(0,0,0,.30);
+}
+
+html[data-theme="dark"] .compress-card h3,
+body[data-theme="dark"] .compress-card h3,
+body.dark .compress-card h3 {
+    color:#f8fafc;
+}
+
+/* Upload */
+html[data-theme="dark"] .upload-area,
+body[data-theme="dark"] .upload-area,
+body.dark .upload-area {
+    background:#0f172a;
+    border-color:#3b82f6;
+}
+
+html[data-theme="dark"] .upload-area h4,
+body[data-theme="dark"] .upload-area h4,
+body.dark .upload-area h4 {
+    color:#f8fafc;
+}
+
+html[data-theme="dark"] .upload-area p,
+body[data-theme="dark"] .upload-area p,
+body.dark .upload-area p {
+    color:#94a3b8;
+}
+
+/* Reset */
+html[data-theme="dark"] .btn-reset,
+body[data-theme="dark"] .btn-reset,
+body.dark .btn-reset {
+    background:#3a2024;
+    color:#f87171;
+}
+
+/* Info */
+html[data-theme="dark"] .info,
+body[data-theme="dark"] .info,
+body.dark .info {
+    background:#172554;
+    color:#dbeafe;
+}
+
+html[data-theme="dark"] .info b,
+body[data-theme="dark"] .info b,
+body.dark .info b {
+    color:#60a5fa;
+}
+
+/* Target size buttons */
+html[data-theme="dark"] .size-btn,
+body[data-theme="dark"] .size-btn,
+body.dark .size-btn {
+    background:#1e293b;
+    color:#e5e7eb;
+    border-color:#334155;
+}
+
+html[data-theme="dark"] .size-btn:hover,
+body[data-theme="dark"] .size-btn:hover,
+body.dark .size-btn:hover {
+    background:#273449;
+}
+
+html[data-theme="dark"] .size-btn:has(input:checked),
+body[data-theme="dark"] .size-btn:has(input:checked),
+body.dark .size-btn:has(input:checked) {
+    background:#2563eb;
+    color:#fff;
+    border-color:#3b82f6;
+}
+
+/* Custom input */
+html[data-theme="dark"] #customSize,
+body[data-theme="dark"] #customSize,
+body.dark #customSize {
+    background:#0f172a;
+    color:#f8fafc;
+    border-color:#475569;
+}
+
+html[data-theme="dark"] #customSize::placeholder,
+body[data-theme="dark"] #customSize::placeholder,
+body.dark #customSize::placeholder {
+    color:#64748b;
+}
+
+/* Progress */
+html[data-theme="dark"] .progress,
+body[data-theme="dark"] .progress,
+body.dark .progress {
+    background:#273449;
+}
+
+/* Result preview */
+html[data-theme="dark"] .image-preview,
+body[data-theme="dark"] .image-preview,
+body.dark .image-preview {
+    background:#0f172a;
+    border:1px solid #263449;
+}
+
+/* =========================================================
+   LOWER CONTENT — preserve the original cards/grid and
+   only change their colors in dark mode.
+   ========================================================= */
+
+html[data-theme="dark"] .content-heading h2,
+body[data-theme="dark"] .content-heading h2,
+body.dark .content-heading h2 {
+    color:#f8fafc;
+}
+
+html[data-theme="dark"] .content-heading p,
+body[data-theme="dark"] .content-heading p,
+body.dark .content-heading p {
+    color:#94a3b8;
+}
+
+html[data-theme="dark"] .ad-box,
+body[data-theme="dark"] .ad-box,
+body.dark .ad-box {
+    background:#111827;
+    border-color:#263449;
+    color:#64748b;
+}
+
+/* How it works cards */
+html[data-theme="dark"] .info-card,
+body[data-theme="dark"] .info-card,
+body.dark .info-card {
+    background:#111827;
+    border-color:#263449;
+    box-shadow:0 5px 18px rgba(0,0,0,.22);
+}
+
+html[data-theme="dark"] .info-card h3,
+body[data-theme="dark"] .info-card h3,
+body.dark .info-card h3 {
+    color:#f8fafc;
+}
+
+html[data-theme="dark"] .info-card p,
+body[data-theme="dark"] .info-card p,
+body.dark .info-card p {
+    color:#94a3b8;
+}
+
+/* Feature cards */
+html[data-theme="dark"] .feature-mini,
+body[data-theme="dark"] .feature-mini,
+body.dark .feature-mini {
+    background:#111827;
+    border-color:#263449;
+}
+
+html[data-theme="dark"] .feature-mini h3,
+body[data-theme="dark"] .feature-mini h3,
+body.dark .feature-mini h3 {
+    color:#f8fafc;
+}
+
+html[data-theme="dark"] .feature-mini p,
+body[data-theme="dark"] .feature-mini p,
+body.dark .feature-mini p {
+    color:#94a3b8;
+}
+
+html[data-theme="dark"] .feature-mini > i,
+body[data-theme="dark"] .feature-mini > i,
+body.dark .feature-mini > i {
+    background:#172554;
+    color:#60a5fa;
+}
+
+/* Privacy */
+html[data-theme="dark"] .privacy-card,
+body[data-theme="dark"] .privacy-card,
+body.dark .privacy-card {
+    background:#172554;
+    border-color:#1e40af;
+}
+
+html[data-theme="dark"] .privacy-card h2,
+body[data-theme="dark"] .privacy-card h2,
+body.dark .privacy-card h2 {
+    color:#f8fafc;
+}
+
+html[data-theme="dark"] .privacy-card p,
+body[data-theme="dark"] .privacy-card p,
+body.dark .privacy-card p {
+    color:#cbd5e1;
+}
+
+/* FAQ */
+html[data-theme="dark"] .faq-list details,
+body[data-theme="dark"] .faq-list details,
+body.dark .faq-list details {
+    background:#111827;
+    border-color:#263449;
+}
+
+html[data-theme="dark"] .faq-list summary,
+body[data-theme="dark"] .faq-list summary,
+body.dark .faq-list summary {
+    color:#f8fafc;
+}
+
+html[data-theme="dark"] .faq-list p,
+body[data-theme="dark"] .faq-list p,
+body.dark .faq-list p {
+    color:#94a3b8;
+}
+
+/* Related tools */
+html[data-theme="dark"] .related-grid a,
+body[data-theme="dark"] .related-grid a,
+body.dark .related-grid a {
+    background:#111827;
+    border-color:#263449;
+    color:#f8fafc;
+}
+
+html[data-theme="dark"] .related-grid a:hover,
+body[data-theme="dark"] .related-grid a:hover,
+body.dark .related-grid a:hover {
+    border-color:#60a5fa;
+    color:#60a5fa;
+}
+
+/* Dark preload used by the OneToolBox theme boot */
+html.otb-dark-preload,
+html.otb-dark-preload body {
+    background:#0b1220;
+    color:#e5e7eb;
+}
+
+html.otb-dark-preload .compress-card,
+html.otb-dark-preload .info-card,
+html.otb-dark-preload .feature-mini,
+html.otb-dark-preload .faq-list details,
+html.otb-dark-preload .related-grid a {
+    background:#111827;
+    border-color:#263449;
+}
+
+html.otb-dark-preload .upload-area,
+html.otb-dark-preload .image-preview {
+    background:#0f172a;
+}
+
+html.otb-dark-preload .content-heading h2,
+html.otb-dark-preload .compress-card h3,
+html.otb-dark-preload .info-card h3,
+html.otb-dark-preload .feature-mini h3,
+html.otb-dark-preload .privacy-card h2,
+html.otb-dark-preload .faq-list summary {
+    color:#f8fafc;
+}
+
+html.otb-dark-preload .content-heading p,
+html.otb-dark-preload .info-card p,
+html.otb-dark-preload .feature-mini p,
+html.otb-dark-preload .privacy-card p,
+html.otb-dark-preload .faq-list p {
+    color:#94a3b8;
 }

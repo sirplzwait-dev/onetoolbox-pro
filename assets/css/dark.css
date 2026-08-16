@@ -32,3 +32,135 @@ body.dark .feature-card {
 body.dark h1,body.dark h2,body.dark h3,body.dark h4,body.dark h5,body.dark strong{color:#f8fafc;}
 body.dark p,body.dark .section-heading p,body.dark .hero-description,body.dark .hero-subtitle{color:#94a3b8;}
 body.dark a{color:#93c5fd;}
+
+/* =========================================================
+   FINAL GLOBAL DARK MODE — ALL ONETOOLBOX CARDS
+   ========================================================= */
+body.dark .image-tool-card,
+body.dark .pdf-tool-card,
+body.dark .video-tool-card,
+body.dark .audio-tool-card,
+body.dark .ai-tool-card,
+body.dark .document-tool-card,
+body.dark .calculator-tool-card,
+body.dark .utility-tool-card,
+body.dark .developer-tool-card,
+body.dark .converter-tool-card,
+body.dark .tool-card,
+body.dark .otb-tool-card,
+body.dark .compress-card,
+body.dark .resize-card,
+body.dark .converter-card,
+body.dark .crop-card,
+body.dark .rotate-card,
+body.dark .flip-card,
+body.dark .enhancer-card,
+body.dark .upload-card,
+body.dark .result-card,
+body.dark .content-card,
+body.dark .info-card,
+body.dark .image-preview-card,
+body.dark .pdf-card,
+body.dark .color-card,
+body.dark .card,
+body.dark .feature-card,
+body.dark .category-card,
+body.dark .stat-card,
+body.dark .step-card,
+body.dark .faq-card,
+body.dark .legal-card,
+body.dark .privacy-card,
+body.dark .about-card,
+body.dark .hero-card {
+    background:linear-gradient(145deg,#111827 0%,#172033 100%) !important;
+    color:#f8fafc !important;
+    border-color:#334155 !important;
+    box-shadow:0 8px 24px rgba(0,0,0,.25) !important;
+}
+
+body.dark .image-tool-card h3,
+body.dark .pdf-tool-card h3,
+body.dark .video-tool-card h3,
+body.dark .audio-tool-card h3,
+body.dark .ai-tool-card h3,
+body.dark .document-tool-card h3,
+body.dark .calculator-tool-card h3,
+body.dark .utility-tool-card h3,
+body.dark .developer-tool-card h3,
+body.dark .converter-tool-card h3,
+body.dark .tool-card h1,
+body.dark .tool-card h2,
+body.dark .tool-card h3,
+body.dark .tool-card h4,
+body.dark [class$="-card"] h1,
+body.dark [class$="-card"] h2,
+body.dark [class$="-card"] h3,
+body.dark [class$="-card"] h4 {
+    color:#f8fafc !important;
+}
+
+body.dark .image-tool-card p,
+body.dark .pdf-tool-card p,
+body.dark .video-tool-card p,
+body.dark .audio-tool-card p,
+body.dark .ai-tool-card p,
+body.dark .document-tool-card p,
+body.dark .calculator-tool-card p,
+body.dark .utility-tool-card p,
+body.dark .developer-tool-card p,
+body.dark .converter-tool-card p,
+body.dark .tool-card p,
+body.dark [class$="-card"] p {
+    color:#aebbd0 !important;
+}
+
+body.dark .image-tool-card:hover,
+body.dark .pdf-tool-card:hover,
+body.dark .video-tool-card:hover,
+body.dark .audio-tool-card:hover,
+body.dark .ai-tool-card:hover,
+body.dark .document-tool-card:hover,
+body.dark .calculator-tool-card:hover,
+body.dark .utility-tool-card:hover,
+body.dark .developer-tool-card:hover,
+body.dark .converter-tool-card:hover,
+body.dark .tool-card:hover,
+body.dark [class$="-card"]:hover {
+    border-color:#4b6fae !important;
+    box-shadow:0 14px 34px rgba(0,0,0,.35) !important;
+}
+
+body.dark .upload-box,
+body.dark .preview,
+body.dark .preview-box,
+body.dark .preview-container,
+body.dark .result-box,
+body.dark .result-preview,
+body.dark .output-box,
+body.dark .settings-box,
+body.dark .info-box {
+    background:#0f172a !important;
+    color:#e5e7eb !important;
+    border-color:#334155 !important;
+}
+
+body.dark .image-tool-card a,
+body.dark .pdf-tool-card a,
+body.dark .video-tool-card a,
+body.dark .audio-tool-card a,
+body.dark .ai-tool-card a,
+body.dark .document-tool-card a,
+body.dark .calculator-tool-card a,
+body.dark .utility-tool-card a,
+body.dark .developer-tool-card a,
+body.dark .converter-tool-card a {
+    color:#fff !important;
+}
+
+/* Back-to-top button remains visible and readable in dark mode. */
+body.dark .back-to-top {
+    background:#2563eb !important;
+    color:#fff !important;
+    border-color:#3b82f6 !important;
+    box-shadow:0 10px 28px rgba(0,0,0,.4) !important;
+}

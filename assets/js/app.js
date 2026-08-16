@@ -58,6 +58,17 @@ const App = {
 
         this.highlightActiveMenu();
 
+        this.ensureScrollButton();
+
+        /* Global language: header/footer are now injected, so translate
+           the complete page and keep newly added tool UI in sync. */
+        if (
+            typeof OneToolBoxLanguage !== "undefined" &&
+            typeof OneToolBoxLanguage.init === "function"
+        ) {
+            OneToolBoxLanguage.init();
+        }
+
 
         /* Theme */
 
@@ -127,8 +138,10 @@ const App = {
         };
 
         loadCss("/assets/css/dark.css");
+        loadCss("/assets/css/language.css");
 
         await loadScript("/assets/js/theme.js");
+        await loadScript("/assets/js/language.js?v=20260816-global-lang-1");
         await loadScript("/assets/js/search.js");
     },
 
@@ -194,6 +207,46 @@ const App = {
 
 
     /* ==========================================
+       GLOBAL SCROLL TOGGLE BUTTON
+       Added automatically on every page
+    ========================================== */
+
+    ensureScrollButton() {
+
+        let button =
+            document.querySelector(".back-to-top");
+
+        if (!button) {
+
+            button = document.createElement("button");
+
+            button.type = "button";
+            button.id = "scrollToggle";
+            button.className = "back-to-top";
+
+            button.setAttribute(
+                "aria-label",
+                "Scroll to Bottom"
+            );
+
+            button.setAttribute(
+                "title",
+                "Go to Bottom"
+            );
+
+            button.innerHTML =
+                '<i class="fas fa-arrow-down"></i>';
+
+            document.body.appendChild(button);
+
+        }
+
+        this.updateScrollButton();
+
+    },
+
+
+    /* ==========================================
        EVENTS
     ========================================== */
 
@@ -213,9 +266,7 @@ const App = {
         window.addEventListener(
             "scroll",
             () => {
-
                 this.updateScrollButton();
-
             },
             { passive:true }
         );
@@ -324,114 +375,20 @@ const App = {
 
     updateScrollButton() {
 
-        const button =
-            document.querySelector(
-                ".back-to-top"
-            );
-
-
+        const button = document.querySelector(".back-to-top");
         if (!button) return;
 
+        const scrollTop = window.scrollY || document.documentElement.scrollTop;
+        const shouldShow = scrollTop > 120;
 
-        const icon =
-            button.querySelector("i");
+        /* Show only after the page has moved down. */
+        button.classList.toggle("show", shouldShow);
 
+        const icon = button.querySelector("i");
+        if (icon) icon.className = "fas fa-arrow-up";
 
-        if (!icon) return;
-
-
-        const scrollTop =
-            window.scrollY ||
-            document.documentElement.scrollTop;
-
-
-        const documentHeight =
-            document.documentElement
-                .scrollHeight;
-
-
-        const windowHeight =
-            window.innerHeight;
-
-
-        const maxScroll =
-            documentHeight -
-            windowHeight;
-
-
-        /* =========================
-           PAGE TOP
-        ========================= */
-
-        if (scrollTop <= 50) {
-
-            icon.className =
-                "fas fa-arrow-down";
-
-
-            button.setAttribute(
-                "aria-label",
-                "Scroll to Bottom"
-            );
-
-
-            button.setAttribute(
-                "title",
-                "Go to Bottom"
-            );
-
-        }
-
-
-        /* =========================
-           PAGE BOTTOM
-        ========================= */
-
-        else if (
-            scrollTop >= maxScroll - 50
-        ) {
-
-            icon.className =
-                "fas fa-arrow-up";
-
-
-            button.setAttribute(
-                "aria-label",
-                "Scroll to Top"
-            );
-
-
-            button.setAttribute(
-                "title",
-                "Go to Top"
-            );
-
-        }
-
-
-        /* =========================
-           MIDDLE
-        ========================= */
-
-        else {
-
-            icon.className =
-                "fas fa-arrow-up";
-
-
-            button.setAttribute(
-                "aria-label",
-                "Scroll to Top"
-            );
-
-
-            button.setAttribute(
-                "title",
-                "Go to Top"
-            );
-
-        }
-
+        button.setAttribute("aria-label", "Scroll to Top");
+        button.setAttribute("title", "Go to Top");
     },
 
 

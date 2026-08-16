@@ -693,3 +693,7 @@ fm.audio=function(){
     );
 
 };
+
+return fm;
+
+})();

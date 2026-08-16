@@ -37,10 +37,11 @@ $("ocr").onclick=async()=>{
  if(!S.pdf||S.running)return;
  S.running=true;$("ocr").disabled=true;$("result").value="";
  try{
-   const lang=$("lang").value;
+   const selectedLang=$("lang").value;
+   const lang=selectedLang==="eng+hin"?["eng","hin"]:selectedLang;
    let worker;
    if(window.Tesseract){
-     worker=await Tesseract.createWorker(lang,1,{logger:m=>{
+     worker=await Tesseract.createWorker(lang, 1, {logger:m=>{
        if(m.status==="recognizing text"){
          const base=(S.page-1)/S.pages*100;
          setProgress(base+(m.progress*100/S.pages),"Recognizing text…");
@@ -62,11 +63,11 @@ $("ocr").onclick=async()=>{
  finally{S.running=false;$("ocr").disabled=!S.pdf}
 };
 
-$("copy").onclick=async()=>{await navigator.clipboard.writeText($("result").value);$("status").textContent="Text copied"};
+$("copy").onclick=async()=>{const text=$("result").value;try{if(navigator.clipboard?.writeText)await navigator.clipboard.writeText(text);else{const ta=document.createElement("textarea");ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand("copy");ta.remove()}$("status").textContent="Text copied"}catch(e){$("status").textContent="Copy failed. Please select the text manually."}};
 $("downloadTxt").onclick=()=>{
  const blob=new Blob([$("result").value],{type:"text/plain;charset=utf-8"}),u=URL.createObjectURL(blob),a=document.createElement("a");
  a.href=u;a.download="ocr-text.txt";a.click();setTimeout(()=>URL.revokeObjectURL(u),1000)
 };
 $("reset").onclick=()=>{S.pdf=null;S.page=1;S.pages=0;S.ocrText=[];$("file").value="";$("fileTitle").textContent="Choose PDF file";$("fileSize").textContent="0 KB";$("pageCount").textContent="0";$("pageLabel").textContent="Page 0 / 0";$("result").value="";$("ocr").disabled=true;$("downloadTxt").disabled=true;$("copy").disabled=true;$("pdfCanvas").hidden=true;setProgress(0,"Ready")};
-$("theme").onclick=()=>document.body.classList.toggle("dark");
+$
 })();

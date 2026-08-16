@@ -84,7 +84,7 @@
 .tools-topbar button:hover{background:#eff6ff}
 .image-tools-grid{
     display:grid;
-    grid-template-columns:repeat(4,minmax(0,1fr));
+    grid-template-columns:repeat(3,minmax(0,1fr));
     gap:20px;
 }
 .image-tool-card{
@@ -170,7 +170,7 @@
     color:#64748b;
 }
 @media(max-width:1100px){
-    .image-tools-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .image-tools-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media(max-width:820px){
     .image-tools-hero{padding:34px 15px 27px}
@@ -197,3 +197,483 @@ body.dark .image-tool-card{background:linear-gradient(145deg,#172033,#1b2638)!im
 body.dark .image-tool-card:hover{background:linear-gradient(145deg,#1d3557,#2a2447)!important;border-color:#5b8fdc!important}
 @media(max-width:820px){.image-tools-hero{padding:12px 12px 7px!important}.image-tools-hero h1{font-size:29px!important}}
 @media(max-width:520px){.image-tools-hero{padding:10px 10px 6px!important}.image-tools-hero h1{font-size:26px!important}.image-tools-hero p{font-size:13px!important}.image-tools-grid{gap:10px!important}}
+
+
+/* =========================================================
+   IMAGE TOOLS — FINAL 3 CARD GRID
+   ========================================================= */
+
+.image-tools-grid{
+    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+    gap:18px !important;
+    align-items:stretch !important;
+}
+
+.image-tool-card{
+    min-height:215px !important;
+    padding:22px 20px 19px !important;
+    display:flex !important;
+    flex-direction:column !important;
+    overflow:hidden !important;
+    border:1px solid rgba(148,163,184,.28) !important;
+    border-radius:20px !important;
+    background:linear-gradient(145deg,#ffffff 0%,#f8fbff 100%) !important;
+    box-shadow:
+        0 8px 24px rgba(15,23,42,.06),
+        0 2px 5px rgba(15,23,42,.03) !important;
+    transition:
+        transform .22s ease,
+        box-shadow .22s ease,
+        border-color .22s ease,
+        background .22s ease !important;
+}
+
+.image-tool-card::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    height:3px;
+    background:linear-gradient(90deg,#2563eb,#7c3aed);
+    opacity:0;
+    transition:opacity .22s ease;
+}
+
+.image-tool-card:hover{
+    transform:translateY(-6px) !important;
+    border-color:rgba(37,99,235,.30) !important;
+    background:linear-gradient(145deg,#ffffff 0%,#f1f7ff 100%) !important;
+    box-shadow:
+        0 18px 38px rgba(37,99,235,.11),
+        0 5px 12px rgba(15,23,42,.05) !important;
+}
+
+.image-tool-card:hover::before{
+    opacity:1;
+}
+
+.image-tool-icon{
+    width:58px !important;
+    height:58px !important;
+    min-width:58px !important;
+    margin-bottom:15px !important;
+    border-radius:17px !important;
+    font-size:23px !important;
+    box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,.65),
+        0 7px 15px rgba(15,23,42,.07) !important;
+}
+
+.image-tool-card h3{
+    margin:0 0 7px !important;
+    font-size:18px !important;
+    line-height:1.3 !important;
+    letter-spacing:-.15px;
+}
+
+.image-tool-card p{
+    flex:1 !important;
+    min-height:42px !important;
+    margin:0 0 16px !important;
+    font-size:13px !important;
+    line-height:1.55 !important;
+}
+
+.image-tool-card a{
+    width:max-content !important;
+    padding:8px 11px !important;
+    border-radius:10px !important;
+    background:rgba(37,99,235,.07) !important;
+    color:#2563eb !important;
+    gap:7px !important;
+    transition:background .2s ease,transform .2s ease !important;
+}
+
+.image-tool-card a:hover{
+    text-decoration:none !important;
+    background:rgba(37,99,235,.13) !important;
+    transform:translateX(2px);
+}
+
+.image-tool-card a i{
+    font-size:12px;
+    transition:transform .2s ease;
+}
+
+.image-tool-card a:hover i{
+    transform:translateX(3px);
+}
+
+/* Better dark mode */
+body.dark .image-tools-hero h1{
+    color:#f8fafc !important;
+}
+
+body.dark .image-tools-hero p{
+    color:#aebbd0 !important;
+}
+
+body.dark .hero-badge{
+    background:rgba(37,99,235,.15) !important;
+    color:#93c5fd !important;
+}
+
+body.dark .image-tool-card{
+    background:linear-gradient(145deg,#151f31 0%,#1a2638 100%) !important;
+    border-color:rgba(100,116,139,.35) !important;
+    box-shadow:
+        0 10px 28px rgba(0,0,0,.25),
+        inset 0 1px 0 rgba(255,255,255,.025) !important;
+}
+
+body.dark .image-tool-card:hover{
+    background:linear-gradient(145deg,#192842 0%,#20233d 100%) !important;
+    border-color:rgba(96,165,250,.45) !important;
+    box-shadow:0 18px 38px rgba(0,0,0,.35) !important;
+}
+
+body.dark .image-tool-card h3{
+    color:#f1f5f9 !important;
+}
+
+body.dark .image-tool-card p{
+    color:#aebbd0 !important;
+}
+
+body.dark .image-tool-card a{
+    background:rgba(96,165,250,.10) !important;
+    color:#93c5fd !important;
+}
+
+body.dark .image-tool-card a:hover{
+    background:rgba(96,165,250,.17) !important;
+}
+
+/* Tablet */
+@media(max-width:1100px){
+    .image-tools-grid{
+        grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+        gap:16px !important;
+    }
+}
+
+/* Mobile */
+@media(max-width:560px){
+    .image-tools-grid{
+        grid-template-columns:1fr !important;
+        gap:12px !important;
+    }
+
+    .image-tool-card{
+        min-height:185px !important;
+    }
+}
+
+/* Keep the 3-card desktop layout even on medium desktop widths. */
+@media(min-width:1101px){
+    .image-tools-grid{
+        grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+    }
+}
+
+
+/* =========================================================
+   IMAGE TOOLS — MATCH PDF TOOLS WIDTH / SIDE SPACING
+   ========================================================= */
+
+/* The Image Tools grid sits outside the HTML .container, so give it
+   the same 1280px content width and horizontal padding used by PDF Tools. */
+.image-tools-grid{
+    width:100% !important;
+    max-width:1280px !important;
+    box-sizing:border-box !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+    padding-left:20px !important;
+    padding-right:20px !important;
+
+    /* Exactly 3 cards on desktop */
+    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+    gap:18px !important;
+}
+
+/* Keep card proportions close to the PDF tool cards. */
+.image-tool-card{
+    min-height:190px !important;
+    padding:20px !important;
+    border-radius:17px !important;
+}
+
+/* Match PDF icon size and spacing. */
+.image-tool-icon{
+    width:48px !important;
+    height:48px !important;
+    min-width:48px !important;
+    margin-bottom:13px !important;
+    border-radius:13px !important;
+    font-size:20px !important;
+}
+
+/* Match PDF heading/body scale. */
+.image-tool-card h3{
+    font-size:17px !important;
+    margin-bottom:7px !important;
+}
+
+.image-tool-card p{
+    min-height:40px !important;
+    margin-bottom:16px !important;
+    font-size:13px !important;
+    line-height:1.55 !important;
+}
+
+/* Keep the existing beautiful Image Tools button, but give it the
+   same compact footprint as the PDF cards. */
+.image-tool-card a{
+    font-size:11.5px !important;
+}
+
+/* Tablet: same responsive behavior as PDF Tools. */
+@media(max-width:850px){
+    .image-tools-grid{
+        grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+        gap:15px !important;
+        padding-left:16px !important;
+        padding-right:16px !important;
+    }
+
+    .image-tool-card{
+        min-height:180px !important;
+        padding:17px !important;
+    }
+}
+
+/* Mobile */
+@media(max-width:540px){
+    .image-tools-grid{
+        grid-template-columns:1fr !important;
+        gap:13px !important;
+        padding-left:14px !important;
+        padding-right:14px !important;
+    }
+
+    .image-tool-card{
+        min-height:165px !important;
+        padding:17px !important;
+    }
+}
+
+
+/* =========================================================
+   IMAGE TOOLS — FINAL TARGET LAYOUT
+   Same centered width / side breathing room as the tool pages
+   shown in the reference screenshots.
+   ========================================================= */
+
+.image-tools-grid{
+    width:100% !important;
+    max-width:1360px !important;
+    margin:0 auto !important;
+    padding:0 10px !important;
+    box-sizing:border-box !important;
+    display:grid !important;
+    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+    gap:16px !important;
+}
+
+/* Clean, compact cards like the PDF/tool cards. */
+.image-tool-card{
+    min-height:190px !important;
+    padding:18px !important;
+    border-radius:17px !important;
+    box-sizing:border-box !important;
+}
+
+.image-tool-icon{
+    width:48px !important;
+    height:48px !important;
+    min-width:48px !important;
+    margin-bottom:12px !important;
+    border-radius:13px !important;
+    font-size:20px !important;
+}
+
+.image-tool-card h3{
+    font-size:17px !important;
+    margin-bottom:6px !important;
+}
+
+.image-tool-card p{
+    min-height:38px !important;
+    margin-bottom:13px !important;
+    font-size:13px !important;
+    line-height:1.5 !important;
+}
+
+.image-tool-card a{
+    padding:8px 11px !important;
+    font-size:12px !important;
+    border-radius:9px !important;
+}
+
+/* Keep proper side spacing on medium screens. */
+@media(max-width:1100px){
+    .image-tools-grid{
+        max-width:100% !important;
+        padding:0 16px !important;
+        grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+    }
+}
+
+/* Phone */
+@media(max-width:560px){
+    .image-tools-grid{
+        padding:0 12px !important;
+        grid-template-columns:1fr !important;
+        gap:12px !important;
+    }
+
+    .image-tool-card{
+        min-height:175px !important;
+    }
+}
+
+
+/* ONETOOLBOX UNIFIED CATEGORY STYLE: image-tools.html */
+/* Centered heading and compact top spacing */
+.image-tools-hero{
+    padding:22px 0 18px !important;
+    text-align:center !important;
+}
+.image-tools-hero .container{
+    max-width:1360px !important;
+    margin:0 auto !important;
+    text-align:center !important;
+}
+.image-tools-hero h1{
+    margin:0 0 8px !important;
+    text-align:center !important;
+    font-size:36px !important;
+    line-height:1.2 !important;
+    font-weight:800 !important;
+    color:#2563eb !important;
+}
+.image-tools-hero p{
+    margin:0 auto !important;
+    max-width:820px !important;
+    text-align:center !important;
+    color:#64748b !important;
+    font-size:15px !important;
+    line-height:1.5 !important;
+}
+.image-tools-grid{
+    width:100% !important;
+    max-width:1360px !important;
+    margin:0 auto !important;
+    padding:0 10px !important;
+    box-sizing:border-box !important;
+    gap:16px !important;
+    align-items:stretch !important;
+}
+.image-tool-card{
+    border-radius:17px !important;
+    border:1px solid rgba(148,163,184,.28) !important;
+    box-shadow:0 7px 22px rgba(15,23,42,.06) !important;
+    overflow:hidden !important;
+    transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease !important;
+}
+.image-tool-card::before{
+    background:linear-gradient(90deg,#2563eb,#3b82f6) !important;
+}
+.image-tool-card:hover{
+    transform:translateY(-4px) !important;
+    border-color:#2563eb55 !important;
+    box-shadow:0 14px 30px rgba(15,23,42,.10) !important;
+}
+/* Heading/card accent follows this category */
+.image-tool-card h3{
+    font-weight:800 !important;
+}
+@media(min-width:1101px){
+    .image-tools-grid{
+        grid-template-columns:repeat(4,minmax(0,1fr)) !important;
+    }
+}
+/* Image Tools stays intentionally 3-column, as requested */
+
+@media(min-width:1101px){
+    .image-tools-grid{grid-template-columns:repeat(3,minmax(0,1fr)) !important;}
+}
+
+@media(max-width:1100px){
+    .image-tools-grid{grid-template-columns:repeat(2,minmax(0,1fr)) !important;padding:0 16px !important;}
+}
+@media(max-width:560px){
+    .image-tools-hero{padding:16px 10px 12px !important;}
+    .image-tools-hero h1{font-size:28px !important;}
+    .image-tools-hero p{font-size:14px !important;}
+    .image-tools-grid{grid-template-columns:1fr !important;padding:0 12px !important;gap:12px !important;}
+}
+body.dark .image-tools-hero h1{color:#3b82f6 !important;}
+body.dark .image-tools-hero p{color:#aebbd0 !important;}
+
+/* =========================================================
+   FINAL IMAGE TOOLS LAYOUT — SAME AS PDF TOOLS
+   ========================================================= */
+.image-tools-grid{
+    display:grid !important;
+    width:100% !important;
+    max-width:1360px !important;
+    margin:0 auto !important;
+    padding:0 10px !important;
+    box-sizing:border-box !important;
+    grid-template-columns:repeat(4,minmax(0,1fr)) !important;
+    gap:16px !important;
+}
+
+.image-tool-card{
+    min-height:190px !important;
+    padding:18px !important;
+    border-radius:17px !important;
+    box-sizing:border-box !important;
+}
+
+.image-tool-icon{
+    width:48px !important;
+    height:48px !important;
+    min-width:48px !important;
+    margin-bottom:13px !important;
+    border-radius:13px !important;
+    font-size:20px !important;
+}
+
+.image-tool-card h3{
+    font-size:17px !important;
+    line-height:1.3 !important;
+    margin:0 0 7px !important;
+    font-weight:800 !important;
+}
+
+.image-tool-card p{
+    min-height:40px !important;
+    margin:0 0 16px !important;
+    font-size:13px !important;
+    line-height:1.55 !important;
+}
+
+@media(max-width:850px){
+    .image-tools-grid{
+        grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+        gap:15px !important;
+        padding:0 16px !important;
+    }
+}
+
+@media(max-width:540px){
+    .image-tools-grid{
+        grid-template-columns:1fr !important;
+        gap:13px !important;
+        padding:0 12px !important;
+    }
+}

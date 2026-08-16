@@ -57,7 +57,7 @@
   };
 
   const initTheme = () => {
-    const saved = localStorage.getItem("otb-theme");
+    const saved = localStorage.getItem("onetoolbox-theme");
     if (saved === "dark") document.body.classList.add("dark");
     const btn = document.getElementById("themeToggle");
     const icon = btn?.querySelector("i");
@@ -68,7 +68,7 @@
     update();
     btn?.addEventListener("click", () => {
       document.body.classList.toggle("dark");
-      localStorage.setItem("otb-theme",
+      localStorage.setItem("onetoolbox-theme",
         document.body.classList.contains("dark") ? "dark" : "light");
       update();
     });

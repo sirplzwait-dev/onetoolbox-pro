@@ -1,0 +1,44 @@
+{
+  "categories": [
+    {
+      "name": "Image Tools",
+      "url": "/pages/image-tools.html"
+    },
+    {
+      "name": "PDF Tools",
+      "url": "/pages/pdf-tools.html"
+    },
+    {
+      "name": "Video Tools",
+      "url": "/pages/video-tools.html"
+    },
+    {
+      "name": "Audio Tools",
+      "url": "/pages/audio-tools.html"
+    },
+    {
+      "name": "AI Tools",
+      "url": "/pages/ai-tools.html"
+    },
+    {
+      "name": "Document Tools",
+      "url": "/pages/document-tools.html"
+    },
+    {
+      "name": "Calculator Tools",
+      "url": "/pages/calculator-tools.html"
+    },
+    {
+      "name": "Utility Tools",
+      "url": "/pages/utility-tools.html"
+    },
+    {
+      "name": "Developer Tools",
+      "url": "/pages/developer-tools.html"
+    },
+    {
+      "name": "Converter Tools",
+      "url": "/pages/converter-tools.html"
+    }
+  ]
+}

@@ -71,7 +71,7 @@ function calendarWidget(targetId,dateId){
    for(let i=0;i<first;i++)days.insertAdjacentHTML("beforeend","<span class='otb-cal-empty'></span>");
    for(let day=1;day<=total;day++){
      const x=new Date(d.getFullYear(),d.getMonth(),day), id=iso(x);
-     const cls=[id===iso(selected)?"selected":"","id===iso(new Date())?"today":""].filter(Boolean).join(" ");
+     const cls=[id===iso(selected)?"selected":"",id===iso(new Date())?"today":""].filter(Boolean).join(" ");
      days.insertAdjacentHTML("beforeend",`<button type="button" class="${cls}" data-day="${id}">${day}</button>`);
    }
  };
@@ -106,8 +106,8 @@ const ui={
 "loan-calculator":()=>set(inp("principal","Loan Amount")+inp("rate","Annual Interest (%)")+inp("months","Tenure (Months)")),
 "bmi-calculator":()=>set(inp("weight","Weight (kg)")+inp("height","Height (cm)")),
 "bmr-calculator":()=>set(inp("weight","Weight (kg)")+inp("height","Height (cm)")+inp("age","Age (Years)")+sel("sex","Sex",[["m","Male"],["f","Female"]])),
-"age-calculator":()=>{set(inp("dob","Date of Birth","date")+inp("asof","Calculate As Of","date",new Date().toISOString().slice(0,10))+'<div class="otb-calendar-wrap" id="ageCalendar"></div>';calendarWidget("ageCalendar","dob")},
-"date-calculator":()=>{set(inp("d1","Start Date","date")+inp("d2","End Date","date")+'<div class="otb-calendar-wrap" id="dateCalendar"></div>';calendarWidget("dateCalendar","d1")},
+"age-calculator":()=>{set(inp("dob","Date of Birth","date")+inp("asof","Calculate As Of","date",new Date().toISOString().slice(0,10))+'<div class="otb-calendar-wrap" id="ageCalendar"></div>');calendarWidget("ageCalendar","dob")},
+"date-calculator":()=>{set(inp("d1","Start Date","date")+inp("d2","End Date","date")+'<div class="otb-calendar-wrap" id="dateCalendar"></div>');calendarWidget("dateCalendar","d1")},
 "time-calculator":()=>set(inp("h1","Hours","number","0")+inp("m1","Minutes","number","0")+inp("s1","Seconds","number","0")),
 "temperature-calculator":()=>set(inp("v","Temperature")+sel("from","From",[["C","Celsius"],["F","Fahrenheit"],["K","Kelvin"]])+sel("to","To",[["C","Celsius"],["F","Fahrenheit"],["K","Kelvin"]])),
 "length-calculator":()=>set(inp("v","Value")+sel("from","From",opts("length"))+sel("to","To",opts("length"))),

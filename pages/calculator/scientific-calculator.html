@@ -1,146 +1,58 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Scientific Calculator - OneToolBox</title>
-  <link rel="stylesheet" href="../../assets/css/reset.css">
-  <link rel="stylesheet" href="../../assets/css/variables.css">
-  <link rel="stylesheet" href="../../assets/css/layout.css">
-  <link rel="stylesheet" href="../../assets/css/components.css">
-  <link rel="stylesheet" href="../../assets/css/responsive.css">
-  <link rel="stylesheet" href="../../assets/css/dark.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-  <link rel="stylesheet" href="../../assets/css/scientific-calculator.css">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Scientific Calculator - OneToolBox</title>
+<link href="../../assets/css/reset.css" rel="stylesheet"/>
+<link href="../../assets/css/variables.css" rel="stylesheet"/>
+<link href="../../assets/css/layout.css" rel="stylesheet"/>
+<link href="../../assets/css/components.css" rel="stylesheet"/>
+<link href="../../assets/css/calculator-tools.css" rel="stylesheet"/>
+<link href="../../assets/css/tools/scientific-calculator.css" rel="stylesheet"/>
+<link href="../../assets/css/tool-ui.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet"/>
+<link href="../../assets/css/real-tool-ui.css" rel="stylesheet"/>
+<meta content="index,follow,max-image-preview:large" name="robots"/><meta content="Scientific Calculator online free with OneToolBox. Use this calculator tools tool quickly in your browser without installing software." name="description"/><link href="https://onetoolbox.in/pages/calculator/scientific-calculator.html" rel="canonical"/><meta content="Scientific Calculator - OneToolBox" property="og:title"/><meta content="Scientific Calculator online free with OneToolBox. Use this calculator tools tool quickly in your browser without installing software." property="og:description"/><meta content="https://onetoolbox.in/pages/calculator/scientific-calculator.html" property="og:url"/><meta content="OneToolBox" property="og:site_name"/><meta content="website" property="og:type"/><script src="/assets/js/analytics-config.js"></script><script src="/assets/js/onetoolbox-analytics.js"></script><script data-onetoolbox-schema="true" type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Scientific Calculator","url":"https://onetoolbox.in/pages/calculator/scientific-calculator.html","description":"Scientific Calculator online free with OneToolBox. Use this calculator tools tool quickly in your browser without installing software.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>  <link rel="stylesheet" href="/assets/css/onetoolbox-common-layout.css">
 </head>
 <body>
-  <div class="page">
 <div id="header-placeholder"></div>
-<main>
-      <section class="hero">
-        <div>
-          <span class="eyebrow">OneToolBox • Calculator</span>
-          <h1>Scientific Calculator</h1>
-          <p>Fast, colorful and browser-based scientific calculator with trigonometry, powers, roots and more.</p>
-        </div>
-        <div class="hero-badge">FREE • PRIVATE • FAST</div>
-      </section>
-
-      <section class="calculator-shell">
-        <div class="display">
-          <div class="display-top">
-            <span id="modeLabel">DEG</span>
-            <span id="memoryLabel">M: 0</span>
-          </div>
-          <div class="expression" id="expression"></div>
-          <div class="answer" id="answer">0</div>
-        </div>
-
-        <div class="toolbar">
-          <div class="tabs">
-            <button class="tab active" data-panel="main">main</button>
-            <button class="tab" data-panel="functions">func</button>
-            <button class="tab" data-panel="memory">memory</button>
-          </div>
-          <div class="mode">
-            <button class="mode-btn" data-mode="RAD">RAD</button>
-            <button class="mode-btn active" data-mode="DEG">DEG</button>
-          </div>
-          <button class="tool-btn" id="clearAll">clear</button>
-          <button class="tool-btn" id="backspace">⌫</button>
-        </div>
-
-        <div class="keypad">
-          <div class="function-panel panel-main active">
-            <button class="key function" data-insert="x²">x²</button>
-            <button class="key function" data-insert="^">xʸ</button>
-            <button class="key function" data-insert="abs(">abs</button>
-            <button class="key function" data-insert="sqrt(">√</button>
-            <button class="key function" data-insert="cbrt(">∛</button>
-            <button class="key function" data-insert="π">π</button>
-
-            <button class="key function" data-insert="sin(">sin</button>
-            <button class="key function" data-insert="cos(">cos</button>
-            <button class="key function" data-insert="tan(">tan</button>
-            <button class="key function" data-insert="asin(">sin⁻¹</button>
-            <button class="key function" data-insert="acos(">cos⁻¹</button>
-            <button class="key function" data-insert="atan(">tan⁻¹</button>
-
-            <button class="key function" data-insert="ln(">ln</button>
-            <button class="key function" data-insert="log(">log</button>
-            <button class="key function" data-insert="e">e</button>
-            <button class="key utility" data-insert="(">(</button>
-            <button class="key utility" data-insert=")">)</button>
-            <button class="key utility" data-insert="%">%</button>
-          </div>
-
-          <div class="number-panel">
-            <button class="key number" data-insert="7">7</button>
-            <button class="key number" data-insert="8">8</button>
-            <button class="key number" data-insert="9">9</button>
-            <button class="key operator" data-insert="÷">÷</button>
-            <button class="key utility" data-action="memory-plus">M+</button>
-            <button class="key utility" data-action="memory-recall">MR</button>
-
-            <button class="key number" data-insert="4">4</button>
-            <button class="key number" data-insert="5">5</button>
-            <button class="key number" data-insert="6">6</button>
-            <button class="key operator" data-insert="×">×</button>
-            <button class="key utility" data-action="memory-minus">M−</button>
-            <button class="key utility" data-action="memory-clear">MC</button>
-
-            <button class="key number" data-insert="1">1</button>
-            <button class="key number" data-insert="2">2</button>
-            <button class="key number" data-insert="3">3</button>
-            <button class="key operator" data-insert="−">−</button>
-            <button class="key clear" data-action="clear">AC</button>
-            <button class="key back" data-action="back">⌫</button>
-
-            <button class="key number wide" data-insert="0">0</button>
-            <button class="key number" data-insert=".">.</button>
-            <button class="key operator" data-insert="+">+</button>
-            <button class="key equals" data-action="equals">=</button>
-          </div>
-
-          <div class="extra-panels">
-            <div class="panel" id="functions">
-              <button class="key function" data-insert="floor(">floor</button>
-              <button class="key function" data-insert="ceil(">ceil</button>
-              <button class="key function" data-insert="exp(">eˣ</button>
-              <button class="key function" data-insert="10^">10ˣ</button>
-              <button class="key function" data-insert="fact(">n!</button>
-              <button class="key function" data-insert="1/">1/x</button>
-            </div>
-            <div class="panel" id="memory">
-              <div class="memory-card"><b>Memory</b><span id="memoryValue">0</span></div>
-              <button class="memory-action" data-action="memory-plus">M+</button>
-              <button class="memory-action" data-action="memory-minus">M−</button>
-              <button class="memory-action" data-action="memory-recall">MR</button>
-              <button class="memory-action" data-action="memory-clear">MC</button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="info-grid">
-        <article><span>⚡</span><h3>Fast calculation</h3><p>Runs directly in your browser with no installation.</p></article>
-        <article><span>🧮</span><h3>Scientific functions</h3><p>Trigonometry, logarithms, powers, roots and factorials.</p></article>
-        <article><span>🎨</span><h3>Modern interface</h3><p>Clean colorful controls inspired by modern math tools.</p></article>
-      </section>
-    </main>
-  </div>
-  <div id="footer-placeholder"></div>
-  <div id="modal-root"></div>
-  <div id="toast-root"></div>
-  <button aria-label="Scroll to Bottom" class="back-to-top" id="scrollToggle" title="Go to Bottom" type="button">
-    <i class="fas fa-arrow-down"></i>
-  </button><script defer src="../../assets/js/utils.js"></script>
-<script defer src="../../assets/js/theme.js"></script>
-<script defer src="../../assets/js/navigation.js"></script>
-<script defer src="../../assets/js/search.js"></script>
-<script defer src="../../assets/js/modal.js"></script>
-<script defer src="../../assets/js/toast.js"></script>
-<script defer src="../../assets/js/app.js"></script>
-<script src="../../assets/js/scientific-calculator.js"></script>
-</body>
-</html>
+<main class="page page-offset otb-tool-page">
+<section class="tool-hero"><div class="container">
+<h1>Scientific Calculator</h1>
+<p>Advanced mathematical calculations.</p>
+</div></section>
+<section class="section"><div class="container">
+<div class="otb-tool-layout">
+<div class="otb-tool-card">
+<h2><i class="fa-solid fa-wand-magic-sparkles"></i> Scientific Calculator</h2>
+<p class="otb-help">Enter your values below and calculate instantly in your browser.</p>
+<div class="otb-fields" id="toolFields">
+<label>Input</label>
+<textarea id="toolInput" placeholder="Enter text or data here..."></textarea>
+</div>
+<div class="otb-actions">
+<button class="otb-btn otb-primary" id="runBtn" type="button"><i class="fa-solid fa-play"></i> Run Tool</button>
+<button class="otb-btn otb-secondary" id="resetBtn" type="button"><i class="fa-solid fa-rotate-left"></i> Reset</button>
+</div>
+<div class="otb-result" hidden="" id="resultBox">
+<h3>Result</h3><pre id="resultText"></pre>
+<button class="otb-btn otb-download" id="downloadBtn" type="button"><i class="fa-solid fa-download"></i> Download Result</button>
+</div>
+</div>
+<aside class="otb-info-card">
+<h3>About this tool</h3>
+<p>Advanced mathematical calculations.</p>
+<ul><li>Simple and responsive interface</li><li>Calculations run directly in your browser</li><li>Works with the OneToolBox design system</li></ul>
+</aside>
+</div></div></section>
+</main>
+<div id="footer-placeholder"></div>
+<script src="../../assets/js/app.js"></script>
+<script src="../../assets/js/navigation.js"></script>
+<script src="../../assets/js/tools/scientific-calculator.js"></script>
+<script src="../../assets/js/tool-engine.js"></script>
+<script src="../../assets/js/real-tool-engine.js"></script>
+<script src="/assets/js/onetoolbox-common-layout.js"></script>
+</body></html>
