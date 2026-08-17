@@ -1,182 +1,194 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Image OCR - OneToolBox</title>
-<meta content="Image OCR online free with OneToolBox. Use this image tools tool quickly in your browser without installing software." name="description"/>
-<link href="../../assets/css/reset.css" rel="stylesheet"/>
-<link href="../../assets/css/variables.css" rel="stylesheet"/>
-<link href="../../assets/css/layout.css" rel="stylesheet"/>
-<link href="../../assets/css/components.css" rel="stylesheet"/>
-<link href="../../assets/css/tools/image-ocr.css" rel="stylesheet"/>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet"/>
-<link href="../../assets/css/tool-content.css" rel="stylesheet"/>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Image OCR Online | OneToolBox</title>
+<meta name="description" content="Extract editable text from images directly in your browser with OneToolBox Image OCR.">
+<link rel="stylesheet" href="../../assets/css/reset.css">
+<link rel="stylesheet" href="../../assets/css/variables.css">
+<link rel="stylesheet" href="../../assets/css/layout.css">
+<link rel="stylesheet" href="../../assets/css/components.css">
+<link rel="stylesheet" href="../../assets/css/tools/image-ocr.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<link rel="stylesheet" href="../../assets/css/tool-content.css">
 <script id="otb-theme-boot">(()=>{try{if(localStorage.getItem("onetoolbox-theme")==="dark")document.documentElement.classList.add("otb-dark-preload")}catch(e){}})();</script>
 <style id="otb-theme-boot-style">html.otb-dark-preload{background:#0f172a}html.otb-dark-preload body{background:#0f172a}</style>
-<link href="https://cdnjs.cloudflare.com" rel="preconnect"/>
-<link href="https://cdn.jsdelivr.net" rel="preconnect"/>
-<meta content="index,follow,max-image-preview:large" name="robots"/><link href="https://onetoolbox.in/pages/image-tools/image-ocr.html" rel="canonical"/><meta content="Image OCR - OneToolBox" property="og:title"/><meta content="Image OCR online free with OneToolBox. Use this image tools tool quickly in your browser without installing software." property="og:description"/><meta content="https://onetoolbox.in/pages/image-tools/image-ocr.html" property="og:url"/><meta content="OneToolBox" property="og:site_name"/><meta content="website" property="og:type"/><script src="/assets/js/analytics-config.js"></script><script src="/assets/js/onetoolbox-analytics.js"></script><script data-onetoolbox-schema="true" type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Image OCR","url":"https://onetoolbox.in/pages/image-tools/image-ocr.html","description":"Image OCR online free with OneToolBox. Use this image tools tool quickly in your browser without installing software.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>  <link rel="stylesheet" href="/assets/css/onetoolbox-common-layout.css">
 </head>
+
 <body>
 <div id="header-placeholder"></div>
+
 <main class="page page-offset">
-<section class="ocr-hero">
-<div class="container">
-<div class="tool-badge"><i class="fa-solid fa-file-lines"></i> Free OCR Tool</div>
-<h1>Image OCR</h1>
-<p>Extract editable text from images directly in your browser. No API key is required.</p>
-</div>
+
+<section class="tool-hero">
+  <div class="container">
+    <h1>📄 Image OCR</h1>
+    <p>Extract editable text from images directly in your browser. No API key is required.</p>
+  </div>
 </section>
+
 <section class="section">
-<div class="container">
-<div class="ocr-workspace">
-<aside class="ocr-controls">
-<div class="panel-title">
-<h2><i class="fa-solid fa-sliders"></i> OCR Settings</h2>
-</div>
-<label class="upload-btn" for="imageInput">
-<i class="fa-solid fa-cloud-arrow-up"></i> Choose Image
-</label>
-<input accept="image/png,image/jpeg,image/webp" hidden="" id="imageInput" type="file"/>
-<p class="hint">JPG, PNG or WebP</p>
-<div class="control-group">
-<label for="language">OCR Language</label>
-<select id="language">
-<option value="eng">English</option>
-<option value="hin">Hindi</option>
-<option value="eng+hin">English + Hindi</option>
-</select>
-</div>
-<div class="control-group">
-<label for="scale">OCR Image Scale</label>
-<select id="scale">
-<option value="1">1× - Fast</option>
-<option selected="" value="1.5">1.5× - Balanced</option>
-<option value="2">2× - Better Accuracy</option>
-</select>
-</div>
-<div class="privacy-box">
-<i class="fa-solid fa-lock"></i>
-<div>
-<strong>Browser Based</strong>
-<p>OCR processing runs in your browser. No API key is needed.</p>
-</div>
-</div>
-<div class="progress-wrap">
-<div class="progress-top">
-<span id="progressLabel">Ready</span>
-<strong id="progressPercent">0%</strong>
-</div>
-<div class="progress-track">
-<div id="progressBar"></div>
-</div>
-</div>
-<button class="primary-btn" disabled="" id="extractBtn" type="button">
-<i class="fa-solid fa-wand-magic-sparkles"></i> Extract Text
-</button>
-<button class="tool-btn" id="resetBtn" type="button">
-<i class="fa-solid fa-arrows-rotate"></i> Reset
-</button>
-<p class="notice">
-<i class="fa-solid fa-circle-info"></i>
-OCR accuracy depends on image quality, font, lighting and language.
-</p>
-</aside>
-<section class="ocr-main">
-<div class="image-preview-card">
-<div class="preview-header">
-<span>Image Preview</span>
-<span id="imageInfo">—</span>
-</div>
-<div class="image-preview">
-<div class="empty-preview" id="emptyPreview">
-<i class="fa-regular fa-image"></i>
-<h3>No image selected</h3>
-<p>Choose an image to extract text.</p>
-</div>
-<img alt="OCR source preview" hidden="" id="imagePreview"/>
-</div>
-</div>
-<div class="text-result-card">
-<div class="result-header">
-<h2><i class="fa-solid fa-align-left"></i> Extracted Text</h2>
-<span id="resultStatus">Waiting</span>
-</div>
-<textarea id="resultText" placeholder="Extracted text will appear here..." spellcheck="false"></textarea>
-<div class="result-actions">
-<button class="secondary-btn" disabled="" id="copyBtn" type="button">
-<i class="fa-regular fa-copy"></i> Copy Text
-</button>
-<button class="download-btn" disabled="" id="downloadBtn" type="button">
-<i class="fa-solid fa-download"></i> Download TXT
-</button>
-<button class="danger-btn" id="clearBtn" type="button">
-<i class="fa-solid fa-trash"></i> Clear
-</button>
-</div>
-</div>
+  <div class="container">
+    <div class="ocr-box">
+
+      <!-- UPLOAD -->
+      <div class="ocr-card">
+        <h3>Upload Image</h3>
+
+        <div class="ocr-upload-area" id="uploadArea">
+          <i class="fa-solid fa-cloud-arrow-up" id="uploadIcon"></i>
+
+          <img id="imagePreview" class="ocr-image-preview" alt="Selected image">
+
+          <h4 id="uploadText">Upload Image</h4>
+
+          <p id="uploadInfo">
+            📁 Choose Image<br>
+            📋 Paste Image<br>
+            🖱️ Drag &amp; Drop
+          </p>
+
+          <label class="ocr-choose-btn">
+            <i class="fa-solid fa-image"></i>
+            Choose Image
+            <input id="imageInput" type="file" accept="image/jpeg,image/png,image/webp,image/bmp,image/gif">
+          </label>
+
+          <button class="ocr-reset-btn" id="resetBtn" type="button">
+            <i class="fa-solid fa-rotate-left"></i>
+            Reset
+          </button>
+        </div>
+
+        <div class="ocr-info">
+          File:
+          <b id="fileName">No image selected</b>
+        </div>
+      </div>
+
+      <!-- SETTINGS -->
+      <div class="ocr-card settings">
+        <div class="ocr-card-heading">
+          <h3>OCR Settings</h3>
+          <button class="ocr-small-reset" id="resetSettingsBtn" type="button">
+            <i class="fa-solid fa-sliders"></i> Reset Settings
+          </button>
+        </div>
+
+        <label for="ocrLanguage">OCR Language</label>
+        <select id="ocrLanguage">
+          <option value="eng">English</option>
+          <option value="hin">Hindi</option>
+          <option value="eng+hin">English + Hindi</option>
+        </select>
+
+        <label for="ocrScale">OCR Image Scale</label>
+        <select id="ocrScale">
+          <option value="1">1× - Fast</option>
+          <option value="1.5" selected>1.5× - Balanced</option>
+          <option value="2">2× - Better Accuracy</option>
+          <option value="3">3× - High Accuracy</option>
+        </select>
+
+        <div class="ocr-browser-note">
+          <i class="fa-solid fa-lock"></i>
+          <div>
+            <strong>Browser Based</strong>
+            <span>Image processing happens on your device.</span>
+          </div>
+        </div>
+
+        <button class="btn btn-primary ocr-run-btn" id="runOcrBtn" type="button" disabled>
+          <i class="fa-solid fa-font"></i>
+          Extract Text
+        </button>
+
+        <div class="ocr-progress-box">
+          <div class="ocr-progress">
+            <div id="progressBar"></div>
+          </div>
+          <span id="progressText">0%</span>
+        </div>
+
+        <p class="ocr-status" id="statusText">Choose an image to begin.</p>
+      </div>
+
+      <!-- RESULT -->
+      <div class="ocr-card result-card">
+        <h3>Extracted Text</h3>
+
+        <textarea id="resultText" placeholder="Extracted text will appear here..." spellcheck="false"></textarea>
+
+        <div class="ocr-result-actions">
+          <button class="btn btn-primary" id="copyBtn" type="button" disabled>
+            <i class="fa-solid fa-copy"></i>
+            Copy Text
+          </button>
+
+          <button class="btn btn-success" id="downloadBtn" type="button" disabled>
+            <i class="fa-solid fa-download"></i>
+            Download TXT
+          </button>
+        </div>
+
+        <div class="ocr-result-info">
+          Characters: <b id="charCount">0</b>
+        </div>
+      </div>
+
+    </div>
+  </div>
 </section>
-</div>
-</div>
+
+<section class="content-section">
+  <div class="container">
+    <div class="content-heading">
+      <h2>How Does Image OCR Work?</h2>
+      <p>Extract editable text from an image in a few simple steps.</p>
+    </div>
+
+    <div class="steps-grid">
+      <article class="info-card">
+        <div class="step-number">1</div>
+        <h3>Upload an Image</h3>
+        <p>Choose an image, drag it into the upload area, or paste an image from your clipboard.</p>
+      </article>
+
+      <article class="info-card">
+        <div class="step-number">2</div>
+        <h3>Select OCR Settings</h3>
+        <p>Select the language and image scale that best match your document.</p>
+      </article>
+
+      <article class="info-card">
+        <div class="step-number">3</div>
+        <h3>Extract &amp; Copy</h3>
+        <p>Run OCR, review the extracted text and copy or download it as a TXT file.</p>
+      </article>
+    </div>
+  </div>
 </section>
-<section class="section">
-<div class="container">
-<div class="feature-grid">
-<div class="feature-item">
-<div class="feature-icon blue"><i class="fa-solid fa-font"></i></div>
-<div><h3>Text Extraction</h3><p>Turn text inside images into editable text.</p></div>
-</div>
-<div class="feature-item">
-<div class="feature-icon purple"><i class="fa-solid fa-language"></i></div>
-<div><h3>English &amp; Hindi</h3><p>Choose English, Hindi or both languages.</p></div>
-</div>
-<div class="feature-item">
-<div class="feature-icon orange"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
-<div><h3>Adjust Accuracy</h3><p>Use image scaling to improve OCR results.</p></div>
-</div>
-<div class="feature-item">
-<div class="feature-icon green"><i class="fa-solid fa-download"></i></div>
-<div><h3>Save Text</h3><p>Copy the result or download it as a TXT file.</p></div>
-</div>
-</div>
-</div>
+
+<section class="content-section compact-section">
+  <div class="container">
+    <div class="privacy-card">
+      <div class="privacy-icon"><i class="fa-solid fa-shield-halved"></i></div>
+      <div>
+        <h2>Privacy &amp; File Handling</h2>
+        <p>The selected image is processed in your browser. The OCR interface is designed to work locally without sending the image to a OneToolBox upload server.</p>
+      </div>
+    </div>
+  </div>
 </section>
-<section class="section">
-<div class="container">
-<div class="content-card">
-<h2>How to Extract Text from an Image?</h2>
-<div class="steps-grid">
-<div class="step"><span>1</span><div><h3>Upload Image</h3><p>Select a clear image containing text.</p></div></div>
-<div class="step"><span>2</span><div><h3>Select Language</h3><p>Choose English, Hindi or English + Hindi.</p></div></div>
-<div class="step"><span>3</span><div><h3>Extract Text</h3><p>Start OCR and wait for the result.</p></div></div>
-<div class="step"><span>4</span><div><h3>Copy or Download</h3><p>Edit the text, copy it or save a TXT file.</p></div></div>
-</div>
-</div>
-</div>
-</section>
-<section class="section">
-<div class="container">
-<div class="content-card faq">
-<h2>Frequently Asked Questions</h2>
-<details><summary>Is Image OCR free?</summary><p>Yes. The page uses browser-side OCR and does not require an API key.</p></details>
-<details><summary>Can I extract Hindi text?</summary><p>Yes. Select Hindi or English + Hindi from the language menu.</p></details>
-<details><summary>Does OCR upload my image?</summary><p>The image is processed by the OCR library in the browser. This page does not send the image to an external OCR API.</p></details>
-<details><summary>Why is the extracted text not perfect?</summary><p>OCR accuracy depends on image resolution, blur, lighting, font style, orientation and language. A clear, high-resolution image normally gives better results.</p></details>
-<details><summary>Can I edit the extracted text?</summary><p>Yes. The result appears in an editable text box.</p></details>
-</div>
-</div>
-</section>
-<section class="otb-tool-info"><div class="container"><div class="otb-tool-info-head"><h2>Features</h2><p>Extract text from images online for free using browser-based OCR.</p></div><div class="otb-tool-info-grid"><div class="otb-tool-info-card"><h3>Simple workflow</h3><ul><li>Clear controls focused on the main Image task.</li><li>Useful settings are kept close to the tool workspace.</li><li>Results can be reviewed before the final download where supported.</li></ul></div><div class="otb-tool-info-card"><h3>Browser friendly</h3><ul><li>Works directly from a modern web browser.</li><li>No desktop installation is required for normal use.</li><li>Responsive layout for computer, tablet and phone screens.</li></ul></div><div class="otb-tool-info-card"><h3>Practical output</h3><ul><li>Designed for everyday file and content tasks.</li><li>Original input is not changed by the download step.</li><li>Easy reset and repeat workflow where supported.</li></ul></div></div></div></section>
-<section class="otb-tool-info"><div class="container"><div class="otb-tool-info-head"><h2>How It Works</h2><p>Use Image OCR in a few simple steps.</p></div><div class="otb-tool-info-grid"><div class="otb-tool-info-card"><h3>1. Open the tool</h3><p>Open this page and review the available options before starting.</p></div><div class="otb-tool-info-card"><h3>2. Add your input</h3><p>Select, enter or drop the content required by the tool, then choose the settings you need.</p></div><div class="otb-tool-info-card"><h3>3. Process &amp; download</h3><p>Run the tool, check the result, make adjustments if available, and download the finished file or result.</p></div></div></div></section>
+
 </main>
+
 <div id="footer-placeholder"></div>
-<!-- Tesseract.js: browser-side OCR, no API key -->
+
 <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
 <script src="../../assets/js/navigation.js"></script>
 <script src="../../assets/js/app.js"></script>
 <script src="../../assets/js/tools/image-ocr.js"></script>
-<script src="/assets/js/onetoolbox-common-layout.js"></script>
 </body>
 </html>

@@ -1,4 +1,122 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><title>QR Scanner - OneToolBox</title><meta content="QR Scanner online free with OneToolBox. Use this image tools tool quickly in your browser without installing software." name="description"/><link href="../../assets/css/reset.css" rel="stylesheet"/><link href="../../assets/css/variables.css" rel="stylesheet"/><link href="../../assets/css/layout.css" rel="stylesheet"/><link href="../../assets/css/components.css" rel="stylesheet"/><link href="../../assets/css/tools/qr-scanner.css" rel="stylesheet"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet"/><meta content="index,follow,max-image-preview:large" name="robots"/><link href="https://onetoolbox.in/pages/image-tools/qr-scanner.html" rel="canonical"/><meta content="QR Scanner - OneToolBox" property="og:title"/><meta content="QR Scanner online free with OneToolBox. Use this image tools tool quickly in your browser without installing software." property="og:description"/><meta content="https://onetoolbox.in/pages/image-tools/qr-scanner.html" property="og:url"/><meta content="OneToolBox" property="og:site_name"/><meta content="website" property="og:type"/><script src="/assets/js/analytics-config.js"></script><script src="/assets/js/onetoolbox-analytics.js"></script><script data-onetoolbox-schema="true" type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"QR Scanner","url":"https://onetoolbox.in/pages/image-tools/qr-scanner.html","description":"QR Scanner online free with OneToolBox. Use this image tools tool quickly in your browser without installing software.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>  <link rel="stylesheet" href="/assets/css/onetoolbox-common-layout.css">
-</head><body><div id="header-placeholder"></div><main class="page page-offset"><section class="tool-hero"><div class="container"><span class="badge">✨ Image Tool</span><h1>QR Scanner</h1><p>Scan QR codes from your camera or image files.</p></div></section><section class="section"><div class="container"><div class="card"><h2>🛠 QR Scanner</h2><div class="actions"><button class="choose" id="start">📷 Start Camera</button><button id="stop">■ Stop</button></div><video autoplay="" id="video" playsinline=""></video><div class="upload"><i class="fa-solid fa-qrcode"></i><h3>Or Scan an Image</h3><button class="choose" id="choose">Choose QR Image</button><input accept="image/*" class="file-input" id="file" type="file"/></div><canvas id="canvas"></canvas><div class="result-box"><b>Scanned Result</b><p id="result">No QR code scanned yet.</p></div><script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script></div></div></section><section class="content"><div class="container"><h2>Features</h2><div class="grid"><article><b>⚡</b><h3>Fast Browser Processing</h3><p>Works directly in your browser with no complicated setup.</p></article><article><b>🔒</b><h3>Privacy Friendly</h3><p>Your work stays in your browser for supported operations.</p></article><article><b>📱</b><h3>Mobile Ready</h3><p>Responsive design for phones, tablets and desktops.</p></article><article><b>🎯</b><h3>Easy Controls</h3><p>Simple controls designed for quick everyday editing.</p></article><article><b>🖼️</b><h3>Image Focused</h3><p>Built specifically for common image workflows.</p></article><article><b>⬇️</b><h3>Easy Download</h3><p>Save the finished result to your device.</p></article></div><h2>How to Work</h2><div class="steps"><article><b>1</b><h3>Upload</h3><p>Select your image or files.</p></article><article><b>2</b><h3>Edit</h3><p>Use the available controls to create your result.</p></article><article><b>3</b><h3>Download</h3><p>Save your finished image.</p></article></div><h2>Frequently Asked Questions</h2><div class="faq"><details><summary>Does this tool work on mobile?</summary><p>Yes. The interface is responsive and designed for modern mobile browsers.</p></details><details><summary>Do I need to install software?</summary><p>No. The tool runs in the browser.</p></details><details><summary>Are my images uploaded?</summary><p>These tools are designed to process supported operations in your browser. External model/CDN resources may be loaded when required.</p></details><details><summary>Can I download the result?</summary><p>Yes. Use the download button after completing the operation.</p></details></div></div></section></main><div id="footer-placeholder"></div><script src="../../assets/js/navigation.js"></script><script src="../../assets/js/app.js"></script><script src="../../assets/js/tools/qr-scanner.js" type="module"></script><script src="/assets/js/onetoolbox-common-layout.js"></script>
-</body></html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>QR Scanner - OneToolBox</title>
+<meta name="description" content="Scan QR codes from your camera or image files with OneToolBox.">
+<link href="../../assets/css/reset.css" rel="stylesheet">
+<link href="../../assets/css/variables.css" rel="stylesheet">
+<link href="../../assets/css/layout.css" rel="stylesheet">
+<link href="../../assets/css/components.css" rel="stylesheet">
+<link href="../../assets/css/tools/qr-scanner.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/onetoolbox-common-layout.css">
+<link rel="canonical" href="https://onetoolbox.in/pages/image-tools/qr-scanner.html">
+</head>
+<body>
+<div id="header-placeholder"></div>
+<main class="page page-offset">
+  <section class="tool-hero">
+    <div class="container">
+      <span class="badge">✨ Image Tool</span>
+      <h1>QR Scanner</h1>
+      <p>Scan QR codes instantly using your camera or an image from your device.</p>
+    </div>
+  </section>
+
+  <section class="qr-workspace-section">
+    <div class="container">
+      <div class="qr-workspace">
+        <article class="qr-panel qr-camera-panel">
+          <div class="qr-panel-head">
+            <div class="qr-icon blue"><i class="fa-solid fa-camera"></i></div>
+            <div><h2>Camera Scanner</h2><p>Scan a QR code directly from your camera.</p></div>
+          </div>
+          <div class="camera-box" id="cameraBox">
+            <div class="camera-placeholder" id="cameraPlaceholder">
+              <i class="fa-solid fa-camera-retro"></i>
+              <strong>Camera Preview</strong>
+              <span>Click Start Camera to begin scanning.</span>
+            </div>
+            <video id="video" autoplay playsinline></video>
+            <div class="scan-line" id="scanLine"></div>
+          </div>
+          <div class="qr-actions">
+            <button class="qr-btn primary" id="start"><i class="fa-solid fa-camera"></i> Start Camera</button>
+            <button class="qr-btn danger" id="stop" disabled><i class="fa-solid fa-stop"></i> Stop</button>
+          </div>
+          <div class="qr-status" id="cameraStatus"><i class="fa-solid fa-circle-info"></i> Camera is ready.</div>
+        </article>
+
+        <article class="qr-panel qr-upload-panel">
+          <div class="qr-panel-head">
+            <div class="qr-icon green"><i class="fa-solid fa-qrcode"></i></div>
+            <div><h2>Scan QR Image</h2><p>Upload a QR image from your device.</p></div>
+          </div>
+          <label class="upload-zone" id="uploadZone" for="file">
+            <i class="fa-solid fa-cloud-arrow-up"></i>
+            <strong>Choose QR Image</strong>
+            <span>JPG, PNG, WEBP or any supported image</span>
+            <em>Click to browse • Drag &amp; Drop</em>
+          </label>
+          <input accept="image/*" class="file-input" id="file" type="file">
+          <div class="image-preview-box" id="imagePreviewBox">
+            <img id="imagePreview" alt="Selected QR image preview">
+          </div>
+          <div class="qr-actions">
+            <button class="qr-btn primary" id="choose"><i class="fa-solid fa-image"></i> Choose Image</button>
+            <button class="qr-btn light" id="reset"><i class="fa-solid fa-rotate-left"></i> Reset</button>
+          </div>
+          <div class="qr-status" id="uploadStatus"><i class="fa-solid fa-circle-info"></i> Select an image containing a QR code.</div>
+        </article>
+
+        <article class="qr-panel qr-result-panel">
+          <div class="qr-panel-head">
+            <div class="qr-icon purple"><i class="fa-solid fa-square-check"></i></div>
+            <div><h2>Scan Result</h2><p>Your decoded QR content will appear here.</p></div>
+          </div>
+          <div class="result-display" id="resultDisplay">
+            <div class="result-empty" id="resultEmpty">
+              <i class="fa-solid fa-qrcode"></i>
+              <strong>No QR code scanned yet</strong>
+              <span>Start the camera or upload a QR image.</span>
+            </div>
+            <div class="result-content" id="resultContent" hidden>
+              <span class="result-label"><i class="fa-solid fa-link"></i> QR Content</span>
+              <div id="result">-</div>
+            </div>
+          </div>
+          <button class="qr-btn success" id="copyResult" disabled><i class="fa-regular fa-copy"></i> Copy Result</button>
+          <div class="privacy-note"><i class="fa-solid fa-shield-halved"></i><span>QR scanning is processed in your browser. Your selected image is not uploaded by this tool.</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="content qr-info-section">
+    <div class="container">
+      <h2>QR Scanner Features</h2>
+      <div class="grid">
+        <article><b>⚡</b><h3>Fast Scanning</h3><p>Detect QR codes quickly from camera frames or uploaded images.</p></article>
+        <article><b>🔒</b><h3>Browser Based</h3><p>Scanning happens locally in your browser for supported operations.</p></article>
+        <article><b>📱</b><h3>Mobile Ready</h3><p>Use the same scanner on phones, tablets and desktop browsers.</p></article>
+      </div>
+      <h2>How to Use</h2>
+      <div class="steps">
+        <article><b>1</b><h3>Choose a Method</h3><p>Start your camera or select a QR image.</p></article>
+        <article><b>2</b><h3>Scan</h3><p>Keep the QR code clearly visible inside the preview.</p></article>
+        <article><b>3</b><h3>Use the Result</h3><p>Copy the decoded QR content with one click.</p></article>
+      </div>
+    </div>
+  </section>
+</main>
+<div id="footer-placeholder"></div>
+<canvas id="canvas" hidden></canvas>
+<script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
+<script src="../../assets/js/navigation.js"></script>
+<script src="../../assets/js/app.js"></script>
+<script src="../../assets/js/tools/qr-scanner.js" type="module"></script>
+<script src="/assets/js/onetoolbox-common-layout.js"></script>
+</body>
+</html>

@@ -1,213 +1,280 @@
-/* ONETOOLBOX - IMAGE OCR */
-"use strict";
+/* =========================================================
+   OneToolBox - Image OCR
+   Browser-side OCR using Tesseract.js
+   ========================================================= */
 
-document.addEventListener("DOMContentLoaded",function(){
+const imageInput = document.getElementById("imageInput");
+const uploadArea = document.getElementById("uploadArea");
+const uploadIcon = document.getElementById("uploadIcon");
+const uploadText = document.getElementById("uploadText");
+const uploadInfo = document.getElementById("uploadInfo");
+const imagePreview = document.getElementById("imagePreview");
+const fileName = document.getElementById("fileName");
 
-const imageInput=document.getElementById("imageInput");
-const imagePreview=document.getElementById("imagePreview");
-const emptyPreview=document.getElementById("emptyPreview");
-const imageInfo=document.getElementById("imageInfo");
-const language=document.getElementById("language");
-const scale=document.getElementById("scale");
-const extractBtn=document.getElementById("extractBtn");
-const resetBtn=document.getElementById("resetBtn");
-const resultText=document.getElementById("resultText");
-const resultStatus=document.getElementById("resultStatus");
-const copyBtn=document.getElementById("copyBtn");
-const downloadBtn=document.getElementById("downloadBtn");
-const clearBtn=document.getElementById("clearBtn");
-const progressBar=document.getElementById("progressBar");
-const progressLabel=document.getElementById("progressLabel");
-const progressPercent=document.getElementById("progressPercent");
+const ocrLanguage = document.getElementById("ocrLanguage");
+const ocrScale = document.getElementById("ocrScale");
+const runOcrBtn = document.getElementById("runOcrBtn");
+const resetBtn = document.getElementById("resetBtn");
+const resetSettingsBtn = document.getElementById("resetSettingsBtn");
 
-let imageData="";
-let originalName="ocr-result";
+const progressBar = document.getElementById("progressBar");
+const progressText = document.getElementById("progressText");
+const statusText = document.getElementById("statusText");
 
-function setProgress(percent,label){
- const p=Math.max(0,Math.min(100,Math.round(percent)));
- progressBar.style.width=p+"%";
- progressPercent.textContent=p+"%";
- progressLabel.textContent=label;
+const resultText = document.getElementById("resultText");
+const copyBtn = document.getElementById("copyBtn");
+const downloadBtn = document.getElementById("downloadBtn");
+const charCount = document.getElementById("charCount");
+
+let selectedFile = null;
+let imageURL = null;
+let busy = false;
+
+function setProgress(value) {
+    const pct = Math.max(0, Math.min(100, Math.round(value)));
+    progressBar.style.width = pct + "%";
+    progressText.textContent = pct + "%";
 }
 
-function setResultState(hasText){
- copyBtn.disabled=!hasText;
- downloadBtn.disabled=!hasText;
- resultStatus.textContent=hasText?"Ready":"Waiting";
+function setStatus(text) {
+    statusText.textContent = text;
 }
 
-imageInput.addEventListener("change",function(){
- const file=this.files[0];
- if(!file)return;
-
- const reader=new FileReader();
- reader.onload=function(e){
-   imageData=e.target.result;
-   originalName=(file.name||"ocr-result").replace(/\.[^.]+$/,"");
-   imagePreview.src=imageData;
-   imagePreview.hidden=false;
-   emptyPreview.hidden=true;
-   extractBtn.disabled=false;
-   resultText.value="";
-   setResultState(false);
-   resultStatus.textContent="Image loaded";
-   imageInfo.textContent=`${formatBytes(file.size)} • ${file.type.replace("image/","").toUpperCase()}`;
-   setProgress(0,"Ready");
- };
- reader.readAsDataURL(file);
-});
-
-function formatBytes(bytes){
- if(!bytes)return "0 B";
- const units=["B","KB","MB","GB"];
- const i=Math.floor(Math.log(bytes)/Math.log(1024));
- return (bytes/Math.pow(1024,i)).toFixed(i?1:0)+" "+units[i];
+function updateResultState() {
+    const hasText = resultText.value.trim().length > 0;
+    copyBtn.disabled = !hasText;
+    downloadBtn.disabled = !hasText;
+    charCount.textContent = resultText.value.length.toLocaleString();
 }
 
-function scaledImageDataURL(src,multiplier){
- return new Promise((resolve,reject)=>{
-   const img=new Image();
-   img.onload=function(){
-     const canvas=document.createElement("canvas");
-     canvas.width=Math.max(1,Math.round(img.naturalWidth*multiplier));
-     canvas.height=Math.max(1,Math.round(img.naturalHeight*multiplier));
-     const ctx=canvas.getContext("2d",{willReadFrequently:true});
-     ctx.imageSmoothingEnabled=true;
-     ctx.imageSmoothingQuality="high";
-     ctx.drawImage(img,0,0,canvas.width,canvas.height);
+function loadImage(file) {
+    if (!file) return;
 
-     // Light preprocessing improves OCR on scans/screenshots without
-     // destroying coloured text. Convert only when the source is very large.
-     const maxSide=3200;
-     if(Math.max(canvas.width,canvas.height)>maxSide){
-       const ratio=maxSide/Math.max(canvas.width,canvas.height);
-       const w=Math.max(1,Math.round(canvas.width*ratio));
-       const h=Math.max(1,Math.round(canvas.height*ratio));
-       const small=document.createElement("canvas");
-       small.width=w; small.height=h;
-       const sctx=small.getContext("2d",{willReadFrequently:true});
-       sctx.imageSmoothingEnabled=true;
-       sctx.imageSmoothingQuality="high";
-       sctx.drawImage(canvas,0,0,w,h);
-       resolve(small.toDataURL("image/png"));
-       return;
-     }
-     resolve(canvas.toDataURL("image/png"));
-   };
-   img.onerror=reject;
-   img.src=src;
- });
+    if (!file.type || !file.type.startsWith("image/")) {
+        alert("Please select a valid image file.");
+        return;
+    }
+
+    selectedFile = file;
+
+    if (imageURL) URL.revokeObjectURL(imageURL);
+    imageURL = URL.createObjectURL(file);
+
+    imagePreview.src = imageURL;
+    imagePreview.style.display = "block";
+
+    uploadIcon.style.display = "none";
+    uploadText.style.display = "none";
+    uploadInfo.style.display = "none";
+
+    fileName.textContent = file.name;
+    runOcrBtn.disabled = false;
+
+    resultText.value = "";
+    updateResultState();
+    setProgress(0);
+    setStatus("Image ready. Click Extract Text.");
 }
 
-async function extractText(){
- if(!imageData)return;
+imageInput?.addEventListener("change", (event) => {
+    loadImage(event.target.files?.[0]);
+});
 
- if(typeof Tesseract==="undefined"){
-   alert("OCR library could not load. Please check your internet connection and reload the page.");
-   return;
- }
+uploadArea?.addEventListener("click", (event) => {
+    if (
+        event.target.closest("label") ||
+        event.target.closest("button") ||
+        event.target.closest("input")
+    ) return;
 
- extractBtn.disabled=true;
- copyBtn.disabled=true;
- downloadBtn.disabled=true;
- resultStatus.textContent="Processing...";
- resultText.value="";
- setProgress(1,"Starting OCR...");
+    imageInput?.click();
+});
 
- try{
-   const lang=language.value;
-   const multiplier=Number(scale.value);
-   const processed=await scaledImageDataURL(imageData,multiplier);
+uploadArea?.addEventListener("dragover", (event) => {
+    event.preventDefault();
+    uploadArea.classList.add("dragover");
+});
 
-   const result=await Tesseract.recognize(processed,lang,{
-     logger:function(message){
-       if(message.status){
-         const pct=message.progress ? message.progress*100 : 0;
-         let label=message.status.replace(/_/g," ");
-         label=label.charAt(0).toUpperCase()+label.slice(1);
-         setProgress(pct,label);
-       }
-     }
-   });
+uploadArea?.addEventListener("dragleave", () => {
+    uploadArea.classList.remove("dragover");
+});
 
-   const text=(result.data.text||"").trim();
-   resultText.value=text;
+uploadArea?.addEventListener("drop", (event) => {
+    event.preventDefault();
+    uploadArea.classList.remove("dragover");
+    loadImage(event.dataTransfer?.files?.[0]);
+});
 
-   if(text){
-     setProgress(100,"Completed");
-     resultStatus.textContent="Completed";
-     setResultState(true);
-   }else{
-     setProgress(100,"No text found");
-     resultStatus.textContent="No text found";
-     setResultState(false);
-   }
- }catch(error){
-   console.error(error);
-   setProgress(0,"OCR failed");
-   resultStatus.textContent="Error";
-   alert("OCR could not process this image. Try a clearer image or another language.");
- }finally{
-   extractBtn.disabled=!imageData;
- }
+document.addEventListener("paste", (event) => {
+    for (const item of event.clipboardData?.items || []) {
+        if (item.type.startsWith("image/")) {
+            const file = item.getAsFile();
+            if (file) loadImage(file);
+            break;
+        }
+    }
+});
+
+async function runOCR() {
+    if (!selectedFile || busy) return;
+
+    if (typeof Tesseract === "undefined") {
+        alert("OCR library could not be loaded. Please check your internet connection and try again.");
+        return;
+    }
+
+    busy = true;
+    runOcrBtn.disabled = true;
+    setProgress(0);
+    setStatus("Preparing OCR...");
+
+    try {
+        const scale = Number(ocrScale.value || 1);
+
+        const worker = await Tesseract.createWorker(
+            ocrLanguage.value || "eng",
+            1,
+            {
+                logger: (message) => {
+                    if (typeof message.progress === "number") {
+                        setProgress(message.progress * 100);
+                    }
+
+                    if (message.status) {
+                        setStatus(
+                            message.status
+                                .replace(/_/g, " ")
+                                .replace(/\b\w/g, c => c.toUpperCase())
+                        );
+                    }
+                }
+            }
+        );
+
+        const source = await createScaledImage(selectedFile, scale);
+
+        const result = await worker.recognize(source);
+
+        resultText.value = (result?.data?.text || "").trim();
+
+        await worker.terminate();
+
+        setProgress(100);
+        setStatus(resultText.value ? "OCR completed successfully." : "No readable text was found.");
+        updateResultState();
+
+        if (resultText.value) {
+            resultText.focus();
+        }
+    } catch (error) {
+        console.error("Image OCR error:", error);
+        setStatus("OCR failed.");
+        alert(error?.message || "OCR failed. Please try another image.");
+    } finally {
+        busy = false;
+        runOcrBtn.disabled = !selectedFile;
+    }
 }
 
-extractBtn.addEventListener("click",extractText);
+function createScaledImage(file, scale) {
+    return new Promise((resolve, reject) => {
+        const img = new Image();
+        const url = URL.createObjectURL(file);
 
-copyBtn.addEventListener("click",async function(){
- const text=resultText.value.trim();
- if(!text)return;
+        img.onload = () => {
+            try {
+                const canvas = document.createElement("canvas");
+                canvas.width = Math.max(1, Math.round(img.naturalWidth * scale));
+                canvas.height = Math.max(1, Math.round(img.naturalHeight * scale));
 
- try{
-   await navigator.clipboard.writeText(text);
-   copyBtn.innerHTML='<i class="fa-solid fa-check"></i> Copied';
-   setTimeout(()=>copyBtn.innerHTML='<i class="fa-regular fa-copy"></i> Copy Text',1400);
- }catch(error){
-   resultText.focus();
-   resultText.select();
-   document.execCommand("copy");
-   copyBtn.innerHTML='<i class="fa-solid fa-check"></i> Copied';
-   setTimeout(()=>copyBtn.innerHTML='<i class="fa-regular fa-copy"></i> Copy Text',1400);
- }
+                const ctx = canvas.getContext("2d");
+                ctx.imageSmoothingEnabled = true;
+                ctx.imageSmoothingQuality = "high";
+                ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+                URL.revokeObjectURL(url);
+                resolve(canvas);
+            } catch (error) {
+                URL.revokeObjectURL(url);
+                reject(error);
+            }
+        };
+
+        img.onerror = () => {
+            URL.revokeObjectURL(url);
+            reject(new Error("Could not read the selected image."));
+        };
+
+        img.src = url;
+    });
+}
+
+runOcrBtn?.addEventListener("click", runOCR);
+
+resultText?.addEventListener("input", updateResultState);
+
+copyBtn?.addEventListener("click", async () => {
+    const text = resultText.value.trim();
+    if (!text) return;
+
+    try {
+        await navigator.clipboard.writeText(text);
+        setStatus("Text copied to clipboard.");
+    } catch {
+        resultText.select();
+        document.execCommand("copy");
+        setStatus("Text copied.");
+    }
 });
 
-downloadBtn.addEventListener("click",function(){
- const text=resultText.value;
- if(!text.trim())return;
+downloadBtn?.addEventListener("click", () => {
+    const text = resultText.value;
+    if (!text.trim()) return;
 
- const blob=new Blob([text],{type:"text/plain;charset=utf-8"});
- const url=URL.createObjectURL(blob);
- const link=document.createElement("a");
- link.href=url;
- link.download=originalName+"-ocr.txt";
- document.body.appendChild(link);
- link.click();
- link.remove();
- URL.revokeObjectURL(url);
+    const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+
+    a.href = url;
+    a.download = "onetoolbox-ocr-text.txt";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+
+    URL.revokeObjectURL(url);
 });
 
-clearBtn.addEventListener("click",function(){
- resultText.value="";
- setResultState(false);
- resultStatus.textContent="Waiting";
- setProgress(0,"Ready");
+function resetSettings() {
+    ocrLanguage.value = "eng";
+    ocrScale.value = "1.5";
+    setStatus(selectedFile ? "Settings reset." : "Choose an image to begin.");
+}
+
+resetSettingsBtn?.addEventListener("click", resetSettings);
+
+resetBtn?.addEventListener("click", () => {
+    selectedFile = null;
+
+    if (imageURL) {
+        URL.revokeObjectURL(imageURL);
+        imageURL = null;
+    }
+
+    imageInput.value = "";
+    imagePreview.src = "";
+    imagePreview.style.display = "none";
+
+    uploadIcon.style.display = "";
+    uploadText.style.display = "";
+    uploadInfo.style.display = "";
+
+    fileName.textContent = "No image selected";
+    resultText.value = "";
+    runOcrBtn.disabled = true;
+
+    setProgress(0);
+    setStatus("Choose an image to begin.");
+    updateResultState();
 });
 
-resetBtn.addEventListener("click",function(){
- imageInput.value="";
- imageData="";
- originalName="ocr-result";
- imagePreview.removeAttribute("src");
- imagePreview.hidden=true;
- emptyPreview.hidden=false;
- imageInfo.textContent="—";
- extractBtn.disabled=true;
- resultText.value="";
- setResultState(false);
- resultStatus.textContent="Waiting";
- setProgress(0,"Ready");
- language.value="eng";
- scale.value="1.5";
-});
-
-});
+updateResultState();
